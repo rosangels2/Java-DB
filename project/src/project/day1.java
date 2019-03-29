@@ -7,20 +7,20 @@ public class day1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/* 
-		 * println("¹®ÀÚ¿­") : ³»°¡ ¿øÇÏ´Â ¹®ÀÚ¿­À» ÄÜ¼Ö¿¡ Ãâ·ÂÇÑ ÈÄ ¿£ÅÍ ÀÔ·Â
-		 * print("¹®ÀÚ¿­") : ³»°¡ ¿øÇÏ´Â ¹®ÀÚ¿­À» ÄÜ¼Ö¿¡ Ãâ·Â
+		 * println("ë¬¸ìì—´") : ë‚´ê°€ ì›í•˜ëŠ” ë¬¸ìì—´ì„ ì½˜ì†”ì— ì¶œë ¥í•œ í›„ ì—”í„° ì…ë ¥
+		 * print("ë¬¸ìì—´") : ë‚´ê°€ ì›í•˜ëŠ” ë¬¸ìì—´ì„ ì½˜ì†”ì— ì¶œë ¥
 		 * 
 		System.out.println("Hello3");
 		System.out.println("Hello3");
 		System.out.print("Hello3");
 		System.out.print("Hello3");*/
-		//MAX_SIZE¶ó´Â »ó¼ö¿¡ ¸®ÅÍ·²10ÀÇ °ªÀ» ÀúÀå
+		//MAX_SIZEë¼ëŠ” ìƒìˆ˜ì— ë¦¬í„°ëŸ´10ì˜ ê°’ì„ ì €ì¥
 		/*
-		 * println : ¿øÇÏ´Â ÇüÅÂÀÇ 
+		 * println : ì›í•˜ëŠ” í˜•íƒœì˜ 
 		 */
 		
-		/*System.out.println("numÀÇ °ªÀº "+ num +" ÀÔ´Ï´Ù.");
-		System.out.printf("numÀÇ °ªÀº %d ÀÔ´Ï´Ù.", num);*/
+		/*System.out.println("numì˜ ê°’ì€ "+ num +" ì…ë‹ˆë‹¤.");
+		System.out.printf("numì˜ ê°’ì€ %d ì…ë‹ˆë‹¤.", num);*/
 		/*String input = scan.nextLine();
 		System.out.println(input);
 		num = Integer.parseInt(input);*/
@@ -43,16 +43,16 @@ public class day1 {
 		num = (int)num3;
 		System.out.println(num);*/
 		
-		// ´ëÀÔ¿¬»ê (=)
-		// ´ëÀÔ¿¬»êÀÚ¸¦ ±âÁØÀ¸·Î ÁÂÃø¿¡´Â ¹«Á¶°Ç º¯¼ö¸í 1°³°¡ ¿Í¾ß ÇÑ´Ù.
-		// Á¶°Ç¹®¿¡¼­ ºñ±³¿¬»êÀÚ¿Í ´ëÀÔ¿¬»êÀÚ È¥µ¿ ÁÖÀÇ
+		// ëŒ€ì…ì—°ì‚° (=)
+		// ëŒ€ì…ì—°ì‚°ìë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì¢Œì¸¡ì—ëŠ” ë¬´ì¡°ê±´ ë³€ìˆ˜ëª… 1ê°œê°€ ì™€ì•¼ í•œë‹¤.
+		// ì¡°ê±´ë¬¸ì—ì„œ ë¹„êµì—°ì‚°ìì™€ ëŒ€ì…ì—°ì‚°ì í˜¼ë™ ì£¼ì˜
 		/*int num = 0;
 		num = 3;
 		int num1 = 10, num2 = 20;
 		int res = 0;
 		res= num1 + num2;
-		//num1 + num2 = res; //¿¡·¯ ¹ß»ı
-		//3 = num; //¿¡·¯ ¹ß»ı*/		
+		//num1 + num2 = res; //ì—ëŸ¬ ë°œìƒ
+		//3 = num; //ì—ëŸ¬ ë°œìƒ*/		
 		
 		/*int num1 = 1 + 2;
 		int num2 = 1 - 2;
@@ -63,7 +63,7 @@ public class day1 {
 		System.out.println(num3);
 		System.out.println(num4);
 		System.out.println((char)('A'+1));
-		//À¯´ÏÄÚµå»ó AÀÇ ´ÙÀ½ÀÎ BÀÇ °ªÀÌ »ı¼º
+		//ìœ ë‹ˆì½”ë“œìƒ Aì˜ ë‹¤ìŒì¸ Bì˜ ê°’ì´ ìƒì„±
 		char ch = 'A'+1;
 		System.out.println(ch);
 		char ch2 = (char)(ch + 1);
@@ -72,16 +72,16 @@ public class day1 {
 		
 		
 		/*int num = 10;
-		System.out.println("ÈÄÀ§Çü ÁøÇà : "+ num++);
-		System.out.println("ÈÄÀ§Çü °á°ú : "+num);
+		System.out.println("í›„ìœ„í˜• ì§„í–‰ : "+ num++);
+		System.out.println("í›„ìœ„í˜• ê²°ê³¼ : "+num);
 		num = 10;
-		System.out.println("ÀüÀ§Çü ÁøÇà : "+ ++num);
-		System.out.println("ÀüÀ§Çü °á°ú : "+num);*/
+		System.out.println("ì „ìœ„í˜• ì§„í–‰ : "+ ++num);
+		System.out.println("ì „ìœ„í˜• ê²°ê³¼ : "+num);*/
 		
 		/*int x = 20;
 		boolean isEven = x%2==0 ? true:false;
-		System.out.println(x+"´Â Â¦¼ö? " + isEven);*/
-		//Â¦¼ö : numÀ» 2·Î ³ª´©¾úÀ» ¶§ ³ª¸ÓÁö°¡ 0°ú °°´Ù
+		System.out.println(x+"ëŠ” ì§ìˆ˜? " + isEven);*/
+		//ì§ìˆ˜ : numì„ 2ë¡œ ë‚˜ëˆ„ì—ˆì„ ë•Œ ë‚˜ë¨¸ì§€ê°€ 0ê³¼ ê°™ë‹¤
 		
 		
 		/*num2 += 1; //num2 = num2 + 1;
@@ -89,7 +89,7 @@ public class day1 {
 		
 		
 		
-		/*¹®Á¦1) 10/3ÀÇ °ªÀ» ±¸ÇÏ¶ó
+		/*ë¬¸ì œ1) 10/3ì˜ ê°’ì„ êµ¬í•˜ë¼
 		int num1 = 10, num2 = 3;
 		double res;
 		res = num1 / (double)num2;
@@ -98,16 +98,16 @@ public class day1 {
 		
 		
 		
-		/*¹®Á¦2) ÄÜ¼Ö¿¡ ÀÔ·ÂÇÑ ¼ıÀÚ¸¦ ½ºÄµÇÏ½Ã¿À
+		/*ë¬¸ì œ2) ì½˜ì†”ì— ì…ë ¥í•œ ìˆ«ìë¥¼ ìŠ¤ìº”í•˜ì‹œì˜¤
 		
 		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
-		System.out.println("ÀÔ·ÂÇÑ ¼ö : " + num);
+		System.out.println("ì…ë ¥í•œ ìˆ˜ : " + num);
 		scan.close();*/
 		
 		
 		
-		//¹®Á¦3) x´Â 1º¸´Ù Å©°Å³ª °°°í 100º¸´Ù ÀÛ°Å³ª °°À½À» Ãâ·ÂÇÏ½Ã¿À
+		//ë¬¸ì œ3) xëŠ” 1ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ê³  100ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìŒì„ ì¶œë ¥í•˜ì‹œì˜¤
 		
 		/*Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
@@ -116,8 +116,8 @@ public class day1 {
 		System.out.println(1 <= num && num <= 100);*/
 		
 		
-		/*¹®Á¦4) 10°ú 3ÀÇ »ê¼ú¿¬»ê °á°ú¸¦ Ãâ·ÂÇÏ½Ã¿À
-		°á°ú ¿¹½Ã
+		/*ë¬¸ì œ4) 10ê³¼ 3ì˜ ì‚°ìˆ ì—°ì‚° ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤
+		ê²°ê³¼ ì˜ˆì‹œ
 		13 (10+3)
 		7 (10-3)
 		30 (10*3)
@@ -137,25 +137,25 @@ public class day1 {
 		
 		
 		
-		/*¹®Á¦5) Áö±İ±îÁö ¸ÔÀº ¹ä°ªÀ» °è»êÇÏ¿© °á°ú¸¦ Ãâ·ÂÇÏ½Ã¿À
-		 * ´Ü ÇÏ·ç¿¡ 3³¢¸¦ ²À ¸Ô°í ÇÑ ³¢¿¡ 3000¿øÀÌ´Ù.
-		 * °³¿ùÀº ¹«½ÃÇÏ°í ³ªÀÌ·Î¸¸ °è»ê, À±³âÀº ¹«½Ã */
+		/*ë¬¸ì œ5) ì§€ê¸ˆê¹Œì§€ ë¨¹ì€ ë°¥ê°’ì„ ê³„ì‚°í•˜ì—¬ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤
+		 * ë‹¨ í•˜ë£¨ì— 3ë¼ë¥¼ ê¼­ ë¨¹ê³  í•œ ë¼ì— 3000ì›ì´ë‹¤.
+		 * ê°œì›”ì€ ë¬´ì‹œí•˜ê³  ë‚˜ì´ë¡œë§Œ ê³„ì‚°, ìœ¤ë…„ì€ ë¬´ì‹œ */
 		
 		/*int age = 25;
 		int day = 3;
 		int money = 3000;
 		int year = 365;
 		int totalMoney = age * day * money * year;
-		System.out.println("Áö±İ±îÁö ¸ÔÀº ±İ¾× : " + totalMoney + "¿ø");*/
+		System.out.println("ì§€ê¸ˆê¹Œì§€ ë¨¹ì€ ê¸ˆì•¡ : " + totalMoney + "ì›");*/
 		
-		/*¹®Á¦6) Á¤¼ö¸¦ ÀÔ·Â¹Ş¾Æ Â¦¼öÀÎÁö ÆÇº°ÇÏ½Ã¿À
+		/*ë¬¸ì œ6) ì •ìˆ˜ë¥¼ ì…ë ¥ë°›ì•„ ì§ìˆ˜ì¸ì§€ íŒë³„í•˜ì‹œì˜¤
 		Scanner scan = new Scanner(System.in);
 		int num;
 		num = scan.nextInt();
 		boolean isEven = num%2==0 ? true:false;
 		boolean isEven = num % 2 == 0;
-		num 1À» 2·Î ³ª´©¾úÀ» ¶§ ³ª¸ÓÁö°¡ 0°ú Å¸°°´Ù
-		System.out.println(num +"´Â Â¦¼ö? " + isEven);*/
+		num 1ì„ 2ë¡œ ë‚˜ëˆ„ì—ˆì„ ë•Œ ë‚˜ë¨¸ì§€ê°€ 0ê³¼ íƒ€ê°™ë‹¤
+		System.out.println(num +"ëŠ” ì§ìˆ˜? " + isEven);*/
 		
 		/*Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
