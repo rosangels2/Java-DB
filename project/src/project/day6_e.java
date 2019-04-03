@@ -1,6 +1,6 @@
 package project;
 
-public class day6e {
+public class day6_e {
 
 	public static void main(String[] args) {
 		System.out.println(caLc(1,2,'/')); //방법1

@@ -1,6 +1,6 @@
 package project;
 
-public class day6c {
+public class day6_c {
 
 	public static void main(String[] args) {
 

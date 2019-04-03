@@ -343,11 +343,19 @@ class day2 {
 		
 		int i = 0;
 		int num = 5; //num의 값만 바꾸면 다른 값의 구구단 출력 가능
-		for(i=1; i<=9; i=i+1){
+		for(i=1; i<=9; i++){
 			System.out.println(num+" x " + i +" = " +  num*i);
 		}
-	*/		
+	*/	
 		
+		//구구단 전체를 출력하는 코드
+	/*	int i=0;
+		int num = 7;
+		for(num=2; num<=9; num++)
+			for(i=1; i<=9; i++){
+				System.out.println(num + " x "+ i + " = " + num*i );
+			}
+*/		
 		
 		//예제) 정수를 입력받아 입력받은 정수가 소수인지 아닌지 판별하는 코드를 반복문을 이용하여 작성하시오
 		//소수 : 약수가 1과 자기 자신인 수(약수가 2개인 수)
