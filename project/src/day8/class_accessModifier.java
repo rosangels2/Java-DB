@@ -18,8 +18,9 @@ public class class_accessModifier {
 		System.out.println("현재 tv의 채널은 "+ t.channel + "입니다.");
 		//멤버변수가 default면 같은 패키지 내이기 때문에 사용할 수 있지만 private으로 변환하면 다른 클래스이기 때문에 사용 불가
 */
+		// t - 참조변수 (주소를 저장하는 변수) 
 		
-		Tv t = null; //Tv를 만들 거라고 선언
+		Tv t = null; //참조변수 t를 선언하고 초기화
 		t = new Tv(); // Tv(); 라는 생성자를 호출해서 객체를 생성 		
 /*		t.printVolume();
 		t.volumeUp();
@@ -34,8 +35,14 @@ public class class_accessModifier {
 		t.channelUp();
 		t.printChannel();
 		t.channelUp();
-		t.channelNum(64);
+		t.channelNum(77);
 		t.printChannel();
+		t.channelDown();
+		t.channelDown();
+		t.channelDown();
+		t.channelDown();
+		t.printChannel();
+		
 	}
 	
 }
