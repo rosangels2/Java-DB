@@ -1,6 +1,6 @@
-package project;
+package day7;
 
-public class day7_question2 {
+public class question2 {
 
 	public static void main(String[] args) {
 

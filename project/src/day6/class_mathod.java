@@ -1,8 +1,8 @@
-package project;
+package day6;
 
 import java.util.Scanner;
 
-public class day6_a {
+public class class_mathod {
 
 	public static void main(String[] args) {
 		System.out.println(sum(1,2));//printSum보다 sum이 재사용성이 높다(출력이 먼저 수행되지 않기 때문)

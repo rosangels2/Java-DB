@@ -1,8 +1,8 @@
-package project;
+package day7;
 
 import java.util.Scanner;
 
-public class day7_question4 {
+public class question4 {
 
 	public static void main(String[] args) {
 

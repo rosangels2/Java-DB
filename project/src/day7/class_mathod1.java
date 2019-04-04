@@ -1,7 +1,7 @@
 
-package project;
+package day7;
 
-public class day7_b {
+public class class_mathod1 {
 
 	public static void main(String[] args) {
 	
@@ -14,6 +14,7 @@ public class day7_b {
 	//	rePlay('ㅋ', 200);
 		
 
+
 	}
 
 	//구구단 전체를 메서드를 이용하여 출력하도록 작성하시오
@@ -22,7 +23,7 @@ public class day7_b {
 	리턴타입 : 정수 => void
 	메서드명 : multi
 */	
-	public static void muLti(){
+	public static void multi(){
 		int num1, num2;
 		for(num1=2; num1<=9; num1++)//
 			for(num2=1; num2<=9; num2++){

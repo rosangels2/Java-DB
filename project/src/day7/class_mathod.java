@@ -1,8 +1,8 @@
-package project;
+package day7;
 
 import java.util.Scanner;
 
-public class day7_a {
+public class class_mathod {
 
 	public static void main(String[] args) {
 		

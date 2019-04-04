@@ -1,8 +1,8 @@
-package project;
+package day5;
 
 import java.util.Scanner;
 
-public class day5 {
+public class class_for_while {
 
 	public static void main(String[] args) {
 		

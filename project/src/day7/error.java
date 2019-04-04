@@ -1,6 +1,6 @@
-package project;
+package day7;
 
-public class day7_error {
+public class error {
 
 	public static void main(String[] args) {
 

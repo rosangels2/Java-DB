@@ -1,6 +1,6 @@
-package project;
+package day6;
 
-public class day6_lotto {
+public class lotto {
 
 	public static void main(String[] args) {
 		

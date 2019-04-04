@@ -1,8 +1,8 @@
-package project;
+package day3;
 
 import java.util.Scanner;
 
-public class day3 {
+public class class_for {
 
 	public static void main(String[] args) {
 		//예제) 1부터 5까지의 합을 구하는 코드를 반복문을 이용하여 작성하시오

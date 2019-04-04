@@ -1,6 +1,6 @@
-package project;
+package day6;
 
-public class day6_b {
+public class class_mathod1 {
 
 	public static void main(String[] args) {
 		

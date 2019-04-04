@@ -1,8 +1,8 @@
-package project;
+package day2;
 
 import java.util.Scanner;
 
-class day2 {
+class class_if_else {
 	public static void main(String[] args) {
 		
 		/*Scanner scan = new Scanner(System.in);
