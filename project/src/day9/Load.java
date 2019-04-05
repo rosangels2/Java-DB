@@ -2,7 +2,7 @@ package day9;
 
 import day6.lotto; // 해당 패키지의 메서드를 불러오기 위해 자신의 패키지명 밑에 import 패키지명.클래스명; 을 입력해 준다
 
-public class load {
+public class Load {
 
 	public static void main(String[] args) {
 

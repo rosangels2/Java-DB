@@ -72,7 +72,7 @@ public class Tv {//같은 패키지 안에서는 같은 이름의 클래스를 �
 		
 	}
 	
-/*	public Tv(Tv t){  //복사생성자
+	public Tv(Tv t){  //복사생성자
 		setChannel(t.channel);
 		if(t.volume > MAX_VOLUME){
 			volume = MAX_VOLUME;
@@ -80,12 +80,14 @@ public class Tv {//같은 패키지 안에서는 같은 이름의 클래스를 �
 				volume = t.volume;
 		}
 	}
-*/	
+	
 
-	public Tv(Tv stv){ 
+/*	public Tv(Tv stv){ 
 		this(stv.channel, stv.volume); //다른 생성자 호출은 첫 줄에만 쓸 수 있다
 	}
-/*	channel = stv.channel
-	volume = stv.volume;	*/
+	
+	//channel = stv.channel
+	//volume = stv.volume;	
+*/
 		
 }
