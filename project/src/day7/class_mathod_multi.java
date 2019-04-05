@@ -1,7 +1,7 @@
 
 package day7;
 
-public class class_mathod1 {
+public class class_mathod_multi {
 
 	public static void main(String[] args) {
 	

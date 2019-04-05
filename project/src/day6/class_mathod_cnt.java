@@ -1,6 +1,6 @@
 package day6;
 
-public class class_mathod2 {
+public class class_mathod_cnt {
 
 	public static void main(String[] args) {
 

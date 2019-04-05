@@ -1,6 +1,6 @@
 package day6;
 
-public class class_mathod3 {
+public class class_mathod_gcd1 {
 
 	public static void main(String[] args) {
 

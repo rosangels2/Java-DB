@@ -20,7 +20,7 @@ public class class_accessModifier {
 */
 		// t - 참조변수 (주소를 저장하는 변수) 
 		
-		Tv t = null; //참조변수 t를 선언하고 초기화
+		Tv t = null; //참조변수 t(객체)를 선언하고 초기화
 		t = new Tv(); // Tv(); 라는 생성자를 호출해서 객체를 생성 		
 /*		t.printVolume();
 		t.volumeUp();
@@ -47,7 +47,7 @@ public class class_accessModifier {
 	
 }
 
-class Tv{
+class Tv{ //클래스명과 파일명이 같을 경우에만 클래스에 public을 사용 가능
 	//일반적으로 멤버 변수는 접근제한자를 private로 설정하여 멤버 변수를 직접 수정할 수 없게 하고, 멤버 메서드를 통해서만 수정하도록 한다
 	
 	

@@ -2,7 +2,7 @@ package day7;
 
 import java.util.Scanner;
 
-public class class_mathod {
+public class class_mathod_array {
 
 	public static void main(String[] args) {
 		

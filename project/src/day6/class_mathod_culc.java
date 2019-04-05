@@ -1,6 +1,6 @@
 package day6;
 
-public class class_mathod4 {
+public class class_mathod_culc {
 
 	public static void main(String[] args) {
 		
