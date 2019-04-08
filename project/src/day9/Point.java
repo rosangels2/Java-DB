@@ -13,13 +13,13 @@ public class Point {
 /*	2. 생성자
 	멤버변수 초기화 => 기본 생성자, 복사 생성자
 */
-	public Point(){
+	public Point(){ //기본생성자(매개변수가 없음)
 		move(0, 0);	//x = 0; y = 0;
 	}
 	public Point(int x, int y){
 		move(x,y);
 	}
-	public Point(Point p){
+	public Point(Point p){ // 매개변수가 같은 클래스내의 객체인 복사생성자
 		move(p.x, p.y);
 	}
 

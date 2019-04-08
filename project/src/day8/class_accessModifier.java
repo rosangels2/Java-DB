@@ -8,6 +8,7 @@ package day8;
 	
 	private - 일반적으로 멤버 메서드나 멤버 변수에 붙이고, 자신(해당 멤버 메서드를 포함하는 클래스)를 제외한 다른 클래스에서 사용할 수 없다
 
+	protected - 같은 패키지와 자식 클래스에서 사용 가능
 */
 
 public class class_accessModifier {
