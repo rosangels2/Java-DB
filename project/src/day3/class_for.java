@@ -28,7 +28,7 @@ public class class_for {
 		//방법1 : 1부터 10까지 하나씩 증가하면서 짝수이면 더하고 홀수이면 무시한다
 	/*	int i;
 		int sum = 0;
-		for(i=1 ;i<=10 ;i++ ){
+		for(i=1 ; i<=10 ;i++ ){
 			if(i % 2 == 0){
 				sum += i;
 			}

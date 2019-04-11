@@ -1,5 +1,7 @@
 package day12;
 
+import java.util.Scanner;
+
 public class StudentManager {
 	
 	private Student std[];	//학생 정보를 관리하기 위해 학생 정보를 저장할 주소를 가지는 배열을 선언
@@ -23,12 +25,16 @@ public class StudentManager {
 	리턴타입 : void
 	메서드명 : insert	
 */	
+	//학년, 반, 번호가 같은 학생이 입력되지 않게 코드를 수정하시오
 	
 	public void insert(Student s){
-		std[count++] = new Student(s);	//std[??] : Student 클래스의 객체가 선언만 돼있고
-	//	count++; = std[count++]			//insert 기능에서 객체 정보를 추가하려면 객체를 생성한 후(new) 매개변수의 값을 복사해야 한다(Student(s))
+		if(search(s.getGrade(),s.getClassNum(),s.getNum()) == -1){	
+			std[count++] = new Student(s);	//std[??] : Student 클래스의 객체가 선언만 돼있고
+		}
+	//	count++; = std[count++]				//insert 기능에서 객체 정보를 추가하려면 객체를 생성한 후(new) 매개변수의 값을 복사해야 한다(Student(s))
 		
 	//	std[count] = s ; 문법적으론 이상이 없지만 객체 s와 count번지의 주소가 공유되기 때문에 외부에서 s의 값이 변하면 count번지의 값도 같이 변할 수 있다
+		
 		
 	}
 		
@@ -92,7 +98,57 @@ public class StudentManager {
 		
 	}
 	
+	public void printMenu(){
+		System.out.println("1. 학생 정보 추가");
+		System.out.println("2. 학생 정보 수정");
+		System.out.println("3. 학생 정보 삭제");
+		System.out.println("4. 학생 정보 출력");
+		System.out.println("5. 종료");
+		System.out.println("메뉴를 선택하세요 : ");
+	}
 	
+	
+	/*
+	기능 : Scanner가 주어지면 검색을 위한 학생의 정보를 콘솔을 통해 입력받아 학생 객체를 만들어 돌려주는 기능
+	매개변수 : Scanner scan
+	리턴타입 : 학생객체 -> Student
+	메서드명 : inputSearchStudent
+	*/
+	
+	public Student inputSearchStudent(Scanner scan){
+		 Student s = new Student();
+		 System.out.print("학년 : ");
+		 s.setGrade(scan.nextInt());
+		 System.out.print("반 : ");
+		 s.setClassNum(scan.nextInt());
+		 System.out.print("번호 : ");
+		 s.setNum(scan.nextInt());
+		return s;
+	}
+	
+	
+	
+	
+	/*
+	기능 : Scanner가 주어지면 학생의 정보를 콘솔을 통해 입력받아 학생 객체를 만들어 돌려주는 기능
+	매개변수 : Scanner scan
+	리턴타입 : 학생객체 -> Student
+	메서드명 : inputStudent
+	*/
+
+	public Student inputStudent(Scanner scan){
+		 Student s = inputSearchStudent(scan);
+		 System.out.print("이름 : ");
+		 s.setName(scan.next());						 
+		 System.out.print("국어점수 : ");
+		 s.setKor(scan.nextDouble());
+		 System.out.print("영어점수 : ");
+		 s.setEng(scan.nextDouble());
+		 System.out.print("수학점수 : ");
+		 s.setMath(scan.nextDouble());
+		 return s;
+	}
+
 	
 	
 
