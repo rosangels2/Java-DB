@@ -12,7 +12,8 @@ public class class_forExample1 {
 			}
 			System.out.println();
 		}
-*/			
+*/		
+
 		
 		//문제2)다음 배열의 모든 값을 출력하는 코드를 작성하시오
 		
