@@ -2,7 +2,7 @@ package day5;
 
 import java.util.Scanner;
 
-public class class_for_while {
+public class class_for_while_array {
 
 	public static void main(String[] args) {
 		
@@ -84,7 +84,7 @@ Loop1 :	for(i=1; ; i++){
 		System.out.println(sum);
 		
 		
-		int i, sum;
+		int i, sum=0;
 		i=1; // 초기화는 while문 위로
 		while(i<=10){
 			sum += i;
@@ -281,7 +281,7 @@ Loop1 :	for(i=1; ; i++){
 					break;
 				}
 			}
-			if(!find){ //fine == false
+			if(!find){ //find == false
 				arr[i] = r;
 				i++;//arr[i]=r;이 참일 때에만 i가 저장되고 넘어가도록 증감연산을 if문에 입력
 			}
@@ -376,7 +376,7 @@ Loop1 :	for(i=1; ; i++){
 			if(cnt==10){
 				break;
 			}	
-			if(num1%i==0 && num2%i==0){				
+			if(num1%i==0 && num2%i==0){	
 				arr[cnt] = i;
 				cnt++;
 				}
@@ -434,7 +434,6 @@ Loop1 :	for(i=1; ; i++){
 		}
 		System.out.println();
 	*/	
-		
 		
 		
 		

@@ -219,7 +219,7 @@ public class class_for {
 			//i가 num의 약수이면 약수의 갯수를 하나 증가
 			//num를 i로 나누었을 때 나머지가 0과 같다 => i가 num의 약수
 						if(num % i == 0){
-				cnt++;//ctn +=1 //cnt+1; //++cnt
+				cnt++;//cnt +=1 //cnt+1; //++cnt
 			}
 		}
 		//약수의 갯수가 2개이면 소수라고 출력

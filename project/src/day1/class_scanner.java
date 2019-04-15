@@ -26,22 +26,23 @@ public class class_scanner {
 		num = Integer.parseInt(input);*/
 		
 		
-		/*Scanner scan = new Scanner(System.in);
-		int num = 0;
-		num = scan.nextInt();
+/*		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
 		System.out.println(num);
 		double num2 = scan.nextDouble();
 		System.out.println(num2);
 		char op = scan.next().charAt(0);
-		System.out.println(op);*/
-		
-		
+		System.out.println(op);
+		String s = scan.next().toString();
+		System.out.println(s);
+*/		
 		
 		/*int num = 'a';
 		double num2 = 1.23f;
 		float num3 = (float)1.23d;
 		num = (int)num3;
 		System.out.println(num);*/
+		
 		
 		// 대입연산 (=)
 		// 대입연산자를 기준으로 좌측에는 무조건 변수명 1개가 와야 한다.

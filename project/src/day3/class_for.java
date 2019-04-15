@@ -15,6 +15,7 @@ public class class_for {
 	*/	
 		
 		
+		
 	/*	무한반복식
 		int i;
 		int sum = 0;
@@ -79,7 +80,7 @@ public class class_for {
 		//최대공약수를 구하는 코드
 	/*	int num1=8, num2=12;
 		int i, gcd=1;
-		for(i=1,gcd=0 ;i<=8 ;i++ ){
+		for(i=1,gcd=0; i<=8; i++){
 			if(num1%i==0 && num2%i==0){
 				gcd = i ;
 			}
@@ -98,9 +99,9 @@ public class class_for {
 		
 	/*	int num1 = 3, num2 = 11;
 		int i, gcd=1;
-		for(i=1,gcd=0; i<=3; i++){
+		for(i=1,gcd=0; i<=num1; i++){
 			if(num1%i==0 && num2%i==0){
-				gcd = i;
+				gcd++;
 				
 			}
 		}if(gcd==1){
@@ -109,19 +110,7 @@ public class class_for {
 				System.out.println(num1+"과 " +num2+"는 서로소 관계가 아님");
 			}
 	*/	
-		
-		
-	/*	int i = 0;
-		int sum = 0;
-		for(i=1; i<=10; i++){
-			if(1 % 2 == 1){
-				continue;
-			}
-			sum += 1;
-			System.out.println(i);
-		}
-		System.out.println();
-	*/	
+
 		
 		
 	/*	예제) 두 수의 최소공배수를 구하는 코드를 작성하시오
@@ -144,7 +133,7 @@ public class class_for {
 	*/	
 		
 		
-	/*	최대공배수를 구하는 식
+	/*	최소공배수를 구하는 식
 		int num1=10, num2=15;
 		int i, lcm =1;
 		for(i=1,lcm=0; i<=150; i++){
@@ -155,6 +144,7 @@ public class class_for {
 		}
 		System.out.println(num1+ "과 " +num2+ "의 최소공배수는" +lcm);		
 	*/	
+		
 		
 		
 	/*	int num1=10, num2=15;
@@ -178,7 +168,7 @@ public class class_for {
 			num1=num2;
 			num2=tmp;
 		}
-			for(i=num1,lcm=0; i<=10000; i+=num1){
+			for(i=num1,lcm=0; i<=num1*num2; i+=num1){
 				if(i % num2 == 0){
 					lcm = i;
 					break;
@@ -200,21 +190,21 @@ public class class_for {
 	*/	
 				
 		
-		//문제) 구구단을 모두 출력하는 코드를 작성하시오
-	/*	int i;
+/*		//문제) 구구단을 모두 출력하는 코드를 작성하시오
+		int i;
 		int num = 2;
 		int res = 0;
 		for(num=2; num<=9; num++){
 			System.out.println(num + "단");
-			for(i=1 ;i<=9 ; i=i+1){
+			for(i=1; i<=9; i++){
 				res = num * i;
-				System.out.println(num+" X " + i + " = " + num*i);
+				System.out.println(num+" X " + i + " = " + res);
 			}
 		}
-	*/	
+*/	
 	
 		
-	/*	문제) *을 가로 6줄 세로 5줄로 출력하시오
+	/*\	문제) *을 가로 6줄 세로 5줄로 출력하시오
 		int i = 0, j = 0;
 		for(i=1; i<=6; i++){	//가로
 			for(j=1; j<=5; j++){	//세로
@@ -223,11 +213,12 @@ public class class_for {
 			System.out.println();
 		}
 	*/	
+
 		
 		
 	/*	문제) 다음을 출력하시오
-		*
-		**
+		*		
+		**		
 		***
 		****
 		*****
@@ -244,6 +235,7 @@ public class class_for {
 	*/	
 		
 		
+		
 	/*	문제) 다음을 출력하시오
 	 	     * i=1 공백=5 *=1
 	 	    ** i=2 공백=4 *=2
@@ -251,11 +243,12 @@ public class class_for {
 		  **** i=4 공백=2 *=4
 		 ***** i=5 공백=1 *=5
 		****** i=6 공백=0 *=6
+				공백 = 6-i
 	*/	
 		
 		
+		
 	/*	int i = 0, j = 0;
-		int res = 0;
 		for(i=1; i<=6; i++){
 			for(j=1; j<=6-i; j++){
 				System.out.print(" ");
@@ -269,7 +262,6 @@ public class class_for {
 		
 		
 	/*	int i = 0, j = 0;
-		int res = 0;
 		for(i=1; i<=6; i++){
 			for(j=5; j>=i; j--){
 				System.out.print(" ");
@@ -292,9 +284,9 @@ public class class_for {
 	   ***********	i=6 *=11 공백=0
 	*/	
 		
+
 		
 	/*	int i = 0, j = 0;
-		int res = 0;
 		for(i=1; i<=6; i++){
 			for(j=1; j<=6-i; j++){
 				System.out.print(" ");
