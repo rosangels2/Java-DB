@@ -33,7 +33,7 @@ public class question2 {
 		for(int i=0; i<arr3.length; i++){
 			arr3[i] = arr3.length - i;
 		}
-		for(int tmp:arr3){
+		for(int tmp : arr3){
 			System.out.print(tmp + " ");
 		}
 */		
