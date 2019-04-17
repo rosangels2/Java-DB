@@ -10,7 +10,7 @@ public class class_Framework {
 /*		ArrayList<Integer> list = new ArrayList<Integer>();		//사용할 자료형의 객체를 입력해 주어야 한다(일반 자료형은 사용할 수 없다)
 		list.add(10);											//wrapper클래스 사용(null값이 올 수 있다)
 		list.add(5);											//list.add(new Integer(5)); 	익명 객체를 사용한 같은 기능의 코드
-		list.add(1);
+		list.add(1);	
 		for(int i=0; i<list.size(); i++){						//size라는 메서드를 통해 길이를 계산
 			System.out.println(list.get(i));					//입력된 순서대로 저장된 값을 출력
 		}
