@@ -12,7 +12,6 @@ public class Framework_example_baseball {
 
 	public static void main(String[] args) {
 
-		
 		List<Integer> com = HashSet_Example_Lotto.randomArr(1, 9, 3);	//1. com의 번호를 List로 생성 -> randomArr메서드 호출
 		List<Integer> user = new LinkedList<Integer>();					//정수값을 저장할 List의 객체 user를 LinkedList를 통해 생성한다
 		System.out.println(com);										//랜덤으로 생성된 com을 출력한다
