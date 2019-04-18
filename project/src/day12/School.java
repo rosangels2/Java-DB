@@ -2,7 +2,7 @@ package day12;
 
 import java.util.Scanner;
 
-public class class_School {
+public class School {
 	
 	public static int MAX_STUDENT_COUNT = 300;
 		

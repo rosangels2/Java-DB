@@ -4,7 +4,7 @@ public class Example_University {
 
 	public static void main(String[] args) {
 		
-		UniversityStudent std = new UniversityStudent(Gender.MALE, Grade.FRESHMAN, Major.NONE, "최진영", 2019150103);
+		Example_UniversityStudent std = new Example_UniversityStudent(Gender.MALE, Grade.FRESHMAN, Major.NONE, "최진영", 2019150103);
 		System.out.println(std);
 		std.setUniversityName("그린");
 		std.setGrade(Grade.FOUR);

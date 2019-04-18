@@ -1,6 +1,6 @@
 package day18;
 
-public class UniversityStudent {
+public class Example_UniversityStudent {
 
 	private Gender gender;
 	private Major major;
@@ -57,13 +57,13 @@ public class UniversityStudent {
 	
 	
 	
-	public UniversityStudent(){
+	public Example_UniversityStudent(){
 		gender = Gender.MALE;
 		grade = Grade.FRESHMAN;
 		major = Major.NONE;
 	}
 	
-	public UniversityStudent(Gender gender, Grade grade, Major major, String name, Integer id){
+	public Example_UniversityStudent(Gender gender, Grade grade, Major major, String name, Integer id){
 		this.gender = gender;
 		this.grade = grade;
 		this.major = major;
