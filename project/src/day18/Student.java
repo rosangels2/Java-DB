@@ -2,101 +2,55 @@ package day18;
 
 public class Student {
 	
-	//학번 이름, 성별, 학년, 전공, 나이, 학점
-	private int id;
+	//학생 정보를 저장하는 클래스
+	//학생 정보 - 학번, 이름, 학교명, 전공, 학점
+	private String id;
 	private String name;
-	private Gender gender;
-	private Grade grade;
-	private Major major;
-	private int age;
+	private String sName;
+	private String major;
 	private double average;
 	
 	
+	public String getId() {
+		return id;
+	}
 	public String getName() {
 		return name;
 	}
-	public Gender getGender() {
-		return gender;
+	public String getsName() {
+		return sName;
 	}
-	public Grade getGrade() {
-		return grade;
-	}
-	public Major getMajor() {
+	public String getMajor() {
 		return major;
-	}
-	public int getId() {
-		return id;
-	}
-	public int getAge() {
-		return age;
 	}
 	public double getAverage() {
 		return average;
 	}
-	
-	
+	public void setId(String id) {
+		this.id = id;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setGender(Gender gender) {
-		this.gender = gender;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
-	public void setGrade(Grade grade) {
-		this.grade = grade;
-	}
-	public void setMajor(Major major) {
+	public void setMajor(String major) {
 		this.major = major;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public void setAge(int age) {
-		this.age = age;
 	}
 	public void setAverage(double average) {
+		if(average > 4.5 || average < 0){
+			return ;
+		}	
 		this.average = average;
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "학생 / 학번 = " + id + ", 이름 = " + name  +", 성별 = " + gender + ", 학년 = " + grade + ", 전공 = " + major 
-				+ ", 나이 = " + age + ", 학점 = " + average;
-	}
-	
-	
-	public Student(){
-		this.name = "없음";
-		this.gender = Gender.MALE;
-		this.grade = Grade.FRESHMAN;
-		this.major = Major.NONE;
-	}
-	
-	public Student(Student s){
-		this.id = s.id;
-		this.name = s.name;
-		this.gender = s.gender;
-		this.grade = s.grade;
-		this.major = s.major;
-		this.age = s.age;
-		this.average = s.average;
-	}
-	
-	public Student(int id, String name, Gender gender, Grade grade, Major major, int age, double average){
-		this.id = id;
-		this.name = name;
-		this.gender = gender;
-		this.grade = grade;
-		this.major = major;
-		this.age = age;
-		this.average = average;
-	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 	
@@ -109,11 +63,32 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		return "학생   /  학번 = " + id + ", 이름 = " + name + ", 학교명 = " + sName + ", 전공 = " + major + ", 학점 = " + average;
+	}
 	
+	public Student(){
+		
+	}
 	
+	public Student(Student s){
+		this(s.id, s.name, s.sName, s.major, s.average);
+	}
+
+	public Student(String id, String name, String sName, String major, double average){
+		this.id = id;
+		this.name = name;
+		this.sName = sName;
+		this.major = major;
+		this.average = average;
+	}
 }
