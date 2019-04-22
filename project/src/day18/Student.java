@@ -26,6 +26,8 @@ public class Student {
 	public double getAverage() {
 		return average;
 	}
+	
+	
 	public void setId(String id) {
 		this.id = id;
 	}

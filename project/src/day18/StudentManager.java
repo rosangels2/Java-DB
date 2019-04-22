@@ -14,7 +14,7 @@ public class StudentManager {
 	메서드명 : insert
 */	
 	public boolean insert(Student s){
-		Student tmp = new Student(s);
+		Student tmp = new Student(s);	//새 객체를 생성해서 복사한 뒤 list에 저장해야 주소가 공유되지 않는다
 		return list.add(tmp);
 	}
 	

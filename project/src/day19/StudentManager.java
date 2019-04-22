@@ -125,16 +125,30 @@ public class StudentManager {
 		String sName = scan.next();
 		System.out.print("전공 : ");
 		String major = scan.next();
-		System.out.print("학점 : ");
-		double average = scan.nextDouble();
 		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 		tmp.setName(name);
 		tmp.setSname(sName);
 		tmp.setMajor(major);
-		tmp.setAverage(average);
 		return tmp;
 	}
 	
+/*	기능 : 과목 정보를 입력받아
+	매개정보 : Scanner scan
+	리턴타입 : 과목 객체 -> Grade
+	메서드명 : inputSubject
+*/	
+	public Grade inputSubject(Scanner scan){		//스캐너를 통해 매개변수를 입력받아 기능을 실행하고 결과로 Grade의 객체를 반환하기 때문에 리턴타입이 Grade클래스
+		System.out.print("등급을 입력하세요 : ");
+		String step = scan.next().trim();
+		System.out.print("담당 교수명을 입력하세요 : ");
+		String professor = scan.next().trim();
+		System.out.print("과목명을 입력하세요 : ");
+		String title = scan.next().trim();
+		System.out.print("학점을 입력하세요 : ");					
+		int unit = scan.nextInt();
+		Grade grd = new Grade(step, professor, title, unit);
+		return grd;
+	}
 	
 	
 	
