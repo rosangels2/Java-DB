@@ -16,16 +16,16 @@ public class Grade {
 	
 	public String getStep() {	//열거형을 불러올 때 다른 타입의 값으로 출력하고 싶다면 getter의 리턴타입이 일치하지 않아도 된다
 		switch(step){			
-		case Ap : return "A+";	//해당 열거형을 선택했을 때 문자열로 변경해서 반환한다
-		case A  : return "A";
-		case Bp : return "B+";
-		case B  : return "B";
-		case Cp : return "C+";
-		case C  : return "C";
-		case Dp : return "D+";
-		case D  : return "D";
-		case Pass : return "P";
-		default : return "F";
+		case Ap 	: 	return 	"A+";	//해당 열거형을 선택했을 때 문자열로 변경해서 반환한다
+		case A  	: 	return 	"A";
+		case Bp 	: 	return 	"B+";
+		case B  	: 	return	"B";
+		case Cp 	: 	return	"C+";
+		case C  	:	return	"C";
+		case Dp	 	: 	return	"D+";
+		case D 		: 	return 	"D";
+		case Pass 	: 	return	"P";
+		default		: 	return 	"F";
 		}
 	}
 	public String getProfessor() {
@@ -41,17 +41,17 @@ public class Grade {
 	
 	public void setStep(String step) {
 		switch(step){										//step이 문자열로 주어지면 해당 열거형 상수로 변환한다
-		case "A+" : this.step = GradeStep.Ap;	 break;
-		case "A"  : this.step = GradeStep.A; 	 break;
-		case "B+" : this.step = GradeStep.Bp;	 break;
-		case "B"  : this.step = GradeStep.B; 	 break;
-		case "C+" : this.step = GradeStep.Cp;	 break;
-		case "C"  : this.step = GradeStep.C; 	 break;
-		case "D+" : this.step = GradeStep.Dp;	 break;
-		case "D"  : this.step = GradeStep.D;   	 break;
-		case "P"  : this.step = GradeStep.Pass;  break;
-		case "Fail" : this.step = GradeStep.Fail;break;
-		default : 	this.step = GradeStep.F; 	 break;
+		case "A+"	: this.step = GradeStep.Ap;		break;
+		case "A" 	: this.step = GradeStep.A; 		break;
+		case "B+" 	: this.step = GradeStep.Bp;		break;
+		case "B"  	: this.step = GradeStep.B; 	 	break;
+		case "C+"	: this.step = GradeStep.Cp;		break;
+		case "C" 	: this.step = GradeStep.C; 		break;
+		case "D+"	: this.step = GradeStep.Dp;		break;
+		case "D" 	: this.step = GradeStep.D;		break;
+		case "P"  	: this.step = GradeStep.Pass;	break;
+		case "Fail" : this.step = GradeStep.Fail;	break;
+		default		: this.step = GradeStep.F;		break;
 		}
 	}
 	public void setProfessor(String professor) {
@@ -102,7 +102,7 @@ public class Grade {
 	
 	@Override
 	public String toString() {
-		return "강의  /   강의명 = " + title + ", 담당 교수 = " + professor + ", 등급 = " + step + ", 학점 = " + unit;
+		return "강의	  /   강의명 = " + title + ", 담당 교수 = " + professor + ", 등급 = " + step + ", 학점 = " + unit;
 	}
 	
 	
