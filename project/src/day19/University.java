@@ -59,10 +59,9 @@ public class University {
 						System.out.println("존재하지 않는 학번입니다.");
 						break;
 					}
-					Grade grd = sMng.inputSubject(scan);
-					result.insertSubject(grd);
-					sMng.update(result);
-									
+				Grade grd = sMng.inputSubject(scan);
+				result.insertSubject(grd);
+				sMng.update(result);					
 				}
 				break;
 					

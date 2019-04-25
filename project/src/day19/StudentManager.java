@@ -70,8 +70,7 @@ public class StudentManager {
 		if(tmp == null){						//tmp가 null이면 찾는 학생 정보가 존재하지 않는 것이기 때문에 실패를 반환한다
 			return false;
 		}
-		list.remove(tmp);						//remove()는 삭제에 성공하면 true, 일치하는 정보가 업으면 false값을 반환한다
-		return true;
+		return list.remove(tmp);						//remove()는 삭제에 성공하면 true, 일치하는 정보가 업으면 false값을 반환한다
 	}
 	
 	
