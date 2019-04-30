@@ -12,7 +12,6 @@ public class StudentManager {
 	
 	
 	
-	
 /*	기능 : 학생 정보가 주어졌을 떄 list와 중복되지 않으면 추가하고 list와 중복되면 추가하지 않고 결과를 알려주는 기능
 	매개변수 : 학생 정보 -> Student s
 	리턴타입 : 결과 -> true, false -> boolean
@@ -25,12 +24,12 @@ public class StudentManager {
 	
 	
 	
-	
 /*	기능 : 학생 정보가 주어졌을 때 list와 중복이되면 해당 학생 정보를 반환하는 기능
 	매개변수 : 학생 정보 -> Student s
 	리턴타입 : 학생 정보 -> Student s
 	메서드명 : search
 */		
+
 	public Student search(Student s){
 		Iterator<Student> it = list.iterator();	//Iterator 객체 it에 list를 Iterator로 변환하여 저장한다
 		while(it.hasNext()){					//list에서 꺼낼 값이 있는지 확인한다
@@ -41,7 +40,6 @@ public class StudentManager {
 		}										
 		return null;							//반복문이 종료할 때까지 return이 안된 것은 해당 정보와 중복되는 객체가 list에 없는 경우이기 때문에 null값을 사용
 	}
-	
 	
 	
 	
