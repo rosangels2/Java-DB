@@ -145,3 +145,14 @@ update board set board_like_count = board_like_count+1 where board_no = 1;
 정보가 있다면 like_ok를 확인하여(java에서 확인) 1이면 0으로 0이면 1로 만든다
 update like set like_ok = (0 또는 1) where like_board_no = 1 and like_user_id = A회원;
 update board set board_like_count = board_like_count(-1또는 +1) where board_no = 1;
+
+
+
+
+like 테이블에 정보를 추가한 뒤 board테이블의 board_like_count를 수정
+insert into website.like(like_board_no, like_user_id)
+         values(3, 'jywhk');
+update board
+set board_like_count = (select count(*) from website.like where like_board_no = 3)
+where board_no = 3;
+SELECT * FROM board;
