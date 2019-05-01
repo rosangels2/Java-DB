@@ -1,6 +1,6 @@
-¿¹Á¦1)°­ÀÇ Å×ÀÌºí¿¡´Â °ú¸ñ ÄÚµå¿Í ±³¼ö¹øÈ£°¡ ÀÖ°í
-                 ÇöÀç °­ÀÇ Å×ÀÌºíÀ» ±âÁØÀ¸·Î ¾Æ·¡¿Í °°ÀÌ Ãâ·ÂµÇµµ·Ï SQL¹®À» ÀÛ¼º
-->°­ÀÇ¹øÈ£ °ú¸ñ¸í ±³¼ö¹øÈ£ °­ÀÇ½Ç ÀÏÁ¤ ³âµµ ÇĞ±â
+ì˜ˆì œ1)ê°•ì˜ í…Œì´ë¸”ì—ëŠ” ê³¼ëª© ì½”ë“œì™€ êµìˆ˜ë²ˆí˜¸ê°€ ìˆê³ 
+                 í˜„ì¬ ê°•ì˜ í…Œì´ë¸”ì„ ê¸°ì¤€ìœ¼ë¡œ ì•„ë˜ì™€ ê°™ì´ ì¶œë ¥ë˜ë„ë¡ SQLë¬¸ì„ ì‘ì„±
+->ê°•ì˜ë²ˆí˜¸ ê³¼ëª©ëª… êµìˆ˜ë²ˆí˜¸ ê°•ì˜ì‹¤ ì¼ì • ë…„ë„ í•™ê¸°
 SELECT
 class.class_num, subject.subject_title, class.class_professor_num, class.class_room,class.class_schedule, class.class_year, class.class_term
 FROM class
@@ -8,7 +8,7 @@ join subject
 on class.class_subject_code = subject.subject_code;
 
 
-°­ÀÇ¹øÈ£ °ú¸ñÄÚµå ±³¼ö¸í °­ÀÇ½Ç ÀÏÁ¤ ³âµµ ÇĞ±â
+ê°•ì˜ë²ˆí˜¸ ê³¼ëª©ì½”ë“œ êµìˆ˜ëª… ê°•ì˜ì‹¤ ì¼ì • ë…„ë„ í•™ê¸°
 SELECT     class.class_num, class.class_subject_code, professor.professor_name,                  class.class_room,class.class_schedule, class.class_year, class.class_term
 FROM     class
 join    professor
@@ -25,14 +25,14 @@ jOIN     subject
 on     class.class_subject_code = subject.subject_code
 join     professor
 ON     class.class_professor_num = professor.professor_num;
-select¿¡¼­ ¿©·¯ Å×ÀÌºíÀ» ÂüÁ¶ÇÒ ¶© join°ú onÀ» Áßº¹ÇØ¼­ ½áÁØ µÚ ¸¶Áö¸·¿¡¸¸ ;À» ºÙÀÎ´Ù
+selectì—ì„œ ì—¬ëŸ¬ í…Œì´ë¸”ì„ ì°¸ì¡°í•  ë• joinê³¼ onì„ ì¤‘ë³µí•´ì„œ ì¨ì¤€ ë’¤ ë§ˆì§€ë§‰ì—ë§Œ ;ì„ ë¶™ì¸ë‹¤
 
 
 
 
 
 
-¿¹Á¦2)°­ÀÇ Å×ÀÌºí¿¡¼­ °ú¸ñ¸í°ú ±³¼öÀÌ¸§ÀÌ Ãâ·ÂµÇµµ·Ï Äõ¸®¹®À» ÀÛ¼º
+ì˜ˆì œ2)ê°•ì˜ í…Œì´ë¸”ì—ì„œ ê³¼ëª©ëª…ê³¼ êµìˆ˜ì´ë¦„ì´ ì¶œë ¥ë˜ë„ë¡ ì¿¼ë¦¬ë¬¸ì„ ì‘ì„±
 select class.class_num, subject.subject_title, professor.professor_name
 from class
 join subject
@@ -40,29 +40,29 @@ on class.class_subject_code = subject.subject_code
 join professor
 on class_professor_num = professor.professor_num;
 
-±³¼ö¸íÀÌ À¯°ü¼øÀÎ °­ÀÇ¸¸ Ãâ·ÂµÇ°Ô ÇÏ´Â °æ¿ì join onÀı ´ÙÀ½ whereÀıÀ» ÀÔ·Â
+êµìˆ˜ëª…ì´ ìœ ê´€ìˆœì¸ ê°•ì˜ë§Œ ì¶œë ¥ë˜ê²Œ í•˜ëŠ” ê²½ìš° join onì ˆ ë‹¤ìŒ whereì ˆì„ ì…ë ¥
 select class.class_num, subject.subject_title, professor.professor_name
 from class
 join subject
 on class.class_subject_code = subject.subject_code
 join professor
 on class_professor_num = professor.professor_num
-where professor.professor_name = 'À¯°ü¼ø';
+where professor.professor_name = 'ìœ ê´€ìˆœ';
 
 
-insertÇÒ ¶§ ¿¡·¯°¡ ¹ß»ıÇÏ´Â °æ¿ì
+insertí•  ë•Œ ì—ëŸ¬ê°€ ë°œìƒí•˜ëŠ” ê²½ìš°
 
-Å×ÀÌºí¿¡ ¿Ü·¡Å°°¡ ¾ø´Â °æ¿ì´Â Äõ¸®¹®ÀÌ Àß¸øµÇÁö ¾Ê´Â ÇÑ ¿¡·¯°¡ °ÅÀÇ ¹ß»ıÇÏÁö ¾Ê´Â´Ù
-- ±âº»Å°°¡ Áßº¹µÇ°Ô ÀÔ·ÂµÈ °æ¿ì
-- Not Null·Î Ã¼Å©ÇÑ ¼Ó¼º¿¡ Null°ªÀ» ÀÔ·ÂÇÑ °æ¿ì
-- ÀÚ·áÇüÀÌ ¸ÂÁö ¾Ê°Ô ÀÔ·ÂÇÑ °æ¿ì
+í…Œì´ë¸”ì— ì™¸ë˜í‚¤ê°€ ì—†ëŠ” ê²½ìš°ëŠ” ì¿¼ë¦¬ë¬¸ì´ ì˜ëª»ë˜ì§€ ì•ŠëŠ” í•œ ì—ëŸ¬ê°€ ê±°ì˜ ë°œìƒí•˜ì§€ ì•ŠëŠ”ë‹¤
+- ê¸°ë³¸í‚¤ê°€ ì¤‘ë³µë˜ê²Œ ì…ë ¥ëœ ê²½ìš°
+- Not Nullë¡œ ì²´í¬í•œ ì†ì„±ì— Nullê°’ì„ ì…ë ¥í•œ ê²½ìš°
+- ìë£Œí˜•ì´ ë§ì§€ ì•Šê²Œ ì…ë ¥í•œ ê²½ìš°
 
-Å×ÀÌºí¿¡ ¿Ü·¡Å°°¡ ÀÖ´Â °æ¿ì(AÅ×ÀÌºíÀÌ BÅ×ÀÌºí°ú ¿¬°á)
-- ¿Ü·¡Å°¿¡ ÀÔ·ÂÇÑ ¼Ó¼º°ªÀÌ  BÅ×ÀÌºíÀÇ ±âº»Å°°ª¿¡ ¾ø´Â °æ¿ì
-        ex) °­ÀÇ Å×ÀÌºí¿¡ 2019001ÀÌ¶ó´Â ±³¼ö¹øÈ£¸¦ ÀÔ·ÂÇß´Âµ¥ ±³¼ö¹øÈ£¿¡ 2019001ÀÌ ¾ø´Â °æ¿ì
+í…Œì´ë¸”ì— ì™¸ë˜í‚¤ê°€ ìˆëŠ” ê²½ìš°(Aí…Œì´ë¸”ì´ Bí…Œì´ë¸”ê³¼ ì—°ê²°)
+- ì™¸ë˜í‚¤ì— ì…ë ¥í•œ ì†ì„±ê°’ì´  Bí…Œì´ë¸”ì˜ ê¸°ë³¸í‚¤ê°’ì— ì—†ëŠ” ê²½ìš°
+        ex) ê°•ì˜ í…Œì´ë¸”ì— 2019001ì´ë¼ëŠ” êµìˆ˜ë²ˆí˜¸ë¥¼ ì…ë ¥í–ˆëŠ”ë° êµìˆ˜ë²ˆí˜¸ì— 2019001ì´ ì—†ëŠ” ê²½ìš°
 
 
-¿¹Á¦) aÇĞ»ıÀÇ °­ÀÇ Á¤º¸¸¦ Ãâ·Â
+ì˜ˆì œ) aí•™ìƒì˜ ê°•ì˜ ì •ë³´ë¥¼ ì¶œë ¥
 select course.course_num, student.student_num, student.student_name, class.*
 from course
 join class
@@ -72,7 +72,7 @@ on course.course_student_num = student.student_num
 where student.student_num = '201910101';
 
 
-courseÀÇ ¼ö¸¦ Ãâ·Â
+courseì˜ ìˆ˜ë¥¼ ì¶œë ¥
 select count(course.course_num), student.student_num, student.student_name, class.*
 from course
 join class
@@ -80,12 +80,12 @@ on course.course_class_num = class.class_num
 join student
 on course.course_student_num = student.student_num
 where student.student_num = '201910101';
-Å×ÀÌºí¸íÀÌ Áßº¹µÇÁö ¾Ê´Â °æ¿ì Å×ÀÌºí¸í.ÀÌ »ı·« °¡´ÉÇÏ´Ù
+í…Œì´ë¸”ëª…ì´ ì¤‘ë³µë˜ì§€ ì•ŠëŠ” ê²½ìš° í…Œì´ë¸”ëª….ì´ ìƒëµ ê°€ëŠ¥í•˜ë‹¤
 
 
 
 
-¿¹Á¦) ¼ºÀûµéÀ» °¢°¢ ºñÀ²·Î È¯»êÇÏ¿© ÃÑÁ¡À» °è»ê
+ì˜ˆì œ) ì„±ì ë“¤ì„ ê°ê° ë¹„ìœ¨ë¡œ í™˜ì‚°í•˜ì—¬ ì´ì ì„ ê³„ì‚°
 select avg(course_mid*0.4 + course_end*0.4 + course_attendance*0.1 + course_report*0.1)
 from course
 join class
@@ -96,41 +96,41 @@ where student.student_num = '201910100';
 
 
 
-courseÀÇ totalÀ» ¼ö½ÄÀ¸·Î °è»êÇØ¼­ º¯°æÇÏ´Â ¹æ¹ı
+courseì˜ totalì„ ìˆ˜ì‹ìœ¼ë¡œ ê³„ì‚°í•´ì„œ ë³€ê²½í•˜ëŠ” ë°©ë²•
 update course
 set course.course_total =
 course_mid*0.4 + course_end*0.4 + course_attendance*0.1 + course_report*0.1
 where course_num >= 1;
     ->where course_class_num = 2;
-course_class_numÀÌ 2ÀÎ ¸ğµç course_numµéÀÇ Á¤º¸¸¸ º¯°æÇÑ´Ù
+course_class_numì´ 2ì¸ ëª¨ë“  course_numë“¤ì˜ ì •ë³´ë§Œ ë³€ê²½í•œë‹¤
 
 
 
 
 
-ÀÚÁÖ ¹ß»ıÇÏ´Â ¿¡·¯
-Error Code : 1054. Unknown ¡¦
-    -> ¿ÀÅ¸°¡ ³­ °æ¿ì ÄÃ·³À» Ã£À» ¼ö ¾ø´Â °æ¿ì
+ìì£¼ ë°œìƒí•˜ëŠ” ì—ëŸ¬
+Error Code : 1054. Unknown â€¦
+    -> ì˜¤íƒ€ê°€ ë‚œ ê²½ìš° ì»¬ëŸ¼ì„ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš°
 
-1366 : incorrect integer value: ¡¦  (Á¤¼öÇü Å¸ÀÔÀ¸·Î ¼³Á¤ÇÑ µÚ ´Ù¸¥ ÀÚ·áÇüÀ» ÀÔ·Â)
-    -> ÀÚ·áÇüÀ» ´Ù¸£°Ô ÀÔ·ÂÇßÀ» °æ¿ì
+1366 : incorrect integer value: â€¦  (ì •ìˆ˜í˜• íƒ€ì…ìœ¼ë¡œ ì„¤ì •í•œ ë’¤ ë‹¤ë¥¸ ìë£Œí˜•ì„ ì…ë ¥)
+    -> ìë£Œí˜•ì„ ë‹¤ë¥´ê²Œ ì…ë ¥í–ˆì„ ê²½ìš°
 
 Cannot add or update a child row : a foreign key constraint fails
-    -> ¾ø´Â ¿Ü·¡Å°¸¦ ÀÔ·ÂÇßÀ» °æ¿ì
+    -> ì—†ëŠ” ì™¸ë˜í‚¤ë¥¼ ì…ë ¥í–ˆì„ ê²½ìš°
 
 
 
 
 
-¿Ü·¡Å°¸¦ ÅëÇØ ´Ù¸¥ Å×ÀÌºíÀÇ Á¤º¸¸¦ ÂüÁ¶ÇØ¼­ °¡Á®¿Ã ÇÊ¿ä°¡ ¾ø´Ù¸é ±»ÀÌ ¿Ü·¡Å°·Î ÁöÁ¤ÇÏÁö ¾Ê¾Æµµ µÈ´Ù
-    ex) °Ô½Ã±ÛÀÇ ÀÛ¼ºÀÚ id¸¦ ¿Ü·¡Å°·Î ÁöÁ¤ÇÒ °æ¿ì ÇØ´ç idÀÇ È¸¿øÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÏÁö ¾Ê¾Æµµ µÇÁö¸¸
-          id¿ÜÀÇ ÀÛ¼ºÀÚÀÇ ´Ù¸¥ Á¤º¸¸¦ ÂüÁ¶ÇØ¼­ °¡Á®¿Ã ÇÊ¿ä°¡ ¾ø±â¿¡ ¿Ü·¡Å°·Î ÁöÁ¤ÇÏÁö ¾Ê´Â´Ù
+ì™¸ë˜í‚¤ë¥¼ í†µí•´ ë‹¤ë¥¸ í…Œì´ë¸”ì˜ ì •ë³´ë¥¼ ì°¸ì¡°í•´ì„œ ê°€ì ¸ì˜¬ í•„ìš”ê°€ ì—†ë‹¤ë©´ êµ³ì´ ì™¸ë˜í‚¤ë¡œ ì§€ì •í•˜ì§€ ì•Šì•„ë„ ëœë‹¤
+    ex) ê²Œì‹œê¸€ì˜ ì‘ì„±ì idë¥¼ ì™¸ë˜í‚¤ë¡œ ì§€ì •í•  ê²½ìš° í•´ë‹¹ idì˜ íšŒì›ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•˜ì§€ ì•Šì•„ë„ ë˜ì§€ë§Œ
+          idì™¸ì˜ ì‘ì„±ìì˜ ë‹¤ë¥¸ ì •ë³´ë¥¼ ì°¸ì¡°í•´ì„œ ê°€ì ¸ì˜¬ í•„ìš”ê°€ ì—†ê¸°ì— ì™¸ë˜í‚¤ë¡œ ì§€ì •í•˜ì§€ ì•ŠëŠ”ë‹¤
 
 
-¿Ü·¡Å°ÀÇ ¿Ü·¡Å°¸¦ ÅëÇØ  Å×ÀÌºí ¼Ó¼º Á¤º¸¸¦ °¡Á®¿À´Â ¹æ¹ı
-    -> Á÷Á¢ÀûÀÎ ¿¬°áÀÌ ¾Æ´Ò ¶§
+ì™¸ë˜í‚¤ì˜ ì™¸ë˜í‚¤ë¥¼ í†µí•´  í…Œì´ë¸” ì†ì„± ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë°©ë²•
+    -> ì§ì ‘ì ì¸ ì—°ê²°ì´ ì•„ë‹ ë•Œ
 
-¹æ¹ı1)
+ë°©ë²•1)
 select    course.course_class_num,
         classdetail.subject_title,
          course.course_student_num,
@@ -141,8 +141,8 @@ join (select * from class join subject on class.class_subject_code = subject.sub
 on course.course_class_num = classdetail.class_num
 join student
 on course.course_student_num = student.student_num;
-    -> classÀÇ ¿Ü·¡Å° subject_code¸¦ ÅëÇØ subject Å×ÀÌºíÀ» ÂüÁ¶ÇÒ ¶§ join¿¡ select¹®À» ÀÛ¼ºÇÑ µÚ
-        as¸¦ ÅëÇØ ÀÌ¸§À» ´Ù½Ã ºÙ¿©ÁÖ°í ºÙ¿©ÁØ ÀÌ¸§À» ÅëÇØ onÀ» ÀÛ¼ºÇÑ´Ù
+    -> classì˜ ì™¸ë˜í‚¤ subject_codeë¥¼ í†µí•´ subject í…Œì´ë¸”ì„ ì°¸ì¡°í•  ë•Œ joinì— selectë¬¸ì„ ì‘ì„±í•œ ë’¤
+        asë¥¼ í†µí•´ ì´ë¦„ì„ ë‹¤ì‹œ ë¶™ì—¬ì£¼ê³  ë¶™ì—¬ì¤€ ì´ë¦„ì„ í†µí•´ onì„ ì‘ì„±í•œë‹¤
 
 
 
@@ -153,7 +153,7 @@ on course.course_student_num = student.student_num;
 
 
 
-¹æ¹ı2)
+ë°©ë²•2)
 select     course.course_class_num,
          subject_title,
          course.course_student_num,
@@ -166,9 +166,9 @@ join class
 on course.course_class_num = class.class_num
 join subject
 on subject.subject_code = class.class_subject_code;
-    -> ¹æ¹ı2·Î joinÀıÀ» ¼ø¼­´ë·Î »ç¿ëÇØ Å×ÀÌºíÀ» ¿¬°áÇÑ µÚ ¼Ó¼ºÀ» °¡Á®¿Íµµ °á°ú´Â °°Áö¸¸
-        ¹æ¹ı2´Â ÀÌ¾îÁø Å×ÀÌºíÀÇ ¸ğµç ¼Ó¼ºÀ» °¡Á®¿À±â ¶§¹®¿¡ Å×ÀÌºíµéÀÇ ¼Ó¼ºÀÌ ¸¹À» °æ¿ì ºÒÇÊ¿äÇÑ Á¤º¸°¡ ¸¹¾ÆÁ®
-        ¹æ¹ı1À» »ç¿ëÇØ¼­ ÇÊ¿äÇÑ Á¤º¸µé¸¸À» °¡Á®¿À´Â °Ô µ¥ÀÌÅÍº£ÀÌ½ºÀÇ Å©±â°¡ Å¬¼ö·Ï ´õ È¿À²ÀûÀÌ´Ù
+    -> ë°©ë²•2ë¡œ joinì ˆì„ ìˆœì„œëŒ€ë¡œ ì‚¬ìš©í•´ í…Œì´ë¸”ì„ ì—°ê²°í•œ ë’¤ ì†ì„±ì„ ê°€ì ¸ì™€ë„ ê²°ê³¼ëŠ” ê°™ì§€ë§Œ
+        ë°©ë²•2ëŠ” ì´ì–´ì§„ í…Œì´ë¸”ì˜ ëª¨ë“  ì†ì„±ì„ ê°€ì ¸ì˜¤ê¸° ë•Œë¬¸ì— í…Œì´ë¸”ë“¤ì˜ ì†ì„±ì´ ë§ì„ ê²½ìš° ë¶ˆí•„ìš”í•œ ì •ë³´ê°€ ë§ì•„ì ¸
+        ë°©ë²•1ì„ ì‚¬ìš©í•´ì„œ í•„ìš”í•œ ì •ë³´ë“¤ë§Œì„ ê°€ì ¸ì˜¤ëŠ” ê²Œ ë°ì´í„°ë² ì´ìŠ¤ì˜ í¬ê¸°ê°€ í´ìˆ˜ë¡ ë” íš¨ìœ¨ì ì´ë‹¤
 
 
 
@@ -176,7 +176,7 @@ on subject.subject_code = class.class_subject_code;
 
 
 
-¿¹Á¦) AÇĞ»ıÀÇ Æò±ÕÀ» Ãâ·Â
+ì˜ˆì œ) Aí•™ìƒì˜ í‰ê· ì„ ì¶œë ¥
 select    course.course_class_num,
 subject_title,
 course.course_student_num,
@@ -189,14 +189,14 @@ join class
 on course.course_class_num = class.class_num
 join subject
 on subject.subject_code = class.class_subject_code
-where student_name like '%´Ï%';
+where student_name like '%ë‹ˆ%';
 
 
 
-¿¹Á¦) AÇĞ»ıÀÇ Æò±Õ ÆòÁ¡À» Ãâ·Â (4.5 ¸¸Á¡ ±âÁØ)
+ì˜ˆì œ) Aí•™ìƒì˜ í‰ê·  í‰ì ì„ ì¶œë ¥ (4.5 ë§Œì  ê¸°ì¤€)
 select     course.course_student_num,
        student.student_name,
-       avg(course.course_total*0.045) as average        //¶Ç´Â total / 100 * 4.5
+       avg(course.course_total*0.045) as average        //ë˜ëŠ” total / 100 * 4.5
 from course
 join student
 on  course.course_student_num = student.student_num
@@ -204,11 +204,11 @@ join class
 on course.course_class_num = class.class_num
 join subject
 on subject.subject_code = class.class_subject_code
-where student_name like '%´Ï%';
+where student_name like '%ë‹ˆ%';
 
 ------------------
 
-¿¹Á¦)½ÅÀÔ»ıµéÀÇ ÇĞ»ı¼ö¸¦ Ãâ·ÂÇÏ´Â Äõ¸®¹®À» ÀÛ¼º
+ì˜ˆì œ)ì‹ ì…ìƒë“¤ì˜ í•™ìƒìˆ˜ë¥¼ ì¶œë ¥í•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ì‘ì„±
 select count(student_num)
 from student
 where student_grade = 1 and student_num like '2019%';
@@ -219,7 +219,7 @@ where student_grade = 1 and student_num like '2019%';
 
 
 
-¿¹Á¦)AÇĞ»ıÀÇ 2019³âµµ 1ÇĞ±â ¼ö°­ °ú¸ñµéÀ» Ãâ·Â
+ì˜ˆì œ)Aí•™ìƒì˜ 2019ë…„ë„ 1í•™ê¸° ìˆ˜ê°• ê³¼ëª©ë“¤ì„ ì¶œë ¥
 select     subject_detail.subject_title,
  student.student_num,
  student.student_name,
@@ -233,7 +233,7 @@ on course.course_student_num = student.student_num
 join class
 on course.course_class_num = class.class_num
 where student.student_num = '201910100' and class.class_year = '2019' and class.class_term = 1;
-¿¹Á¦)AÇĞ»ıÀÌ ¼ö°­ÇÑ Àü°ø ÇÊ¼ö °ú¸ñµéÀ» Ãâ·Â
+ì˜ˆì œ)Aí•™ìƒì´ ìˆ˜ê°•í•œ ì „ê³µ í•„ìˆ˜ ê³¼ëª©ë“¤ì„ ì¶œë ¥
 select     subject_detail.subject_title,
  student.student_num,
  student.student_name,
@@ -247,14 +247,14 @@ join student
 on course.course_student_num = student.student_num
 join class
 on course.course_class_num = class.class_num
-where student.student_num = '201910100' and subject_detail.subject_type = 'Àü°øÇÊ¼ö';
+where student.student_num = '201910100' and subject_detail.subject_type = 'ì „ê³µí•„ìˆ˜';
 
 
 
 
 
 
-¿¹Á¦)AÇĞ»ıÀÇ 2019³âµµ 1ÇĞ±â ¼ö°­°ú¸ñµé°ú ¼ºÀûÀ» Ãâ·Â
+ì˜ˆì œ)Aí•™ìƒì˜ 2019ë…„ë„ 1í•™ê¸° ìˆ˜ê°•ê³¼ëª©ë“¤ê³¼ ì„±ì ì„ ì¶œë ¥
 select      student.student_num,
          student.student_name,
        student.student_grade,
@@ -273,13 +273,13 @@ where student.student_num = '201910100' and class.class_year = '2019' and class.
 
 
 
-¿¹Á¦)AÇĞ»ıÀÇ 2019³âµµ 1ÇĞ±â ¼ö°­ Æò±ÕÀ» 4.5Á¡ ¸¸Á¡ ±âÁØÀ¸·Î È¯»êÇØ¼­ Ãâ·Â
+ì˜ˆì œ)Aí•™ìƒì˜ 2019ë…„ë„ 1í•™ê¸° ìˆ˜ê°• í‰ê· ì„ 4.5ì  ë§Œì  ê¸°ì¤€ìœ¼ë¡œ í™˜ì‚°í•´ì„œ ì¶œë ¥
 select      student.student_num,
 student.student_name,
        student.student_grade,
        class.class_year,
        class.class_term,
-       avg(course.course_total*0.045) as '1ÇĞ±â ÃÑÁ¡'
+       avg(course.course_total*0.045) as '1í•™ê¸° ì´ì '
 from course
 join (select * from class join subject on class.class_subject_code = subject.subject_code) as subject_detail
 on course.course_class_num = subject_detail.class_num
