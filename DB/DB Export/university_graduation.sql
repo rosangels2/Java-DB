@@ -18,38 +18,37 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `course`
+-- Table structure for table `graduation`
 --
 
-DROP TABLE IF EXISTS `course`;
+DROP TABLE IF EXISTS `graduation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `course` (
-  `course_num` int(11) NOT NULL AUTO_INCREMENT,
-  `course_student_num` int(11) DEFAULT NULL,
-  `course_class_num` int(11) DEFAULT NULL,
-  `course_mid` double DEFAULT NULL,
-  `course_end` double DEFAULT NULL,
-  `course_report` varchar(45) DEFAULT NULL,
-  `course_attendance` double DEFAULT NULL,
-  `course_total` double DEFAULT NULL,
-  `course_rating` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`course_num`),
-  KEY `course_student_id_idx` (`course_student_num`),
-  KEY `course_class_num_idx` (`course_class_num`),
-  CONSTRAINT `course_class_num` FOREIGN KEY (`course_class_num`) REFERENCES `class` (`class_num`),
-  CONSTRAINT `course_student_num` FOREIGN KEY (`course_student_num`) REFERENCES `student` (`student_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `graduation` (
+  `graduation_student_num` int(11) NOT NULL AUTO_INCREMENT,
+  `graduation_requirement_num` int(11) DEFAULT NULL,
+  `graduation_check` varchar(45) DEFAULT NULL,
+  `graduation_english_grade` double DEFAULT NULL,
+  `graduation_work` varchar(45) DEFAULT NULL,
+  `graduation_thesis` varchar(45) DEFAULT NULL,
+  `graduation_test` varchar(45) DEFAULT NULL,
+  `graduation_license` varchar(45) DEFAULT NULL,
+  `graduation_subject_point` int(11) DEFAULT NULL,
+  PRIMARY KEY (`graduation_student_num`),
+  KEY `graduation_requirement_num_idx` (`graduation_requirement_num`),
+  CONSTRAINT `graduation_requirement_num` FOREIGN KEY (`graduation_requirement_num`) REFERENCES `requirement` (`requirement_num`),
+  CONSTRAINT `graduation_student_num` FOREIGN KEY (`graduation_student_num`) REFERENCES `student` (`student_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=201910108 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course`
+-- Dumping data for table `graduation`
 --
 
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,201910100,1,100,80,'100',100,91,'A+'),(2,201910101,2,90,85,'100',100,91.25,'A+'),(3,201910102,3,80,100,'100',100,94,'A+'),(4,201910103,2,100,100,'100',100,100,'A+'),(5,201910104,1,80,90,'90',100,87,'A'),(6,201910105,3,90,90,'90',100,91,'A+'),(7,201910106,2,70,85,'80',100,80,'B+'),(8,201910107,3,80,80,'80',100,82,'B+'),(9,201910108,3,85,70,'80',100,80,'B+'),(10,201910100,2,85,70,'80',100,80,'B+');
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
+LOCK TABLES `graduation` WRITE;
+/*!40000 ALTER TABLE `graduation` DISABLE KEYS */;
+INSERT INTO `graduation` VALUES (201910100,1,'가능',800,'100','80','80','100',150),(201910104,2,'가능',900,'90','85','90','100',145),(201910107,3,'가능',850,'95','85','90','100',140);
+/*!40000 ALTER TABLE `graduation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -61,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:23
+-- Dump completed on 2019-05-02 17:21:05

@@ -18,39 +18,38 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `requirement`
+-- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `requirement`;
+DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `requirement` (
-  `requirement_num` int(11) NOT NULL AUTO_INCREMENT,
-  `requirement_year` varchar(45) DEFAULT NULL,
-  `requirement_major_num` int(11) DEFAULT NULL,
-  `requirement_degree` varchar(45) DEFAULT NULL,
-  `requirement_subject_point` int(11) DEFAULT NULL,
-  `requirement_majorsubject_point` int(11) DEFAULT NULL,
-  `requirement_normal_subject_point` int(11) DEFAULT NULL,
-  `requirement_english_grade` double DEFAULT NULL,
-  `requirement_graduation_work` varchar(45) DEFAULT NULL,
-  `requirementgraduation_thesis` varchar(45) DEFAULT NULL,
-  `requirement_graduation_test` varchar(45) DEFAULT NULL,
-  `requirement_graduation_license` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`requirement_num`),
-  KEY `requirement_major_num_idx` (`requirement_major_num`),
-  CONSTRAINT `requirment_major_num` FOREIGN KEY (`requirement_major_num`) REFERENCES `major` (`major_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `course` (
+  `course_num` int(11) NOT NULL AUTO_INCREMENT,
+  `course_student_num` int(11) DEFAULT NULL,
+  `course_class_num` int(11) DEFAULT NULL,
+  `course_mid` double DEFAULT NULL,
+  `course_end` double DEFAULT NULL,
+  `course_report` varchar(45) DEFAULT NULL,
+  `course_attendance` double DEFAULT NULL,
+  `course_total` double DEFAULT NULL,
+  `course_rating` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`course_num`),
+  KEY `course_student_id_idx` (`course_student_num`),
+  KEY `course_class_num_idx` (`course_class_num`),
+  CONSTRAINT `course_class_num` FOREIGN KEY (`course_class_num`) REFERENCES `class` (`class_num`),
+  CONSTRAINT `course_student_num` FOREIGN KEY (`course_student_num`) REFERENCES `student` (`student_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `requirement`
+-- Dumping data for table `course`
 --
 
-LOCK TABLES `requirement` WRITE;
-/*!40000 ALTER TABLE `requirement` DISABLE KEYS */;
-INSERT INTO `requirement` VALUES (1,'2016',1,'학사',150,130,20,800,'80','80','70','100'),(2,'2016',2,'학사',140,120,20,700,'80','80','70','100'),(3,'2016',3,'학사',140,120,20,700,'80','80','70','100');
-/*!40000 ALTER TABLE `requirement` ENABLE KEYS */;
+LOCK TABLES `course` WRITE;
+/*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,201910100,1,100,80,'100',100,91,'A+'),(2,201910101,2,90,85,'100',100,91.25,'A+'),(3,201910102,3,80,100,'100',100,94,'A+'),(4,201910103,2,100,100,'100',100,100,'A+'),(5,201910104,1,80,90,'90',100,87,'A'),(6,201910105,3,90,90,'90',100,91,'A+'),(7,201910106,2,70,85,'80',100,80,'B+'),(8,201910107,3,80,80,'80',100,82,'B+'),(9,201910108,3,85,70,'80',100,80,'B+'),(10,201910100,2,85,70,'80',100,80,'B+');
+/*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:23
+-- Dump completed on 2019-05-02 17:21:05

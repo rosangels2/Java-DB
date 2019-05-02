@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `university`;
+CREATE DATABASE  IF NOT EXISTS `website` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `website`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: university
+-- Host: localhost    Database: website
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -18,36 +18,31 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `class`
+-- Table structure for table `upload`
 --
 
-DROP TABLE IF EXISTS `class`;
+DROP TABLE IF EXISTS `upload`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `class` (
-  `class_num` int(11) NOT NULL AUTO_INCREMENT,
-  `class_subject_code` varchar(15) DEFAULT NULL,
-  `class_professor_num` int(11) DEFAULT NULL,
-  `class_room` varchar(15) DEFAULT NULL,
-  `class_schedule` varchar(15) DEFAULT NULL,
-  `class_year` int(11) DEFAULT NULL,
-  `class_term` int(11) DEFAULT NULL,
-  PRIMARY KEY (`class_num`),
-  KEY `class_professor_num_idx` (`class_professor_num`),
-  KEY `class_subject_code_idx` (`class_subject_code`),
-  CONSTRAINT `class_professor_num` FOREIGN KEY (`class_professor_num`) REFERENCES `professor` (`professor_num`),
-  CONSTRAINT `class_subject_code` FOREIGN KEY (`class_subject_code`) REFERENCES `subject` (`subject_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `upload` (
+  `upload_no` int(11) NOT NULL AUTO_INCREMENT,
+  `upload_file_name` varchar(45) NOT NULL DEFAULT ' ',
+  `upload_file_path` varchar(45) NOT NULL DEFAULT ' ',
+  `upload_board_no` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`upload_no`),
+  KEY `upload_board_no_idx` (`upload_board_no`),
+  CONSTRAINT `upload_board_no` FOREIGN KEY (`upload_board_no`) REFERENCES `board` (`board_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `class`
+-- Dumping data for table `upload`
 --
 
-LOCK TABLES `class` WRITE;
-/*!40000 ALTER TABLE `class` DISABLE KEYS */;
-INSERT INTO `class` VALUES (1,'MSC001',200010101,'A학관','월1,2 화1,2',2019,1),(2,'MSC002',200010102,'B학관','월1,2 화1.2',2019,1),(3,'MSC003',200010103,'C학관','월3,4 화3,4',2019,1);
-/*!40000 ALTER TABLE `class` ENABLE KEYS */;
+LOCK TABLES `upload` WRITE;
+/*!40000 ALTER TABLE `upload` DISABLE KEYS */;
+INSERT INTO `upload` VALUES (1,'첨부.jpg','C:Program FilesJava1',1),(2,'파일.zip','C:Program FilesJava2',2),(3,'덩어리.pdf','C:Program FilesJava3',3),(4,'주머니.gif','C:Program FilesJava4',4),(5,'참고자료.jpg','C:Program FilesJava5',5),(6,'자료.jpg','C:Program FilesJava6',6),(7,'풀이.jpg','C:Program FilesJava7',7),(8,'정보.jpg','C:Program FilesJava8',8);
+/*!40000 ALTER TABLE `upload` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:24
+-- Dump completed on 2019-05-02 17:21:03

@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `university`;
+CREATE DATABASE  IF NOT EXISTS `website` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `website`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: university
+-- Host: localhost    Database: website
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -18,30 +18,28 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `subject`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `subject`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `subject` (
-  `subject_code` varchar(15) NOT NULL,
-  `subject_title` varchar(15) DEFAULT NULL,
-  `subject_point` int(11) DEFAULT NULL,
-  `subject_time` int(11) DEFAULT NULL,
-  `subject_type` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`subject_code`)
+CREATE TABLE `category` (
+  `category_code` varchar(6) NOT NULL,
+  `category_read` varchar(3) NOT NULL DEFAULT ' ',
+  `category_writer` varchar(3) NOT NULL DEFAULT ' ',
+  PRIMARY KEY (`category_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subject`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `subject` WRITE;
-/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES ('MSC001','심리학',3,50,'전공필수'),('MSC002','성리학',3,50,'전공필수'),('MSC003','종이학',3,50,'전공필수');
-/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES ('mos01','yyy','yyy'),('mos02','yyn','yyy'),('mos03','ynn','yyy'),('mos04','yyy','yyn'),('mos05','yyy','ynn'),('mos06','yyn','yyn'),('mos07','yyn','ynn'),('mos08','ynn','ynn'),('mos09','ynn','yyn');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:24
+-- Dump completed on 2019-05-02 17:21:02

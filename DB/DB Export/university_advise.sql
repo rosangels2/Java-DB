@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `website` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `website`;
+CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `university`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: website
+-- Host: localhost    Database: university
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -18,30 +18,32 @@ USE `website`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cafe`
+-- Table structure for table `advise`
 --
 
-DROP TABLE IF EXISTS `cafe`;
+DROP TABLE IF EXISTS `advise`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `cafe` (
-  `cafe_name` varchar(45) NOT NULL,
-  `cafe_grade` varchar(45) DEFAULT NULL,
-  `cafe_total` int(11) NOT NULL DEFAULT '0',
-  `cafe_information` varchar(45) DEFAULT NULL,
-  `cafe_category` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`cafe_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `advise` (
+  `advise_num` int(11) NOT NULL AUTO_INCREMENT,
+  `advise_professor_num` int(11) DEFAULT NULL,
+  `advise_student_num` int(11) DEFAULT NULL,
+  PRIMARY KEY (`advise_num`),
+  KEY `advise_professor_num_idx` (`advise_professor_num`),
+  KEY `advise_student_num_idx` (`advise_student_num`),
+  CONSTRAINT `advise_professor_num` FOREIGN KEY (`advise_professor_num`) REFERENCES `professor` (`professor_num`),
+  CONSTRAINT `advise_student_num` FOREIGN KEY (`advise_student_num`) REFERENCES `student` (`student_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cafe`
+-- Dumping data for table `advise`
 --
 
-LOCK TABLES `cafe` WRITE;
-/*!40000 ALTER TABLE `cafe` DISABLE KEYS */;
-INSERT INTO `cafe` VALUES ('검도매니아','나무 4단계',3,'검도 동호회','스포츠'),('둥글레차','숲 2단계',2,'자동차 동호회','자동차'),('몬스터짐','숲 1단계',4,'웨이트 트레이닝 동호회','스포츠'),('싀사상싁','나무 2단계',6,'정보 공유','커뮤니티'),('오갱끼데스까','나무 1단계',3,'일본어 정보 공유','외국어'),('오릔쥐','나무 2단계',4,'영어 정보 공유','외국어'),('쿡쿡쿡','나무 3단계',4,'요리 정보 공유','요리'),('포켓몬스터','나무 5단계',6,'게임 동호회','게임');
-/*!40000 ALTER TABLE `cafe` ENABLE KEYS */;
+LOCK TABLES `advise` WRITE;
+/*!40000 ALTER TABLE `advise` DISABLE KEYS */;
+INSERT INTO `advise` VALUES (1,200010101,201910100),(2,200010102,201910101),(3,200010103,201910102),(4,200010101,201910103),(5,200010102,201910104),(6,200010103,201910105),(7,200010101,201910106),(8,200010102,201910107),(9,200010103,201910108);
+/*!40000 ALTER TABLE `advise` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:22
+-- Dump completed on 2019-05-02 17:21:06

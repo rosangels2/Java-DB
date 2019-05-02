@@ -18,37 +18,30 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `graduation`
+-- Table structure for table `subject`
 --
 
-DROP TABLE IF EXISTS `graduation`;
+DROP TABLE IF EXISTS `subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `graduation` (
-  `graduation_student_num` int(11) NOT NULL AUTO_INCREMENT,
-  `graduation_requirement_num` int(11) DEFAULT NULL,
-  `graduation_check` varchar(45) DEFAULT NULL,
-  `graduation_english_grade` double DEFAULT NULL,
-  `graduation_work` varchar(45) DEFAULT NULL,
-  `graduation_thesis` varchar(45) DEFAULT NULL,
-  `graduation_test` varchar(45) DEFAULT NULL,
-  `graduation_license` varchar(45) DEFAULT NULL,
-  `graduation_subject_point` int(11) DEFAULT NULL,
-  PRIMARY KEY (`graduation_student_num`),
-  KEY `graduation_requirement_num_idx` (`graduation_requirement_num`),
-  CONSTRAINT `graduation_requirement_num` FOREIGN KEY (`graduation_requirement_num`) REFERENCES `requirement` (`requirement_num`),
-  CONSTRAINT `graduation_student_num` FOREIGN KEY (`graduation_student_num`) REFERENCES `student` (`student_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=201910108 DEFAULT CHARSET=utf8;
+CREATE TABLE `subject` (
+  `subject_code` varchar(15) NOT NULL,
+  `subject_title` varchar(15) DEFAULT NULL,
+  `subject_point` int(11) DEFAULT NULL,
+  `subject_time` int(11) DEFAULT NULL,
+  `subject_type` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`subject_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `graduation`
+-- Dumping data for table `subject`
 --
 
-LOCK TABLES `graduation` WRITE;
-/*!40000 ALTER TABLE `graduation` DISABLE KEYS */;
-INSERT INTO `graduation` VALUES (201910100,1,'가능',800,'100','80','80','100',150),(201910104,2,'가능',900,'90','85','90','100',145),(201910107,3,'가능',850,'95','85','90','100',140);
-/*!40000 ALTER TABLE `graduation` ENABLE KEYS */;
+LOCK TABLES `subject` WRITE;
+/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
+INSERT INTO `subject` VALUES ('MSC001','심리학',3,50,'전공필수'),('MSC002','성리학',3,50,'전공필수'),('MSC003','종이학',3,50,'전공필수');
+/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:23
+-- Dump completed on 2019-05-02 17:21:06

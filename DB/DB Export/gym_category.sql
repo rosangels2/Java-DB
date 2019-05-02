@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `university`;
+CREATE DATABASE  IF NOT EXISTS `gym` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `gym`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: university
+-- Host: localhost    Database: gym
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -18,28 +18,29 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `major`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `major`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `major` (
-  `major_num` int(11) NOT NULL AUTO_INCREMENT,
-  `major_title` varchar(45) DEFAULT NULL,
-  `major_room` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`major_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `category` (
+  `category_code` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(45) DEFAULT NULL,
+  `category_writer` varchar(6) DEFAULT NULL,
+  `category_read` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`category_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `major`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `major` WRITE;
-/*!40000 ALTER TABLE `major` DISABLE KEYS */;
-INSERT INTO `major` VALUES (1,'종이학','A동302호'),(2,'백학','B동203호'),(3,'홍학','C동101호');
-/*!40000 ALTER TABLE `major` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'문의게시판','yyy','ynn'),(2,'자유게시판','yyn','yyy'),(3,'공지게시판','ynn','yyy'),(4,'운동 정보 게시판','ynn','yyy'),(5,'체육관 소개 게시판','ynn','yyy');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:26:22
+-- Dump completed on 2019-05-02 17:21:03
