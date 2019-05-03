@@ -18,35 +18,35 @@ USE `gym`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pt`
+-- Table structure for table `program`
 --
 
-DROP TABLE IF EXISTS `pt`;
+DROP TABLE IF EXISTS `program`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `pt` (
-  `pt_no` int(11) NOT NULL AUTO_INCREMENT,
-  `pt_trainer_no` int(11) DEFAULT NULL,
-  `pt_member_id` varchar(45) NOT NULL DEFAULT ' ',
-  `pt_contents` longtext,
-  `pt_schedule` varchar(45) DEFAULT NULL,
-  `pt_round` int(11) DEFAULT NULL,
-  PRIMARY KEY (`pt_no`),
-  KEY `pt_trainer_no_idx` (`pt_trainer_no`),
-  KEY `pt_member_id_idx` (`pt_member_id`),
-  CONSTRAINT `pt_member_id` FOREIGN KEY (`pt_member_id`) REFERENCES `member` (`member_id`),
-  CONSTRAINT `pt_trainer_no` FOREIGN KEY (`pt_trainer_no`) REFERENCES `trainer` (`trainer_no`)
+CREATE TABLE `program` (
+  `program_no` int(11) NOT NULL AUTO_INCREMENT,
+  `program_trainer_no` int(11) NOT NULL,
+  `program_title` varchar(45) DEFAULT NULL,
+  `program_contents` longtext,
+  `program_schedule` varchar(45) DEFAULT NULL,
+  `program_total_limit` int(11) DEFAULT NULL,
+  `program_total` int(11) NOT NULL DEFAULT '0',
+  `program_price` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`program_no`),
+  KEY `program_trainer_no_idx` (`program_trainer_no`),
+  CONSTRAINT `program_trainer_no` FOREIGN KEY (`program_trainer_no`) REFERENCES `trainer` (`trainer_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pt`
+-- Dumping data for table `program`
 --
 
-LOCK TABLES `pt` WRITE;
-/*!40000 ALTER TABLE `pt` DISABLE KEYS */;
-INSERT INTO `pt` VALUES (1,1,'lee2324','다이어트','10:00~12:00',20),(2,2,'sehseee','근육량 증가','11:00~13:00',15),(3,3,'john123','다이어트','13:00~15:00',17),(4,1,'tdhdhd','근육량 증가','13:00~15:00',5),(5,2,'uursgf','체지방 커팅','14:00~16:00',7),(6,3,'vvvdgsg','다이어트','16:00~18:00',11),(7,1,'wqefxfsdg','다이어트','15:00~17:00',9),(8,2,'wrhhdfgs','다이어트','16:00~18:00',8),(9,3,'zategsg','다이어트','18:00~20:00',7);
-/*!40000 ALTER TABLE `pt` ENABLE KEYS */;
+LOCK TABLES `program` WRITE;
+/*!40000 ALTER TABLE `program` DISABLE KEYS */;
+INSERT INTO `program` VALUES (1,4,'스피닝','자전거 타기','13:00~15:00',20,2,'월 50,000원'),(2,4,'스피닝','자전거 타기','16:00~18:00',20,2,'월 50,000원'),(3,4,'스피닝','자전거 타기','19:00~21:00',20,2,'월 50,000원'),(4,5,'에어로빅','에어로빅 댄스','13:00~15:00',25,1,'월 40,000원'),(5,5,'에어로빅','에어로빅 댄스','16:00~18:00',25,1,'월 40,000원'),(6,5,'에어로빅','에어로빅 댄스','19:00~21:00',25,1,'월 40,000원'),(7,6,'요가','요가','13:00~15:00',30,1,'월 45,000원'),(8,6,'요가','요가','16:00~18:00',30,1,'월 45,000원'),(9,6,'요가','요가','19:00~21:00',30,1,'월 45,000원');
+/*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 17:07:51
+-- Dump completed on 2019-05-03 17:07:52

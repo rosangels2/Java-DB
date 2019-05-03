@@ -30,7 +30,7 @@ CREATE TABLE `category` (
   `category_writer` varchar(6) DEFAULT NULL,
   `category_read` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`category_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'문의게시판','yyy','ynn'),(2,'자유게시판','yyn','yyy'),(3,'공지게시판','ynn','yyy'),(4,'운동 정보 게시판','ynn','yyy'),(5,'체육관 소개 게시판','ynn','yyy');
+INSERT INTO `category` VALUES (1,'문의게시판','yyy','ynn'),(2,'자유게시판','yyn','yyy'),(3,'공지게시판','ynn','yyy'),(4,'운동 정보 게시판','ynn','yyy'),(5,'체육관 소개 게시판','ynn','yyy'),(9,'뒷담게시판','yyy','yyy'),(10,'인증게시판','yyy','yyy');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-02 17:21:03
+-- Dump completed on 2019-05-03 17:07:50

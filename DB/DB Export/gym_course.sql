@@ -18,30 +18,33 @@ USE `gym`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `trainer`
+-- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `trainer`;
+DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `trainer` (
-  `trainer_no` int(11) NOT NULL AUTO_INCREMENT,
-  `trainer_member_id` varchar(45) NOT NULL DEFAULT ' ',
-  `trainer_schedule` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`trainer_no`),
-  KEY `trainer_member_id_idx` (`trainer_member_id`),
-  CONSTRAINT `trainer_member_id` FOREIGN KEY (`trainer_member_id`) REFERENCES `member` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+CREATE TABLE `course` (
+  `course_no` int(11) NOT NULL AUTO_INCREMENT,
+  `course_program_no` int(11) NOT NULL,
+  `course_member_id` varchar(45) NOT NULL,
+  `course_period` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`course_no`),
+  KEY `course_program_no_idx` (`course_program_no`),
+  KEY `course_member_id_idx` (`course_member_id`),
+  CONSTRAINT `course_member_id` FOREIGN KEY (`course_member_id`) REFERENCES `member` (`member_id`),
+  CONSTRAINT `course_program_no` FOREIGN KEY (`course_program_no`) REFERENCES `program` (`program_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `trainer`
+-- Dumping data for table `course`
 --
 
-LOCK TABLES `trainer` WRITE;
-/*!40000 ALTER TABLE `trainer` DISABLE KEYS */;
-INSERT INTO `trainer` VALUES (1,'daksdj','09:00~17:00'),(2,'lfkvl3','11:00~19:00'),(3,'haserhdf','13:00~21:00'),(4,'speedking','13:00~21:00'),(5,'loVOoOVol','13:00~21:00'),(6,'lsafjkasjf','13:00~21:00');
-/*!40000 ALTER TABLE `trainer` ENABLE KEYS */;
+LOCK TABLES `course` WRITE;
+/*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (6,1,'avbnn','2019-04-01~2019-05-31'),(7,2,'aaafgeg','2019-04-01~2019-05-31'),(8,3,'abcdfe','2019-04-01~2019-05-31'),(9,4,'ehsdff','2019-04-01~2019-05-31'),(10,5,'fdhdhdfh4','2019-04-01~2019-05-31'),(11,6,'gfhfdhd3','2019-04-01~2019-05-31'),(12,7,'ghdhdhr','2019-04-01~2019-05-31'),(13,8,'jgdhdfhd33','2019-04-01~2019-05-31'),(14,9,'john123','2019-04-01~2019-05-31'),(15,1,'lfkvl3','2019-04-01~2019-05-31'),(16,2,'uursgf','2019-04-01~2019-05-31'),(17,3,'wrhhdfgs','2019-04-01~2019-05-31');
+/*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
