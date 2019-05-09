@@ -1,8 +1,9 @@
-package practice;
+package day19;
 
 import java.util.*;
 
-public class Student_Example {
+public class Student_Comment {
+	
 /*		String의 객체 멤버는 기본값이 null이기 때문에 "";값으로 초기화해서 빈 문자열로 명시적 초기화를 해 toString에 null대신 공백을 입력한다
 		초기화 순서 - 기본값 > 명시적 초기화 > 초기화 블록 > 생성자							
 		이름

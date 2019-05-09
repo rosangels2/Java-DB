@@ -8,13 +8,13 @@ public class Grade {
 	과목명 : title
 	학점 : unit
 */	
-	private GradeStep step;		//등급
-	private String professor;	//교수명
-	private String title;		//과목명
-	private int unit;			//학점
+	private GradeStep step;				//enum으로 지정한 등급
+	private String professor;			//교수명
+	private String title;				//과목명
+	private int unit;					//학점
 	
 	
-	public String getStep() {	//열거형을 불러올 때 다른 타입의 값으로 출력하고 싶다면 getter의 리턴타입이 일치하지 않아도 된다
+	public String getStep() {			//열거형을 불러올 때 다른 타입의 값으로 출력하고 싶다면 getter의 리턴타입이 일치하지 않아도 된다
 		switch(step){			
 		case Ap 	: 	return 	"A+";	//해당 열거형을 선택했을 때 문자열로 변경해서 반환한다
 		case A  	: 	return 	"A";
@@ -74,24 +74,24 @@ public class Grade {
 	
 	
 	
-	public Grade(){
+	public Grade(){		//생성자 생성
 		
 	}
-	public Grade(Grade g){
-		init(g.getStep(), g.professor, g.title, g.unit);
+	public Grade(Grade g){	//복사생성자 생성
+		init(g.getStep(), g.professor, g.title, g.unit);	//step은 상수를 문자열로 바꿔서 가져오게 설정한 getStep으로 호출
 	}
-	public Grade(String step, String professor, String title, int unit){
+	public Grade(String step, String professor, String title, int unit){	//생성자 오버로딩
 		init(step, professor, title, unit);
 	}
 	
 	
-	public double getPoint(){	//학점 계산을 위해 해당하는 열거형의 등급이 주어지면 점수로 변환
+	public double getPoint(){		//학점 계산을 위해 해당하는 열거형의 등급이 주어지면 점수로 반환하는 메서드
 		switch(step){			
 		case Ap : return 4.5;	
 		case A  : return 4;
 		case Bp : return 3.5;
 		case B  : return 3;
-		case Cp : return 2.;
+		case Cp : return 2;
 		case C  : return 2;
 		case Dp : return 1.5;
 		case D  : return 1;

@@ -1,10 +1,28 @@
-package practice;
+package day19;
 
 import java.util.*;
 
-public class University_Example {
+public class University_Comment {
 
 	public static void main(String[] args) {
+		
+/*		학생 정보를 입력해서 메서드의 기능이 잘 작동되는지 확인
+		StudentManager sMng = new StudentManager();
+		sMng.insert(new Student("201910101", "임꺽정", "강화대교", "사과", 3.0));
+		sMng.print();
+		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		sMng.insert(new Student("201910102", "유관순", "한강대교", "무화과", 4.0));
+		sMng.print();
+		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		sMng.delete(new Student("201910101", "임꺽정", "강화대교", "사과", 3.0));
+		sMng.print();
+		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		sMng.update(new Student("201910102", "임꺽정", "강화대교", "사과", 3.0));
+		sMng.print();
+		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+*/		
+		
+		
 		
 /*		//학생 한명 정보를 만들고 정보에 과목을 추가한 뒤 평점을 확인
 		Student std = new Student("최진영", "강화대교", "2019101000", "무화과", 0.0);
