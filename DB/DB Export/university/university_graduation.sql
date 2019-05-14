@@ -27,16 +27,13 @@ DROP TABLE IF EXISTS `graduation`;
 CREATE TABLE `graduation` (
   `graduation_student_num` int(11) NOT NULL AUTO_INCREMENT,
   `graduation_requirement_num` int(11) DEFAULT NULL,
-  `graduation_check` varchar(45) DEFAULT NULL,
-  `graduation_english_grade` double DEFAULT NULL,
-  `graduation_work` varchar(45) DEFAULT NULL,
-  `graduation_thesis` varchar(45) DEFAULT NULL,
-  `graduation_test` varchar(45) DEFAULT NULL,
-  `graduation_license` varchar(45) DEFAULT NULL,
-  `graduation_subject_point` int(11) DEFAULT NULL,
+  `graduation_ok` varchar(3) DEFAULT NULL,
+  `graduation_english` double DEFAULT NULL,
+  `graduation_project` varchar(3) DEFAULT NULL,
+  `graduation_paper` varchar(3) DEFAULT NULL,
+  `graduation_test` varchar(3) DEFAULT NULL,
+  `graduation_certificate` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`graduation_student_num`),
-  KEY `graduation_requirement_num_idx` (`graduation_requirement_num`),
-  CONSTRAINT `graduation_requirement_num` FOREIGN KEY (`graduation_requirement_num`) REFERENCES `requirement` (`requirement_num`),
   CONSTRAINT `graduation_student_num` FOREIGN KEY (`graduation_student_num`) REFERENCES `student` (`student_num`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201910108 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,7 +44,7 @@ CREATE TABLE `graduation` (
 
 LOCK TABLES `graduation` WRITE;
 /*!40000 ALTER TABLE `graduation` DISABLE KEYS */;
-INSERT INTO `graduation` VALUES (201910100,1,'가능',800,'100','80','80','100',150),(201910104,2,'가능',900,'90','85','90','100',145),(201910107,3,'가능',850,'95','85','90','100',140);
+INSERT INTO `graduation` VALUES (201910100,1,'Y',800,'Y','Y','Y','Y'),(201910104,2,'N',900,'Y','N','N','Y'),(201910107,3,'Y',850,'Y','N','Y','Y');
 /*!40000 ALTER TABLE `graduation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 17:07:53
+-- Dump completed on 2019-05-14 17:12:54

@@ -32,11 +32,11 @@ CREATE TABLE `requirement` (
   `requirement_subject_point` int(11) DEFAULT NULL,
   `requirement_majorsubject_point` int(11) DEFAULT NULL,
   `requirement_normal_subject_point` int(11) DEFAULT NULL,
-  `requirement_english_grade` double DEFAULT NULL,
-  `requirement_graduation_work` varchar(45) DEFAULT NULL,
-  `requirementgraduation_thesis` varchar(45) DEFAULT NULL,
-  `requirement_graduation_test` varchar(45) DEFAULT NULL,
-  `requirement_graduation_license` varchar(45) DEFAULT NULL,
+  `requirement_english` double DEFAULT NULL,
+  `requirement_project` varchar(45) DEFAULT NULL,
+  `requirement_paper` varchar(45) DEFAULT NULL,
+  `requirement_test` varchar(45) DEFAULT NULL,
+  `requirement_certificate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`requirement_num`),
   KEY `requirement_major_num_idx` (`requirement_major_num`),
   CONSTRAINT `requirment_major_num` FOREIGN KEY (`requirement_major_num`) REFERENCES `major` (`major_num`)
@@ -49,7 +49,7 @@ CREATE TABLE `requirement` (
 
 LOCK TABLES `requirement` WRITE;
 /*!40000 ALTER TABLE `requirement` DISABLE KEYS */;
-INSERT INTO `requirement` VALUES (1,'2016',1,'학사',150,130,20,800,'80','80','70','100'),(2,'2016',2,'학사',140,120,20,700,'80','80','70','100'),(3,'2016',3,'학사',140,120,20,700,'80','80','70','100');
+INSERT INTO `requirement` VALUES (1,'2016',1,'학사',150,130,20,800,'Y','Y','Y','N'),(2,'2016',2,'학사',140,120,20,700,'Y','N','Y','Y'),(3,'2016',3,'학사',140,120,20,700,'Y','N','N','Y');
 /*!40000 ALTER TABLE `requirement` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 17:07:52
+-- Dump completed on 2019-05-14 17:12:53

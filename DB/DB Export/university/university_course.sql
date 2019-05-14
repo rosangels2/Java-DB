@@ -33,7 +33,7 @@ CREATE TABLE `course` (
   `course_report` varchar(45) DEFAULT NULL,
   `course_attendance` double DEFAULT NULL,
   `course_total` double DEFAULT NULL,
-  `course_rating` varchar(45) DEFAULT NULL,
+  `course_grade` varchar(2) NOT NULL DEFAULT 'F',
   PRIMARY KEY (`course_num`),
   KEY `course_student_id_idx` (`course_student_num`),
   KEY `course_class_num_idx` (`course_class_num`),
@@ -48,7 +48,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,201910100,1,100,80,'100',100,91,'A+'),(2,201910101,2,90,85,'100',100,91.25,'A+'),(3,201910102,3,80,100,'100',100,94,'A+'),(4,201910103,2,100,100,'100',100,100,'A+'),(5,201910104,1,80,90,'90',100,87,'A'),(6,201910105,3,90,90,'90',100,91,'A+'),(7,201910106,2,70,85,'80',100,80,'B+'),(8,201910107,3,80,80,'80',100,82,'B+'),(9,201910108,3,85,70,'80',100,80,'B+'),(10,201910100,2,85,70,'80',100,80,'B+');
+INSERT INTO `course` VALUES (1,201910100,1,40,40,'10',10,100,'A+'),(2,201910101,2,35,30,'10',10,85,'B+'),(3,201910102,3,80,100,'100',100,94,'F'),(4,201910103,2,100,100,'100',100,100,'F'),(5,201910104,1,80,90,'90',100,87,'F'),(6,201910105,3,90,90,'90',100,91,'F'),(7,201910106,2,70,85,'80',100,80,'F'),(8,201910107,3,80,80,'80',100,82,'F'),(9,201910108,3,85,70,'80',100,80,'F'),(10,201910100,2,85,70,'80',100,80,'F');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 17:07:53
+-- Dump completed on 2019-05-14 17:12:54
