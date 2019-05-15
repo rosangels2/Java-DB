@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `university`;
+CREATE DATABASE  IF NOT EXISTS `green` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `green`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: university
+-- Host: localhost    Database: green
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -25,21 +25,12 @@ DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `course` (
-  `course_num` int(11) NOT NULL AUTO_INCREMENT,
-  `course_student_num` int(11) DEFAULT NULL,
-  `course_class_num` int(11) DEFAULT NULL,
-  `course_mid` double DEFAULT NULL,
-  `course_end` double DEFAULT NULL,
-  `course_report` varchar(45) DEFAULT NULL,
-  `course_attendance` double DEFAULT NULL,
-  `course_total` double DEFAULT NULL,
-  `course_grade` varchar(2) NOT NULL DEFAULT 'F',
-  PRIMARY KEY (`course_num`),
-  KEY `course_student_id_idx` (`course_student_num`),
-  KEY `course_class_num_idx` (`course_class_num`),
-  CONSTRAINT `course_class_num` FOREIGN KEY (`course_class_num`) REFERENCES `class` (`class_num`),
-  CONSTRAINT `course_student_num` FOREIGN KEY (`course_student_num`) REFERENCES `student` (`student_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `no` int(11) NOT NULL,
+  `class_no` int(11) NOT NULL,
+  `student_no` int(11) NOT NULL,
+  KEY `class_no_idx` (`no`),
+  CONSTRAINT `class_no` FOREIGN KEY (`no`) REFERENCES `class` (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,9 +39,25 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,201910100,1,40,40,'10',10,100,'A+'),(2,201910101,2,35,30,'10',10,85,'B+'),(3,201910102,3,80,100,'100',100,94,'F'),(4,201910103,2,100,100,'100',100,100,'F'),(5,201910104,1,80,90,'90',100,87,'F'),(6,201910105,3,90,90,'90',100,91,'F'),(7,201910106,2,70,85,'80',100,80,'F'),(8,201910107,3,80,80,'80',100,82,'F'),(9,201910108,3,85,70,'80',100,80,'F'),(10,201910100,2,85,70,'80',100,80,'F');
+INSERT INTO `course` VALUES (1,1,2019160135);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `input_course` AFTER INSERT ON `course` FOR EACH ROW BEGIN declare _total int default 0; set _total = (select count(*) from course where new.class_no = class_no); update class set total = _total where no = new.class_no; 
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -61,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-15 17:12:47
+-- Dump completed on 2019-05-15 17:11:56

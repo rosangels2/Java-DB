@@ -34,7 +34,7 @@ CREATE TABLE `course` (
   KEY `course_member_id_idx` (`course_member_id`),
   CONSTRAINT `course_member_id` FOREIGN KEY (`course_member_id`) REFERENCES `member` (`member_id`),
   CONSTRAINT `course_program_no` FOREIGN KEY (`course_program_no`) REFERENCES `program` (`program_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,9 +43,35 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (6,1,'avbnn','2019-04-01~2019-05-31'),(7,2,'aaafgeg','2019-04-01~2019-05-31'),(8,3,'abcdfe','2019-04-01~2019-05-31'),(9,4,'ehsdff','2019-04-01~2019-05-31'),(10,5,'fdhdhdfh4','2019-04-01~2019-05-31'),(11,6,'gfhfdhd3','2019-04-01~2019-05-31'),(12,7,'ghdhdhr','2019-04-01~2019-05-31'),(13,8,'jgdhdfhd33','2019-04-01~2019-05-31'),(14,9,'john123','2019-04-01~2019-05-31'),(15,1,'lfkvl3','2019-04-01~2019-05-31'),(16,2,'uursgf','2019-04-01~2019-05-31'),(17,3,'wrhhdfgs','2019-04-01~2019-05-31');
+INSERT INTO `course` VALUES (6,1,'avbnn','2019-04-01~2019-05-31'),(7,2,'aaafgeg','2019-04-01~2019-05-31'),(8,3,'abcdfe','2019-04-01~2019-05-31'),(9,4,'ehsdff','2019-04-01~2019-05-31'),(10,5,'fdhdhdfh4','2019-04-01~2019-05-31'),(11,6,'gfhfdhd3','2019-04-01~2019-05-31'),(12,7,'ghdhdhr','2019-04-01~2019-05-31'),(13,8,'jgdhdfhd33','2019-04-01~2019-05-31'),(14,9,'john123','2019-04-01~2019-05-31'),(15,1,'lfkvl3','2019-04-01~2019-05-31'),(16,2,'uursgf','2019-04-01~2019-05-31'),(17,3,'wrhhdfgs','2019-04-01~2019-05-31'),(18,2,'lsafjkasjf','2019-04-01~2019-05-31');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `add_course` AFTER INSERT ON `course` FOR EACH ROW begin
+declare _program_total int default 0;
+declare _member_course_no int default 0;
+set _program_total = (select count(*) from course where new.course_program_no = course_program_no);
+set _member_course_no = new.course_no; 
+update program
+set program_total = _program_total
+where program_no = new.course_program_no;
+update member
+set member_course_no = _member_course_no
+where member_id = new.course_member_id;
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -56,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-14 17:12:33
+-- Dump completed on 2019-05-15 17:12:23
