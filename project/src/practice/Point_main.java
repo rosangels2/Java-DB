@@ -1,6 +1,6 @@
 package practice;
 
-public class practice_Point {
+public class Point_main {
 
 	public static void main(String[] args) {
 		

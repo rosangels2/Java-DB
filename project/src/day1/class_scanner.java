@@ -5,22 +5,24 @@ import java.util.Scanner;
 public class class_scanner {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/* 
-		 * println("문자열") : 내가 원하는 문자열을 콘솔에 출력한 후 엔터 입력
-		 * print("문자열") : 내가 원하는 문자열을 콘솔에 출력
-		 * 
+
+	/*	println("문자열") : 내가 원하는 문자열을 콘솔에 출력한 후 엔터 입력
+		print("문자열") : 내가 원하는 문자열을 콘솔에 출력 
 		System.out.println("Hello3");
 		System.out.println("Hello3");
 		System.out.print("Hello3");
-		System.out.print("Hello3");*/
+		System.out.print("Hello3");
+	*/
+		
+		
+		//final int MAX_SIZE = 10;
 		//MAX_SIZE라는 상수에 리터럴10의 값을 저장
-		/*
-		 * println : 원하는 형태의 
-		 */
+		
 		
 		/*System.out.println("num의 값은 "+ num +" 입니다.");
 		System.out.printf("num의 값은 %d 입니다.", num);*/
+		
+		
 		/*String input = scan.nextLine();
 		System.out.println(input);
 		num = Integer.parseInt(input);*/
@@ -47,6 +49,8 @@ public class class_scanner {
 		// 대입연산 (=)
 		// 대입연산자를 기준으로 좌측에는 무조건 변수명 1개가 와야 한다.
 		// 조건문에서 비교연산자와 대입연산자 혼동 주의
+		
+		
 		/*int num = 0;
 		num = 3;
 		int num1 = 10, num2 = 20;
@@ -54,6 +58,7 @@ public class class_scanner {
 		res= num1 + num2;
 		//num1 + num2 = res; //에러 발생
 		//3 = num; //에러 발생*/		
+		
 		
 		/*int num1 = 1 + 2;
 		int num2 = 1 - 2;
@@ -79,6 +84,7 @@ public class class_scanner {
 		System.out.println("전위형 진행 : "+ ++num);
 		System.out.println("전위형 결과 : "+num);*/
 		
+		
 		/*int x = 20;
 		boolean isEven = x%2==0 ? true:false;
 		System.out.println(x+"는 짝수? " + isEven);*/
@@ -100,7 +106,6 @@ public class class_scanner {
 		
 		
 		/*문제2) 콘솔에 입력한 숫자를 스캔하시오
-		
 		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
 		System.out.println("입력한 수 : " + num);
@@ -109,7 +114,6 @@ public class class_scanner {
 		
 		
 		//문제3) x는 1보다 크거나 같고 100보다 작거나 같음을 출력하시오
-		
 		/*Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
 		// 1 <= num1 && num2 <= 100;
@@ -162,18 +166,7 @@ public class class_scanner {
 		int num = scan.nextInt();
 		boolean isEven = num%2==0 ? true:false;
 		System.out.println(isEven);*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		
