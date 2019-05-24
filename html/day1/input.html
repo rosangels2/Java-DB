@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- input태그는 inline태그이므로 한 라인에 같이 있게 돼서 br태그로 엔터를 쳐준다-->
+<form action="text" method="get">
+      <!--form태그에서 method가 post일 시 url에 input태그의 정보를 표시하지 않으면 보내는 방식(개인정보 등)
+        method가 get일 경우 url에 input태그의 정보를 표시하며 보내는 방식-->
+
+    <!--input태그의 name의 역할 -> form 태그를 통해 데이터를 전송할 때 전송하는 데이터의 이름을 지정(중복 가능)
+        url 표시 내용) http://....q=고양이&oq=고양이... q는 입력된 값, oq는 지정된 이름(name = value의 형식)
+        urel에서 ? 이전은 주소값, ?는 input정보가 있음을 표시하는 기호, ? 이후는 input으로 입력받은 값-->   
+
+    <input type="text" name="id" id="123"> <br> <!-- input:text -> 입력받는 창을 생성하는 태그-->
+
+    <input type="password" name="" id=""> <br> <!--input:password -> 비밀번호를 입력받는 창을 생성 (표시, 복사 불가)-->
+   
+    <input type="checkbox" name="lunch" id="a" value="1"> <!--체크박스는 다중선택이나 미선택이 가능 -->
+    <label for="a"> 짜장면 </label> <!--name은 중복이 가능-->
+    <input type="checkbox" name="lunch" id="b" value="2"> <!--라벨을 입력할 시 텍스트를 체크해도 체크 가능-->
+    <label for="b"> 짬뽕 </label> <br>  <!--라벨에 입력받은 값을 체크 가능-->
+    
+     <!--라디오박스는 선택지 중에서 하나를 필수로 선택할 때 사용(다중선택 불가)
+         checked를 입력할 시 해당 코드가 기본적으로 체크가 된다-->
+    <input type="radio" name="gender" id="male" value="male" checked> <!--id는 중복이 불가(중복될 시 처음 값만 적용)-->
+    <label for="male"> 남자 </label>   
+    <input type="radio" name="gender" id="female" value="female"> 
+    <label for="female"> 여자 </label> <br>
+
+    <input type="file" name="" id=""> <br> <!--파일첨부를 할 때 사용하는 버튼-->
+
+    <input type="submit" value="전송"> <br> <!--로그인 등 정보를 입력하고 보낼 때 사용하는 버튼 (form태그 안에서 구현)-->
+
+    <input type="button" value="버튼"> <br> <!--누르는 버튼을 생성하는 태그-->
+    
+    <input type="reset" value="리셋"> <br>  <!--선택을 초기화하는 태그-->
+
+    <input type="email" name="" id=""> <br> <!--이메일 형식으로 입력하게 할 때 사용하는 태그(안내문구 수정 x)-->
+
+    <input type="url" name="" id=""> <br> <!--url 형식으로 입력하게 할 떄 사용하는 태그-->
+
+    <input type="hidden" name=""> <br> <!--서버에 값을 입력받아서 전송하지만 화면에 표시하지 않을 때 사용-->
+    
+    <input type="range" name="" id=""> <br>
+
+    <input type="color" name="" id=""> <br>
+
+    <input type="number" name="" id=""> <br>
+
+    <input type="month" name="" id=""> <br>
+
+
+</form>
+</body>
+</html>

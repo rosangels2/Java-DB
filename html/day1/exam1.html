@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--a태그 - 이미지에 링크를 걸어서 페이지를 전환하는 태그
+        href -> 연결을 할 url / a태그는 기본적으로 밑줄이 생기고 클릭할 시 색이 변경
+        속성값엔 기본적으로 ""를 사용하고, 생략해도 되지만 띄어쓰기를 할 경우 실행이 안될 경우가 있음-
+        ex)class="a b c" -> class=a b c로 입력시 a는 속성값, b와 c는 속성으로 인식된다-->
+    <a href="http://www.naver.com" target="_blank">네이버</a> <br><br> <!--_blank -> 새 탭으로 링크를 연결-->
+    <a href="http://www.naver.com">
+        <img src="/img/cat1.png" alt="그림없음"> <br>
+    </a>
+    <a href="http://www.naver.com">
+        <button>네이버</button>
+    </a>
+    <form action="/test">
+        <a href="http://www.naver.com">
+        <button type="button">form-네이버</button>
+        </a>
+    </form>
+    <a href="/day1/exam.html">예제</a> <br> <!--절대경로 : 최상위 폴더를 기준으로 접근-->
+    <a href="./exam.html">예제</a> <br> <!--상대경로 : 현재 폴더를 기준으로 접근-->
+
+    <!-- ol태그 : 숫자로 나열 / ul태그 : 점으로 나열 
+         -> list를 순서대로 나열하는 태그(li태그가 필수)-->
+    과일
+    <ol>
+        <li>사과</li>
+        <li>배</li>
+        <li>오렌지</li>
+    </ol>    
+    <ul>
+            <li>사과</li>
+            <li>배</li>
+            <li>오렌지</li>
+     </ul>
+
+     <!--select박스 -> 선택 시 option에 저장한 값을 불러오는 태그(option박스가 필수이며 한정된 값을 적용할 때 사용)-->
+     <select name="" id="">
+         <option value="">직접입력</option>
+         <option value="@naver.com">네이버</option>
+         <option value="@daum.net">다음</option>
+         <option value="google.com">구글</option>
+     </select> <br>
+
+     <span>안녕하세요.</span> 제 이름은 홍길동입니다.
+     <!--span태그는 특별한 기능은 없지만 대표적인 inline태그로서 css에서 글자를 꾸밀 때 사용-->
+</body>
+</html>
