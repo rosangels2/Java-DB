@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="pseudo.css">
+    <title>Document</title>
+</head>
+<body>
+    <!--nth-child 적용 순위
+      ->form태그와 br태그가 있으면 form태그를 첫번째, br태그를 다음 순서로 개수대로 센 후 form태그 바깥의 input태그가 순서대로 적용된다 -->
+    <a href="http://www.daum.net">다음</a>
+    <input type="text"> <!--form 외의 input태그는 2순위로 밀려 첫줄이 두번째 순서로 인식된다(form태그가 1순위로 인식된다)-->
+    <form action="" id="form">
+        <input type="text">
+    </form>
+    <form action="" id="form1"> <!--같은 form태그는 같은 순위로 정상 인식된다-->
+        <input type="text">
+    </form>
+    <div class="box"> <!--박스 생성-->
+        box
+    </div>
+</body>
+</html>

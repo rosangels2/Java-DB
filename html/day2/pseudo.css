@@ -1,0 +1,33 @@
+a:visited{ /*방문했을 때 적용되는 가상클래스*/
+    color:green;
+}
+a:hover{    /*마우스를 갖다댔을 때 적용되는 가상클래스*/
+    color: red;
+}
+/*우선순위가 같기 때문에 순서대로 적용돼서 hover가 위에 있다면 마우스를 갖다대도 색깔이 green으로 적용*/
+input:focus{    /*form태그안의 값이 키보드나 마우스로 활성화됐을 때만 적용*/
+    color: purple;
+    background-color: yellow; /*인풋창 안의 배경색*/
+}
+input:nth-child(1){
+    border: 1px solid red;
+    padding : 10px 20px 30px 40px; 
+    /*padding같이 상하좌우에 값이 적용되는 경우
+      4개 사용 -> top>right>bottom>left순으로 시계방향으로 적용 (무조건 top이 기준)
+      3개 사용 -> top>right>bottom>left(right의 값)순으로 시계방향 적용
+      2개 사용 -> top>right>bottom(top의 값)>left(right의값)순으로 시계방향 적용
+      1개 사용 -> 해당 값이 모든 방향에 적용(값을 넣어주지 않을 땐 해당 자리에 0을 입력)*/
+      /*패딩은 따로 색이 존재하지 않고 컨텐츠의 배경색이 패딩색으로 적용, 마진은 부모 태그의 배경색으로 비춰 보임*/
+}
+.box{
+    width: 500px;
+    height: 500px;
+    border: 1px solid black; /*border-top으로 입력시 테두리 상단에만 적용*/
+    margin: 10px 20px 30px 40px; /*margin의 크기를 조정해 box의 위치를 이동할 수 있다*/
+    padding: 10px; /*padding은 컨텐츠의 위치를 이동할 수 있다*/
+}
+*{  /*박스 사이즈를 고정 -> 익스플로러에 따라 최적화된 사이징이 다르다*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+}

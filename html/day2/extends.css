@@ -1,0 +1,31 @@
+body>b{
+    font-weight: 900;
+    color: blue;
+}
+body b{ /*자손태그 -> ,를 통해 자식들을 추가할 수 있음. ex) body b,a,c...*/
+    color: green;
+}
+b.italic{   /*태그.클래스명, 태그#아이디명, #아이디명.클래스명(제한을 적용)
+            ->태그&&클래스명, 태그&&아이디명, 아이디명&&클래스명*/
+    font-style: italic; 
+}
+b{
+    font-weight: 100;
+    color: red;
+}
+body>div>a{
+    text-decoration: none;
+    font-weight: bold;
+    color: red;
+}
+#id{
+    
+}
+
+/* 스타일 적용 우선순위
+style 속성 > style 태그 > css파일 */
+
+/* 태그 속성 적용 순서(오버라이딩)
+    ->자손태그(부모와 여러명의 자손) > 부모자식태그 > 부모태그 > 자식태그
+      (태그의 상속이 많을수록 우선순위가 높음 -> 상속이 같을 경우 순서대로 적용돼 마지막 속성이 적용) 
+        -> body>b와 body b의 경우 body>b의 우선순위가 같기 때문에 순서대로 적용된다 */

@@ -1,0 +1,9 @@
+div{
+	width: 500px;
+	height: 500px;
+	border: 1px solid black;
+	/* margin: 0 auto;
+		위, 아래 마진은 0으로 하고 좌,우 마진은 auto로 설정하면 auto에 의해 상자가 가운데로 간다
+		만약 박스의 가로보다 화면의 가로가 작으면 마진이 생기지 않는다(화면이 박스의 가로보다 작아지지 않는다)*/
+	margin: calc(50vh - 251px) calc(50% - 251px);	/*박스 크기의 반인 251px를 이동해서 가운데로 박스를 이동(margin: 0 auto와 같다)*/
+}

@@ -1,0 +1,21 @@
+div{
+	/*absolute는 브라우저에 위치를 고정하기 때문에 화면 스크롤을 내려서 지나가면 보이지 않는다*/
+	position: absolute; /*position: absolute을 사용하면 컨텐츠의 크기가 박스의 기본 크기가 된다*/
+	/* width: 300px;
+	height: 300px; */
+	top: 0;	/*top을 기준으로 크기를 설정*/
+	left: 50px;
+	right: 50px;
+	bottom: 0px;
+}
+body{
+	height: 200vh;
+	margin: 0;
+}
+button{
+	position: fixed;	/*fixed는 화면에 고정돼서 페이지를 내려도 위치가 고정돼 보여진다. ex) top↑버튼*/
+	width: 50px;
+	height: 50px;
+	bottom: 10px;
+	right: 10px;
+}
