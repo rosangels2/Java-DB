@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+	#menubar{
+	background: black;	
+	}
+	#menubar ul{	/*자손태그 ul이 존재하다면 실행*/
+		margin: 0;	/*margin을 0으로 입력했을 때 margin이 생긴다면 block태그, margin이 안생긴다면 inline-block 태그이다*/
+		padding: 0;
+		width: 567px;
+	}
+	#menubar ul li{
+		display: inline;
+		list-style-type: none;
+		padding: 0px 15px;
+	}
+	#menubar ul li a{
+		color: white;
+		text-decoration: none;
+	}
+	#menubar ul li a:hover{
+		color: gray;
+	}
+	</style>
+</head>
+<body>
+	<nav id="menubar">
+		<ul>	<!--#이 들어가면 a태그의 새로고침을 방지(id를 정하기 전)-->
+			<li><a href="#">홈</a></li>
+			<li><a href="#">에스프레소</a></li>
+			<li><a href="#">카푸치노</a></li>
+			<li><a href="#">카페라떼</a></li>
+			<li><a href="#">F.A.Q</a></li>
+		</ul>
+	</nav>
+</body>
+</html>

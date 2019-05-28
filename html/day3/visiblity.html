@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.visibility-hidden{
+			visibility: hidden;	/*내용은 숨겨지지만 공간이 공백으로 남는다(공간을 차지한다)*/
+		}
+		.display-none{
+			display: none; /*내용이 사라지고 공간도 사라진다*/
+		}
+	</style>
+</head>
+<body>
+	<div>
+	안녕하세요. 제 이름은 <span class="visibility-hidden">홍길동</span>입니다.
+	</div>
+	<div>
+	안녕하세요. 제 이름은 <span class="display-none">임꺽정</span>입니다.
+	</div>
+</body>
+</html>

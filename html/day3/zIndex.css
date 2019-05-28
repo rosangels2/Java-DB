@@ -1,0 +1,24 @@
+.box{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	border: 1px solid black;
+	background-color: white;
+	z-index: 3;
+}
+.box:nth-child(2){
+	top: 50px;
+	left: 50px;
+	border-color: red;
+	background-color: red;
+	z-index: 2;
+}
+.box:nth-child(3){
+	top: 100px;
+	left: 100px;
+	border-color: blue;
+	background-color: blue;
+	z-index: 1;
+}
+/*z-index는 설정하지 않을 시 기본값으로 설정되고 z-index값이 같으면 나중에 실행된 쪽이 z-index값이 높게 설정된다(값이 클수록 위에 위치)*/

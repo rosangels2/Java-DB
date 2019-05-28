@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<style>
+	.table th, .table td{ /*모든 셀에 적용*/
+		width: 150px;
+		height: 40px;
+		border: 1px solid black;
+	}
+	table{
+		border-collapse: collapse; /*테이블들에 적용되는 이중으로 생성된 표의 테두리들을 합친다*/
+	}
+	.tbl{
+		border-collapse: collapse;
+	}
+	.tbl td, th{
+		height: 15px;
+		width: 100px;
+		padding: 5px;
+		text-align: left;
+	}
+	.tbl th{
+		height: 40px;
+		width: 100px;
+	}
+	.tbl td{
+		height: 20px;
+		width: 100px;
+	}
+	.tbl thead th{
+		height: 40px;
+		width: 100px;
+	}
+	.tbl thead{
+		background: darkgray;
+		color: yellow;
+	}
+	.tbl thead, tfoot{
+		background: darkgray;
+		color: yellow;
+	}
+	.tbl tbody tr:nth-child(even){
+		background: aliceblue;
+	}
+	.tbl tbody tr:hover{
+		background: pink;
+	}
+	</style>
+	<title>Document</title>
+</head>
+<body>
+	<table class="table"> <!--표를 만드는 태그-->
+		<thead>
+				<tr>	<!--한 행을 의미-->
+					<th>이름</th>	<!--일반적으로 표의 가장 상단의 분류 등을 입력할 때 사용(필수x) -> 굵은 글자, 가운데 정렬 등이 자동 적용-->
+					<th>나이</th>
+					<th>주소</th>
+					<th>성별</th>
+					<th colspan="2">주민번호</th> <!--좌우 칸의 셀 합치기가 가능-->
+				</tr>
+		</thead>	<!--thead, tbody, tfoot을 사용하면 순서를 바꿔도 기존 순서가 유지-->
+		<tbody>
+			<tr>	<!--표의 내용에 해당(굵은 글자와 가운데 정렬 등을 사용하지 않는다면 td로 표의 첫줄을 입력해도 상관없다)-->
+				<td rowspan="2">홍길동</td>	 <!--rowsapn을 통해 위아래 셀 합치기가 가능(합쳐지는 셀의 수를 적어준다)-->
+				<td>20</td>
+				<td>대한민국</td>
+				<td>남</td>
+				<td>000000-0000000</td>
+				<td>000000-0000000</td>
+			</tr>
+			<tr>	
+					<td>20</td>
+					<td>대한민국</td>
+					<td>남</td>
+					<td>000000-0000000</td>
+					<td>000000-0000000</td>
+				</tr>
+				<tr>	
+						<td>홍길동</td>
+						<td>20</td>
+						<td>대한민국</td>
+						<td>남</td>
+						<td>000000-0000000</td>
+						<td>000000-0000000</td>
+				</tr>
+		</tbody>
+		<tfoot></tfoot>
+	</table> <br> <br>
+
+	<table class="tbl">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>HTML</th>
+				<th>CSS</th>
+			</tr>
+		</thead>
+		<tfoot>
+				<tr>
+						<th>합</th>
+						<th>290</th>
+						<th>339</th>
+					</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td>황기태</td>
+				<td>80</td>
+				<td>75</td>
+			</tr>
+			<tr>
+				<td>이재문</td>
+				<td>70</td>
+				<td>88</td>
+			</tr>
+			<tr>
+				<td>이재문</td>
+				<td>70</td>
+				<td>88</td>
+			</tr>
+			<tr>
+				<td>이재문</td>
+				<td>70</td>
+				<td>88</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

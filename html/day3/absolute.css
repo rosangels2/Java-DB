@@ -1,0 +1,29 @@
+*{
+	box-sizing: border-box;	
+	/*박스의 가로 = 왼쪽 테두리의 굵기 + 오른쪽 테두리의 굵기 + 왼쪽 패딩+ 오른쪽 패딩 + 컨텐츠의 가로
+		box-sizing: border-box;	사용 전 width = 컨텐츠의 가로
+		box-sizing: border-box;	사용 후 width = 박스의 가로*/
+}
+.container1{
+	height: 300px;
+	padding: 20px;	/*자식박스의 크기를 입력하지 않을 시 부모의 값을 따라가지만 부모에게 padding이 있을 경우 padding 크기만큼을 빼서 계산*/
+	border: 1px solid black;
+}
+.box1{
+	height: 100%; /*부모의 패딩을 이용할 경우 100%를 사용해도 패딩만 제외한 100%의 크기가 계산된다*/
+	border: 1px solid red;
+	/*absoulute 포지션을 사용할 때 위치를 입력하지 않으면 부모를 기준으로 위치를 계산하지만
+		위치를 적으면 부모가 아닌 부모 바깥의 마진을 기준으로 위치가 계산된다
+		->기준이 되는 조상의 포지션을 relative로 설정하면 해당 조상을 기준으로 자식의 위치를 계산한다*/
+}
+.container2{
+	height: 300px;
+	border: 1px solid black;
+}
+.box2{
+	border: 1px solid blue;
+	margin: 20px;
+	height: calc(100% - 20px * 2);
+	/*자식박스의 마진을 이용할 경우 자식박스의 높이를 직접 계산해야 한다 -> 100%에서 마진의 값만큼 상, 하를 한번씩 빼준다
+		width의 수치를 입력할 경우 똑같이 계산해 준다*/
+}
