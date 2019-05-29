@@ -1,0 +1,61 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container{
+	width: 402px;
+	margin: 0 auto;
+	padding: 20px;
+}
+.container h1{
+	text-align: center;
+	margin: 30px 0 10px;
+}
+.container div{
+	height: 35px;
+	line-height: 35px;
+	position: relative;
+}
+.container div label{
+	display: inline-block;
+	width: 110px;
+}
+.container div input{
+	height: 30px;
+}
+.container div input[type=text],
+.container div input[type=password],
+.container div input[type=email]{
+	width: 250px;
+	border-radius: 10px;
+	border: solid aqua 1px;
+}
+.container div input[type=radio]{
+	position: absolute;
+	top: 3px;
+}
+.container div label[for=male],
+.container div label[for=female]
+{
+	margin: 0 0 0 15px;
+	width: 70px;
+}
+.container button[type=submit]{
+	float: right;
+	margin: 10px 0 30px 0;
+	width: 50px;
+	height: 30px;
+}
+.container div *{
+	float: left;
+}
+.container{
+	border: 1px solid black;
+}
+.container div::after,
+.container::after{
+	clear: both;
+	display: block;
+	content: "";
+} 

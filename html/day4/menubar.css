@@ -1,0 +1,45 @@
+*{
+	margin: 0;	/*미세한 벌어짐 등을 방지하기 위해 all태그에 margin과 padding을 0으로 기본 설정*/
+	padding: 0;
+	box-sizing: border-box;	/*박스 사이즈를 유지하며 안에서 계산하게 all태그에 기본으로 설정*/
+}
+.left-menu{
+	display: inline-block;
+	width: 200px;	/*height는 미지정시 컨텐츠의 높이가 자동으로 할당된다*/
+	float: left;	/*float가 겹칠 경우 순서대로 박스의 위치가 결정되고 float가 겹치지 않을 경우 float이 있는 박스가 먼저 배치된다*/
+}
+.left-menu ul{
+	border: 1px solid black;
+	border-bottom: none;	/*밑줄의 겹침을 없애기 위해 밑줄을 없애준다*/
+}
+.left-menu ul li{
+	text-align: center;
+	list-style: none;	/*all태그에서 margin과 padding을 0으로 설정했기 때문에 보이지 않을 뿐 list-style이 존재하기 때문에 none으로 설정*/
+	cursor: pointer;
+	height: 40px;
+	border-bottom: 1px solid black;
+	line-height: 40px;	/*글자 높이를 지정하는 명령어(padding을 줄 경우 컨텐츠의 크기가 변경될 수 있다)*/
+}
+.left-menu ul li a{
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	display: inline-block; /*a태그의 영역을 확장해서 a태그 영역밖을 hover해도 a태그의 hover값이 적용되도록 inline-block으로 설정*/
+	width: 100%;
+	height: 100%;
+}
+.left-menu ul li a:hover{
+	background-color: gray;
+	color: white;
+}
+.container{
+	display: inline-block;
+	width: calc(100% - 200px);
+	height: 100vh;	/*같은 inline-block이어도 컨텐츠의 크기가 다르면 박스가 어긋난다(박스들 사이에 엔터 공백이 있을 경우엔 엔터 공백도 계산)*/
+	float: left;	/*display가 block이어도 inline-block로 변환한다*/
+}
+body::after{	/*folat를 사용할 경우 body태그(부모태그)도 함께 설정해 줘야 body태그의 높이가 folat 박스의 높이를 포함하도록 커진다*/
+	clear: both;
+	display: block; /*body태그가 bolck 태그이기 떄문에 block를 입력*/
+	content: "";
+}

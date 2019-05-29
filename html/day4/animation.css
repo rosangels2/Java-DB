@@ -1,0 +1,43 @@
+.hi{
+	font-size: 40px;
+	font-weight: bold;
+	animation-duration: 2s; /*애니메이션이 진행되는 시간*/
+	animation-iteration-count: infinite; /*애니메이션의 반복 횟수*/
+	animation-name: fontColor;	/*호출할 애니메이션 이름*/
+}
+.fail{
+	font-size: 20px;
+	font-weight: bold;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-name: fontSize;
+	display: block;	/*크기가 달라져도 다른 박스가 이동되지 않게 display를 block으로 만들고*/
+	height: 100px;	/* height를 애니메이션의 최대 크기보다 크게 설정해 준다*/
+}
+.win{
+	font-size: 20px;
+	font-weight: bold;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-name: mix;
+	display: block;
+	height: 100px;
+}
+@keyframes fontColor{	/*애니메이션을 등록*/
+	0% { color: red; }
+	33% { color: blue; }
+	66% { color: green; }
+	100% { color: red; }
+}
+@keyframes fontSize{
+	0% { font-size: 500%; }
+	50% { font-size: 100%; }
+	100% { font-size: 500%; }
+}
+@keyframes mix{
+	0% { color: red; font-size: 500%; }
+	33% { color: blue; }
+	50% { font-size: 100%; }
+	66% { color: green; }
+	100% { color: red; font-size: 500%; }
+}

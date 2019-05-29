@@ -1,0 +1,77 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	position: relative;
+}
+div{
+	position: absolute;
+	display: inline-block;
+}
+form{
+	margin: 0 0 0 230px;
+	padding: 20px 20px 20px 20px;
+	border: 1px solid black;
+}
+input{
+	color: blue;
+	font-size: 20px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	padding: 0;
+}
+input:focus{
+	font-size: 30px;
+}
+input:hover{
+	background-color: aqua;
+}
+.title{
+	margin: 0 0 0 370px;
+}
+#id{
+	margin: 0 53px 0 0;
+}
+#password{
+	margin: 0 43px 0 0;
+}
+#passwordInput{
+	border-bottom: 0;
+}
+#name{
+	margin: 0 69px 0 0;
+}
+#number{
+	margin: 0 5px 0 0;
+}
+#gender{
+	margin: 0 68px 0 0;
+}
+#phone{
+	margin: 0 53px 0 0;
+}
+#address{
+	margin: 0 69px 0 0;
+}
+#email{
+	margin: 0 53px 0 0;
+}
+#button{
+	margin: 0 0 0 216px;
+	color: black;
+	background-color: white;
+}
+#button1{
+	color: black;
+	background-color: white;
+}
+#button:hover{
+	background-color: black;
+	color: white;
+}
+#button1:hover{
+	background-color: black;
+	color: white;
+}
