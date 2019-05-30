@@ -20,8 +20,74 @@
 .container-min{
 	width: 1080px;
 	height: 100%;
-	border: 1px solid black;
+	border: 1px solid black; /*확인용*/
 }
-.div-center{
+.div-center{	/*가운데 정렬을 하기 위한 클래스 메서드*/
 	margin: 0 auto;
+}
+.container-bottom{
+	background-color: rgb(242,244,247);
+}
+.container-bottom-out{
+	width: 1100px;
+	padding: 8px 10px 0;
+}
+.container-bottom-in{
+	width: 100%;
+}
+.container-bottom-in::after{	/*float를 사용하면 공간을 띄우기 때문에 after를 부모에게 적용해 준다*/
+	clear: both;
+	display: block;
+	content: "";
+}
+.bottom-left{
+	float: left;
+	width: 740px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+}
+.bottom-right{
+	float: right;
+	width: 332px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+}
+.bottom-left>div,.bottom-right>div{
+	background-color: white;
+}
+.bottom-box{
+	margin-bottom: 8px;
+}
+.content-left1{
+	height: 120px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+	background-image: url('/img/background.png')
+}
+.content-left2{
+	height: 46px;
+}
+.content-left3{
+	height: 246px;
+}
+.content-left4{
+	height: 884px;
+}
+.content-left5{
+	height: 130px;
+}
+.border-gray{
+	border: 1px solid #dee3eb;
+}
+.content-right1{
+	height: 120px;
+}
+.content-right2{
+	height: 142px;
+}
+.content-right3{
+	height: 150px;
+}
+.content-right4{
+	height: 884px;
+}
+.content-right5{
+	height: 130px;
 }

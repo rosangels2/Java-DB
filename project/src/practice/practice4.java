@@ -364,23 +364,23 @@ class CardPack{
 		cardPackSet("D");
 	}
 	public void show(){
-		for(int i=0; i<list.size(); i++){
-			System.out.print(list.get(i) + " ");
-			if((i+1) % 10 == 0){
-				System.out.println();
+		for(int i=0; i<list.size(); i++){	//0번지부터 크기-1번지까지
+			System.out.print(list.get(i) + " ");	//i번지의 값과 공백을 가로로 출력
+			if((i+1) % 10 == 0){	//i+1이 10이면
+				System.out.println();	//다음 줄로 이동
 			}
 		}
 	}
 	public void shuffle(){
-		Collections.shuffle(list);
+		Collections.shuffle(list);	//컬렉션 프레임워크를 이용해 리스트를 섞는다
 	}
 	public Card give(){
-		if(list.size() != 0){
+		if(list.size() != 0){	//카드가 1장 이상이라면
 			Card c = new Card(list.get(0));		//복사 생성자로 객체를 복사해서 c에 저장
-			list.remove(0);
-			return c;
-		}else{
-			return null;
+			list.remove(0);	//리스트의 0번지를 삭제
+			return c;	//c를 반환(list의 0번지 복사본)
+		}else{	//카드가 0장이라면
+			return null;	//null을 반환
 		}	
 	}
 	
