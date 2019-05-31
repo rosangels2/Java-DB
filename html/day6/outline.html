@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+	.border{
+		width: 100px;
+		height: 100px;
+		border: 5px solid black;
+		outline: 5px solid red;
+	}
+	.outline{	/*outline은 border 바깥의 선으로서 다른 box의 border 영역까지 침범하여 덮어쓴다(box외의 공간 사용)*/
+		width: 100px;
+		height: 100px;
+		outline: 5px solid green;
+		border: 5px solid yellow
+	}
+	</style>
+</head>
+<body>
+	<div class="border"></div>
+	<div class="outline"></div>
+</body>
+</html>

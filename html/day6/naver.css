@@ -136,7 +136,7 @@
 	height: 23px;
 	margin: 12px 0 0 9px;
 	border: none;
-	outline: none;
+	outline: none;	/**/
 	font-weight: 700;
   font-size: 18px;
   line-height: 23px;	/*글자를 세로로 가운데 정렬된다*/

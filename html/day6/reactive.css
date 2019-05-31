@@ -35,8 +35,8 @@
 	.container{
 		border-color: blue;
 	}
-	.nav button{	/*해당 크기 때 버튼의 display를 none으로 설정한다*/
-		display: none;
+	.nav button{
+		display: none;	/*표시하지 않는다*/
 	}
 }
 @media(min-width:992px){
