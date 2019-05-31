@@ -1,0 +1,198 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container{
+	min-width: 1100px;	/*min-width는 width와 달리 입력한 값으로 최소 크기가 고정되고 확대할 경우 크기가 커진다*/
+}
+.container-top{
+	height: 218px;
+	border-bottom: 1px solid #d1d8e4;
+}
+.container-search{
+	height: 170px;
+}
+.container-search .container-min{
+	position: relative;
+}
+.container-banner{
+	height: 47px;
+	border-top: 1px solid #f1f3f6;
+}
+.container-min{
+	width: 1080px;
+	height: 100%;
+	border: 1px solid black; /*확인용*/
+}
+.div-center{	/*가운데 정렬을 하기 위한 클래스 메서드*/
+	margin: 0 auto;
+}
+.container-bottom{
+	background-color: rgb(242,244,247);
+}
+.container-bottom-out{
+	width: 1100px;
+	padding: 8px 10px 0;
+}
+.container-bottom-in{
+	width: 100%;
+}
+.container-bottom-in::after{	/*float를 사용하면 공간을 띄우기 때문에 after를 부모에게 적용해 준다*/
+	clear: both;
+	display: block;
+	content: "";
+}
+.bottom-left{
+	float: left;
+	width: 740px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+}
+.bottom-right{
+	float: right;
+	width: 332px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+}
+.bottom-left>div,.bottom-right>div{
+	background-color: white;
+}
+.bottom-box{
+	margin-bottom: 8px;
+}
+.content-left1{
+	height: 120px;
+	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
+	background-image: url('/img/background.png')
+}
+.content-left2{
+	height: 46px;
+}
+.content-left3{
+	height: 246px;
+}
+.content-left4{
+	height: 884px;
+}
+.content-left5{
+	height: 130px;
+}
+.border-gray{
+	border: 1px solid #dee3eb;
+}
+.content-right1{
+	height: 120px;
+}
+.content-right2{
+	height: 142px;
+}
+.content-right3{
+	height: 150px;
+}
+.content-right4{
+	height: 884px;
+}
+.content-right5{
+	height: 130px;
+}
+.logo_box{
+	position: absolute;
+	top: 50%;
+	left: -2px;
+	margin-top: -25px;
+}
+.logo{
+	display: block;
+	width: 198px;
+	height: 48px;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+	background-position: -4px -4px;
+	overflow: hidden;	/*범위가 넘어가는 내용을 숨긴다*/
+}
+.search{
+	position: absolute;
+	top: 65px;
+	right: 340px;
+	bottom: 36px;
+	left: 219px;
+	width: 521px;
+	height: 49px;
+
+}
+.search_input_box{
+	width: 474px;
+	height: 49px;
+	border: 2px solid #03cf5d;
+	position: absolute;	/*block태그이기 떄문에 자동으로 마진이 생기기 떄문에 포지션을 설정하거나 display를 변경해준다*/
+}
+.search_btn{
+	width: 49px;
+	height: 49px;
+	background: #03cf5d;
+	position: absolute;
+	right: 0;	/*포지션을 설정해서 위치를 변경한다*/
+}
+.search_input{
+	width: 405px;
+	height: 23px;
+	margin: 12px 0 0 9px;
+	border: none;
+	outline: none;
+	font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;	/*글자를 세로로 가운데 정렬된다*/
+}
+.key_keybord{
+	width: 31px;
+	height: 41px;
+	position: absolute;
+	top: 1px;
+	padding: 15px 6px;
+	background-image: linear-gradient(transparent,transparent),url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+	background-repeat: no-repeat;
+	background-position: -25px -60px;
+}
+.icon_search{
+	width: 21px;
+	height: 21px;
+	position: absolute;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+	background-position: -4px -60px;
+	top: 14px;
+  left: 14px;
+  width: 21px;
+  height: 21px;
+}
+.v_keyboard{
+	position: absolute;
+  top: 50%;
+  right: 76px;
+  margin-top: -21px;
+  padding: 15px 6px;
+}
+.auto_search{
+	position: absolute;
+  top: 50%;
+  right: 49px;
+  margin-top: -21px;
+  padding: 19px 12px 19px 6px;
+}
+.icon_keyboard{
+	display: block;
+	width: 19px;
+	height: 11px;
+	background-position: -33px -60px;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+}
+.icon_auto_down{
+	width: 9px;
+  height: 4px;
+	background-position: -87px -60px;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+}
+.icon_auto_up{
+	width: 9px;
+  height: 4px;
+	background-position: -87px -60px;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
+	display: none;
+}

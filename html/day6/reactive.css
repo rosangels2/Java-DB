@@ -1,7 +1,30 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 .container{
 	height: 100px;
 	border: 1px solid black;
 	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.nav{
+	height: 30px;
+	background: darkgray;
+}
+.nav button{
+	border: none;
+	background: none;
+	float: right;
+	height: 30px;
+	width: 30px;
+	padding: 0;
+	cursor: pointer;
+}
+.fas{
+	font-size: 26px;
 }
 @media(min-width:576px){
 	.container{
@@ -11,6 +34,9 @@
 @media(min-width:768px){	/*크기에 따라 순서대로 덮어써진다(min-width가 아니라 max-width라면 적용 형태가 달라질 수 있다)*/
 	.container{
 		border-color: blue;
+	}
+	.nav button{	/*해당 크기 때 버튼의 display를 none으로 설정한다*/
+		display: none;
 	}
 }
 @media(min-width:992px){
