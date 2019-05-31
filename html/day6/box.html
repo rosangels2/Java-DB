@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="box.css">
+	<title>Document</title>
+	<style>
+	*{
+	box-sizing: border-box;	/*bootstrap에서 기본 제공*/
+	margin: 0;
+	padding: 0;
+	}
+	.container{
+		margin: 100px auto;
+		height: 50vh;
+		padding: 0;
+	}
+	.in{
+		height: 100%;
+	}
+	</style>
+</head>
+<body>
+	<div class="container clearfix border border-dark">
+		<div class="col-6 in left float-left border border-danger"></div>
+		<div class="col-6 in right float-right border border-primary"></div>
+	</div>
+</body>
+</html>

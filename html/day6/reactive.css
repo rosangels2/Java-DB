@@ -1,0 +1,25 @@
+.container{
+	height: 100px;
+	border: 1px solid black;
+	width: 100%;
+}
+@media(min-width:576px){
+	.container{
+		border-color: red;
+	}
+}
+@media(min-width:768px){	/*크기에 따라 순서대로 덮어써진다(min-width가 아니라 max-width라면 적용 형태가 달라질 수 있다)*/
+	.container{
+		border-color: blue;
+	}
+}
+@media(min-width:992px){
+	.container{
+		border-color: green;
+	}
+}
+@media(min-width:1200px){
+	.container{
+		border-color: yellow;
+	}
+}
