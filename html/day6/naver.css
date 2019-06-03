@@ -3,95 +3,98 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+body, button, input, select, table, textarea {
+	font-size: 12px;
+	font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;
+}
 .container{
 	min-width: 1100px;	/*min-width는 width와 달리 입력한 값으로 최소 크기가 고정되고 확대할 경우 크기가 커진다*/
 }
-.container-top{
+.container_top{
 	height: 218px;
 	border-bottom: 1px solid #d1d8e4;
 }
-.container-search{
+.container_search{
 	height: 170px;
 }
-.container-search .container-min{
+.container_search .container_min{
 	position: relative;
 }
-.container-banner{
-	height: 47px;
-	border-top: 1px solid #f1f3f6;
-}
-.container-min{
+.container_min{
 	width: 1080px;
 	height: 100%;
-	border: 1px solid black; /*확인용*/
+	/* border: 1px solid black; 확인용*/
 }
-.div-center{	/*가운데 정렬을 하기 위한 클래스 메서드*/
+.div_center{	/*가운데 정렬을 하기 위한 클래스 메서드*/
 	margin: 0 auto;
 }
-.container-bottom{
+.container_bottom{
 	background-color: rgb(242,244,247);
 }
-.container-bottom-out{
+.container_bottom_out{
 	width: 1100px;
 	padding: 8px 10px 0;
 }
-.container-bottom-in{
+.container_bottom_in{
 	width: 100%;
 }
-.container-bottom-in::after{	/*float를 사용하면 공간을 띄우기 때문에 after를 부모에게 적용해 준다*/
+.container_bottom_in::after{	/*float를 사용하면 공간을 띄우기 때문에 after를 부모에게 적용해 준다*/
 	clear: both;
 	display: block;
 	content: "";
 }
-.bottom-left{
+.bottom_left{
 	float: left;
 	width: 740px;
 	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
 }
-.bottom-right{
+.bottom_right{
 	float: right;
 	width: 332px;
 	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
 }
-.bottom-left>div,.bottom-right>div{
+.bottom_left>div,.bottom_right>div{
 	background-color: white;
 }
-.bottom-box{
+.bottom_box{
 	margin-bottom: 8px;
 }
-.content-left1{
+.content_left1{
 	height: 120px;
 	/*border: 1px solid black; 크기에 영향을 주므로 확인 후 지워준다*/
 	background-image: url('/img/background.png')
 }
-.content-left2{
+.content_left2{
 	height: 46px;
 }
-.content-left3{
+.content_left3{
 	height: 246px;
 }
-.content-left4{
+.content_left4{
 	height: 884px;
 }
-.content-left5{
+.content_left5{
 	height: 130px;
 }
-.border-gray{
+.border_gray{
 	border: 1px solid #dee3eb;
 }
-.content-right1{
-	height: 120px;
+.content_right1{
+	position: relative;
+	height: 118px;
+	border: 1px solid #dee3eb;
+	background: #fff;
 }
-.content-right2{
+.content_right2{
 	height: 142px;
 }
-.content-right3{
+.content_right3{
 	height: 150px;
 }
-.content-right4{
+.content_right4{
 	height: 884px;
 }
-.content-right5{
+.content_right5{
 	height: 130px;
 }
 .logo_box{
@@ -195,4 +198,346 @@
 	background-position: -87px -60px;
 	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_search.svg);
 	display: none;
+}
+/*상단 검색창 끝*/
+/*왼쪽 배너 시작*/
+ol, ul{
+	list-style: none;
+}
+li{
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+.section_navbar{
+	position: relative;
+  z-index: 100;
+  height: 46px;
+  border-top: 1px solid #f1f3f6;
+  background: #fff;
+}
+.area_navigation{
+	position: relative;
+	margin: 0 auto;
+	width: 1080px;
+	zoom: 1;
+}
+.area_navigation:after{
+	display: table;
+	clear: both;
+	table-layout: fixed;
+	content: "";
+}
+.area_navigation .an_l{
+	position: relative;
+	float: left;
+	padding-top: 16px;
+	zoom: 1;
+}
+.area_navigation .an_item {
+	float: left;
+	padding-left: 14px;
+}
+.area_navigation .an_item:first-child{
+	padding-left: 0;
+}
+.area_navigation .an_a{
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+a{
+	text-decoration: none;
+}
+a:-webkit-any-link{
+	color: -webkit-link;
+	cursor: pointer;
+}
+.area_navigation .mn_mail .an_icon{
+	width: 25px;
+	height: 16px;
+	background-position: 0 -285px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+	background-repeat: no-repeat;
+}
+.area_navigation .an_icon{
+	position: relative;
+	z-index: 1;
+	display: block;
+	background-color: #fff;
+}
+.area_navigation .an_txt{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	text-align: center;
+	white-space: nowrap;
+}
+.area_navigation .mn_cafe .an_icon{
+	width: 27px;
+	height: 16px;
+	background-position: -279px -52px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_blog .an_icon{
+	width: 40px;
+	height: 16px;
+	background-position: -100px -182px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_kin .an_icon{
+	width: 40px;
+	height: 16px;
+	background-position: -101px -156px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+	background-repeat: no-repeat;
+}
+.area_navigation .mn_shopping .an_icon{
+	width: 26px;
+	height: 16px;
+	background-position: -279px -156px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_checkout .an_icon{
+	width: 25px;
+	height: 16px;
+	background-position: -70px -285px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_tvcast .an_icon{
+	margin-top: -1px;
+	width: 32px;
+	height: 16px;
+	background-position: -125px -130px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+/*왼쪽 배너 끝*/
+/*중간 배너 시작*/
+.area_navigation .an_l+.an_l, .area_navigation .an_l.an_custom{
+	padding-left: 14px;
+}
+.area_navigation .mn_dic .an_icon {
+	width: 26px;
+	height: 16px;
+	background-position: -279px -208px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_news .an_icon {
+	width: 28px;
+	height: 16px;
+	background-position: -128px -104px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_stock .an_icon {
+	width: 26px;
+	height: 16px;
+	background-position: -36px -259px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+	background-repeat: no-repeat;
+}
+.area_navigation .mn_land .an_icon {
+	width: 40px;
+	height: 16px;
+	background-position: -151px -156px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_map .an_icon {
+	width: 27px;
+	height: 16px;
+	background-position: -279px -130px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_movie .an_icon {
+	width: 27px;
+	height: 16px;
+	background-position: -234px -233px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_music .an_icon {
+	width: 26px;
+	height: 16px;
+	background-position: -72px -259px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .mn_book .an_icon {
+	width: 13px;
+	height: 16px;
+	background-position: -140px -78px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+	background-repeat: no-repeat;
+}
+.area_navigation .mn_comic .an_icon {
+	width: 27px;
+	height: 16px;
+	background-position: -279px 0;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.area_navigation .an_bar {
+	float: left;
+	margin: 18px 16px 0;
+	width: 1px;
+	height: 14px;
+	background: #ebeef3;
+}
+.area_navigation .an_btn_more {
+	position: relative;
+	float: left;
+	margin-top: 16px;
+}
+.area_navigation .an_mtxt {
+	display: block;
+	width: 55px;
+	height: 16px;
+	background-position: 0 -104px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+  background-repeat: no-repeat;
+}
+.blind {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	margin: -1px;
+	width: 1px;
+	height: 1px;
+}
+/*중간 배너 끝 / 실시간 검색어 시작*/
+.area_hotkeyword .ah_roll .ah_roll_area {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: hidden;
+	margin-top: -10px;
+	margin-left: 342px;
+	width: 198px;
+	height: 20px;
+}
+.area_hotkeyword .ah_roll .ah_l {
+	zoom: 1;
+}
+.area_hotkeyword .ah_roll .ah_item {
+	padding-top: 3px;
+	padding-left: 21px;
+}
+.area_hotkeyword .ah_item {
+	position: relative;
+	padding: 4px 0 0 21px;
+	height: 18px;
+}
+.area_hotkeyword .ah_a {
+	display: block;
+	color: #000;
+}
+.area_hotkeyword .ah_roll .ah_r {
+	margin-top: -9px;
+	color: #00ab33;
+	font-size: 16px;
+}
+.area_hotkeyword .ah_r {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	min-width: 17px;
+	vertical-align: top;
+	text-align: center;
+	font-family: Arial,Sans-serif;
+  line-height: 18px;
+}
+.area_hotkeyword .ah_roll .ah_k {
+	width: 140px;
+	letter-spacing: -1px;
+	font-size: 14px;
+}
+.area_hotkeyword .ah_k {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.area_hotkeyword .ah_ico_open {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -3px;
+	margin-left: 525px;
+	width: 11px;
+	height: 6px;
+	background-position: -209px -99px;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_main_v190522.png);
+  background-repeat: no-repeat;
+}
+/*실시간 검색어 상단 배너 끝 / 헤더 시작*/
+h2 {
+	display: block;
+	font-size: 1.5em;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+.lg_local {
+	padding: 15px 25px;
+	height: 93px;
+}
+.lg_local .lg_local_text {
+	color: #888;
+	font-size: 12px;
+	line-height: 14px;
+	margin: 0;
+}
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+.lg_local .lg_local_btn {
+	display: block;
+	margin-top: 12px;
+	height: 37px;
+}
+.lg_local_btn .ico_local_login{
+	float: right;
+	width: 280px;
+	height: 37px;
+	background-position: 0 -47px;
+	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_login_v180727.png);
+  background-repeat: no-repeat;
+}
+.lg_links .lg_find_text {
+	color: #666;
+}
+.lg_links .lg_link_find {
+	color: #666;
+}
+.lg_links .lg_link_find, .lg_links .lg_link_join{
+	display: block;
+	font-size: 12px;
+	line-height: 38px;
+}
+.lg_links {
+	position: absolute;
+	bottom: 0;
+	left: 25px;
+	overflow: hidden;
+	width: 280px;
+}
+.lg_links .lg_link_join {
+	float: right;
+	color: #666;
 }
