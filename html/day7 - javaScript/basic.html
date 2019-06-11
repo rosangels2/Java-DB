@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<!--자바스크립트 적용 방법
+			1.js파일을 가져오는 방법 2. head태그에 script태그를 이용하는 방법 3.body태그에 script태그를 이용하는 방법-->
+	<script>
+		var tmp;	//자바스크립트에서는 자료형을 따로 선언하지 않는다
+		console.log(typeof tmp);	//console.log = system.out의 역할(확인용)
+		tmp = 10;									//typeof는 자료형을 확인할 수 있다(값이 입력되지 않았을 경우 undefined)
+		
+		console.log(typeof tmp);	//정수, 실수 등 숫자와 관련된 자료형은 number로 통합하여 분류
+		tmp = "안녕";
+		console.log(typeof tmp);	//자료형을 복합적으로 사용할 수 있다(문자열 = string)
+
+		tmp = [1,"2",3];					//자바스크립트에서의 배열은 new 없이 사용 가능하며 자료형을 섞어서 사용 가능하다
+		console.log(typeof tmp);	//;을 사용하지 않아도 된다
+		tmp = new Array(10);
+		console.log(typeof tmp);
+		console.log("");
+
+		tmp = 10;
+		if(tmp > 10){							//java에서의 조건문과 유사
+			console.log('tmp는 10보다 큽니다.');
+		}else{
+			console.log('tmp는 10보다 작거나 같습니다.');
+		}
+
+		if(1 == "1"){							//자바스크립트에서는 ==을 통해 자동형변환을 통해 다른 자료형의 값을 비교할 수 있다(값이 같으면 true)
+			console.log("문자열 1과 숫자 1은 값이 같습니다.")	//같지 않다는 !=
+		}else{
+			console.log("문자열 1과 숫자 1은 값이 다릅니다.")
+		}
+
+		if(1 === "1"){						//===을 통해 값과 자료형을 비교할 수 있다.(값과 자료형이 같아야 true)
+			console.log("문자열 1과 숫자 1은 값과 자료형이 같습니다.")	//같지 않다는!==
+		}else{
+			console.log("문자열 1과 숫자 1은 값은 같지만 자료형은 다릅니다.")
+		}
+		console.log("");					//공백 출력
+
+		console.log("문자열 비교 예제");	
+		console.log("B">"A");			//알파벳 순서로 문자열을 비교
+		console.log("BA">"AB");		//문자열은 앞에서부터 순서대로 값을 비교(java와 달리 문자열의 크기를 비교 가능)
+		console.log("AB">"ABC");	//문자의 순서는 숫자의 자릿수와 유사
+		console.log("ABCDE">"D");	//앞자리부터 비교하기 때문에 false
+		console.log("3">"1");			//true
+		console.log("13">"3");		//false(문자열끼리 비교 시 숫자도 문자열로 취급하여 앞자리부터 크기를 비교)
+		console.log("");					//공백 출력
+
+		console.log("문자열과 숫자 비교 예제");
+		console.log(13>"3");			//true(숫자와 문자열 비교 시 자동형변환이 가능하면 문자열을 숫자로 변환하여 값을 비교)
+		console.log(13>"31A");		//false(비교할 수 있는 앞쪽 숫자만 문자열 비교 방식으로 비교한다)
+		console.log("1">"a");			//false(문자 a의 아스키 코드값 숫자로 비교)
+		console.log(13>"A3");			//false(숫자가 아닌 값과 숫자를 비교할 시 숫자가 크다고 판단한다)
+		console.log("");					//공백 출력
+
+		var num = "123";	
+		if(100>parseInt(num)){		//문자열을 parseInt를 통해 정수로 변환하여 비교
+			console.log("100은 num보다 크다.");
+		}else{
+			console.log("100은 num보다 작다.");
+		}
+		console.log("");					//공백 출력
+
+		var num = "123";	
+		var iNum = parseInt(num);
+		if(100>parseInt(iNum)){		//문자열을 parseInt를 통해 정수로 변환하여 비교
+			console.log("100은 num보다 크다.");
+		}else{
+			console.log("100은 num보다 작거나 같다.");
+		}
+		console.log("");					//공백 출력
+
+		console.log('숫자 123의 isNan : ' + isNaN(123));	//isNaN은 숫자가 아닌지를 판별하는 함수(숫자일 경우 false)
+		console.log('문자열 a123의 isNan : ' + isNaN('a123'));	//숫자가 아니기 때문에 true
+		console.log("");					//공백 출력
+
+		var num = "130";	
+		var iNum = parseInt(num);
+		if(isNaN(iNum)){					//정수값일 때만 비교하고 싶을 때 isNaN을 사용
+			console.log(num+"은 정수로 변환이 불가능하여 100과 비교할 수 없습니다.");
+		}else if(100>iNum){
+			console.log(num+"은 100보다 작습니다.");
+		}else if(100==iNum){
+			console.log(num+"은 100과 같습니다.");
+		}else{
+			console.log(num+"은 100보다 큽니다.");
+		}
+		console.log("");					//공백 출력
+
+		var inf = 1/0;						//자바스크립트에서는 어떤 값이든 0으로 나누면 무한대(infinity) 값이 저장된다
+		console.log(inf);
+		console.log(isFinite(inf));	//isFinite는 유한수인지 아닌지를 판별하는 함수(유한수일 경우 true, 값이 무한대일 경우 false)
+		console.log("");
+
+		console.log("숫자 출력 예제");
+		num = 16;									//10진수 16을 저장
+		console.log(num);
+		num = 0x16;								//16진수 16을 저장(16x1 + 1x6 = 22)
+		console.log(num);					//0x = 16진수
+		num = 0x19;								//16진수 19를 저장(16x1 + 1x9 = 25)
+		console.log(num);					
+		num = 016;								//8진수 16을 저장(8x1 + 1x6 = 14)
+		console.log(num);					//0 = 8진수
+		num = 1e6;								//1x10의 6제곱을 저장(1000000)
+		console.log(num);					//1ex = 1x10의 x제곱
+		num = 1e-6;								//1x10의 -6제곱을 저장(0.0000001)
+		console.log(num);					
+		console.log("");	
+
+		var tmp2;
+		console.log(typeof tmp2);	//undefined = 값이 정해지지 않아 자료형을 알 수 없는 값
+		var tmp3 = null;
+		console.log(typeof tmp3);	//object = null이란 비어있는 값을 가진 객체
+		</script>
+</body>
+</html>

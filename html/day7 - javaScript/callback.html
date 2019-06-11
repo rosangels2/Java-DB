@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var count = 1;
+		function sayHello(){
+			console.log("Hello world : " + count);
+			count++;
+			setTimeout(sayHello, 1000);	//setTimeout - 일정 시간마다 비동기화 방식으로 작동시키는 콜백함수(2000으로 할 경우 2초마다)
+		}	
+		function sayHi(){
+			console.log("Hi");
+			setTimeout(sayHi, 900);
+		}
+		setTimeout(sayHello, 1000);	//함수 안에 입력하지 않을 시 비동기화 방식이므로 한 번만 실행된다
+		setTimeout(sayHi, 900);
+		// count++;	비동기화 방식이므로 count가 증가한 뒤 sayHello 함수가 작동한다
+	</script>
+</body>
+</html>

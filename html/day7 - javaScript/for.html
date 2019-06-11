@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//향상된 for문 - 자바에서는 배열의 값을 가져오고 자바스크립트에서는 배열의 index의 값을 가져온다(객체의 이름)
+		var arr = [10,"안녕",20];
+		for(var item in arr){
+			console.log('arr['+item+'] : '+arr[item]);
+		}
+		console.log("");
+
+		var arr2 = {'이름':'홍길동','나이':29};	//index이름:값(번지를 변수처럼 사용 가능)
+		for(var item in arr2){
+			console.log('arr2['+item+'] : '+arr2[item]);
+		}	
+	</script>
+</body>
+</html>
