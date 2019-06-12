@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<!--onchange - 값이 바뀌었을 때 적용(input 태그에 값 입력 후 다른 칸으로 이동했을 때 작동-->
+	<h1>생년월일 입력</h1>
+	<input type="text" placeholder="yyyy" onchange="check(this,4,1980,2019,'년도를')">
+	<input type="text" placeholder="mm" onchange="check(this,2,1,12,'월을')">
+	<input type="text" placeholder="dd" onchange="check(this,2,1,31,'일을')">		<!--this를 통해 객체 정보를 매개변수로 넘겨준다-->
+	<script>
+		window.onload = function(){
+		}
+		function check(obj,length,min,max,error){
+			var val = obj.value;
+			//4자리 체크
+			if( !checkLength(val,length)){
+				alert(length+'자리를 입력하세요.');
+				return ;
+			}
+			//숫자만 입력했는지 체크
+			if(!checkInteger(val)){
+				alert('숫자만 입력해야합니다.');
+				return;
+			}
+			//출생년도 범위 체크
+			if(!checkRange(min,max,parseInt(val))){
+				alert('올바른 '+error+' 입력하세요');
+				return ;
+			}
+		}
+		function checkLength(str,length){	//길이를 제한하는 함수
+			str = ''+str;
+			if(str.length == length){
+				return true;
+			}
+			return false
+		}
+		function checkInteger(str){	//입력값을 정수로 제한하는 함수
+			str = ''+str;
+			for(var j=0; j<str.length; j++){
+				var tmp = parseInt(str[j]);
+				if(isNaN(tmp)){
+					return false;
+				}
+			}
+			return true;
+		}
+		function checkRange(min, max, val){	//범위를 제한하는 함수
+			if(isNaN(min) || isNaN(max) || isNaN(val)){
+				return false;
+			}
+			if(min > max){
+				var tmp = min;
+				min = max;
+				max = tmp;
+			}
+			if(val < min || val > max){
+				return false;
+			}
+			return true;
+		}
+	</script>
+</body>
+<!--코드 간결화 이전
+		function checkYear(objYear){
+		var year = objYear.value;
+		if(!checkLength(year,4)){	//길이의 제한(4자리 제한을 먼저 판별하도록 순서를 정하는 게 더 효율성이 높다)
+			alert('4자리를 입력하세요.');
+			return ;
+		}
+		if(!checkInteger(year)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
+			alert('숫자만 입력할 수 있습니다.')
+			return ;
+		}
+		if(!checkRange(1800,2019,parseInt(year))){	//허용 범위의 제한
+			alert('올바른 년도를 입력하세요.')
+			return ;
+		}
+	}
+	function checkMonth(objMonth){
+		var month = objMonth.value;
+		if(!checkLength(month,2)){	//길이의 제한(4자리 제한을 먼저 판별하도록 순서를 정하는 게 더 효율성이 높다)
+			alert('2자리를 입력하세요.');
+			return ;
+		}
+		if(!checkInteger(month)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
+			alert('숫자만 입력할 수 있습니다.')
+			return ;
+		}
+		if(!checkRange(1,12,parseInt(month))){	//허용 범위의 제한
+			alert('올바른 월을 입력하세요.')
+			return ;
+		}
+	}
+	function checkDay(objDay){
+		var day = objDay.value;
+		if(!checkLength(day,2)){	//길이의 제한(4자리 제한을 먼저 판별하도록 순서를 정하는 게 더 효율성이 높다)
+			alert('2자리를 입력하세요.');
+			return ;
+		}
+		if(!checkInteger(day)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
+			alert('숫자만 입력할 수 있습니다.')
+			return ;
+		}
+		if(!checkRange(1,31,parseInt(day))){	//허용 범위의 제한
+			alert('올바른 일을 입력하세요.')
+			return ;
+		}
+	} 
+-->
+</html>

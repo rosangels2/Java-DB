@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>		<!--onload - 페이지가 구성될 떄까지 기다렸다가 실행하게 하는 함수(head태그에 사용하면 실행을 미룬다)-->
+	<script>									//head태그에 script를 입력할 시 script가 먼저 실행되기 때문에 value값이 null로 인식돼 에러가 발생한다
+	window.onload=function(){	//onload를 통해 익명 메서드로 만들면 페이지가 구성된 다음(body 태그가 실행된 다음) 메서드가 실행된다
+		var test = document.getElementById('test').value;
+		console.log(test);
+	}
+	</script>
+</head>
+<body>
+	<input type="text" id="test" value="123">
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script>								
+		function init(){	//body태그에 onload를 사용해도 형식만 다를 뿐 실행 순서는 같다
+		var test = document.getElementById('test').value;
+		console.log(test);
+		}
+	</script>
+</head>
+<body onload="init()">
+	<input type="text" id="test" value="123">
+</body>
+</html>

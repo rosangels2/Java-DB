@@ -1,0 +1,5 @@
+package day18_class_university;
+
+public enum Major {
+	NONE, TRADE, PHYSICS, LANGUAGE, KOOK, DANCE, MOVIE,  BIOLOGY, SCIENCE, ENGLISH, MEDICINE, ECONOMICS, EDUCATION
+}

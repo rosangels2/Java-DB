@@ -1,6 +1,6 @@
 package day10;
 
-import day9.Car;
+import day9_class.Car;
 
 public class KiaCar extends Car {
 
