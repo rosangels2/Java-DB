@@ -1,4 +1,4 @@
-package day9;
+package day9_class;
 
 import java.util.Scanner; // java.util이라는 패키지의 Scanner라는 클래스를 import한다
 						  // 다른 패키지의 public 클래스를 사용하려면 import 패키지.클래스명; 을 선언해야 한다

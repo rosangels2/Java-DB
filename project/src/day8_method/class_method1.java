@@ -1,8 +1,8 @@
-package day8;
+package day8_method;
 
 import java.util.Scanner;
 
-public class class_mathod1 {
+public class class_method1 {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

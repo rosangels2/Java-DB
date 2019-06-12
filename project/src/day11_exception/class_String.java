@@ -1,4 +1,4 @@
-package day11;
+package day11_exception;
 
 import java.util.Scanner;
 

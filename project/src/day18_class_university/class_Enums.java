@@ -1,4 +1,4 @@
-package day18;
+package day18_class_university;
 
 
 public class class_Enums {

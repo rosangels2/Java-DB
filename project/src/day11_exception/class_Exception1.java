@@ -1,4 +1,4 @@
-package day11;
+package day11_exception;
 
 public class class_Exception1 {
 

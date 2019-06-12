@@ -1,4 +1,4 @@
-package day16;
+package day16_framework;
 
 import java.util.ArrayList;
 import java.util.Scanner;

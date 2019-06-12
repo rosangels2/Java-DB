@@ -1,6 +1,6 @@
-package day8;
+package day8_method;
 
-public class class_mathod {
+public class class_method {
 
 	public static void main(String[] args) {
 		

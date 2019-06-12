@@ -1,4 +1,4 @@
-package day14;
+package day14_wrapperClass;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package day18;
+package day18_class_university;
 
 import java.util.ArrayList;
 import java.util.HashSet;

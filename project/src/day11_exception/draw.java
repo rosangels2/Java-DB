@@ -1,4 +1,4 @@
-package day11;
+package day11_exception;
 
 public interface draw {
 

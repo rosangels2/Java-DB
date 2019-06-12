@@ -1,4 +1,4 @@
-package day9;
+package day9_class;
 
 public class calss_Car {
 
