@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text"><button onclick="ok()">ok</button>
+	<input type="text"><button onclick="ok1()">ok1</button>
+	<h1>안녕</h1>
+	<div id="content"></div>
+	<h1>Bye</h1>
+	<script>
+		function ok(){
+			document.write('확인 버튼이 눌렸습니다.'); //밑에서 실행된 후 버튼의 온클릭을 이용해 재입력되기 때문에 원래 write들은 덮어써진다
+		}
+		document.write('Hello');	//write - 입력한 문자열을 html 내용의 끝에 삽입하는 함수(위치 지정 불가)	
+		document.write('Hello');
+		document.write('<p>Hello</p>');
+		function ok1(){
+			document.getElementById('content').innerHTML = '<a href="#">내용</a>';	//innerHTML - 지정한 위치에 html코드를 삽입하는 함수
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<p>
+		안녕하세요. 제 이름은 홍길동입니다.
+	</p>
+	<button id="black" onclick="setColor(this.id)">기본</button>	<!--id가 color와 같기 때문에 this.id로 대체 가능-->
+	<button id="red" onclick="setColor(this.id)">빨강</button>
+	<button id="blue" onclick="setColor('blue')">파랑</button>
+	<button id="green" onclick="setColor('green')">초록</button>
+	<script>
+		function setColor(color){
+			var str = 'color : ' + color + ';';	//css 코드에서 사용하는 color : red; 형태의 문자열을 생성
+			document.getElementsByTagName('p')[0].style = str;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btnNaver" onclick="goNaver()">네이버</button>
+	<script>
+		function goNaver(){
+			var isGo = confirm('네이버로 가시겠습니까?');	//confirm - 확인(true) 취소(false)를 선택하는 팝업창을 띄우는 함수
+			if(isGo){
+				location.href = 'http://www.naver.com';	//location.href - 지정된 주소로 이동하는 함수
+			}
+		}
+	</script>
+</body>
+</html>

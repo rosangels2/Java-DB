@@ -13,7 +13,7 @@
 	<input type="text" placeholder="mm" onchange="check(this,2,1,12,'월을')">
 	<input type="text" placeholder="dd" onchange="check(this,2,1,31,'일을')">		<!--this를 통해 객체 정보를 매개변수로 넘겨준다-->
 	<script>
-		window.onload = function(){
+		window.onload = function(){	//onload - 페이지가 불려오자마자 실행해야 될 때 사용
 		}
 		function check(obj,length,min,max,error){
 			var val = obj.value;
@@ -38,7 +38,7 @@
 			if(str.length == length){
 				return true;
 			}
-			return false
+			return false;
 		}
 		function checkInteger(str){	//입력값을 정수로 제한하는 함수
 			str = ''+str;
@@ -74,11 +74,11 @@
 			return ;
 		}
 		if(!checkInteger(year)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
-			alert('숫자만 입력할 수 있습니다.')
+			alert('숫자만 입력할 수 있습니다.');
 			return ;
 		}
 		if(!checkRange(1800,2019,parseInt(year))){	//허용 범위의 제한
-			alert('올바른 년도를 입력하세요.')
+			alert('올바른 년도를 입력하세요.');
 			return ;
 		}
 	}
@@ -89,11 +89,11 @@
 			return ;
 		}
 		if(!checkInteger(month)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
-			alert('숫자만 입력할 수 있습니다.')
+			alert('숫자만 입력할 수 있습니다.');
 			return ;
 		}
 		if(!checkRange(1,12,parseInt(month))){	//허용 범위의 제한
-			alert('올바른 월을 입력하세요.')
+			alert('올바른 월을 입력하세요.');
 			return ;
 		}
 	}
@@ -104,11 +104,11 @@
 			return ;
 		}
 		if(!checkInteger(day)){	//사용 가능한 자료형 제한(문자가 있다면 parseInt로 변환할 시 문자를 제외해 4자리 미만이 된다)
-			alert('숫자만 입력할 수 있습니다.')
+			alert('숫자만 입력할 수 있습니다.');
 			return ;
 		}
 		if(!checkRange(1,31,parseInt(day))){	//허용 범위의 제한
-			alert('올바른 일을 입력하세요.')
+			alert('올바른 일을 입력하세요.');
 			return ;
 		}
 	} 
