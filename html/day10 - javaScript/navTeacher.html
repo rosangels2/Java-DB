@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+	<script src="//code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<title>Document</title>
+	<style>
+		.display-none{
+			display: none;
+		}
+		.display-block{	
+			display: block;
+		}
+		.navbar{
+		display: block;	/*display가 flex(공백을 없애고 자동으로 왼쪽 정렬)로 돼있기 때문에 float-right를 사용하기 위해 block으로 변환한다*/
+		position: relative;
+		}
+		.fas{
+			font-size: 40px;
+			color: white;
+			margin-left: 20px;
+			cursor: pointer;
+		}
+		.click-menu{
+			width: 200px;
+			height: 200px;
+			float: right;
+			background-color: green;
+		}
+		.menu{
+			float: right;
+		}
+	</style>
+</head>
+<body>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark clearfix">	<!--bootstrap의 clearfix를 통해 after의 효과를 가진다-->
+			<form class="form-inline float-right" action="/action_page.php">	<!--nav의 display를 block으로 바꾸고 form에 float-right를 사용-->
+				<input class="form-control mr-sm-2" type="text" placeholder="Search">
+				<button class="btn btn-success" type="submit">Search</button>
+				<i class="fas fa-bars" onclick="display('menu');"></i>
+			</form>
+		</nav>
+		<div id="menu" class="click-menu display-none"></div>
+		<script>
+			function display(id){
+				document.getElementById(id).classList.toggle('display-none');
+			}
+		</script>
+</body>
+</html>

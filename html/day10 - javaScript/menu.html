@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.nav button{
+			border: none;
+			background: none;
+			float: left;
+			height: 30px;
+			width: 30px;
+			cursor: pointer;
+			display: block;
+		}
+		.ham-menu{
+			width: 200px;
+			height: 300px;
+			border: 1px solid black;
+			background: ghostwhite;
+			position: absolute;
+			left: -200px;
+		}
+		.ham-menu button{
+			border: none;
+			background: none;
+			float: left;
+			height: 30px;
+			width: 30px;
+			cursor: pointer;
+			display: block;
+			float: right;
+		}
+		.move-in{
+			animation-name: slow-in;
+			animation-duration: 1s;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;	/*animation이 끝나면 끝난 위치에서 고정하는 코드 */
+		}
+		.move-out{
+			animation-name: slow-out;
+			animation-duration: 1s;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+		}
+		@keyframes slow-in{
+			0%{left : -200px}
+			100%{left: 0;}
+		}
+		@keyframes slow-out{
+			0%{left : 0px}
+			100%{left: -200px;}
+		}
+	</style>
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<div class="nav">
+			<button onclick="moveIn()"><i class="fas fa-bars"></i></button>
+		</div>
+		<div class="ham-menu" id="hamMenu">
+				<button onclick="moveOut()"><i class="fas fa-times"></i></i></button>
+		</div>
+	</div>
+	<script>
+		function moveIn(){
+			var obj = document.getElementById('hamMenu');
+			obj.classList.remove('move-out');	//remove를 해주지 않으면 move-in과 move-out이 함께 존재해 두 함수가 상쇄된다(out이 나중에 작동)
+			obj.classList.add('move-in');
+			
+		}
+		function moveOut(){
+			var obj = document.getElementById('hamMenu');
+			obj.classList.remove('move-in');
+			obj.classList.add('move-out');
+		}
+	</script>
+</body>
+</html>

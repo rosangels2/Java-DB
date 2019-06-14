@@ -29,7 +29,7 @@
 			var hobbyArr = [];	//var hobbyArr = Array();와 같다
 			for(var i=0; i<arr.length; i++){
 				if(arr[i].type == 'checkbox'){	//i번지의 type이 checkbox라면
-					if(arr[i].checked == true){	//체크가 됐다면
+					if(arr[i].checked == true){		//i번지의 값이 체크가 됐다면(div 없이 가로로 체크박스를 사용해도 번지 적용)
 						hobbyArr.push(arr[i].value);
 					}
 				}

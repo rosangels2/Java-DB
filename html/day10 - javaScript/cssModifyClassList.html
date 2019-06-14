@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.display-none{
+			display: none;
+		}
+		.display-block{	
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<!--클래스.style를 통해 css를 변경()-->
+	<button onclick="display('p');">클릭</button>	<!--함수 뒤에 ;를 사용하지 않아도 영향을 받지 않는다-->
+	<button onclick="displayClassList('p');">클래스 리스트 확인</button>
+	<p class="display-none color-black" id="p">안녕하세요.</p>
+	<script>
+		function display(id){
+			//document.getElementById(id).classList = 'display-block';	//기존 classList를 초기화하고 새로 설정한 classList들만 추가된다
+			//document.getElementById(id).classList.remove('display-none');	//remove를 통해 충돌이 일어날 수 있는 중복 설정을 제거한다
+			//document.getElementById(id).classList.add('display-block');	//기존 classList에 새로 설정한 classList들을 추가
+			//classList.add를 통해 class를 추가했을 때 우선순위가 같아 충돌이 일어나면 나중에 실행되는 css가 적용된다
+			document.getElementById(id).classList.replace('display-none','display-block');	//replace - 클래스를 수정하는 함수
+			//document.getElementById(id).classList.toggle('display-none');	//toggle - 해당 클래스리스트가 있다면 삭제하고 없다면 추가한다
+		}
+		function displayClassList(id){
+			var classList = document.getElementById(id).classList;
+			for(var i=0; i<classList.length; i++){	//classList를 하나씩 꺼내서
+				console.log(classList[i]);	//콘솔창에 출력한다
+			}
+		}
+	</script>
+</body>
+</html>
