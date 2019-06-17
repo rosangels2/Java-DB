@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.time-led{
+			width: 100px;
+			height: 25px;
+			border: 1px solid black;
+			margin: 5px 5px 5px 5px;
+			text-align: right;
+		}
+		.btn{
+			margin: 0 0 0 10px;
+			font-size: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="time-led">00:00:00:00</div>
+	<button class="btn" onclick="runAndStop()">시작/멈춤</button>
+	<button class="btn" onclick="reset()">초기화</button>
+	<script>
+		var isRunning = false;	//flag 설정을 통해 시작과 멈춤을 구분
+		var count = 0;
+		var id; //setInterval()을 통해 할당된 값을 저장
+		function runAndStop(){
+			if(!isRunning){	//멈춰있다면(시작해야 하는 상황)
+				id = setInterval(timer, 10);	//setInterval - 주기적으로 숫자를 증가시키는 함수(일시정지 가능)
+				isRunning = true;	//isRunning을 true로 바꾼다
+			}else{	//isRunning이 true라면(멈춰야 하는 상황)
+				isRunning = false;	//isRunning을 false로 바꾸고
+				clearInterval(id);	//clearInterval(id)를 통해 setInterval 함수를 끝낸다
+			}
+		}	
+		function reset(){
+			document.getElementsByClassName('time-led')[0].innerHTML = '00:00:00:00';	//박스에 초기화 값을 입력한다
+			isRunning = false;	// isRunning값을 false로 변환한다
+			count = 0;	//count를 0으로 초기화한다
+		}
+		function timer(){
+			if(isRunning){	//isRunning이라면(작동중이라면)
+				var strCount = '00:00:00:00'; //해당 형식의 값을 입력받을 변수를 선언한다
+				strCount = getTime(++count)	//증가한 count값을 getTime 함수를 통해 변환하여 변수 strCount에 저장한다
+				document.getElementsByClassName('time-led')[0].innerHTML = strCount;	//getTime함수의 결과값을 innerHTML을 통해 입력한다
+			}
+		}
+		function getTime(count){
+			var mm;
+			mm = count % 100;							//12345%100 = 45
+			count = parseInt(count/100);	//12345/100 = 123.45 (parseInt를 통해 소수점을 잘라낸다)
+			var ss = count % 60;					//123%60 = 3
+			count = parseInt(count/60);		//123/60 = 2.05(parseInt를 통해 소수점을 잘라낸다)
+			var MM = count % 60;					//2%60 = 2
+			count = parseInt(count/60);		//2/100 = 0.02(parseInt를 통해 소수점을 잘라낸다)
+			var hh = count								//hh = count = 0
+			return ''+getStr(hh)+':'+getStr(MM)+':'+getStr(ss)+':'+getStr(mm);	//정수로 계산되는 걸 막기 위해 ''를 통해 공백과 :을 입력해준다
+		}
+		function getStr(num){
+			if(num<10){	//정수이기 때문에 10보다 작은 수들에 문자열 0을 앞에 넣어준다
+				return '0'+num;
+			}else{
+				return num;
+			}
+		}
+		</script>
+</body>
+</html>

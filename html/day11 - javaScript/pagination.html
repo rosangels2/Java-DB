@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pagination - Active State</h2>
+  <p>Add class .active to let the user know which page he/she is on:</p>
+  <ul class="pagination">     <!--this를 통해 해당 객체 정보를 매개변수로 사용-->
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item" onclick="Click(1)"><a class="page-link" href="#">1</a></li>
+    <li class="page-item" onclick="Click(2)"><a class="page-link" href="#">2</a></li>
+    <li class="page-item" onclick="Click(3)"><a class="page-link" href="#">3</a></li> 
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+	</div>
+	<script>
+    //방법1) 선생님 방법
+		function pageClick(obj){
+			var pageList = document.getElementsByClassName('page-item');  //변수 선언을 통해 코드의 중복 제거
+			for(i=0; i<pageList.length; i++){		
+				pageList[i].classList.remove('active')  //체크된 active를 초기화하는 반복문
+			}
+			obj.classList.add('active');	//체크된 객체의 클래스리스트에 'active'를 추가한다
+    }
+    //방법2) 내 방법
+    function Click(num){  //Bootstrap등에 같은 이름의 함수가 있을 경우 충돌이 일어날 수 있다(대소문자 구분)
+      var pList = document.getElementsByClassName('page-item'); //변수 선언을 통해 코드의 중복 제거
+      for(i=0; i<=pList.length; i++){
+        if(i == num){ //입력받은 숫자와 i가 같다면
+          pList[i].classList.add('active'); //클래스리스트에 'active'를 추가해 백그라운드를 활성화시킨다
+        }else{  //입력받은 숫자가 i와 다르면
+          pList[i].classList.remove('active');  //클래스리스트에서 'active'를 삭제한다
+        }
+      }
+      return ;
+    }
+	</script>
+</body>
+</html>

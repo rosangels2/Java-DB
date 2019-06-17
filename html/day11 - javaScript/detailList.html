@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+	.auto-scroll{
+		height: 30px;
+		width: 100px;
+		border: 1px solid black;
+	}
+	.search-list{
+		height: 500px;
+		border: 1px solid blue;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 50vw;
+		display: none;
+	}
+	.container{
+		position: relative;
+	}
+	.display-block{
+		display: block;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="auto-scroll" onmouseover="show()"></div>			<!--마우스가 포함되면 함수를 실행한다(hover)-->
+		<div class="search-list" onmouseout="hiddenBox()"></div>	<!--마우스가 벗어나면 함수를 실행한다-->
+	</div>
+	<script>
+		function hiddenBox(){
+			document.getElementsByClassName('search-list')[0].classList.remove('display-block');	//display-block을 제거해 none으로 만든다
+		}
+		function show(){
+			document.getElementsByClassName('search-list')[0].classList.add('display-block');	//display-block을 추가해 박스를 나타낸다
+		}
+	</script>
+</body>
+</html>
