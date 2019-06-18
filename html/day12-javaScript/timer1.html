@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+	.time-led{
+		width: 100px;
+		height: 50px;
+		padding: 0 5px;
+		line-height: 50px;
+		text-align: right;
+		border: 1px solid black;
+	}
+	.btn{
+	}
+	</style>
+</head>
+<body>
+	<!-- 시간 기록을 위한 박스가 필요할 것 같다 -->
+	<div class="time-led timer">00:00:00:00</div>
+	<button class="btn" onclick="runAndStop()">시작/기록</button>
+	<button class="btn"onclick="reset()">리셋</button>
+	<div class="time-led record">00:00:00:00</div>
+	<div class="time-led record">00:00:00:00</div>
+	<div class="time-led record">00:00:00:00</div>
+	<script>
+		var isRunning = false;
+		var mm = 0;
+		var ss = 0;
+		var MM = 0;
+		var hh = 0;
+		var id;
+		var checkCount = 0;//기록을 몇번 했는지 
+		//시작/기록 버튼을 눌렀을 경우 첫번째는 시작,
+		//두번째 부터는 시간 기록
+		//writeTime이란 함수를 만들어 객체와 시간 문자열을 넣어주면
+		//해당 객체안에 시간을 입력한다
+
+		function runAndStop(){
+			if(!isRunning){
+				id = setInterval(timer,10);
+				isRunning = true;
+			}else{
+				//1. 정지 기능 제거
+				//isRunning = false;//시간 찍는것을 막는 코드이기 때문에 주석 처리
+				//clearInterval(id);//timer동작 자체를 막는 코드이기 때문에 주석 처리
+				//출력된 시간을 하나씩 미는 작업
+				updateRecord();
+				//2. 시간을 기록하는 작업 추가
+				if(checkCount<3)
+					writeTime(document.getElementsByClassName('record')[checkCount]);
+				else
+					writeTime(document.getElementsByClassName('record')[2]);
+				checkCount++;
+			}
+		}
+		function reset(){
+			mm = 0;			ss = 0;			MM = 0;			hh = 0;
+			writeTime(document.getElementsByClassName('timer')[0]);
+			isRunning = false;
+			checkCount = 0;
+		}
+		function timer(){
+			if(isRunning){
+				mm++;
+				writeTime(document.getElementsByClassName('timer')[0]);
+			}
+		}
+		function getTime(){
+			if(mm >= 100){
+				mm -= 100;
+				ss++;
+			}
+			if(ss >= 60){
+				ss -= 60;
+				MM++;
+			}
+			if(MM >= 60){
+				MM -= 60;
+				hh++;
+			}
+			return ''+getStr(hh)+':'+getStr(MM)+':'+getStr(ss)+':'
+						+getStr(mm);
+		}
+		function getStr(num){
+			if(num < 10)	return '0'+num;
+			else return num;
+		}
+		function writeTime(obj){
+			obj.innerHTML = getTime();
+		}
+		function updateRecord(){
+			if(checkCount<3)			return ;
+			var recordArr = document.getElementsByClassName('record');
+			for(var i=0; i<recordArr.length-1; i++){
+				recordArr[i].innerHTML = recordArr[i+1].innerHTML;
+			}
+		}
+	</script>
+</body>
+</html>
