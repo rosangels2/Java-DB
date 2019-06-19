@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.count{
+			width: 25px;
+		}
+		.num2{
+			margin: 0 0 0 16px;
+		}
+	</style>
+</head>
+<body>
+	<h4>주문 메뉴</h4>
+	<input type="checkbox" value="짜장면" class="checkbox">짜장면
+<input type="number" min="1" value="1" class="count"><br>
+
+	<input type="checkbox" value="짬뽕" 	class="checkbox">짬뽕
+		<input type="number" min="1" value="1" class="count num2""><br>
+
+	<input type="checkbox" value="볶음밥" class="checkbox">볶음밥
+		<input type="number" min="1" value="1" class="count"><br>
+
+	<input type="checkbox" value="잡채밥" class="checkbox">잡채밥
+		<input type="number" min="1" value="1" class="count"><br>
+
+	<input type="checkbox" value="탕수육" class="checkbox">탕수육
+		<input type="number" min="1" value="1" class="count"><br>
+
+	<button onclick="buy()">주문</button>
+	<script>
+		function buy(){
+			var orderList = new Array();
+			var menu = document.getElementsByClassName('checkbox');
+			var count = document.getElementsByClassName('count');
+			for(var i=0; i<5 ; i++){
+				if(menu[i].checked == true){
+					orderList.push(menu[i].value+' : '+count[i].value);
+				}
+			}
+			if(orderList.length == 0){
+				alert('주문 내역이 없습니다.');
+			}else{
+				alert('주문 내역 : '+orderList.join(', '));
+			}
+		}
+	</script>
+</body>
+</html>

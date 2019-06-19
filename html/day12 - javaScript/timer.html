@@ -41,8 +41,7 @@
 			}
 		}
 		function reset(){
-			document.getElementsByClassName('time-led')[0].innerHTML
-					= '00:00:00:00';
+			document.getElementsByClassName('time-led')[0].innerHTML = '00:00:00:00';
 			isRunning = false;
 			mm = 0;//ms : 밀리초
 			ss = 0;//s : 초
@@ -55,8 +54,7 @@
 				var strCount = '00:00:00:00';
 				mm++;
 				strCount = getTime();
-				document.getElementsByClassName('time-led')[0].innerHTML
-						= strCount;
+				document.getElementsByClassName('time-led')[0].innerHTML = strCount;
 			}
 		}
 		function getTime(){
@@ -72,8 +70,7 @@
 				MM -= 60;
 				hh++;
 			}
-			return ''+getStr(hh)+':'+getStr(MM)+':'+getStr(ss)+':'
-						+getStr(mm);
+			return ''+getStr(hh)+':'+getStr(MM)+':'+getStr(ss)+':'+getStr(mm);
 		}
 		function getStr(num){
 			if(num < 10)	return '0'+num;

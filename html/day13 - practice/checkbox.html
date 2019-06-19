@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<input type="checkbox" onchange="massage(this)">
+	</div>
+	<script>
+		function massage(obj){
+			if(obj.checked == true){
+				alert('체크박스가 체크 되었습니다.');
+			}else{
+				alert('체크박스가 해제 되었습니다.');
+			}
+		}
+	</script>
+</body>
+</html>
