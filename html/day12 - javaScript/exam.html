@@ -11,8 +11,7 @@
 		var stopwatch = { 
 			mm:0, ss:0, MM:0, hh:0,/* 스탑워치 객체의 맴버 변수들 */
 			getTime : function(){ /* 스타워치의 시간을 문자열로 반환하는 메소드 */
-				return ''+this.getStr(this.hh)+':'+this.getStr(this.MM)
-					+':'+this.getStr(this.ss)+':'+this.getStr(this.mm);
+				return ''+this.getStr(this.hh)+':'+this.getStr(this.MM)+':'+this.getStr(this.ss)+':'+this.getStr(this.mm);
 			},
 			getStr : function(num){/* 두자리 이하의 숫자를 두자리 문자열로 만드는 메소드*/
 				if(num < 10)	return '0'+num;
@@ -27,8 +26,7 @@
 		};
 		function time(){
 			stopwatch.addTime();
-			document.getElementsByTagName('body')[0].innerHTML
-				= stopwatch.getTime();
+			document.getElementsByTagName('body')[0].innerHTML = stopwatch.getTime();
 		}
 		setInterval(time,100);
 	</script>
