@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<!--script src에 https://code.jquery.com/jquery-3.4.1.js 주소 입력을 통해 jquery 사용 가능-->
+	<title>Document</title>
+	<script>
+		$('선택자'); //아래의 기능을 합친 함수
+/*	document.getElementById();
+		document.getElementsByClassName();
+		document.getElementsByTagName();		*/
+
+/*  선택자 : .클래스, #아이디, 태그명 
+		자식관계 : 선택자>선택자
+		자손관계 : 선택자 선택자
+		자기자신 : 선택자선택자(클래스와 달리 태그나 아이디는 2개 이상이 같이 올 수 없다)
+							->한 객체가 2개의 태그에 속하거나 id를 2개 이상 가질 수 없기 때문		*/
+
+		$(document).ready(	function(){}	);	//.ready - window.onload = function(){}와 같은 역할
+																					//onload는 html파일당 1개만 사용 가능하지만 document.ready는 여러 개 사용 가능
+
+		$(document).ready(	function(){		//별도로 태그에 onchange추가 등의 작업 없이 일괄 처리 가능
+			$('input').change(	function(){	//input 태그의 내용이 바뀌면
+				console.log(this.value);			//해당 태그의 변경된 값을 console에 출력한다
+			}	)
+			var tmp = $('input').eq(1).val();	//input창의 value값을 가져와 tmp에 저장한다 -> [번지]가 아닌 .eq(번지)를 통해 원하는 번지를 지정
+			console.log(tmp);
+			$('input[type=text]').val('12345');	//(type이 text인)모든 input태그의 value값을 '12345678'로 일괄 변경한다
+			$('input').removeClass('active');	//removeClass - 일괄적으로 클래스를 제거하는 함수
+			$('input').addClass('Hello');	//addClass - 일괄적으로 클래스를 추가하는 함수
+			//$('input').each(); //each - 일괄이 아니라 지정한 만큼 하나씩 적용하는 함수
+		}	);
+		</script>
+</head>
+<body>
+	<input type="text" value="322">
+	<input type="text" value="333">
+	<input type="text" value="">
+	<input type="text" value="">
+</body>
+</html>
