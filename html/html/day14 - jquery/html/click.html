@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		$(document).ready(function(){						//문서가 준비되면(홈페이지가 구성되면)
+			$('button').click(function(){					//버튼이 클릭되면
+				console.log('버튼 클릭');						//해당 문자열을 콘솔에 출력
+			});
+			$('input').click(function(){					//input창이 클릭되면
+				console.log('인풋창 클릭');					//해당 문자열을 콘솔에 출력
+			});
+			//$('button').click(); 								//실행 시 이벤트가 발생했다고 생각하고 모든 button태그들의 해당 이벤트 발생 시 실행 함수를 실행시킨다
+			$('form button').click(function(){		//form태그의 자손이 button태그가 클릭됐을 때 다음 익명 함수를 실행한다
+				if($('#id').val() == 123){					//id가 id인 객체의 value가 123이라면
+					$('form').submit();								//form태그의 action을 실행시킨다
+				}
+			});
+		});
+	</script>
+	<form action="exam2.html">
+		<input type="text" id="id">
+		<button type="button">제출</button>
+	</form>
+	<button>버튼1</button>
+	<button>버튼2</button>
+	<button>버튼3</button>
+	<button>버튼4</button>
+</body>
+</html>

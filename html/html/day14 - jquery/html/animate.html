@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('div').animate({right:0},1000);	//애니메이션을 통해 1초 만에 오른쪽으로 이동
+			$('div').animate({bottom:0},1000);
+			$('div').animate({left:0},1000);
+			$('div').animate({top:0},1000);
+		});
+	</script>
+	<style>
+	div{
+		width: 50px;
+		height: 50px;
+		border: 1px solid black;
+		display: inline-block;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>
