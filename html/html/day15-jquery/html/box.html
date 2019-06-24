@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		.box{
+			width: 50px;
+			height: 50px;
+			margin-right: 20px;
+			border: 1px solid black;
+			display: inline-block;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('.box').click(function(){
+				var pos = $(this).attr('value');	//또는 this.id
+				alert(pos+'번째 상자를 클릭하였습니다.');
+			});
+			$('a button').click(function(){
+				alert('버튼을 클릭하였습니다.');
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="box" id="1" value="1"></div>
+	<div class="box" id="2" value="2"></div>
+	<div class="box" id="3" value="3"></div>
+	<a>
+		<button>클릭1</button>
+	</a>
+	<button>클릭2</button>
+</body>
+</html>

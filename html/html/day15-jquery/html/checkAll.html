@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="../js/checkAll.js"></script>
+	<title>Document</title>
+	<style>
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+	</style>
+	<!--$('선택자').이벤트함수(); //해당 요소의 이벤트를 강제로 실행
+			$('선택자').이벤트함수(function(){});	//해당 요소의 이벤트 실행 시 익명 함수를 생성해 실행할 코드를 등록
+			$('선택자').메서드명();	//해당 메서드의 값을 가져옴	ex).val()
+			$('선택자').메서드명(값1);	//해당 메서드의 값을 값1로 설정	ex).val(값1)
+			$('선택자').prop(속성명);	//해당 속성의 값을 가져온다
+			$('선택자').prop(속성명,값1);	//해당 속성의 값을 값1로 설정한다-->
+</head>
+<body>
+	<ul>
+		<li><input type="checkbox" name="" id="" class="checkAll">전체 선택/해제</li><br>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+		<li><input type="checkbox" name="" id="" class="checkbox"></li>
+	</ul>
+	<button class="checkBtn">전체 선택</button>
+	<button class="unCheckBtn">전체 해제</button>
+</body>
+</html>

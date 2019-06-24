@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<script>
+		$(document).ready(function(){
+			//$().prop();	//자바스크립트의 프로퍼티(속성)를 다룸
+			//$().attr();	//HTML의 속성을 다룸
+			var propStr = $('a').prop('herf');
+			var attrStr = $('a').attr('herf');
+			console.log('prop : ' + propStr);
+			console.log('attr : ' + attrStr);
+		});
+	</script>
+</head>
+<body id="body">
+	<a href="#body">맨 위로</a>
+	<div value="0"></div>
+	<div value="1"></div>
+	<div value="2"></div>	<!--$('div').val() -> 결과값 ""-->
+	<input type="checkbox" checked="checked">
+	<!--$('input[type=checkbox]').prop('checked'); -> 결과값 true-->
+	<!-- $('input[type=checkbox]').attr('checked'); -> 결과값 "checked" -->
+</body>
+</html>
