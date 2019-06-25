@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			box-sizing: border-box;
+			border: 1px solid black;
+		}
+		.red{
+			border-color: red;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){							
+			//조상 검색	- (a,b) = a셀렉터와 b셀렉터들만 선택0 / (a.b) = a셀렉터이면서 b셀렉터인 태그들만 선택
+			//$('span').parent().addClass('red');	//parent() - 부모만 선택
+			//$('span').parents('div,body').addClass('red');	//parents() - 조상들 전체 선택, parents(셀렉터) - 조상 중 해당 셀렉터들만 선택
+			//$('span').parentsUntil('body').addClass('red');	//parentsUntil(셀렉터) 조상들 중에서 해당 셀렉터 전까지만 선택
+			
+			//자식 검색	- (a,b) = a셀렉터와 b셀렉터들만 선택0 / (a.b) = a셀렉터이면서 b셀렉터인 셀렉터들만 선택
+			//$('body').children().addClass('red');	//children() - 자식들만 전체 선택(자손 x)
+			//$('body').children('div').addClass('red');	//children(셀렉터) - 자식들 중 해당 셀렉터들만 선택
+			
+			//자손 검색 - (a,b) = a셀렉터와 b셀렉터들만 선택0 / (a.b) = a셀렉터이면서 b셀렉터인 셀렉터들만 선택
+			$('body').find('h1').addClass('red');	//find(셀렉터) - 자손들 중에서 해당 셀렉터들만 전체 검색
+		});
+	</script>
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<h1 class="abc">안녕하세요1</h1>
+		<h1>안녕하세요1</h1>
+		<h2>안녕하세요1-2</h2>
+	</div>
+	<div>
+		<span>안녕하세요2</span>
+	</div>
+</body>
+</html>

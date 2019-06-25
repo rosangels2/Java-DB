@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			border: 1px solid black;
+		}
+		.blue{
+			border-color: blue;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			//형제 검색	-	siblings() = 같은 부모를 가진 형제 태그 전체 선택 -> siblings(a,b) = 같은 부모를 가진 태그 중 a와 b태그들만 선택
+			//$('h1').siblings().addClass('blue');	//h1태그를 제외한 h1태그의 형제들(부모가 같은 태그들)을 전부 선택
+			//$('div').siblings().addClass('blue');	//div태그들을 제외한 div태그의 형제들을 전부 선택(div태그들만 border-color가 그대로)
+			//$('div').siblings('h1').addClass('blue');	//div태그와 같은 부모를 가지는 태그 중에서 h1태그들만 선택
+
+			//$('div').next().addClass('blue');	//해당 div 형제 중에서 본인의 바로 다음 태그 하나만 선택
+			//$('div').prev().addClass('blue');	//해당 div 형제 중에서 본인의 바로 이전 태그 하나만 선택
+			
+			//$('div').nextAll().addClass('blue');	//해당 div 형제 중에서 본인의 다음 태그들 전부 선택
+			//$('div').nextAll('p').addClass('blue');	//해당 div태그의 다음 형제 태그들 중에서 해당 셀렉터들만 전체 선택
+			$('div').nextUntil('p').addClass('blue');	//해당 div태그의 형제 중에서 셀렉터 태그 전까지 전체 선택
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<h1>안녕1</h1>
+		<h2>안녕2</h2>
+		<p>안녕하세요1</p>
+		<div>안녕하세요2</div>
+		<h1>hi</h1>
+		<p>hello</p>
+	</div>
+	<p>안녕하세요.</p>
+</body>
+</html>

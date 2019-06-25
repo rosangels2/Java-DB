@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		div{
+			width: 90vh;
+			float: right;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('li').click(function(){
+				var obj = $(this).children()	//자식이 checkbox뿐이기 때문에 셀렉터를 생략 가능(find일 경우 셀렉터로 체크박스를 명시)
+				var isChecked = obj.prop('checked')	//객체의 속성 체크값을 변수에 저장
+				obj.prop('checked',!isChecked);	//!연산자를 통해 체크값을 반대로 변경
+			});
+			$('li input[type=checkbox]').click(function(){	//체크박스를 눌렀을 때도 li태그 클릭 시의 함수가 작동하기 때문에 한번 더 변경 
+			var isChecked = $(this).prop('checked');				//현재 체크박스의 체크값을 변수에 저장한다
+			$(this).prop('checked',!isChecked);							//체크박스를 클릭했을 때 한번 더 체크값을 반대로 변경한다
+			});
+		});
+	</script>
+</head>
+<body>
+	<ul>
+		<li>
+			<input type="checkbox"><div>제목1</div>
+		</li>
+		<li>
+			<input type="checkbox"><div>제목2</div>
+		</li>
+		<li>
+			<input type="checkbox"><div>제목3</div>
+		</li>
+		<li>
+			<input type="checkbox"><div>제목4</div>
+		</li>
+		<li>
+			<input type="checkbox"><div>제목5</div>
+		</li>
+	</ul>
+</body>
+</html>

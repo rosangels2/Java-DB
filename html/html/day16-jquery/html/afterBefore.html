@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			margin: 20px;
+			width: 100vh;
+			position: relative;
+		}
+		.box::after{
+			content: "";
+			clear: both;
+			display: block;
+		}
+		.img-box{
+			height: 50px;
+			width: calc(100% / 3);
+			display: inline-block;
+			float: left;
+			border: 1px solid black;
+			padding: 0;
+		}
+		button{
+			width: 100%;
+			margin-top: 10px;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('#btn1').click(function(){
+				//after와 before는 해당 셀렉터를 기준으로 형제 태그를 추가
+				$(this).before('<button>버튼2</button>');	//이벤트가 발생한 객체의 앞에 형제 태그를 추가
+				$(this).after('<button>버튼2</button>');	//이벤트가 발생한 객체의 뒤에 형제 태그를 추가
+			});
+			$('#more').click(function(){
+				var str = '<div class="img-box"></div><div class="img-box"></div><div class="img-box"></div>';
+				$(this).before(str);	//버튼을 기준으로 앞에 형제 태그로 div 태그를 추가하여 img-box에 append를 하듯이 상자를 추가
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="img-box img-box1"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box"></div>
+		<div class="img-box img-box9"></div>
+		<button id="more">더보기</button>
+	</div>
+	<button id="btn1">버튼1</button>
+</body>
+</html>

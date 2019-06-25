@@ -12,9 +12,9 @@ $(document).ready(function(){
 		// }else{
 		// 	$('.checkbox').eq(pos).prop('checked', true);		//해당 id번지 체크박스의 체크값을 true로 변환한다
 		// }
-		$('li input[type=checkbox]').click(function(){	//체크박스를 눌렀을 때도 li태그 클릭 시의 함수가 작동하기 때문에 한번 더 변경 
-			var isChecked = $(this).prop('checked');	//현재 체크박스의 체크값을 변수에 저장한다
-			$(this).prop('checked',!isChecked);	//체크박스를 클릭했을 때 한번 더 체크값을 반대로 변경한다
-		});
+	});
+	$('li input[type=checkbox]').click(function(){	//체크박스를 눌렀을 때도 li태그 클릭 시의 함수가 작동하기 때문에 한번 더 변경 
+		var isChecked = $(this).prop('checked');	//현재 체크박스의 체크값을 변수에 저장한다
+		$(this).prop('checked',!isChecked);	//체크박스를 클릭했을 때 한번 더 체크값을 반대로 변경한다
 	});
 });

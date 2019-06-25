@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			margin: 20px;
+			width: 100vh;
+			position: relative;
+		}
+		.box::after{
+			content: "";
+			clear: both;
+			display: block;
+		}
+		.img-box{
+			height: 50px;
+			width: calc(100% / 3);
+			display: inline-block;
+			float: left;
+			border: 1px solid black;
+			padding: 0;
+		}
+		button{
+			width: 100%;
+			margin-top: 10px;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('#more').click(function(){
+				var str = '<div class="img-box"></div><div class="img-box"></div><div class="img-box"></div>';
+				$('.box').append(str);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+			<div class="img-box"></div>
+		</div>
+		<button id="more">더보기</button>
+	</div>
+</body>
+</html>

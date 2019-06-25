@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			border: 1px solid black;
+		}
+		div{
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+		}
+		.bg-gray{
+			background-color: gray;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			//내 방법
+			$('div').mouseover(function(){	//마우스가 올라왔을 떄
+				$(this).siblings().addClass('bg-gray');	//$(셀렉터).siblings() - 셀렉터의 형제 태그들을 선택해서 클래스를 추가
+			});
+			$('div').mouseout(function(){	//마우스가 내려갔을 때
+				$(this).siblings().removeClass('bg-gray');	//$(셀렉터).siblings() - 셀렉터의 형제 태그들을 선택해서 클래스를 삭제
+			});
+			//선생님 방법
+			// $('div').hover(function(){
+			// 	$(this).siblings().toggleClass('bg-gray');	//hover를 사용할 시 toggle을 사용(해당 이벤트가 발생할 떄 추가, 해제될 떄 삭제)
+			// });
+		});
+	</script>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+</body>
+</html>

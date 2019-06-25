@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<script>
+		$(document).ready(function(){
+			$('#remove').click(function(){
+				$('p').eq(0).remove();	//본인(태그)과 자식 태그를 모두 지운다
+			})												//->0번지 객체가 사라지고 1번지가 0번지로 변경돼서 한번 더 실행할 시 다음 객체도 사라진다
+			$('#empty').click(function(){
+				$('p').first().empty();	//본인(태그)은 유지되고 자식태그만 사라지므로 객체는 유지된다 -> 한번 더 실행해도 결과가 같다
+			})
+		});
+	</script>
+</head>
+<body>
+	<button id="remove">제거(remove)</button>
+	<button id="empty">제거(empty)</button>
+	<p>안녕하세요</p>
+	<p>제 이름은 홍길동입니다</p>
+	<p>만나서 반갑습니다</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<script>
+		$(document).ready(function(){
+			var cnt = 0;
+			var cnt1 = 0;
+			$('#hi').click(function(){
+				//append와 prepend는 해당 셀렉터를 기준으로 셀렉터 안에서 자식 태그를 추가
+				//$('p').append(++cnt,' : 안녕하세요 <br>');	//$(셀렉터).append(코드) - 셀렉터의 자식 태그를 뒤쪽에 추가(객체 또는 문자열)
+				var str = '<span>'+ ++cnt+' : 안녕하세요.</span><br>'
+				//$(str).appendTo('p');	//$(코드).appendTo('셀렉터') - 셀렉터의 자식 태그를 뒤쪽에 추가(To는 코드가 태그로 감싸져 있어야 한다)
+				$(str).prependTo('p');	//$(코드).prependTo('셀렉터') - 셀렉터의 자식 태그를 앞쪽에 추가(To는 코드가 태그로 감싸져 있어야 한다)
+			});
+			$('#p').click(function(){
+				var obj = document.createElement('p');	//createElement를 통해 태그 객체를 생성해서 변수에 저장한다
+				//$('body').append(obj);	//$(셀렉터).append(코드) - 해당 셀렉터의 뒤쪽에 html코드(객체 또는 문자열)를 추가
+				$('body').prepend(obj);	//$(셀렉터).prepend(코드) - 해당 셀렉터의 앞쪽에 html코드(객체 또는 문자열)를 추가
+			});
+		});
+	</script>
+</head>
+<body>
+	<button id="hi">인사</button>	<button id="p">p태그 추가</button>
+	<p>0 : 안녕하세요<br></p>
+</body>
+</html>

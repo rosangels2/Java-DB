@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			border: 1px solid black;
+		}
+		div{
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+		}
+		.bg-gray{
+			background-color: gray;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			// $('div').first().addClass('bg-gray');	//해당 셀렉터 중에서 첫번째 태그를 선택
+			// $('div').last().addClass('bg-gray');	//해당 셀렉터 중에서 마지막 태그를 선택
+			// $('div').eq(2).addClass('bg-gray');	//해당 셀렉터 중에서 해당 번지를 선택
+
+			//$('div').filter('#one').addClass('bg-gray');	//해당 셀렉터 중에서 filter(셀렉터)들만을 선택
+			//$('div#one').addClass('bg-gray'); 위의 코드와 같다
+
+			//$('div').not('#one').addClass('bg-gray');	//해당 셀렉터 중에서 not(셀렉터)들만을 제외하고 선택
+
+			//alert($('div').parent().is('body'));	//해당 셀렉터와 is(셀렉터)간의 관계를 판별 -> 관계가 일치하면 true
+
+			//console.log($('#one').text());	//해당 셀렉터 안의 문자열을 가져온다 / text(값) - 해당 셀렉터 안의 문자열을 값으로 변경
+			//console.log($('#one').html());	//해당 셀렉터 안의 html코드를 전부 가져온다	/ html(코드) - 해당 셀렉터 안의 html코드를 코드로 변경
+
+			var htmlStr = $('#one').html();
+			htmlStr = '<span>1-1</span>' + htmlStr + '<span>1-2</span>';
+			$('#one').html(htmlStr);
+			console.log($('#one').html());
+		});
+	</script>
+</head>
+<body>
+	<div id="one"><span>1</span></div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+</body>
+</html>
