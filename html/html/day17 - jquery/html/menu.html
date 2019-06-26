@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		.box{
+			width: 100px;
+			height: 50px;
+			float: left;
+			display: block;
+			border: 1px solid black;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.border-red{
+			border-color: red;
+			background-color: red;
+		}
+		.subMenu{
+			height: 50px;
+			border: 1px solid black;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('.box').click(function(){
+				$(this).addClass('border-red');	//또는 전부 삭제 후 this만 클래스 추가
+				$(this).siblings().removeClass('border-red');	//not 사용 - $('.box').not($(this)).removeClass('border-red');
+
+				//서브메뉴 추가
+				var str = '메뉴'+this.id+'<div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div>';
+				$(this).append().html(str);	//클릭된 객체의 자식 태그로 str을 추가한다(text도 자식으로 취급)
+				$('.box').not(this).children().remove();	//클래스명이 box인 태그 중에서 클릭된 객체를 제외한 형제 태그들의 자식태그를 지운다
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar">
+			<div class="box" id="1">메뉴1</div>
+			<div class="box" id="2">메뉴2</div>
+			<div class="box" id="3">메뉴3</div>
+			<div class="box" id="4">메뉴4</div>
+		</nav>
+	</div>
+</body>
+</html>

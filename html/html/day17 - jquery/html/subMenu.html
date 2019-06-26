@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			padding:0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		li{
+			list-style: none;
+			display: block;
+			float: left;
+			width: 200px;
+			height: 50px;
+			text-align: center;
+			line-height: 48px;
+			font-size: 30px;
+			font-weight: bold;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+		.bg-yellow{
+			background-color: yellow;
+		}
+		.sub-menu{
+			width: 200px;
+			display: none;
+			position: absolute;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			var subMenu = [
+				['메뉴1-1','메뉴1-2','메뉴1-3'],
+				['메뉴2-1','메뉴2-2','메뉴2-3','메뉴2-4'],
+				['메뉴3-1','메뉴3-2','메뉴3-3','메뉴3-4'],
+				['메뉴4-1','메뉴4-2']];
+			var left = [0,200,400,600];
+			var top = 50;
+			$('.main-menu li').click(function(){
+				$(this).addClass('bg-yellow');
+				$(this).siblings().removeClass('bg-yellow');
+				var numStr = $(this).text();	//클릭한 메뉴의 텍스트를 가져옴
+				var num = numStr.substring(numStr.length-1);	//substring(start,end) - 문자열의 start번지부터 end번지까지 추출(0번지부터 시작)
+				var str = '';
+				for(var i=0; i<subMenu[num-1].length; i++){	//subMenu[num-1].length : 선택된 메뉴의 서브 메뉴 개수
+					str += '<li>'+subMenu[num-1][i]+'</li>'	//문자열을 더해준다
+				}
+				$('.sub-menu').html(str);	//더해진 문자열을 html을 통해 덮어쓴다
+				$('.sub-menu').css({	//sub-menu 클래의 css를 메뉴의 위치에 맞게 추가한다
+					top:top+'px',
+					left:left[num-1]+'px',	//left배열의 메뉴번호-1번지의 값과 문자열px를 붙여준다
+					display:'none'
+				})
+				$('.sub-menu').slideDown(500);	//sub-menu클래스에 slideDown 효과를 준다
+			})
+		})
+	
+	</script>
+	<title>Document</title>
+</head>
+<body>
+	<ul class="main-menu">
+		<li>메뉴1</li>
+		<li>메뉴2</li>
+		<li>메뉴3</li>
+		<li>메뉴4</li>
+	</ul>
+	<ul class="sub-menu"></ul>
+</body>
+</html> 
