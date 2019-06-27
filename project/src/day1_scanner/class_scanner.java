@@ -25,7 +25,7 @@ public class class_scanner {
 		
 		/*String input = scan.nextLine();
 		System.out.println(input);
-		num = Integer.parseInt(input);*/
+		int num = Integer.parseInt(input);*/
 		
 		
 /*		Scanner scan = new Scanner(System.in);
@@ -39,12 +39,12 @@ public class class_scanner {
 		System.out.println(s);
 */		
 		
-		/*int num = 'a';
+/*		int num = 'a';
 		double num2 = 1.23f;
 		float num3 = (float)1.23d;
 		num = (int)num3;
-		System.out.println(num);*/
-		
+		System.out.println(num);
+*/		
 		
 		// 대입연산 (=)
 		// 대입연산자를 기준으로 좌측에는 무조건 변수명 1개가 와야 한다.
@@ -96,29 +96,28 @@ public class class_scanner {
 		
 		
 		
-		/*문제1) 10/3의 값을 구하라
-		int num1 = 10, num2 = 3;
+		//문제1) 10/3의 값을 구하라
+/*		int num1 = 10, num2 = 3;
 		double res;
 		res = num1 / (double)num2;
 		System.out.println(res);
-		System.out.println((double)10/3);*/
+		System.out.println((double)10/3);
+*/
 		
 		
 		
-		/*문제2) 콘솔에 입력한 숫자를 스캔하시오
-		Scanner scan = new Scanner(System.in);
+		//문제2) 콘솔에 입력한 숫자를 스캔하시오
+/*		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
 		System.out.println("입력한 수 : " + num);
-		scan.close();*/
+		scan.close();
+*/		
 		
 		
-		
-		//문제3) x는 1보다 크거나 같고 100보다 작거나 같음을 출력하시오
-		/*Scanner scan = new Scanner(System.in);
+		//문제3) num는 1보다 크거나 같고 100보다 작거나 같음을 출력하시오
+		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
-		// 1 <= num1 && num2 <= 100;
-		boolean isScore = false;
-		System.out.println(1 <= num && num <= 100);*/
+		System.out.println(1 <= num && num <= 100);	//boolean isScore = 1 <= num && num <= 100 ? true:false;의 결과값(isScore) 출력과 같다
 		
 		
 		/*문제4) 10과 3의 산술연산 결과를 출력하시오
@@ -128,7 +127,6 @@ public class class_scanner {
 		30 (10*3)
 		3.xx(10/3)
 		1 (10%3)*/
-		
 		
 		/*Scanner scan = new Scanner(System.in);
 		int num1 = 10;
@@ -153,24 +151,21 @@ public class class_scanner {
 		int totalMoney = age * day * money * year;
 		System.out.println("지금까지 먹은 금액 : " + totalMoney + "원");*/
 		
+		
+		
+		
 		/*문제6) 정수를 입력받아 짝수인지 판별하시오
 		Scanner scan = new Scanner(System.in);
 		int num;
 		num = scan.nextInt();
 		boolean isEven = num%2==0 ? true:false;
-		boolean isEven = num % 2 == 0;
-		num 1을 2로 나누었을 때 나머지가 0과 타같다
+		boolean isEven = num % 2 == 0;	//num을 2로 나누었을 때 나머지가 0과 같다
 		System.out.println(num +"는 짝수? " + isEven);*/
 		
 		/*Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
 		boolean isEven = num%2==0 ? true:false;
-		System.out.println(isEven);*/
-
-		
-		
-		
-		
+		System.out.println(isEven);*/	
 	}
 
 }
