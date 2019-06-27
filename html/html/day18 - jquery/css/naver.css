@@ -459,6 +459,17 @@ a:-webkit-any-link{
 	padding: 4px 0 0 21px;
 	height: 18px;
 }
+.area_hotkeyword .ah_list {
+	position: absolute;
+	top: -1px;
+	left: 50%;
+	margin-left: 250px;
+	min-height: 332px;
+	width: 288px;
+	border: 1px solid #bec8d8;
+	background: #fff;
+	z-index: 10;
+}
 .area_hotkeyword .ah_a {
 	display: block;
 	color: #000;
@@ -476,7 +487,7 @@ a:-webkit-any-link{
 	vertical-align: top;
 	text-align: center;
 	font-family: Arial,Sans-serif;
-  line-height: 18px;
+  line-height: 23px;
 }
 .area_hotkeyword .ah_roll .ah_k {
 	width: 140px;
@@ -625,25 +636,34 @@ p {
 	background-image: url(https://s.pstatic.net/static/www/img/2018/sp_newscast_v180511.png);
 	background-repeat: no-repeat;
 }
-.cast_atc {
+.cast_atc{
 	float: left;
 	overflow: hidden;
 	margin-top: -2px;
-	width: 340px;
 	height: 20px;
 }
-.cast_link {
+.cast_link{
 	position: absolute;
 	top: 50%;
 	right: 2px;
 	margin-top: -7px;
 	zoom: 1;
 }
-.cast_link:after {
+.cast_link:after{
 	display: table;
 	clear: both;
 	table-layout: fixed;
 	content: "";
+}
+.cast_atc .ca_l{
+	zoom: 1;
+}
+.cast_atc li{
+	padding-top: 3px;
+	padding-left: 21px;
+}
+.cast_atc li .ca_a{
+	color: black;
 }
 .cast_link .cl_a {
 	display: block;
@@ -950,6 +970,7 @@ i {
 	top: 0;
 	right: 0;
 	zoom: 1;
+	cursor: pointer;
 }
 .section_timesquare .header_btns:after {
 	display: table;
@@ -981,7 +1002,7 @@ i {
 	float: left;
 	padding: 11px 0;
 	width: 33px;
-	height: 11px;
+	height: 33px;
 	border-left: 1px solid #ebeef3;
 	text-align: center;
 }

@@ -6,16 +6,65 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="../jquery/naver.js"></script>
+	<script src="../js/naver.js"></script>
 	<link rel="stylesheet" href="../css/naver.css">
 	<title>Document</title>
 	<script>
 		$(document).ready(function(){
 			$('.auto_search').click(function(){
-				$(this).children().toggleClass('icon_auto_up');
-				$('#autoFrame').toggleClass('display-none');
-				$('#autoFrame').slideToggle(1000);
-	});
+				$(this).children().toggleClass('icon_auto_up');	//우선순위가 같기 때문에 토글로 나중에 추가된 up 클래스로 이미지가 변경
+				$('#autoFrame').toggleClass('display-none');	//클릭할 때마다 display를 토글
+			});
+			$('.ah_item').mouseover(function(){
+				$('#timeKeyBox').removeClass('display-none');	//실시간 검색어의 display-none을 제거
+			});
+			$('#timeKeyBox').mouseout(function(){
+				$('#timeKeyBox').addClass('display-none');	//실시간 검색어 창을 벗어났을 떄 display-none을 추가
+			});
+			
+			function rolling(selector,height){
+				setTimeout(function(){	//설정한 시간이 지난 뒤에 해당 익명 함수를 실행
+					$(selector+' li:first').animate({marginTop: '-'+height}, 500, function(){
+						//animate효과를 0.5초 동안 실행하고, 실행이 끝나면 다음으로 익명 함수를 실행
+						$(this).detach().appendTo(selector+' ul').removeAttr('style');
+						//animate가 실행된 첫번째 li태그를 잘라내서 ul태그 안에서 마지막 순서로 추가하고 style값을 초기화
+					});
+					rolling(selector,height); 
+        }, 1000);	//setTimeout 이벤트를 1초 뒤에 실행
+			};
+			rolling('.ah_roll_area',18);
+			rolling('.cast_atc',18);
+
+			function ticker(){
+				setTimeout(f1, 1000);	//1초 후에 f1 함수를 실행
+			}
+			function f1(){
+				$('ul.ah_l li:first').animate({marginTop: '-20px'}, 1000, f2);	//첫번째 li태그를 0.4초 동안 위로 20px 올린 뒤 f2를 실행
+				ticker();	//ticker함수 실행(재귀 호출)
+			}
+			function f2(){	//detach() - 해당 요소를 잘라내는 함수
+				$(this).detach().appendTo('ah_roll_area ul').removeAttr('style');	//this(맨 위의 li태그)를 잘라서 ul태그 끝에 붙이고 style 속성 제거
+			}
+			// ticker();	//ticker 함수를 실행
+
+			$('.header_btn_prev').click(function(){
+				var str = $('.hp_curr').text();	//문자열 외에 다른 태그나 값이 없기 때문에 html도 가능
+				if(str>1){	//이전 버튼이 클릭됐을 때 text값이 1보다 크면
+					str--;	//text값을 하나 감소
+				}else if(str <= 1){	//이전 버튼이 클릭됐을 때 text값이 1보다 작거나 같으면
+					str = 6;	//text값을 6으로 변경
+				}
+				$('.hp_curr').text(str);	//html도 가능
+			});
+			$('.header_btn_next').click(function(){
+				var str = $('.hp_curr').text();
+				if(str<6){	//다음 버튼이 클릭됐을 떄 text값이 6보다 작으면
+					str++;	//text값을 하나 증가
+				}else if(str >= 6){	//다음 버튼이 클릭됐을 떄 text값이 6보다 크거나 같으면
+					str = 1;	//text값을 1로 변경
+				}
+				$('.hp_curr').text(str);	//text값을 str로 변경
+			});
 		});
 	</script>
 </head>
@@ -176,13 +225,13 @@
 						<div class="ah_roll_area PC_CL_realtimeKeyword_rolling">
 							<ul class="ah_l">
 								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword>
+									<a href="#" class="ah_a" data-clk="lve.keyword">
 										<span class="ah_r">1</span>
 										<span class="ah_k">조현우</span>
 									</a>
 								</li>
 								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword>
+									<a href="#" class="ah_a" data-clk="lve.keyword">
 										<span class="ah_r">2</span>
 										<span class="ah_k">한선교</span>
 									</a>
@@ -297,6 +346,7 @@
 									</li>
 							</ul>
 						</div>
+						<div class="ah_list PM_CL_realtimeKeyword_list_base display-none" id="timeKeyBox"></div>
 					</div>
 					<span class="ah_ico_open"></span>
 				</div>
@@ -324,7 +374,21 @@
 										<a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y" data-clk="ncy.newsflash" class="cf_ta">연합뉴스<span class="cf_ico_link"></span>
 										</a>
 								</h3>
-								<div class="cast_atc _PM_newsstand_rolling">(서울/28세/남성) 자택에서 숨쉰 채 발견</div>
+								<div class="cast_atc _PM_newsstand_rolling">
+									<ul class="ca_l" queryid="C1561617181041188715">
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917805" class="ca_a" data-clk="ncy.quickarticle">北, '先북미대화 後남북대화'기조…美에 날세우며 정책전환압박</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917148" class="ca_a" data-clk="ncy.quickarticle">송중기-송혜교, 1년8개월만 파경…미묘한 입장차</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917721" class="ca_a" data-clk="ncy.quickarticle">해운대고도 자사고 지정 취소 결정…70점에 미달</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917305" class="ca_a" data-clk="ncy.quickarticle">서울 아파트값 하락세 멈췄다…33주 만에 보합 전환</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917757" class="ca_a" data-clk="ncy.quickarticle">'화재' 서울 은명초 휴업…소방 "가연성 외벽 타고 불길 번져"</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010916970" class="ca_a" data-clk="ncy.quickarticle">시·도 17곳 중 8곳, 30년 뒤 10명 중 4명이 65세 이상</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917047" class="ca_a" data-clk="ncy.quickarticle">"내일 현안처리" vs "강행 안돼"…여야 신경전</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917021" class="ca_a" data-clk="ncy.quickarticle">내년부터 손바닥 정맥으로 공항서 탑승수속</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917570" class="ca_a" data-clk="ncy.quickarticle">최고 183.5㎜…첫 장맛비에 부산 도심 잠기고 무너지고</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917041" class="ca_a" data-clk="ncy.quickarticle">'몰카 인정' 정준영, 성폭행 혐의는 부인…최종훈도</a></li>
+										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917805" class="ca_a" data-clk="ncy.quickarticle">北, '先북미대화 後남북대화'기조…美에 날세우며 정책전환압박</a></li>
+									</ul>
+								</div>
 							</div>
 							<ul class="cast_link">
 								<li class="cl_item">
@@ -668,15 +732,15 @@
 											<h3 class="hi_tit">증시</h3>
 										</div>
 										<div class="header_paging _PM_timesquare_navi">
-											<b class="hp_curr">3</b>/
+											<b class="hp_curr">1</b>/
 											<span class="hp_total">6</span>
 										</div>
 										<div class="header_btns">
-											<a href="#" class="header_btn_prev _PM_timesquare_prev">
+											<a class="header_btn_prev _PM_timesquare_prev">
 												<i class="ico_btn_prev"></i>
 												<span class="blind">앞의 목록으로 이동</span>
 											</a>
-											<a href="#" class="header_btn_next _PM_timesquare_next">
+											<a class="header_btn_next _PM_timesquare_next">
 												<i class="ico_btn_next"></i>
 												<span class="blind">앞의 목록으로 이동</span>
 											</a>
