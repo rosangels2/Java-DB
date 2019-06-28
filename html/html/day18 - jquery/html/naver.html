@@ -4,807 +4,636 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="//code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="../js/naver.js"></script>
 	<link rel="stylesheet" href="../css/naver.css">
 	<title>Document</title>
 	<script>
+		var empty = [];
+		var checkCount = 0;
 		$(document).ready(function(){
-			$('.auto_search').click(function(){
-				$(this).children().toggleClass('icon_auto_up');	//우선순위가 같기 때문에 토글로 나중에 추가된 up 클래스로 이미지가 변경
-				$('#autoFrame').toggleClass('display-none');	//클릭할 때마다 display를 토글
-			});
-			$('.ah_item').mouseover(function(){
-				$('#timeKeyBox').removeClass('display-none');	//실시간 검색어의 display-none을 제거
-			});
-			$('#timeKeyBox').mouseout(function(){
-				$('#timeKeyBox').addClass('display-none');	//실시간 검색어 창을 벗어났을 떄 display-none을 추가
-			});
-			
-			function rolling(selector,height){
-				setTimeout(function(){	//설정한 시간이 지난 뒤에 해당 익명 함수를 실행
-					$(selector+' li:first').animate({marginTop: '-'+height}, 500, function(){
-						//animate효과를 0.5초 동안 실행하고, 실행이 끝나면 다음으로 익명 함수를 실행
-						$(this).detach().appendTo(selector+' ul').removeAttr('style');
-						//animate가 실행된 첫번째 li태그를 잘라내서 ul태그 안에서 마지막 순서로 추가하고 style값을 초기화
-					});
-					rolling(selector,height); 
-        }, 1000);	//setTimeout 이벤트를 1초 뒤에 실행
-			};
-			rolling('.ah_roll_area',18);
-			rolling('.cast_atc',18);
+			$('.svc-li').click(function(){
+				if($('.svc-btn').hasClass('display-none')){
+					var obj = $(this).find('.svc-check');
+					var isChecked = obj.prop('checked');
+					if(empty.indexOf(obj.val()) != -1){
+						empty.push(obj.val(),obj.text());
+						
+					}else{
 
-			function ticker(){
-				setTimeout(f1, 1000);	//1초 후에 f1 함수를 실행
-			}
-			function f1(){
-				$('ul.ah_l li:first').animate({marginTop: '-20px'}, 1000, f2);	//첫번째 li태그를 0.4초 동안 위로 20px 올린 뒤 f2를 실행
-				ticker();	//ticker함수 실행(재귀 호출)
-			}
-			function f2(){	//detach() - 해당 요소를 잘라내는 함수
-				$(this).detach().appendTo('ah_roll_area ul').removeAttr('style');	//this(맨 위의 li태그)를 잘라서 ul태그 끝에 붙이고 style 속성 제거
-			}
-			// ticker();	//ticker 함수를 실행
-
-			$('.header_btn_prev').click(function(){
-				var str = $('.hp_curr').text();	//문자열 외에 다른 태그나 값이 없기 때문에 html도 가능
-				if(str>1){	//이전 버튼이 클릭됐을 때 text값이 1보다 크면
-					str--;	//text값을 하나 감소
-				}else if(str <= 1){	//이전 버튼이 클릭됐을 때 text값이 1보다 작거나 같으면
-					str = 6;	//text값을 6으로 변경
+					}
+					//클릭이 되면 배열에 해당 value가 있는지 확인하고 없으면 배열에 추가한 뒤 카운트 증가와 체크박스 체크
+					//배열에 해당 value가 있으면 배열에서 제거한 뒤 카운트를 감소하고 체크를 해제
+					var isChecked = $(this).find('.svc-check').prop('checked');
+					if(isChecked == false){	//체크가 된 경우(체크가 됐을 때 변경되기 전의 체크값이 저장)
+						checkCount++;
+						if(checkCount == 6){
+							alert('최대 5개까지 선택할 수 있습니다');
+							return checkCount = 5;
+						}
+					}else if(isChecked == true){
+						checkCount--;
+					}
+					$(this).find('.svc-check').prop('checked',!isChecked);
 				}
-				$('.hp_curr').text(str);	//html도 가능
-			});
-			$('.header_btn_next').click(function(){
-				var str = $('.hp_curr').text();
-				if(str<6){	//다음 버튼이 클릭됐을 떄 text값이 6보다 작으면
-					str++;	//text값을 하나 증가
-				}else if(str >= 6){	//다음 버튼이 클릭됐을 떄 text값이 6보다 크거나 같으면
-					str = 1;	//text값을 1로 변경
-				}
-				$('.hp_curr').text(str);	//text값을 str로 변경
+				console.log(checkCount);	//5개까지 체크되는지 확인
 			});
 		});
 	</script>
 </head>
 <body>
-	<!--상단 시작(검색창, 메일, 카페 등 배너 포함)-->
 	<div class="container">
-		<div class="container_top">	<!--광고 및 뉴스 등의 컨텐츠-->
-			<div class="container_search">
-				<div class="container_min div_center">
-						<h1 class="logo_box">
-							<a href="#">
-								<span class="logo"></span>
-							</a>
-						</h1>
-						<!--end 로고-->
-						<!--begin 검색창-->
-						<div id="search" class="search">
-							<form action="">
-							<div class="search_input_box">
-								<input type="text" class="search_input">
-							</div>
-							<div class="search_btn">
-								<div class="icon_search"></div>
-							</div>
-							</form>
-							<!--begin 가상키보드 시작-->
-							<a href="#" class="v_keyboard">
-								<div class="icon_keyboard"></div>
-							</a>
-							<a href="#" class="auto_search">
-								<div class="icon_auto_down"></div>
-							</a>
-							<div id="autoFrame" class="reatcmp display-none">
-								<div class="api_atcmp_wrap _atcmpIng"></div>
-							</div>
-							<!--end 가상키보드 -->
-						</div>
-						<!--end 검색창-->
-				</div>
-			</div>
-			<!--배너 시작 / 왼쪽 배너 시작-->
-			<div class="section_navbar">
-				<div class="area_navigation">
-					<ul class="an_l">
-						<li class="an_item">
-							<a href="http://mail.naver.com/" class="an_a mn_mail">
-								<span class="an_icon"></span>
-								<span class="an_txt">메일</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://section.cafe.naver.com/" class="an_a mn_cafe">
-								<span class="an_icon"></span>
-								<span class="an_txt">카페</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://section.blog.naver.com/" class="an_a mn_blog">
-								<span class="an_icon"></span>
-								<span class="an_txt">블로그</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://kin.naver.com/" class="an_a mn_kin">
-								<span class="an_icon"></span>
-								<span class="an_txt">지식인</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://shopping.naver.com/" class="an_a mn_shopping">
-								<span class="an_icon"></span>
-								<span class="an_txt">쇼핑</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://order.pay.naver.com/home" class="an_a mn_checkout">
-								<span class="an_icon"></span>
-								<span class="an_txt">네이버페이</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://tv.naver.com" class="an_a mn_tvcast">
-								<span class="an_icon"></span>
-								<span class="an_txt">네이버TV</span>
-							</a>
-						</li>
-					</ul>
-					<!--왼쪽배너 끝 / 중간배너 시작 -->
-					<ul id="PM_ID_serviceNavi" class="an_l">
-						<li class="an_item">
-							<a href="http://dict.naver.com/" class="an_a mn_dic">
-								<span class="an_icon"></span>
-								<span class="an_txt">사전</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://news.naver.com/" class="an_a mn_news">
-								<span class="an_icon"></span>
-								<span class="an_txt">뉴스</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://finance.naver.com/" class="an_a mn_stock">
-								<span class="an_icon"></span>
-								<span class="an_txt">금융</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://land.naver.com/" class="an_a mn_land">
-								<span class="an_icon"></span>
-								<span class="an_txt">부동산</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://map.naver.com/" class="an_a mn_map">
-								<span class="an_icon"></span>
-								<span class="an_txt">지도</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://movie.naver.com/" class="an_a mn_movie">
-								<span class="an_icon"></span>
-								<span class="an_txt">영화</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://music.naver.com/" class="an_a mn_music">
-								<span class="an_icon"></span>
-								<span class="an_txt">노래</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://book.naver.com/" class="an_a mn_book">
-								<span class="an_icon"></span>
-								<span class="an_txt">책</span>
-							</a>
-						</li>
-						<li class="an_item">
-							<a href="http://comic.naver.com/" class="an_a mn_comic">
-								<span class="an_icon"></span>
-								<span class="an_txt">웹툰</span>
-							</a>
-						</li>
-					</ul>
-					<div class="an_bar"></div>
-					<a href="#" id="PM_ID_btnServiceMore" class="PM_CL_btnServiceMore an_btn_more">
-						<span class="an_mtxt">
-							<span class="blind">더보기</span>
-						</span>
-						<span class="ico_an_more"></span>
-					</a>
-				</div>
-				<!--중간 배너 끝 / -->
-				<!--실시간 인기 검색어 시작-->
-				<div class="area_hotkeyword PM_CL_realtimeKeyword_base">
-					<div class="ah_roll PM_CL_realtimeKeyword_rolling_base">
-						<h3 class="blind">급상승 검색어</h3>
-						<div class="ah_roll_area PC_CL_realtimeKeyword_rolling">
-							<ul class="ah_l">
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">1</span>
-										<span class="ah_k">조현우</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">2</span>
-										<span class="ah_k">한선교</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">3</span>
-										<span class="ah_k">티르티르</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">4</span>
-										<span class="ah_k">66특가로 입어봐</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">5</span>
-										<span class="ah_k">슈퍼주니어 성민</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">6</span>
-										<span class="ah_k">아스달 연대기 등장인물</span>
-									</a>
-								</li>
-								<li class="ah_item">
-									<a href="#" class="ah_a" data-clk="lve.keyword">
-										<span class="ah_r">7</span>
-										<span class="ah_k">페이스리프트</span>
-									</a>
-								</li>
-								<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">8</span>
-											<span class="ah_k">성민</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">9</span>
-											<span class="ah_k">인천 서구 수돗물</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">10</span>
-											<span class="ah_k">이정은6</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">11</span>
-											<span class="ah_k">주아민</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">12</span>
-											<span class="ah_k">코레일 채용</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">13</span>
-											<span class="ah_k">문희준</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">14</span>
-											<span class="ah_k">소율</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">15</span>
-											<span class="ah_k">권다미</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">16</span>
-											<span class="ah_k">정제원</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">17</span>
-											<span class="ah_k">스튜디오 드래곤</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">18</span>
-											<span class="ah_k">한미약품</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">19</span>
-											<span class="ah_k">티몬데이</span>
-										</a>
-									</li>
-									<li class="ah_item">
-										<a href="#" class="ah_a" data-clk="lve.keyword">
-											<span class="ah_r">20</span>
-											<span class="ah_k">민경욱</span>
-										</a>
-									</li>
-							</ul>
-						</div>
-						<div class="ah_list PM_CL_realtimeKeyword_list_base display-none" id="timeKeyBox"></div>
+		<!-- 검색창 포함 메일,카페등 배너 포함 -->
+		<div class="container-top">
+			<div class="container-search">
+				<div class="container-min div-center">
+					<!-- Begin 로고 -->
+					<div class="logo-box">
+						<a href="#">
+							<span class="logo"></span>
+						</a>
 					</div>
-					<span class="ah_ico_open"></span>
+					<!-- End 로고 -->
+					<!-- Begin 검색창 -->
+					<div class="search-box">
+						<form action="">
+							<div class="search-input-box">
+								<input type="text" class="search">
+							</div>
+							<div class="search-btn">
+								<button class="icon-search" type="submit"></button>
+							</div>
+						</form>
+						<!-- Begin 가상키보드와 자동완성 -->
+						<a href="#" class="v-keyboard">
+							<div class="icon-keyboard"></div>
+						</a>
+						<a href="#" class="auto-search">
+							<div class="icon-auto-down"></div>
+						</a>
+						<!-- End 가상키보드와 자동완성 -->
+					</div>
+					<!-- End 검색창 -->
+					<!-- 자동 완성 박스 -->
+					<div class="auto-box"></div>
+					<!-- 자동 완성 박스 끝-->
 				</div>
 			</div>
-			<!--배너 끝-->
+			<div class="container-banner">
+				<div class="container-min div-center position-relative">
+					<ul class="banner-green">
+						<li><a href="#" class="banner-img mail"></a></li>
+						<li><a href="#" class="banner-img cafe"></a></li>
+						<li><a href="#" class="banner-img blog"></a></li>
+						<li><a href="#" class="banner-img kin"></a></li>
+						<li><a href="#" class="banner-img shopping"></a></li>
+						<li><a href="#" class="banner-img pay"></a></li>
+						<li><a href="#" >
+							<span class="banner-img tv"></span>
+						</a></li>
+					</ul>
+					<ul class="banner-black">
+						<li><a href="#" class="banner-img dic"></a></li>
+						<li><a href="#" class="banner-img news"></a></li>
+						<li><a href="#" class="banner-img stock"></a></li>
+						<li><a href="#" class="banner-img land"></a></li>
+						<li><a href="#" class="banner-img map"></a></li>
+						<li><a href="#" class="banner-img movie"></a></li>
+						<li><a href="#" class="banner-img music"></a></li>
+						<li><a href="#" class="banner-img book"></a></li>
+						<li><a href="#" class="banner-img comic"></a></li>
+						<div class="banner-black-empty display-none">
+							<div class="empty-box">
+								<span class="empty-box-1"></span>
+							</div>
+							<div class="empty-box">
+								<span class="empty-box-1"></span>
+							</div>
+							<div class="empty-box">
+								<span class="empty-box-1"></span>
+							</div>
+							<div class="empty-box">
+								<span class="empty-box-1"></span>
+							</div>
+							<div class="empty-box">
+								<span class="empty-box-1"></span>
+							</div>
+						</div>
+					</ul>
+					<div class="bar"></div>
+					<a class="banner-img more"></a>
+					<div class="realtime-search">
+						<ul>
+							<li>1위</li>
+							<li>2위</li>
+							<li>3위</li>
+							<li>4위</li>
+							<li>5위</li>
+							<li>6위</li>
+							<li>7위</li>
+							<li>8위</li>
+							<li>9위</li>
+							<li>10위</li>
+							<li>11위</li>
+							<li>12위</li>
+						</ul>
+					</div>
+					<div class="realtime-search-box"></div>
+				</div>
+			</div>
 		</div>
-		<!--상단 끝-->
-		<div class="container_bottom">
-			<div class="container_bottom_out div_center">
-				<!--헤더 시작-->
-				<div class="container_bottom_in">
-					<div class="bottom_left">
-						<div class="bottom_box content_left1">
-							<div class="content ad" id="addiv">
-								<a href="https://nv.veta.naver.com/fxclick?eu=EU10000120&amp;calp=-&amp;oj=bbC87fref3382BSptWQRIooZYfbmVTFRqG%2BnflYZW839Kf5dGgN9I8O9Tp6LZ93%2BcyHcilY%2BCVBg40mLPchi3DuqpgIIMEUla6wyGRhR%2F3B292E04w10pzXttrYFGtN%2B&amp;ac=7861380&amp;src=3880367&amp;br=2915689&amp;evtcd=P901&amp;x_ti=837&amp;tb=&amp;oid=&amp;sid1=&amp;sid2=&amp;rk=fe1ea59aab525e20913093c949b37e62&amp;eltts=L05q3EFSUxAvr1oK0dRHnw%3D%3D&amp;lu=&amp;brs=Y&amp;" id="ac_banner_a" target="_blink">
-									<img src="https://ssl.pstatic.net/tveta/libs/1233/1233854/ea6d2bb7001e52ddeb80_20190604111930473.jpg" width="740" height="120" title="" alt="[광고]삼성생명 다이렉트 인터넷저축보험2.0(무) (변동금리) 저축보험으로 3년만에 종잣돈 모으는 작심3년 저축습관 만들기 (한 달 이상 유지시) 원금손실 없이 바로 저축시작" border="0">
-									<div id="da_access" style="position: absolute; top: 50%; left: 50%; width: 154px; height: 58px; margin: -29px 0px 0px -77px; background: url(&quot;https://ssl.pstatic.net/tveta/libs/res/www/common/info/da_access.png&quot;); display: none;"></div>
-								</a>
+		<!-- 광고및 뉴스 등의 컨텐츠 -->
+		<div class="container-bottom">
+			<div class="container-bottom-out div-center">
+				<div class="container-bottom-in">
+					<div class="bottom-left">
+						<div class="bottom-box content-left1"></div>
+						<!-- 뉴스 해더 시작-->
+						<div class="bottom-box content-left2 border-gray">
+							<div class="news-cast">
+								<div class="nc-box">
+									<a href="#" class="nc-link txt-none">
+										연합뉴스<span class="nc-icon"></span>
+									</a>
+									<div class="news-ticker">
+										<ul>
+											<li>뉴스1</li>
+											<li>뉴스2</li>
+											<li>뉴스3</li>
+											<li>뉴스4</li>
+											<li>뉴스5</li>
+										</ul>
+									</div>
+								</div>
+								<ul class="nc-list">
+									<li><a href="#" class="txt-none naver-green">네이버뉴스</a></li>
+									<li><a href="#" class="txt-none">연예</a></li>
+									<li><a href="#" class="txt-none">스포츠</a></li>
+									<li><a href="#" class="txt-none">경제</a></li>
+								</ul>
 							</div>
 						</div>
-						<!--뉴스캐스트-->
-						<div class="bottom_box content_left2 border_gray area_newstop">
-							<div class="cast_flash">
-								<h3 class="cf_tit">
-										<a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y" data-clk="ncy.newsflash" class="cf_ta">연합뉴스<span class="cf_ico_link"></span>
-										</a>
-								</h3>
-								<div class="cast_atc _PM_newsstand_rolling">
-									<ul class="ca_l" queryid="C1561617181041188715">
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917805" class="ca_a" data-clk="ncy.quickarticle">北, '先북미대화 後남북대화'기조…美에 날세우며 정책전환압박</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917148" class="ca_a" data-clk="ncy.quickarticle">송중기-송혜교, 1년8개월만 파경…미묘한 입장차</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917721" class="ca_a" data-clk="ncy.quickarticle">해운대고도 자사고 지정 취소 결정…70점에 미달</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917305" class="ca_a" data-clk="ncy.quickarticle">서울 아파트값 하락세 멈췄다…33주 만에 보합 전환</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917757" class="ca_a" data-clk="ncy.quickarticle">'화재' 서울 은명초 휴업…소방 "가연성 외벽 타고 불길 번져"</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010916970" class="ca_a" data-clk="ncy.quickarticle">시·도 17곳 중 8곳, 30년 뒤 10명 중 4명이 65세 이상</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917047" class="ca_a" data-clk="ncy.quickarticle">"내일 현안처리" vs "강행 안돼"…여야 신경전</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917021" class="ca_a" data-clk="ncy.quickarticle">내년부터 손바닥 정맥으로 공항서 탑승수속</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917570" class="ca_a" data-clk="ncy.quickarticle">최고 183.5㎜…첫 장맛비에 부산 도심 잠기고 무너지고</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917041" class="ca_a" data-clk="ncy.quickarticle">'몰카 인정' 정준영, 성폭행 혐의는 부인…최종훈도</a></li>
-										<li class="ca_item"><a href="http://news.naver.com/main/list.nhn?mode=LPOD&amp;mid=sec&amp;sid1=001&amp;sid2=140&amp;oid=001&amp;isYeonhapFlash=Y&amp;aid=0010917805" class="ca_a" data-clk="ncy.quickarticle">北, '先북미대화 後남북대화'기조…美에 날세우며 정책전환압박</a></li>
-									</ul>
+						<!-- 뉴스 해더 끝 / 뉴스 스탠드 시작 -->
+						<div class="bottom-box content-left3 border-gray">
+							<div class="l3-top">
+								<div class="l3-menulist">
+									<div>
+										<div class="l3-list-item"><i class="l3-litem1 active"></i></div>
+										<div class="l3-list-item"><i class="l3-litem2 "></i></div>
+										<a href="#" class="l3-list-item"><i class="l3-litem3"></i></a>
+									</div>
+									<div>
+										<div class="l3-prev"><i></i></div>
+										<div class="l3-next"><i></i></div>
+									</div>
 								</div>
 							</div>
-							<ul class="cast_link">
-								<li class="cl_item">
-									<a href="http://news.naver.com/" class="cl_a cl_news">네이버뉴스</a>
+							<div class="l3-bottom">
+								<div class="l3-row">
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+								</div>
+								<div class="l3-row">
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+								</div>
+								<div class="l3-row">
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+									<div class="l3-item">
+										<a href="#"><img height="24px" width="auto" src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" alt=""></a>
+										<div class="l3-item-mouse">
+											<button class="l3-item-btn">구독</button>
+											<button class="l3-item-btn display-none">해지</button>
+											<button class="l3-item-btn">기사보기</button>
+										</div>
+									</div>
+								</div>
+								<div class="l3-br"></div>
+								<div class="l3-bc c1"></div>
+								<div class="l3-bc c2"></div>
+							</div>
+						</div>
+						<!-- 뉴스 스탠드 끝 / 주제형 캐스트 시작 -->
+						<div class="bottom-box content-left4 border-gray">
+							<div class="l4-top">
+								<div class="l4-front"><span class="l4-ham"></span></div>
+								<div class="l4-middle">
+									<div class="l4-titem active"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+									<div class="l4-titem"><div>TV연애</div></div>
+								</div>
+								<div class="l4-end">
+									<div class="l3-prev"><i></i></div>
+									<div class="l3-next"><i></i></div>
+								</div>
+							</div>
+							<div class="l4-bottom">
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem l4-bitem-w2"></div>
+								<div class="l4-bitem l4-bitem-h2 flot-right"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem l4-bitem-w2 l4-bitem-h2 flot-right"></div>
+								<div class="l4-bitem"></div>
+								<div class="l4-bitem"></div>
+							</div>
+						</div>
+						<div class="bottom-box content-left5 border-gray"></div>
+					</div>
+					<div class="bottom-right">
+						<div class="bottom-box content-right1 border-gray">
+							<div class="lg-container">
+								<p class="lg-text">네이버를 더 안전하고 편리하게 이용하세요.</p>
+								<a href="#" class="lg-link"></a>
+								<div class="lg-text-link">
+									<a href="#" class="find-id txt-none">아이디</a>·<a href="#" class="find-pw txt-none">비밀번호찾기</a>
+									<a href="#" class="signup txt-none">회원가입</a>
+								</div>	
+							</div>
+						</div>
+						<div class="bottom-box content-right2 border-gray">
+							<div class="r2-top">
+								<div class="r2-info flot-left">
+									<a href="#" class="r2-link-date">
+										<span class="r2-date">06.04.</span>
+										<span class="r2-day">(화)</span>
+									</a>
+									<span class="r2-bar">|</span>
+									<h3 class="r2-title">증시</h3>
+								</div>
+								<div class="r2-page">
+									<b id="num">1</b>/<span>6</span>
+								</div>
+								<div class="flot-right">
+									<a href="#" class="r2-top-btn prev"><i class="r2-prev"></i></a>
+									<a href="#" class="r2-top-btn next"><i class="r2-next"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="bottom-box content-right3 border-gray"></div>
+						<div class="bottom-box content-right4 border-gray"></div>
+						<div class="bottom-box content-right5 border-gray"></div>
+					</div>
+				</div>
+			</div>
+			<div class="more-bottom display-none">
+				<div class="more-background"></div>
+				<div class="more-box">
+					<div class="more-menu">
+						<div class="more-svc">
+							<h3 class="svc-tit">ㄱ-ㄷ</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="moneybook">가계부
 								</li>
-								<li class="cl_item">
-									<a href="http://entertain.naver.com/home" class="cl_a cl_ent">연예</a>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="grafolio">그라폴리오
 								</li>
-								<li class="cl_item">
-									<a href="http://sports.news.naver.com/" class="cl_a cl_sports">스포츠</a>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="weather">날씨
 								</li>
-								<li class="cl_item">
-									<a href="http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=101" class="cl_a cl_finance">경제</a>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="booking">네이버 예약
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="ndrive">네이버 클라우드
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="post">네이버 포스트
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="news">뉴스
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none" value="datalab">데이터랩
 								</li>
 							</ul>
 						</div>
-						<div class="bottom_box content_left3 border_gray area_newsstand">
-							<div class="an_menulist">
-								<h3 class="an_tit">
-									<a href="http://newsstand.naver.com/" class="an_ta">뉴스스탠드
-										<span class="an_ico_link"></span>
-									</a>
-								</h3>
-								<div class="an_menulist_section1">
-									<div class="an_sort">
-										<a href="#" class="as_btn_press _PM_newsstand_total_type is_selected">전체 언론사</a>
-										<span class="as_bar"></span>
-										<a href="#" class="as_btn_my _PM_newsstand_my_type">MY 뉴스</a>
-									</div>
-								</div>
-								<div class="an_menulist_section2">
-									<div class="an_sort2">
-										<a href="#" class="as2_btn _PM_newsstand_thumb_type is_selected">
-											<i class="as2_btn_ico ico_image active"></i>
-											<span class="blind">이미지형</span>
-										</a>
-										<a href="#" class="as2_btn _PM_newsstand_list_type">
-											<i class="as2_btn_ico ico_list"></i>
-											<span class="blind">리스트형</span>
-										</a>
-										<a href="http://newsstand.naver.com/config.html" class="as2_btn">
-											<i class="as2_btn_ico ico_setting"></i>
-											<span class="blind">설정</span>
-										</a>
-									</div>
-									<ul class="an_paging">
-										<li class="ap_list">
-											<a href="#" class="ap_btn _PM_newsstand_prev">
-												<i class="ap_btn_ico ico_left"></i>
-												<span class="blind">이전 페이지</span>
-											</a>
-										</li>
-										<li class="ap_list">
-											<a href="#" class="ap_btn _PM_newsstand_next">
-												<i class="ap_btn_ico ico_right"></i>
-												<span class="blind">다음 페이지</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<!--뉴스캐스트 중간 끝-->
-							<div class="an_panel_image _PM_newsstand_thumb">
-								<div class="api_list_wrap">
-									<h3>
-										<span class="blind">언론사 목록</span>
-									</h3>
-									<div class="flick_view">
-										<div class="flick_container">
-											<div class="flick_panel">
-													<ul class="api_list">
-														<li id="NS_326" class="api_item" data-pid="326">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=326" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173138949.png" height="24" alt="KBS World" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_327" class="api_item" data-pid="327">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=327" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd144037935.png" height="24" alt="뉴데일리" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_330" class="api_item" data-pid="330">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=330" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2018/0626/nsd103519292.png" height="24" alt="중앙데일리" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_092" class="api_item" data-pid="092">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=092" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd16425834.png" height="24" alt="지디넷코리아" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_314" class="api_item" data-pid="314">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=314" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd145951763.png" height="24" alt="스포츠동아" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_241" class="api_item" data-pid="241">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=241" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd154619739.png" height="24" alt="일간스포츠" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_055" class="api_item" data-pid="055">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=055" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173335676.png" height="24" alt="SBS" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_214" class="api_item" data-pid="214">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=214" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd17324940.png" height="24" alt="MBC" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_277" class="api_item" data-pid="277">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=277" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd153432228.png" height="24" alt="아시아경제" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_057" class="api_item" data-pid="057">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=057" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd173223533.png" height="24" alt="MBN" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_023" class="api_item" data-pid="023">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=023" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd162718792.png" height="24" alt="조선일보" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_032" class="api_item" data-pid="032">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=032" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd14372435.png" height="24" alt="경향신문" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_928" class="api_item" data-pid="928">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=928" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd17150763.png" height="24" alt="컴퓨터월드" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_969" class="api_item" data-pid="969">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=969" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/1201/nsd161443290.png" height="24" alt="매일노동뉴스" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_991" class="api_item" data-pid="991">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=991" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2018/1008/nsd101815434.png" height="24" alt="데일리NK" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_384" class="api_item" data-pid="384">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=384" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd172816434.png" height="24" alt="한국대학신문" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_539" class="api_item" data-pid="539">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=539" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd15444343.png" height="24" alt="위키트리" class="api_logo">
-															</a>
-														</li>
-														<li id="NS_927" class="api_item" data-pid="927">
-															<a href="http://newsstand.naver.com/?list=&amp;pcode=927" class="api_link" aria-haspopup="true" target="_blank">
-																<img src="https://s.pstatic.net/static/newsstand/up/2017/0424/nsd164449667.png" height="24" alt="충북일보" class="api_logo">
-															</a>
-														</li>
-													</ul>
-											</div>
-										</div>
-									</div>
-									<i class="api_list_border_right" role="presentation" aria-hidden="true"></i>
-									<i class="api_list_border_horizontal1" role="presentation" aria-hidden="true"></i>
-									<i class="api_list_border_horizontal2" role="presentation" aria-hidden="true"></i>
-								</div>
-							</div>
+						<div class="more-svc">
+							<h3 class="svc-tit">ㄹ-ㅅ</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">라인
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">만화/웹툰
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">메모
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">뮤직
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">밴드
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">부동산
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">북마크
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">소프트웨어
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">스마트보드
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">스포츠
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">시리즈
+								</li>
+							</ul>
 						</div>
-						<!--뉴스캐스트 하단 끝-->
-						<!--하단 주제형 캐스트 시작-->
-						<div class="bottom_box content_left4 border_gray section_themecast" id="themecast">
-							<h2 class="blind">주제형 캐스트</h2>
-							<div id="PM_ID_themecastNavi" class="themecast_category">
-								<div class="area_category">
-									<h3 class="blind">관심 주제 선택</h3>
-									<div class="ac_scroll">
-										<div class="scroll_area">
-											<div class="rolling_container" id="PM_ID_themelist">
-												<ul style="width: 1682px;" queryid="C1559719030401374502" class="">
-													<li class="rolling-panel">
-														<a href="#LIVINGHOME" role="tab" aria-selected="false" data-id="LIVINGHOME" data-nclick="lif" data-clk="tct.lif" class="PM_CL_themeItem ac_a tcc_livinghome" queryid="C1559719030188166162">리빙</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#LIVING" role="tab" aria-selected="false" data-id="LIVING" data-nclick="fod" data-clk="tct.fod" class="PM_CL_themeItem ac_a tcc_living" queryid="C1559719030188203251">푸드</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#SPORTS" role="tab" aria-selected="false" data-id="SPORTS" data-nclick="spo" data-clk="tct.spo" class="PM_CL_themeItem ac_a tcc_sports" queryid="C1559719030188978465">스포츠</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#CARGAME" role="tab" aria-selected="false" data-id="CARGAME" data-nclick="aut" data-clk="tct.aut" class="PM_CL_themeItem ac_a tcc_cargame" queryid="C1559719030188428277">자동차</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#BEAUTY" role="tab" aria-selected="false" data-id="BEAUTY" data-nclick="bty" data-clk="tct.bty" class="PM_CL_themeItem ac_a tcc_beauty" queryid="C1559719030188969024">패션뷰티</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#MOMKIDS" role="tab" aria-selected="false" data-id="MOMKIDS" data-nclick="mom" data-clk="tct.mom" class="PM_CL_themeItem ac_a tcc_momkids" queryid="C1559719030188485532">부모i</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#HEALTH" role="tab" aria-selected="false" data-id="HEALTH" data-nclick="hea" data-clk="tct.hea" class="PM_CL_themeItem ac_a tcc_health" queryid="C1559719030188669252">건강</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#BBOOM" role="tab" aria-selected="false" data-id="BBOOM" data-nclick="web" data-clk="tct.web" class="PM_CL_themeItem ac_a tcc_bboom" queryid="C1559719030188120729">웹툰</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#GAMEAPP" role="tab" aria-selected="false" data-id="GAMEAPP" data-nclick="gam" data-clk="tct.gam" class="PM_CL_themeItem ac_a tcc_gameapp" queryid="C1559719030188531164">게임</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#VIDEO" role="tab" aria-selected="false" data-id="VIDEO" data-nclick="tvc" data-clk="tct.tvc" class="PM_CL_themeItem ac_a tcc_video" queryid="C155971903018827005">TV연예</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#MUSIC" role="tab" aria-selected="false" data-id="MUSIC" data-nclick="muc" data-clk="tct.muc" class="PM_CL_themeItem ac_a tcc_music" queryid="C1559719030188329960">뮤직</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#MOVIE" role="tab" aria-selected="true" data-id="MOVIE" data-nclick="mov" data-clk="tct.mov" class="PM_CL_themeItem ac_a tcc_movie tcc_on" queryid="C1559719030188738428">영화</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#CULTURE" role="tab" aria-selected="false" data-id="CULTURE" data-nclick="bok" data-clk="tct.bok" class="PM_CL_themeItem ac_a tcc_culture" queryid="C1559719030188742220">책문화</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#WITH" role="tab" aria-selected="false" data-id="WITH" data-nclick="pub" data-clk="tct.pub" class="PM_CL_themeItem ac_a tcc_with" queryid="C1559719030188607739">함께N</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#TRAVEL" role="tab" aria-selected="false" data-id="TRAVEL" data-nclick="tra" data-clk="tct.tra" class="PM_CL_themeItem ac_a tcc_travel" queryid="C1559719030188460385">여행+</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#DESIGN" role="tab" aria-selected="false" data-id="DESIGN" data-nclick="des" data-clk="tct.des" class="PM_CL_themeItem ac_a tcc_design" queryid="C1559719030188375511">디자인</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#FINANCE" role="tab" aria-selected="false" data-id="FINANCE" data-nclick="fin" data-clk="tct.fin" class="PM_CL_themeItem ac_a tcc_finance" queryid="C1559719030188838866">경제M</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#JOB" role="tab" aria-selected="false" data-id="JOB" data-nclick="job" data-clk="tct.job" class="PM_CL_themeItem ac_a tcc_job" queryid="C1559719030188468150">JOB&amp;</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#SCIENCE" role="tab" aria-selected="false" data-id="SCIENCE" data-nclick="sci" data-clk="tct.sci" class="PM_CL_themeItem ac_a tcc_science" queryid="C1559719030188989084">과학</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#CHINA" role="tab" aria-selected="false" data-id="CHINA" data-nclick="chn" data-clk="tct.chn" class="PM_CL_themeItem ac_a tcc_china" queryid="C155971903018842338">중국</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#BUSINESS" role="tab" aria-selected="false" data-id="BUSINESS" data-nclick="bsn" data-clk="tct.bsn" class="PM_CL_themeItem ac_a tcc_business" queryid="C1559719030188482353">비즈니스</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#FARM" role="tab" aria-selected="false" data-id="FARM" data-nclick="far" data-clk="tct.far" class="PM_CL_themeItem ac_a tcc_farm" queryid="C1559719030188981170">FARM</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#SCHOOL" role="tab" aria-selected="false" data-id="SCHOOL" data-nclick="scl" data-clk="tct.scl" class="PM_CL_themeItem ac_a tcc_school" queryid="C1559719030188583955">스쿨잼</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#SHOW" role="tab" aria-selected="false" data-id="SHOW" data-nclick="sow" data-clk="tct.sow" class="PM_CL_themeItem ac_a tcc_show" queryid="C1559719030188677119">공연전시</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#LAW" role="tab" aria-selected="false" data-id="LAW" data-nclick="law" data-clk="tct.law" class="PM_CL_themeItem ac_a tcc_law" queryid="C1559719030188440309">법률</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#ANIMAL" role="tab" aria-selected="false" data-id="ANIMAL" data-nclick="ani" data-clk="tct.ani" class="PM_CL_themeItem ac_a tcc_animal" queryid="C1559719030188805878">동물공감</a>
-													</li>
-													<li class="rolling-panel" role="presentation">
-														<a href="#WEDDING" role="tab" aria-selected="false" data-id="WEDDING" data-nclick="wed" data-clk="tct.wed" class="PM_CL_themeItem ac_a tcc_wedding" queryid="C1559719030188462713">연애·결혼</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="area_catebtns">
-									<a href="#" class="ac_btn_prev PM_CL_btnThemePrev" data-clk="tct.prev" role="button">
-										<span class="blind">이전 주제</span><span class="ac_bicon"></span>
-									</a>
-									<a href="#" class="ac_btn_next PM_CL_btnThemeNext" data-clk="tct.next" role="button">
-										<span class="blind">다음 주제</span>
-										<span class="ac_bicon"></span>
-									</a>
-									<a href="#" class="ac_btn_cate PM_CL_btnThemeEdit" data-clk="tct.menu" role="button" queryid="C1559719631586521823">
-										<span class="blind">전체 주제 열기</span>
-										<span class="ac_bicon"></span>
-									</a>
-									<div id="PM_ID_themeNaviLeft" class="ac_bgl" style="display: block;"></div>
-									<div id="PM_ID_themeNaviRight" class="ac_bgr" style="display: block;"></div>
-								</div>
-							</div>
-							<div class="themecastBody">
-								<div class="area_themecast id_movie">
-									<div class="themecast_list">
-										<div class="tl_title">
-											<div class="tt_mw"></div>
-										</div>
-										<div class="tl_bigimage">
-											<div class="tb_mw"></div>
-										</div>
-										<div class="tl_ranking tl_right">
-										</div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default tl_w2 tl_h2 flot-right"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div>
-							<!-- 	<div class="tl_default"></div>
-										<div class="tl_default"></div>
-										<div class="tl_default"></div> -->
-									</div>
-								</div>
-							</div>
+						<div class="more-svc">
+							<h3 class="svc-tit">ㅇ-ㅈ</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">영화
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">오디오클립
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">오피스
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">웹소설
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">자동차
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">주소록
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">증권(금융)
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">지도
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">지식백과
+								</li>
+							</ul>
 						</div>
-						<!--하단 주제형 캐스트 끝-->
-						<div class="bottom_box content_left5 border_gray"></div>
+						<div class="more-svc">
+							<h3 class="svc-tit">ㅊ-ㅎ</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">책
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">캘린더
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">학술정보
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">항공권
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">호텔
+								</li>
+							</ul>
+						</div>
+						<div class="more-svc">
+							<h3 class="svc-tit">A-Z</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">modoo![모두]
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">My구독
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">PC게임
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">TV연예
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">V LIVE
+								</li>
+							</ul>
+						</div>
+						<div class="more-svc">
+							<h3 class="svc-tit">사전</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									사전
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									국어사전
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									영어/영영사전
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									일본어사전
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									중국어사전
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									한자사전
+								</li>
+								<li class="svc-li">
+									<a>사전 더보기<span class="svc-more-arrow"></span></a>
+								</li>
+							</ul>
+						</div>
+						<div class="more-svc">
+							<h3 class="svc-tit">인기/신규 서비스</h3>
+							<ul class="svc-ul">
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									<a class="svc-ss"><span class="ico-vibe"></span>VIBE</a>
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									<a class="svc-ss"><span class="ico-naveralpha"></span>네이버 알파</a>
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									<a class="svc-ss"><span class="ico-clova"></span>네이버 클로바</a>
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									<a class="svc-ss"><span class="ico-whale"></span>웨일</a>
+								</li>
+								<li class="svc-li">
+									<input type="checkbox" class="svc-check display-none">
+									<a class="svc-ss"><span class="ico-papago"></span>파파고</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="bottom_right">
-							<div class="bottom_box content_right1 border_gray">
-								<h2 class="blind">로그인</h2>
-								<div class="lg_local">
-									<p class="lg_local_text">네이버를 더 안전하고 편리하게 이용하세요.</p>
-									<a href="https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com" class="lg_local_btn">
-										<i class="ico_local_login lang_ko">
-											<span class="blind">NAVER 로그인</span>
-										</i>
-									</a>
-									<div class="lg_links">
-										<a href="https://nid.naver.com/user2/V2Join.nhn?m=agree&lang=ko_KR&cpno=" class="lg_link_join">회원가입</a>
-										<span class="lg_link_find">
-											<a href="https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry" class="lg_find_text">아이디</a>·
-											<a href="https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry" class="lg_find_text">비밀번호 찾기</a>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="bottom_box content_right2 border_gray _PM_timesquare_wrapper" id="time_square">
-								<div class="section_timesquare _PM_timesquare_base">
-									<h2 class="blind">타임스퀘어</h2>
-									<div class="area_header"><div class="header_info _PM_timesquare_info"><a href="http://calendar.naver.com" class="hi_date">
-												<span hi_dnum>06.05.</span>
-												<span hi_day>(수)</span>
-											</a>
-											<i class="hi_slash"></i>
-											<h3 class="hi_tit">증시</h3>
-										</div>
-										<div class="header_paging _PM_timesquare_navi">
-											<b class="hp_curr">1</b>/
-											<span class="hp_total">6</span>
-										</div>
-										<div class="header_btns">
-											<a class="header_btn_prev _PM_timesquare_prev">
-												<i class="ico_btn_prev"></i>
-												<span class="blind">앞의 목록으로 이동</span>
-											</a>
-											<a class="header_btn_next _PM_timesquare_next">
-												<i class="ico_btn_next"></i>
-												<span class="blind">앞의 목록으로 이동</span>
-											</a>
-										</div>
-									</div>
-									<div class="area_ct">
-										<div class="flick_view">
-											<div class="flick_container">
-												<div class="flick_panel _PM_timesquare_list">
-													<div class="type_stock">
-														<a href="http://finance.naver.com/size/size_index.nhn?code=KOSPI" class="ts_link">
-															<dl class="ts_list">
-																<dt class="ts_dt">코스피</dt>
-																<dd class="ts_curr">2071.39</dd>
-																<dd class="ts_delta ts_up">
-																	<i class="ts_ico_up" aria-hidden="true"></i>4.42
-																	<span class="blind">상승</span>
-																</dd>
-															</dl>	
-														</a>
-														<a href="http://finance.naver.com/size/size_index.nhn?code=KOSDAQ" class="ts_link">
-															<dl class="ts_list">
-																<dt class="ts_dt">코스닥</dt>
-																<dd class="ts_curr">709.04</dd>
-																<dd class="ts_delta ts_up">
-																	<i class="ts_ico_up" aria-hidden="true"></i>6.51
-																	<span class="blind">상승</span>
-																</dd>
-															</dl>
-														</a>
-														<div class="ts_news">
-															<a href="http://finance.naver.com" class="ts_n_cate">증권</a>
-															<a href="http://finance.naver.com" class="ts_n_next">오늘의 주요 시황뉴스</a>
-														</div>
-														<div class="ts_stock_search">
-															<form class="PM_CL_timesquareStockForm">
-																<input type="text" class="ts_s_input" value="주가">
-															</form>
-															<a href="#" class="ts_s_btn">
-																<div class="ts_ico_search"></div>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--타임스퀘어 끝-->
-							<div class="bottom_box content_right3 border_gray" id="veta_branding">
-								<div id="addiv">
-									<a href="https://nv.veta.naver.com/fxclick?eu=EU10000119&amp;calp=-&amp;oj=bbC87fref335lu70kHXA74oZYfbmVTFRqG%2BnflYZW839Kf5dGgN9I8O9Tp6LZ93%2BcyHcilY%2BCVBg40mLPchi3DuqpgIIMEUlAyRcnCTqcAQOwcvA7TmRDzXttrYFGtN%2B&amp;ac=7859365&amp;src=3876625&amp;br=2913698&amp;evtcd=P901&amp;x_ti=838&amp;tb=&amp;oid=&amp;sid1=&amp;sid2=&amp;rk=14bbb7954b6caff45ced87dc0eb32fd9&amp;eltts=b17eApZV%2FkZo9UzGaUNl%2BA%3D%3D&amp;lu=&amp;brs=Y&amp;" id="ac_banner_a" target="_blank">
-										<img src="https://ssl.pstatic.net/tveta/libs/1236/1236038/45b194c053ce0d269754_20190530160245072.jpg" width="330" height="150" title="" alt="[광고]JINAIR 승무원의마음이 유니폼의 기본 기대해도 좋아요 ㅈㅇㅇ진에어" border="0">
-										<div id="da_access" style="position: absolute; top: 50%; left: 50%; width: 154px; height: 58px; margin: -29px 0px 0px -77px; background: url(&quot;https://ssl.pstatic.net/tveta/libs/res/www/common/info/da_access.png&quot;); display: none;"></div>
-									</a>
-								</div>
-								<div class="veta_bdt"></div>
-								<div class="veta_bdr"></div>
-								<div class="veta_bdb"></div>
-								<div class="veta_bdl"></div>
-							</div>
-							<div class="bottom_box content_right4 border_gray"></div>
-							<div class="bottom_box content_right5 border_gray"></div>
+					<div class="svc-btn">
+						<a class="svc-all">서비스 전체보기</a>
+						<a class="svc-setting">메뉴 설정</a>
+						<a class="svc-btn-close">
+							<span class="ico-close"></span>
+						</a>
+					</div>
+					<div class="svc-btn1 display-none">
+						<a class="svc-reset">
+							<span class="ico-reset"></span>초기화
+						</a>
+						<a class="svc-confirm">확인</a>
+						<a class="svc-cancel">취소</a>
+						<a class="svc-btn-close">
+							<span class="ico-close"></span>
+						</a>
 					</div>
 				</div>
 			</div>
