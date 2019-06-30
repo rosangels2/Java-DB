@@ -147,28 +147,6 @@ a{
 	content: "";
 	display: block;
 }
-.banner-black-empty{
-	position: absolute;
-	padding: 16px 0 0 0;
-	width: 356px;
-	height: 38px;
-	top: 0;
-	background: white;
-}
-.empty-box{
-	position: relative;
-	width: 68px;
-	height: 22px;
-	padding-left: 14px;
-	float: left;
-}
-.empty-box-1{
-	position: absolute;
-	width: 64px;
-	height: 30px;
-	border: 1px solid #e3e7ee;
-	top: -8px;
-}
 .border-green{
 	border: 1px solid green;
 }
@@ -762,7 +740,7 @@ a.naver-green{
 .display-none{
 	display: none;
 }
-/* 더보기 */
+/* 더보기 박스 */
 .more-bottom{
 	position: absolute;
 	top: 0;
@@ -785,6 +763,29 @@ a.naver-green{
 	height: 353px;
 	background-color: #fff;
 	z-index: 15;
+}
+.banner-black-empty{
+	position: absolute;
+	padding: 16px 0 0 0;
+	width: 356px;
+	height: 38px;
+	top: 0;
+	background: white;
+}
+.empty-box{
+	position: relative;
+	width: 68px;
+	height: 22px;
+	padding-left: 14px;
+	float: left;
+}
+.empty-box-1{
+	position: absolute;
+	width: 64px;
+	height: 30px;
+	border: 1px solid #e3e7ee;
+	top: -8px;
+	text-align: center;
 }
 .fold{
 	width: 42px;

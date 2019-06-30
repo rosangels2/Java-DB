@@ -9,34 +9,34 @@
 	<link rel="stylesheet" href="../css/naver.css">
 	<title>Document</title>
 	<script>
-		var empty = [];
-		var checkCount = 0;
 		$(document).ready(function(){
-			$('.svc-li').click(function(){
-				if($('.svc-btn').hasClass('display-none')){
-					var obj = $(this).find('.svc-check');
-					var isChecked = obj.prop('checked');
-					if(empty.indexOf(obj.val()) != -1){
-						empty.push(obj.val(),obj.text());
-						
-					}else{
+			var empty = [];
+			var checkCount = 0;
 
-					}
-					//클릭이 되면 배열에 해당 value가 있는지 확인하고 없으면 배열에 추가한 뒤 카운트 증가와 체크박스 체크
-					//배열에 해당 value가 있으면 배열에서 제거한 뒤 카운트를 감소하고 체크를 해제
-					var isChecked = $(this).find('.svc-check').prop('checked');
-					if(isChecked == false){	//체크가 된 경우(체크가 됐을 때 변경되기 전의 체크값이 저장)
-						checkCount++;
-						if(checkCount == 6){
-							alert('최대 5개까지 선택할 수 있습니다');
-							return checkCount = 5;
-						}
-					}else if(isChecked == true){
-						checkCount--;
-					}
-					$(this).find('.svc-check').prop('checked',!isChecked);
+			$('.svc-li').click(function(){	//li태그가 체크됐을 떄
+				var obj = $(this).find('.svc-check');	//클릭된 li태그의 자손 체크박스 객체를 변수 obj에 저장
+				var isChecked = obj.prop('checked');	//체크박스 객체의 체크값 상태를 변수에 저장
+				var index = empty.indexOf(obj.val());	//배열 empty에서 체크된 체크박스의 값이 있는지 찾아서 결과를 변수에 저장
+				if(index == -1 && empty.length < 5 && isChecked == false){	//4개 이하 체크 상태에서 체크했을 때
+					empty.push(obj.val());	//배열 empty의 마지막 번지에 obj의 문자열을 추가
+					obj.prop('checked', true);	//해당 체크박스를 체크
+					checkCount++;
+				}else if(index == -1 && empty.length >= 5 && isChecked == false){ //5개 체크 상태에서 체크했을 때
+					alert('최대 5개까지 선택할 수 있습니다.');
+					obj.prop('checked', false);
+					checkCount = 5;
+				}else if(index != -1 && empty.length <= 5 && isChecked == true){	//5개 이하 체크 상태에서 체크를 해제했을 경우
+					empty.splice(index,1);	//배열 empty에서 index번지를 제거
+					obj.prop('checked', false);	//체크를 해제
+					checkCount--;
 				}
-				console.log(checkCount);	//5개까지 체크되는지 확인
+				//console.log(checkCount);	//5개까지 체크되는지 확인
+				//console.log(empty);
+
+				var checkboxCheck = $('.svc-check').prop('checked');
+				$('.svc-check').change(function(){
+
+				});
 			});
 		});
 	</script>
@@ -104,6 +104,7 @@
 						<li><a href="#" class="banner-img comic"></a></li>
 						<div class="banner-black-empty display-none">
 							<div class="empty-box">
+								<!-- 체크가 되면 empty.length만큼 empty-box-1을 지우고 그 자리에 체크된 값의 코드들을 삽입 -->
 								<span class="empty-box-1"></span>
 							</div>
 							<div class="empty-box">
@@ -417,6 +418,7 @@
 					</div>
 				</div>
 			</div>
+			<!--더보기 박스 시작 -->
 			<div class="more-bottom display-none">
 				<div class="more-background"></div>
 				<div class="more-box">
@@ -425,28 +427,28 @@
 							<h3 class="svc-tit">ㄱ-ㄷ</h3>
 							<ul class="svc-ul">
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="moneybook">가계부
+									<input type="checkbox" class="svc-check display-none" value="moneybook" id="moneybook">가계부
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="grafolio">그라폴리오
+									<input type="checkbox" class="svc-check display-none" value="grafolio" id="grafolio">그라폴리오
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="weather">날씨
+									<input type="checkbox" class="svc-check display-none" value="weather" id="weather">날씨
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="booking">네이버 예약
+									<input type="checkbox" class="svc-check display-none" value="booking" id="booking">네이버 예약
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="ndrive">네이버 클라우드
+									<input type="checkbox" class="svc-check display-none" value="ndrive" id="ndrive">네이버 클라우드
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="post">네이버 포스트
+									<input type="checkbox" class="svc-check display-none" value="post" id="post">네이버 포스트
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="news">뉴스
+									<input type="checkbox" class="svc-check display-none" value="news" id="news">뉴스
 								</li>
 								<li class="svc-li">
-									<input type="checkbox" class="svc-check display-none" value="datalab">데이터랩
+									<input type="checkbox" class="svc-check display-none" value="datalab" id="datalab">데이터랩
 								</li>
 							</ul>
 						</div>
@@ -637,6 +639,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 더보기 박스 끝 -->
 		</div>
 	</div>
 </body>
