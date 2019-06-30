@@ -147,9 +147,6 @@ a{
 	content: "";
 	display: block;
 }
-.border-green{
-	border: 1px solid green;
-}
 .banner-black>li,
 .banner-green>li{
 	padding-left: 14px;
@@ -734,12 +731,6 @@ a.naver-green{
 .position-relative{
 	position: relative;
 }
-.display-block{
-	display: block;
-}
-.display-none{
-	display: none;
-}
 /* 더보기 박스 */
 .more-bottom{
 	position: absolute;
@@ -765,27 +756,35 @@ a.naver-green{
 	z-index: 15;
 }
 .banner-black-empty{
-	position: absolute;
-	padding: 16px 0 0 0;
-	width: 356px;
-	height: 38px;
-	top: 0;
-	background: white;
+	display: block;
+	position: relative;
+	float: left;
+	padding-top: 16px;
+	padding-left: 14px;
+	zoom: 1;
+}
+.banner-black-empty::after{
+	display: table;
+	clear: both;
+	table-layout: fixed;
+	content: "";
 }
 .empty-box{
-	position: relative;
-	width: 68px;
-	height: 22px;
-	padding-left: 14px;
 	float: left;
+	display: block;
+	padding-left: 14px;
+}
+.empty-box:first-child{
+	padding-left: 0;
 }
 .empty-box-1{
-	position: absolute;
-	width: 64px;
-	height: 30px;
+	display: block;
+	margin-top: -8px;
+	margin-left: 0;
+	width: 62px;
+	height: 28px;
 	border: 1px solid #e3e7ee;
-	top: -8px;
-	text-align: center;
+	background: #fcfdfe;
 }
 .fold{
 	width: 42px;
@@ -1006,4 +1005,93 @@ a.naver-green{
 	font-size: 12px;
 	line-height: 29px;
 	cursor: pointer;
+}
+.banner-black .cm-txt,
+.container-min .cm-txt{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	text-align: center;
+	white-space: nowrap;
+}
+.container-min .cm-box{
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+.banner-black .cm-box .cm-icon,
+.container-min .cm-box .cm-icon{
+	float: left;
+	z-index: 1;
+	display: block;
+	background-color: #fff;
+	background-image: url(https://s.pstatic.net/static/www/img/2019/sp_nav.png);
+}
+.banner-black .cm-moneybook .cm-icon,
+.container-min .cm-moneybook .cm-icon{
+	width: 40px;
+	height: 16px;
+	background-position: -229px -26px;
+}
+.banner-black .cm-grafolio .cm-icon,
+.container-min .cm-grafolio .cm-icon{
+	width: 65px;
+	height: 16px;
+	background-position: -91px -26px;
+}
+.banner-black .cm-weather .cm-icon,
+.container-min .cm-weather .cm-icon{
+	width: 25px;
+	height: 16px;
+	background-position: -105px -285px;
+}
+.banner-black .cm-booking .cm-icon,
+.container-min .cm-booking .cm-icon{
+	width: 26px;
+	height: 16px;
+	background-position: -216px -259px;
+}
+.banner-black .cm-ndrive .cm-icon,
+.container-min .cm-ndrive .cm-icon{
+	width: 52px;
+	height: 16px;
+	background-position: -167px -26px;
+}
+.banner-black .cm-post .cm-icon,
+.container-min .cm-post .cm-icon{
+	width: 40px;
+	height: 16px;
+	background-position: -229px -182px;
+}
+.banner-black .cm-news .cm-icon,
+.container-min .cm-news .cm-icon{
+	width: 28px;
+	height: 16px;
+	background-position: -128px -104px;
+}
+.banner-black .cm-datalab .cm-icon,
+.container-min .cm-datalab .cm-icon{
+	width: 52px;
+	height: 16px;
+	background-position: -167px 0;
+}
+.banner-black .cm-box{
+	padding-left: 14px;
+	float: left;
+	display: block;
+}
+.banner-black .cm-box:first-child{
+	padding-left: 0;
+}
+.border-green{
+	border-color:	#00b336;
+}
+.display-block{
+	display: block;
+}
+.display-none{
+	display: none;
 }

@@ -1,4 +1,10 @@
 $(document).ready(function(){
+	var empty = [];
+	var empty1 = [];
+	var str = '';
+	var isChange = 0;
+	$('.empty-box1').eq(0).addClass('border-green');	//empty-box1의 첫번쨰 태그의 보더 컬러를 초록색으로 변경
+
 	$('.auto-search').click(function(){	//클릭했을 떄 가상 키보드를 보여주는 코드
 		$(this).find('.icon-auto-down').toggleClass('icon-auto-up');	//우선순위가 같기 때문에 토글로 나중에 추가된 up 클래스로 이미지가 변경
 		$('.search-input-box').toggleClass('border-bottom-none');	//검색창에 녹색 밑줄을 토글(제거했다 추가)하는 코드
@@ -65,32 +71,141 @@ $('.r2-top-btn.next').click(function(){
 		$('.more-svc .svc-check').removeClass('display-none');	//체크박스들의 display-none을 제거
 		$('.svc-btn').addClass('display-none');	//btn메뉴에 display-none을 추가
 		$('.svc-btn1').removeClass('display-none');	//btn메뉴1에 display-none을 제거
+		$('.banner-black').addClass('display-none');
 		$('.banner-black-empty').removeClass('display-none');
+		$('.empty-box-1').eq(0).addClass('border-green');
+		if(isChange == 1){
+			empty1 = empty.slice(0,empty.length);
+			addEmptyBox(5);
+			for(var i=0; i<empty.length; i++){
+				var val = empty[i];
+				$('#'+val).prop('checked',true);
+			}
+		}else if(isChange == 0){
+			addEmptyBox(5);
+		}
 	});
 
 	$('.svc-cancel').click(function(){	//메뉴설정 취소 버튼을 눌렀을 때
-		moreReset();	//메뉴 설정을 취소하고 체크값 초기화와 체크상자를 숨기는 함수를 호출
-		$('.banner-black-empty').addClass('display-none');
+		cancel();
 	});
 
 	$('.ico-close').click(function(){	//more 박스 닫기 버튼을 눌렀을 때
-		moreClose();	//more 박스의 내용을 초기화한 뒤 닫는 함수 호출
+		cancel();
+		$('div.more-bottom').addClass('display-none');
+		$('.banner-img.more').removeClass('fold');
 	});
 
 	$('.svc-reset').click(function(){	//초기화 버튼을 눌렀을 떄
-		alert('초기 설정으로 돌아갑니다.');	//알림 메시지
-		moreClose();	//more 박스의 내용을 초기화한 뒤 닫는 함수 호출
+		reset();
+	});
+
+	$('.svc-confirm').click(function(){
+		//확인을 눌렀을 떄 배열에 추가된 값으로 banner-black를 변경
+		if(empty.length == 0){
+			alert('선택된 값이 없습니다. 초기값으로 돌아갑니다.');
+			reset();
+			return;
+		}else{
+			$('.banner-black').empty();
+			for(var i=0; i<empty.length ; i++){
+				arr = empty[i];
+				str = '<span class="cm-box cm-'+arr+'"><span class="cm-icon"></span></span>';
+				$('.banner-black').append(str);
+			}
+			$('.banner-black-empty').addClass('display-none');
+			$('.banner-black').removeClass('display-none');
+			isChange = 1;	//isChange를 먼저 증가시킨 뒤 moreClose와 moreReset함수를 호출
+			moreClose();
+			moreReset();
+		}
+	});
+
+	$('.svc-li').click(function(){	//li태그가 체크됐을 떄
+		var obj = $(this).find('.svc-check');	//클릭된 li태그의 자손 체크박스 객체를 변수 obj에 저장
+		var isChecked = obj.prop('checked');	//체크박스 객체의 체크값 상태를 변수에 저장
+		var index = empty.indexOf(obj.val());	//배열 empty에서 체크된 체크박스의 값이 있는지 찾아서 결과를 변수에 저장
+		if(index == -1 && empty.length < 5 && isChecked == false){	//4개 이하 체크 상태에서 체크했을 때
+			empty.push(obj.val());	//배열 empty의 마지막 번지에 obj의 문자열을 추가
+			obj.prop('checked', true);	//해당 체크박스를 체크
+		}else if(index == -1 && empty.length >= 5 && isChecked == false){ //5개 체크 상태에서 체크했을 때
+			alert('최대 5개까지 선택할 수 있습니다.');
+			obj.prop('checked', false);
+		}else if(index != -1 && empty.length <= 5 && isChecked == true){	//5개 이하 체크 상태에서 체크를 해제했을 경우
+			empty.splice(index,1);	//배열 empty에서 index번지를 제거
+			obj.prop('checked', false);	//체크를 해제
+		}
+		console.log(empty);
+		addEmptyBox(5);
+		$('.empty-box-1').eq(0).addClass('border-green');
 	});
 
 	function moreReset(){	//메뉴 설정을 취소하고 체크값 초기화와 체크상자를 숨기는 함수
 		$('.svc-btn').removeClass('display-none');
 		$('.svc-btn1').addClass('display-none');
 		$('.more-svc .svc-check').addClass('display-none');	//체크박스들의 display-none을 추가
-		$('.more-menu .svc-check').prop('checked',false);
+		if(isChange == 0){
+			$('.more-menu .svc-check').prop('checked',false);
+			empty.splice(0,5);
+		}
+		else if(isChange == 1){
+			return;
+		}
 	}
 	function moreClose(){	//접기를 더보기로 바꾸고 more 박스의 모든 내용을 초기화한 뒤 닫는 함수
 		$('div.more-bottom').addClass('display-none');
 		$('.banner-img.more').removeClass('fold');
 		moreReset();
+	}
+	function addEmptyBox(max){
+		var arr = '';
+		if(empty.length == 0){	//배열이 비어 있다면
+			str = '<span class="empty-box-1"></span>';
+			for(var i=0; i<max; i++){
+				$('.empty-box').eq(i).empty();
+				$('.empty-box').eq(i).append(str);
+			}
+		}else if(empty.length >= 1){	//배열에 값이 있다면
+			for(var i=0; i<empty.length ; i++){
+				arr = empty[i];
+				str = '<span class="cm-box cm-'+arr+'"><span class="cm-icon"></span></span>';
+				$('.empty-box').eq(i).empty();
+				$('.empty-box').eq(i).append(str);
+			}
+			for(var i=empty.length; i<max; i++){
+				str = '<span class="empty-box-1"></span>';
+				$('.empty-box').eq(i).empty();
+				$('.empty-box').eq(i).append(str);
+			}
+		}
+	}
+	function reset(){
+		alert('초기 설정으로 돌아갑니다.');	//알림 메시지
+		moreClose();	//more 박스의 내용을 초기화한 뒤 닫는 함수 호출
+		//banner-black를선택 메뉴를 처음 값으로 초기화
+		var code = '<li><a href="#" class="banner-img dic"></a></li><li><a href="#" class="banner-img news"></a></li><li><a href="#" class="banner-img stock"></a></li><li><a href="#" class="banner-img land"></a></li><li><a href="#" class="banner-img map"></a></li><li><a href="#" class="banner-img movie"></a></li><li><a href="#" class="banner-img music"></a></li><li><a href="#" class="banner-img book"></a></li><li><a href="#" class="banner-img comic"></a></li>';
+		$('.banner-black').empty();
+		$('.banner-black').append(code);
+		$('.banner-black-empty').addClass('display-none');
+		$('.banner-black').removeClass('display-none');
+		isChange = 0;
+	}
+	function cancel(){
+		$('.banner-black-empty').addClass('display-none');
+		$('.banner-black').removeClass('display-none');
+		moreReset();	//메뉴 설정을 취소하고 체크값 초기화와 체크상자를 숨기는 함수를 호출
+		var str = '<span class="empty-box-1"></span>';
+		for(var i=0; i<5; i++){
+			$('.empty-box').eq(i).empty();
+			$('.empty-box').eq(i).append(str);
+		}
+		if(isChange == 1){
+			empty = empty1.slice(0,empty1.length);
+			$('.svc-check').prop('checked',false);
+			for(var i=0; i<empty.length; i++){
+				var arr = empty[i];
+				$('#'+arr).prop('checked',true);
+			}
+		}
 	}
 });

@@ -19,8 +19,8 @@
 			});
 			$('#p').click(function(){
 				var obj = document.createElement('p');	//createElement를 통해 태그 객체를 생성해서 변수에 저장한다
-				//$('body').append(obj);	//$(셀렉터).append(코드) - 해당 셀렉터의 뒤쪽에 html코드(객체 또는 문자열)를 추가
-				$('body').prepend(obj);	//$(셀렉터).prepend(코드) - 해당 셀렉터의 앞쪽에 html코드(객체 또는 문자열)를 추가
+				//$('body').append(obj);	//$(셀렉터).append(코드) - 해당 셀렉터의 뒤쪽에 자식 태그(객체 또는 문자열)를 추가
+				$('body').prepend(obj);	//$(셀렉터).prepend(코드) - 해당 셀렉터의 앞쪽에 자식 태그(객체 또는 문자열)를 추가
 			});
 		});
 	</script>
