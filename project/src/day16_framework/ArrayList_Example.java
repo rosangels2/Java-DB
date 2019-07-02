@@ -8,12 +8,12 @@ public class ArrayList_Example {
 	public static void main(String[] args) {
 		//ArrayList<Object> list1 = new ArrayList(10); ->사용할 클래스를 입력하는 게 더 정확한 코드
 		ArrayList list1 = new ArrayList(10);	//크기가 10인 ArrayList list1를 생성
-		list1.add(new Integer(5));				//0번지에  익명 객체를 생성해서 정수 5를 저장
-		list1.add(new Integer(4));				//1번지에  익명 객체를 생성해서 정수 4를 저장
-		list1.add(new Integer(2));				//2번지에  익명 객체를 생성해서 정수 2를 저장
-		list1.add(new Integer(0));				//3번지에  익명 객체를 생성해서 정수 0를 저장
-		list1.add(new Integer(1));				//4번지에  익명 객체를 생성해서 정수 1를 저장
-		list1.add(new Integer(3));				//5번지에  익명 객체를 생성해서 정수 3를 저장
+		list1.add(new Integer(5));				//0번지에 익명 객체를 생성해서 정수 5를 저장
+		list1.add(new Integer(4));				//1번지에 익명 객체를 생성해서 정수 4를 저장
+		list1.add(new Integer(2));				//2번지에 익명 객체를 생성해서 정수 2를 저장
+		list1.add(new Integer(0));				//3번지에 익명 객체를 생성해서 정수 0를 저장
+		list1.add(new Integer(1));				//4번지에 익명 객체를 생성해서 정수 1를 저장
+		list1.add(new Integer(3));				//5번지에 익명 객체를 생성해서 정수 3를 저장
 
 																//생성자 오버로딩을 사용(매개변수가 list1의 1번지~(4-1)번지까지인 list를 생성해서 ArrayList로 형변환)
 		ArrayList list2 = new ArrayList(list1.subList(1, 4));	//크기가 list1의 1번지부터 4번지까지인 Arraylist list2를 생성한다
@@ -21,7 +21,7 @@ public class ArrayList_Example {
 		
 		Collections.sort(list1);	//list1과 list2를 정렬한다
 		Collections.sort(list2);	
-		print(list1, list2);
+		print(list1, list2);	
 		
 		System.out.println("list1.containsAll(list2) : " + list1.containsAll(list2));	//list1에 문자열 list2가 모두 포함됐는지 검사한다 
 																						//list2(0, 2, 4)가 모두 포함돼 있으니 true
