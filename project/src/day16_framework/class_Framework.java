@@ -46,8 +46,6 @@ public class class_Framework {
 				System.out.println(pList.get(i));						//입력된 순서대로 저장된 값을 출력
 			}
 		
-		
-		
 		}
 
 }
