@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />	<!-- suffix : 뒤쪽에 붙는 -->
 	</beans:bean>	<!-- home만 입력됐을 때 --> 
 	
-	<context:component-scan base-package="kr.green.spring.controller" />
+	<context:component-scan base-package="kr.green.spring" />
 	
 	
 	
