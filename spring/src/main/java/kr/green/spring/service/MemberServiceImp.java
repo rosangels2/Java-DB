@@ -45,6 +45,20 @@ public class MemberServiceImp implements MemberService{
 		}
 		return false;
 	}
-	
+	@Override
+	public boolean modify(MemberVO mVo, String oPw){
+		if(mVo == null) {
+			return false;
+		}
+		mVo.setName("");
+		mVo.setEmail("");
+		mVo.setGender("");
+		MemberVO oVo = memberDao.getMember(mVo.getId());
+		if(oVo.getPw().equals(oPw)){
+			memberDao.modify(mVo);
+			return true;
+		}
+		return false;
+	}
 	
 }

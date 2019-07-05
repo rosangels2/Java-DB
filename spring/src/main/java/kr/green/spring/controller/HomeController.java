@@ -16,6 +16,7 @@ import kr.green.spring.vo.MemberVO;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//실행된 클래스와 컨트롤러를 확인하기 위해 현재 정보를 상수인 클래스 멤버변수에 저장
 	
 	@Autowired
 	MemberService memberService;
@@ -59,10 +60,33 @@ public class HomeController {
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signinPost(Model model, MemberVO mVo){
 		logger.info("로그인 진행 중");
-		System.out.println(mVo);	//입력한 정보가 제대로 가져오는지 확인
+		System.out.println(mVo);	//입력한 정보를 제대로 가져오는지 확인
 		if(memberService.signin(mVo)){
-			return "redirect:/";
+			return "redirect:/member";
 		}
 		return "redirect:/signin";
 	}
+	@RequestMapping(value = "/member", method = RequestMethod.GET)
+	public String member(){
+		logger.info("로그인 중");
+		
+		return "member";
+	}
+	@RequestMapping(value = "/member/modify", method = RequestMethod.GET)
+	public String loginGet(){
+		logger.info("정보 수정 진행");
+		
+		return "/member/modify";
+	}
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String loginPost(Model model, MemberVO mVo, String oPw){
+		logger.info("정보 수정 진행 중");
+		
+		if(memberService.modify(mVo,oPw)){	//Mapper까지 실행한 후 결과값에 따라 홈페이지를 리턴
+			return "redirect:/";
+		}else {
+			return "redirect:/member/modify";
+		}
+	}
+	
 }
