@@ -129,25 +129,41 @@ MemberService mS = new MemberServiceImp();    //ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÑ Å¬·¡½º¸¦ ÅëÇ
 
 ¼ø¼­
 jsp
- - signinÀÇ °á°ú°¡ true¸é return "redirect:/member";
- - member.jsp¿¡¼­ Á¤º¸ ¼öÁ¤À» ´©¸£¸é /member/modify·Î ÀÌµ¿
-È¸¿ø ¼öÁ¤ ÆäÀÌÁö »ý¼º
-¼­¹ö·Î µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÏ±â À§ÇÑ ÀÛ¾÷
+·Î±×ÀÎ ½Ã È¸¿ø Á¤º¸ ¼öÁ¤ ¸Þ´º°¡ ÀÖ´Â member.jsp ±¸Çö
+È¸¿ø Á¤º¸ ¼öÁ¤ ¼±ÅÃ ½Ã ÀÌµ¿ÇÒ ÆäÀÌÁöÀÎ È¸¿ø Á¤º¸ ¼öÁ¤ ÄÚµå¸¦ /member/modify.jspÆÄÀÏ¿¡ ±¸Çö
 
 ÄÁÆ®·Ñ·¯
-jsp°¡ ³Ñ°ÜÁØ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ È®ÀÎ
-¼­ºñ½º¿¡°Ô ¼öÁ¤µÉ È¸¿ø Á¤º¸¿Í ±âÁ¸ ºñ¹Ð¹øÈ£¸¦ ¾Ë·ÁÁÖ¸é¼­ È¸¿ø ¼öÁ¤ Á¤º¸¸¦ ¿äÃ»
-È¸¿øÁ¤º¸ ¼öÁ¤ÀÌ ¼º°øÇÏ¸é ¸ÞÀÎ ÆäÀÌÁö·Î, ½ÇÆÐÇÏ¸é ÇöÀç ÆäÀÌÁö À¯Áö
+@RequestMappingÀ» ÅëÇØ ÇØ´ç URLÀÇ °æ·Î¿¡¼­ º¸¿©ÁÙ JSPÆÄÀÏÀ» return
+ÇØ´ç JSPÆÄÀÏ¿¡¼­ ÀÔ·ÂÇÑ °ªÀÌ ¸Å°³º¯¼ö¸¦ ÅëÇØ °´Ã¼¿¡ Àß ÀúÀåµÇ´ÂÁö ÄÜ¼ÖÀ» ÅëÇØ È®ÀÎ
+ÀÔ·ÂµÈ °ªÀÌ Á¦´ë·Î Ãâ·ÂµÈ´Ù¸é Service Å¬·¡½º¿¡ ÇØ´ç ¸Å°³º¯¼öµéÀ» »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ð
+Mapper.xml¿¡¼­ DAOÀÇ ±¸ÇöÀÌ ³¡³ª¸é Service¸¦ È£ÃâÇÏ¿© ±â´ÉÀ» ½ÇÇàÇÑ µÚ °á°ú¿¡ µû¶ó º¸¿©ÁÙ JSP ÆäÀÌÁö¸¦ return
 
 ¼­ºñ½º
-DBÀÇ ºñ¹Ð¹øÈ£¿Í ±âÁ¸ ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎÇÏ¿© ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é ¼öÁ¤ ½ÇÆÐ¸¦ ¾Ë¸²
-ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏ¸é È¸¿ø Á¤º¸ ¼öÁ¤À» À§ÇØ DAO¿¡°Ô ¼öÁ¤µÉ È¸¿ø Á¤º¸¸¦ Àü´ÞÇÏ¿© DB¿¡ È¸¿ø Å×ÀÌºí ¾÷µ¥ÀÌÆ® ¿äÃ»
+ÄÁÆ®·Ñ·¯¿¡¼­ ÁöÁ¤ÇÑ ¸Å°³º¯¼öµéÀ» »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ðÇÑ µÚ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÒ implements Å¬·¡½º¸¦ »ý¼º
+implements Å¬·¡½º¿¡ @Service Å°¿öµå ÀÔ·ÂÀ» ÅëÇØ ¼­ºñ½º Å¬·¡½º »ç¿ëÀ» ¼±¾ð
+Á¶°Ç½ÄÀ» ÀÌ¿ëÇØ null°ªÀÌ ÀÔ·ÂµÆÀ» ¶§ÀÇ ¿¹¿Ü Ã³¸®¿Í ¿øÇÏ´Â Á¤º¸¸¦ ¾ò±â À§ÇÑ ±â´ÉÀ» Ã³¸®
+¿¹½Ã)
+	public boolean modify(MemberVO mVo, String oPw){
+		if(mVo == null) {
+			return false;
+		}
+		mVo.setName("");
+		MemberVO oVo = memberDao.getMember(mVo.getId());
+		if(oVo.getPw().equals(oPw)){
+			memberDao.modify(mVo);	//¿øÇÏ´Â Á¶°ÇÀ» ¸¸Á·ÇÏ¸é DAOÅ¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇØ Äõ¸®¹®À» ½ÇÇà
+			return true;
+		}
+		return false;
+	}
+¿øÇÏ´Â Á¶°Ç¿¡ ¸¸Á·ÇÏÁö ¸øÇÏ¸é false¸¦, ¿øÇÏ´Â Á¤º¸¸¦ ¾ò´Â Á¶°ÇÀ» ¸¸Á·ÇÏ¸é true¸¦ ¹ÝÈ¯ÇÏ¸ç DAOÅ¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º¸¦ È£Ãâ
 
 DAO
-È¸¿ø Á¤º¸¸¦ ÀÌ¿ëÇÏ¿© È¸¿ø Å×ÀÌºí ¾÷µ¥ÀÌÆ® Äõ¸®¹® ÀÛ¼º
+serviceÅ¬·¡½º¿¡¼­ È£ÃâÇÏ¿© ½ÇÇàµÉ ¸Å°³º¯¼ö¸¦ °¡Áø ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ð
+Mapper.xml¿¡¼­ ÇØ´ç ÀÎÅÍÆäÀÌ½ºÀÇ ¸Å°³º¯¼ö Á¤º¸¸¦ ÀÌ¿ëÇØ ½ÇÇàµÇ´Â Äõ¸®¹®À» ÀÛ¼ºÇØ ÀÎÅÍÆäÀÌ½º¸¦ ±¸Çö
+Äõ¸®¹®À¸·Î ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¸é ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º¸¦ È£ÃâÇÏ¿© DAO¸¦ Â÷·Ê´ë·Î È£Ãâ
 
 DB
-voÅ¬·¡½º¿¡ ¸â¹öº¯¼ö¸¦ ¼±¾ðÇØ È¸¿ø Á¤º¸¸¦ °´Ã¼·Î Àü´Þ
+xmlÀÇ Äõ¸®¹®À» ÅëÇØ ÇØ´ç Á¤º¸¿¡ ´ëÇÑ ±â´ÉÀ» ½ÇÇàÇÏ´Â ¿ªÇÒ
 
 
 
