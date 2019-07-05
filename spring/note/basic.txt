@@ -1,13 +1,13 @@
 views,URI(JSP) -> 컨트롤러(class) -> 서비스(인터페이스,구현 클래스) -> DAO(인터페이스, 구현 xml 또는 클래스) -> vo클래스 -> DB
 
-URI - 컨틀롤러에게 기능 요청
+JSP(URI) - 컨트롤러에게 기능 요청
 
 컨트롤러 - 필요한 작업에 맞는 메서드를 서비스에 호출
-Autowired - 생성자 없이 하나의 객체를 만들어서 해당 클래스나 인터페이스가 호출됐을 때 자동으로 주소를 연결해준다
+Autowired - 생성자 없이 하나의 객체를 만들어서 해당 클래스나 인터페이스의 객체를 사용할 때 자동으로 연결
 
 서비스 - 컨트롤러에서 입력받은 기능을 실행하기 위해 인터페이스를 통해 기능을 분류
 
-DAO - DB에 접근할 수 있는 메서드의 집합체(서비스 또는 컨트롤러에서 입력받은 기능에 맞는 함수를 호출)
+DAO - SQL문을 사용하여 DB에 접근할 수 있는 파일(기능에 따라 서비스는 생략 가능하지만 DAO는 DB연결을 위해 필수)
 root-context.xml - 인터페이스를 연결시켜주는 역할
 Mapper.xml - 인터페이스의 파일명과 인터페이스명, 리턴타입 등을 입력하여 원하는 인터페이스를 호출
 
@@ -29,14 +29,101 @@ src > main > webapp > WEB-INF > spring > appServle > servlet-context.xml
 
 
 파일 연결 순서
-컨트롤러에서 원하는 URL에 맞는 메서드 추가 > return하는 JSP파일 추가
 
+1. 컨트롤러
+컨트롤러에서 원하는 URL에 연결하는 메서드 추가(프로젝트 -> /src/main/java -> ***.controller -> ***Controller.java 파일)
+예시)
+@Controller	//annotation - 입력하면 controller로 인식(없을 경우 일반 클래스로 인식)
+public class HomeController {
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	//콘솔에 메세지를 보여주기 위해 선언
+	
+	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
+	MemberDAO stdDao;	
+
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String signinGet(){
+		logger.info("회원가입 진행 완료");
+		return "signin";	//리턴할 jsp파일 입력
+	}
+}
+
+
+2. JSP(HTML문을 이용한 화면 구현)
+return하는 JSP파일 생성 후 구현할 HTML문 입력(프로젝트/src/main/webapp/WEB-INF/views/***.jsp파일 생성)
+
+
+3. 서비스(인터페이스, 구현 클래스)
+ - 서비스 파일에 해당 jsp파일을 사용하는 인터페이스를 생성
+예시)
+public interface MemberService {
+	public boolean signup(MemberVO mVo);	//기존에 아이디가 있어 가입에 실패했을 경우 false
+	public boolean signin(MemberVO mVo);
+}
+ - 서비스 파일에 인터페이스를 구현하는 클래스를 생성하여 @Service, @Autowired, @Override 사용 후 구현
+예시)
+@Service
+public class MemberServiceImp implements MemberService{
+
+	@Autowired
+	MemberDAO memberDao;
+	
+	@Override
+	public boolean signup(MemberVO mVo) {
+		//기존에 해당 아이디가 있는지 체크
+		//있으면 false 반환하고 종료 없으면 회원가입 진행
+		if(mVo == null){
+			return false;
+		}
+		mVo.setName("");
+		if(memberDao.getMember(mVo.getId()) != null) {
+			return false;
+		}
+		memberDao.signup(mVo);
+		return true;
+		
+	}
+}
+ - quick fixed를 통해 DAO의 인터페이스에 추가할 jsp에 관한 인터페이스를 구현
+
+
+4. DAO(인터페이스와 구현 클래스, Mapper.xml)
+ - jsp와 vo클래스에 관한 인터페이스를 구현
+ - 인터페이스를 구현한 클래스 또는 Mapper.xml 
+
+
+5. DB(vo클래스)
+ - vo클래스를 통해 DB의 객체를 한번에 가져올 수 있는 클래스를 구현(멤버변수와 getter/setter/toString 구현)
 
 
 인터페이스는 객체를 생성할 수 있지만 인터페이스로 객체를 생성할 수 없다
 MemberService mS = new MemberService();	//MemberService는 인터페이스이기 때문에 객체 생성 불가
 MemberService mS = new MemberServiceImp();    //인터페이스를 구현한 클래스를 통해 객체 생성 가능
 						->클래스는 기본적으로 생성자가 존재하기 때문에
+
+
+
+
+
+예제) 로그인 기능
+아이디와 비밀번호를 입력 후 로그인 버튼을 클릭하면 데이터베이스에 있는 회원 테이블에 아이디와 일치하는 정보가 있는지 검색하고
+일치하는 정보가 없으면 로그인 실패 처리, 있으면 해당 정보를 가져와서 비밀번호 비교 후 일치하면 로그인 성공 처리
+
+순서
+1. 로그인 버튼을 클릭하면 입력한 정보를 컨트롤러에 post 방식으로 전달(jsp)
+ - 개인 정보가 있으므로
+
+2. 서비스에게 회원 여부를 확인하여 회원이 맞으면 메인 페이지로, 아니면 로그인 페이지로 이동(컨트롤러)
+
+3. dao에게 id와 일치하는 회원 정보를 가져와 저장한 후, 저장된 회원 정보가 없으면(null이면) 컨트롤러에게 회원이 아님을 알려주고,
+   있으면 가져온 회원정보 비밀번호와 입력한 회원정보 비밀번호를 비교하여 일치하면 컨트롤러에게 로그인 성공을,
+   일치하지 않으면 로그인 실패를 알려준다
+
+
+
+
+
+
+
 
 
 

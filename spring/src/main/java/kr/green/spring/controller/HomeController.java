@@ -12,9 +12,6 @@ import kr.green.spring.dao.MemberDAO;
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MemberVO;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller	//annotation - 입력하면 controller로 인식(없을 경우 일반 클래스로 인식)
 public class HomeController {
 	
@@ -23,7 +20,7 @@ public class HomeController {
 	@Autowired
 	MemberService memberService;
 	
-	@Autowired	//생성자를 대신 사용해주는 기능
+	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
 	MemberDAO stdDao;
 	
 	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 /고 방식이 get이면 home 메서드를 실행
@@ -53,5 +50,19 @@ public class HomeController {
 		}
 	}
 	
-	
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String signinGet(Model model){
+		logger.info("로그인 페이지 실행");
+		
+		return "signin";
+	}
+	@RequestMapping(value = "/signin", method = RequestMethod.POST)
+	public String signinPost(Model model, MemberVO mVo){
+		logger.info("로그인 진행 중");
+		System.out.println(mVo);	//입력한 정보가 제대로 가져오는지 확인
+		if(memberService.signin(mVo)){
+			return "redirect:/";
+		}
+		return "redirect:/signin";
+	}
 }

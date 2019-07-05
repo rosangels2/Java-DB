@@ -44,6 +44,28 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", gender=" + gender + ", email=" + email + ", name=" + name + "]";
 	}
-	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pw == null) ? 0 : pw.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberVO other = (MemberVO) obj;
+		if (pw == null) {
+			if (other.pw != null)
+				return false;
+		} else if (!pw.equals(other.pw))
+			return false;
+		return true;
+	}
+
 }
