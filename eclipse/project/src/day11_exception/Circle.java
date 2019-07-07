@@ -1,6 +1,6 @@
 package day11_exception;
 
-import day10.Point;
+import day10_class.Point;
 
 public class Circle extends Shape {
 	

@@ -1,6 +1,6 @@
 package day15_class_shape;
 
-import day10.Shape;
+import day10_class.Shape;
 
 public class Rect extends Shape {
 

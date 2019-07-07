@@ -1,4 +1,4 @@
-package day10;
+package day10_class;
 
 import day9_class.Car;
 

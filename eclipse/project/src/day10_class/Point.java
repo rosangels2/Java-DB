@@ -1,4 +1,4 @@
-package day10;
+package day10_class;
 
 //2차원에서 한 점을 나타내는 클래스
 public class Point {
