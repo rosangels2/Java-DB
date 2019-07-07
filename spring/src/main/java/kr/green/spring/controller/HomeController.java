@@ -32,7 +32,6 @@ public class HomeController {
 		return "home";	//사용자에게 home.jsp를 보내준다
 	}
 	
-	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//화면에 표시되는 페이지는 get방식
 	public String signupGet(Model model){
 		logger.info("회원가입 진행중");
@@ -40,10 +39,10 @@ public class HomeController {
 		return "signup";
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)	//post 방식으로 호출했을 떄 값과 일치하는 메서드를 호출
-	public String signupPost(MemberVO mVo){
+	public String signupPost(MemberVO mVo, String pw1){
 		logger.info("회원가입 진행중");
 		
-		if(memberService.signup(mVo)) {
+		if(memberService.signup(mVo,pw1)) {
 			return "redirect:/";	//회원가입에 성공하면 메인 페이지로 이동
 		}else {
 			return "redirect:/signup";	//redirect - 실행 후 get방식으로 재실행(value값이 동일한 매핑에서 get 방식은 1개만 존재해야 한다)
@@ -78,11 +77,12 @@ public class HomeController {
 		return "/member/modify";	//get 방식은 보여줄 페이지와 경로가 일치하는 jsp를 반환
 	}
 	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
-	public String loginPost(Model model, MemberVO mVo, String oPw){
+	public String loginPost(Model model, MemberVO mVo, String oPw, String pw1){
 		logger.info("정보 수정 진행 중");
 		
-		if(memberService.modify(mVo,oPw)){	//Mapper까지 실행한 후 결과값에 따라 홈페이지를 리턴
-			return "redirect:/";
+		if(memberService.modify(mVo,oPw,pw1)){	//Mapper까지 실행한 후 결과값에 따라 홈페이지를 리턴
+			System.out.println(mVo.getPw()+""+pw1);
+			return "redirect:/member";
 		}else {
 			return "redirect:/member/modify";
 		}
