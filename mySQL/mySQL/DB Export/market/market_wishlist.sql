@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `gym` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `gym`;
+CREATE DATABASE  IF NOT EXISTS `market` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `market`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: gym
+-- Host: localhost    Database: market
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -18,29 +18,27 @@ USE `gym`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
+-- Table structure for table `wishlist`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `wishlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `category` (
-  `category_code` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(45) DEFAULT NULL,
-  `category_writer` varchar(6) DEFAULT NULL,
-  `category_read` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`category_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+CREATE TABLE `wishlist` (
+  `wish_no` int(11) NOT NULL,
+  `wishlist_member_id` varchar(12) NOT NULL,
+  `wishlist_product_no` int(11) NOT NULL,
+  PRIMARY KEY (`wish_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `category`
+-- Dumping data for table `wishlist`
 --
 
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'문의게시판','yyy','ynn'),(2,'자유게시판','yyn','yyy'),(3,'공지게시판','ynn','yyy'),(4,'운동 정보 게시판','ynn','yyy'),(5,'체육관 소개 게시판','ynn','yyy'),(9,'뒷담게시판','yyy','yyy'),(10,'인증게시판','yyy','yyy');
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+LOCK TABLES `wishlist` WRITE;
+/*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-08 16:57:22
+-- Dump completed on 2019-07-08 16:57:50
