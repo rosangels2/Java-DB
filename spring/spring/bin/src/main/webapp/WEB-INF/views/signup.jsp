@@ -30,11 +30,6 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#id').change(function(){
-			if(!checkLength('#id',8,13)){
-				alert('ID는 8~13자리를 입력해야 합니다.');
-			}
-		});
 		//pw1 : 길이 -> 내용이 변경됐을 때 체크 or 가입 버튼이 눌렸을 때
 		$('#pw').change(function(){
 			if(!checkLength('#pw',8,13)){

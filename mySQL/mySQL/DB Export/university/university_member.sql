@@ -18,30 +18,30 @@ USE `university`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `subject`
+-- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `subject`;
+DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `subject` (
-  `subject_code` varchar(15) NOT NULL,
-  `subject_title` varchar(15) DEFAULT NULL,
-  `subject_point` int(11) DEFAULT NULL,
-  `subject_time` int(11) DEFAULT NULL,
-  `subject_type` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`subject_code`)
+CREATE TABLE `member` (
+  `id` varchar(15) NOT NULL,
+  `pw` varchar(255) NOT NULL,
+  `gender` varchar(1) NOT NULL DEFAULT 'M',
+  `email` varchar(45) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subject`
+-- Dumping data for table `member`
 --
 
-LOCK TABLES `subject` WRITE;
-/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES ('MSC001','심리학',3,50,'전공필수'),('MSC002','성리학',3,50,'전공필수'),('MSC003','종이학',3,50,'전공필수');
-/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES ('123','11111111','여','a@b',''),('123123132','123123123','남','',''),('13545','555','여','1@a',''),('333333333','3333333333','남','',''),('664363','666','남','2@a','');
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-08 10:25:51
+-- Dump completed on 2019-07-08 10:25:50
