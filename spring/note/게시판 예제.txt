@@ -1,0 +1,20 @@
+예제) 게시판
+순서
+
+1. 게시판 테이블 생성
+번호 제목 내용 작성자 작성일 첨부파일 조회수
+num
+title
+contents
+writer
+registered	now()
+file
+views		0
+
+2. URI에 /board/list를 입력하면 게시판 페이지가 보이도록 작업(JSP와 컨트롤러)
+
+3. BoardVO 구현
+
+4. service 구현
+
+5. DAO, mapper 구현

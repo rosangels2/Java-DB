@@ -87,5 +87,5 @@ public class HomeController {
 			return "redirect:/member/modify";
 		}
 	}
-	
+
 }
