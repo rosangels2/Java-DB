@@ -5,21 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	});
+</script>
 </head>
 <body>
-	<table>
+	<h1>게시판</h1>
+	<table class="table">
 		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>등록일</th>
-			<th>조회수</th>	
+			<th width="10%">번호</th>
+			<th width="50%">제목</th>
+			<th width="10%">작성자</th>
+			<th width="20%">등록일</th>
+			<th width="10%">조회수</th>	
 		</tr>
-		<c:forEach var="board" items="${list}">	<!-- 향상된 포문처럼 items에서 list를 하나씩 꺼내서 board에 추가한다 -->
+		<c:forEach var="board" items="${list}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
 			<tr>
-				<th>${board.num}</th>	<!-- getter를 호출 -->
-				<th>${board.title}</th>
+				<th>${board.num}</th>	<!-- list의 값이 추가된 변수 board의 getNum() 호출 -->
+				<th><a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a></th>
 				<th>${board.writer}</th>
 				<th>${board.registered}</th>
 				<th>${board.views}</th>		

@@ -23,20 +23,31 @@ public class boardController {
 	BoardService boardService;
 	
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardListGet(Model model) {
 		
 		logger.info("게시판 리스트 진행");
 		
-		ArrayList<BoardVO> boardList = boardService.getBoardList();
+		ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과갑을 저장
 		
 /*		for(BoardVO tmp:boardList) {	//향상된 포문으로 BoardVo클래스의 객체 boardList의 값을 하나씩 꺼냄 
 			System.out.println(tmp);	//꺼낸 값을 출력
 		}
 */		
-		model.addAttribute("list", boardList);
+		model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 		
 		return "/board/list";
+	}
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public String boardDisplayGet(Model model, Integer num){
+		
+		logger.info("게시판 페이지 진행");
+	
+		BoardVO bVo = boardService.getBoard(num);
+		
+		model.addAttribute("board", bVo);
+		
+		return "/board/display";
 	}
 	
 }
