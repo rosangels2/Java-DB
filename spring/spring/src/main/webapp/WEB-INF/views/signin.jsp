@@ -36,11 +36,11 @@
 			<form method="post" action="">
 				<div class="form-group">
 					<label for="usr">아이디</label>
-					<input type="text" class="form-control col-7" id="usr" placeholder="아이디" name="id">
+					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id">
 				</div>
 				<div class="form-group">
 					<label for="pwd">비밀번호</label>
-					<input type="password" class="form-control col-7" id="pwd" placeholder="비밀번호" name="pw">
+					<input type="password" class="form-control col-7" id="pw" placeholder="비밀번호" name="pw">
 				</div>
 				<button type="submit" class="btn btn-primary float-right">로그인</button>
 			</form>
