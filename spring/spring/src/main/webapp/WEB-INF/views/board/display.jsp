@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${board.title} <br>
+	${board.title} <br>	<!-- 컨트롤러에서 객체를 저장한 변수 board의 getter를 호출 -->
 	${board.writer} <br>
 	${board.registered} <br>
 	${board.views} <br>

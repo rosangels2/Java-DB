@@ -18,7 +18,7 @@
 	<h1>게시판</h1>
 	<table class="table">
 		<tr>
-			<th width="10%">번호</th>
+			<th width="10%">번호</th>		<!-- width를 통해 가로를 지정 -->
 			<th width="50%">제목</th>
 			<th width="10%">작성자</th>
 			<th width="20%">등록일</th>
@@ -26,7 +26,7 @@
 		</tr>
 		<c:forEach var="board" items="${list}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
 			<tr>
-				<th>${board.num}</th>	<!-- list의 값이 추가된 변수 board의 getNum() 호출 -->
+				<th>${board.num}</th>	<!-- list의 값이 추가된 변수 board의 getter 호출 -->
 				<th><a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a></th>
 				<th>${board.writer}</th>
 				<th>${board.registered}</th>
