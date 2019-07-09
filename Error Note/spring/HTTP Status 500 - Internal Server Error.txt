@@ -1,5 +1,3 @@
-에러 이름 - HTTP Status 500 - Internal Server Error
-
 에러 내용 - Invalid bound statement (not fount); 패키지명.메서드명
 
 원인
@@ -13,8 +11,6 @@
 
 
 
-
-에러 이름 - HTTP Status 500 - Internal Server Error
 
 에러 내용
 Type Exception Report
@@ -39,7 +35,6 @@ Description The server encountered an unexpected condition that prevented it fro
 
 
 
-에러 이름 - HTTP Status 500 - Internal Server Error
 
 에러 내용
 ### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'gender' at row 1
@@ -47,3 +42,22 @@ Description The server encountered an unexpected condition that prevented it fro
 에러 원인 - gender 자료형의 길이를 varchar 1로 해놨는데 value를 주지 않아 on/off로 입력돼 자료형 길이를 초과
 
 해결 방법 - 자료형 길이에 맞게 한 글자의 value값을 입력
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.green.test.dao.MemberDAO.getEmail
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+
+에러 원인 - Mapper 파일에서 namespace에 오타 발생으로 인해 DAO 파일 등을 연결 할 수 없을 떄
+예시)
+<mapper namespace="kr.green.test.dao.MemberDao">	//에러 원인
+
+해결 방법 - 오타 확인 등으로 정확한 파일명 연결
+예시)
+<mapper namespace="kr.green.test.dao.MemberDAO">
+
+
+

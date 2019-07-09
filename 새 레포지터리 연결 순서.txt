@@ -1,0 +1,333 @@
+github 새 레포지터리 생성 후 깃크라켄 연결
+
+1. 새 레포지터리 생성
+
+2. 깃크라켄 > clone repo > 깃허브 연동으로 해당 레포지터리 선택 후 browse에서 연동할 폴더 선택 후 clone the repo! 클릭
+	      clone repo > clone with URL에서 깃허브의 레포지터리 HTPS주소를 복사한 후 browse에서 연동할 폴더 선택
+
+3. 깃크라켄에서 초기 커밋 알림창이 뜨면 initialize를 통해 이름을 정하고 push를 통해 연결
+
+4. spring > file > new > spring legacy project >연결할 프로젝트 경로 선택 후 Templates에서 spring MVC Project 선택 후 next 
+> 프로젝트명 입력 후 finish(일반적으로 국가.회사명.앱이름 순으로 패키지 이름 생성 ex)kr.green.myapp)
+
+5. gitignore.io에서 java와 java-web 검색 후 코드 복사
+
+6. 깃크라켄에서 target파일들 중 하나를 오른쪽 마우스로 클릭한 뒤 ignore > 아무거나 클릭 후 ignore 선택
+
+7. ignore파일이 생기면 edit this file을 클릭 후 gitignore에서 복사한 코드를 붙여넣고 save and stage change를 선택 후 commit
+
+8. ignore파일이 적용되고 난 후의 파일들을 stage all change를 통해 commit한 뒤 push
+
+9. spring > file >  오픈 프로젝트 >  프로젝트 폴더 경로 선택 > finish
+
+10. 프로젝트 우클릭 > run as > run on server > next > remove all을 통해 다른 프로젝트를 제거한 후 next > finish
+10-1 브라우저에 localhost:8080/프로젝트명 입력 후 결과 확인
+
+11. DB와 연동하기 위한 설정들 추가
+
+11-1 인코딩 UTF-8 수정
+src/main/webapp/WEB-INF/web.xml 파일에 아래 코드 추가
+맨 마지막 줄인 </web-app> 위에 코드를 추가
+예시)
+<filter>
+	<filter-name>encoding</filter-name>
+	<filter-class>
+		org.springframework.web.filter.CharacterEncodingFilter
+	</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+    </init-param>
+</filter>
+    
+<filter-mapping>
+	<filter-name>encoding</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+</web-app>
+
+11-2 STS UTF-설정
+ - 프로젝트 인코딩 설정
+메뉴 Window > Preferences 클릭
+General > Workspace 클릭
+Text file encoding> Other에서 UTF-8 설정 후 Apply
+
+ - JSP 인코딩 설정
+메뉴 Window > Preferences 클릭
+Web > JSP Files 클릭
+Encoding에서 ISO 10646/Unicode(UTF-8) 선택 후 Apply
+
+ - jsp 파일 설정
+jsp 파일 제일 상단에 아래 코드를 추가
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+11-3 target > pom.xml 파일 실행 
+<!-- Test -->
+<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>4.7</version>
+	<scope>test</scope>
+</dependency>        
+	밑에 spring 프로젝트 의존성 추가
+예시)
+<!-- Test -->
+<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>4.7</version>
+	<scope>test</scope>
+</dependency>  
+<!-- DB연동 --> 
+<dependency>	//mybatis 추가
+    <groupId>org.mybatis</groupId>	
+    <artifactId>mybatis</artifactId>
+    <version>3.4.1</version>
+</dependency>
+<dependency>	//mybatis-spring 추가
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.3.0</version>
+</dependency>
+<dependency>	//mysql-connector-java 추가
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.11</version>
+</dependency>
+<dependency>	//spring-jdbc 추가
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+
+11-4 root-context.xml 수정
+ - 네임스페이스 추가
+root-context.xml 파일을 열어 namespace 탭 클릭
+aop, beans, context, jdbc, mybatis-spring 선택 후 저장
+
+ - mysql 정보 추가
+root-context.xml 파일 실행 후 source의 맨 밑줄 </beans> 위에 코드 추가
+
+<bean id="dataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <!-- mysql 버전에 따라 driverClassName의 value값이 달라짐 아래 코드는 Mysql 8기준 -->
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+    <property name="url"
+              value="jdbc:mysql://localhost:3306/스키마이름?useSSL=false&amp;serverTimezone=UTC">
+    </property>
+    <property name="username" value="mysql계정아이디"></property>
+    <property name="password" value="mysql계정비번"></property>
+</bean> 
+
+예시)
+<bean id="dataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+    <property name="url"
+              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=UTC">	//데이터베이스명을 localhost번호 뒤에 입력
+    </property>
+    <property name="username" value="green"></property>
+    <property name="password" value="cjgreen"></property>
+</bean>
+
+ - Mapper 설정
+root-context.xml 파일 실행 후 source의 맨 밑줄 </beans> 위에 코드 추가
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="mapperLocations" value="classpath:경로/*Mapper.xml"></property>
+</bean>
+<mybatis-spring:scan base-package="맵핑할패키지이름"/>
+
+예시)
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+</bean>						//mappers폴더 밑의 모든 폴더들 밑에 xxMapper.xml파일들
+<mybatis-spring:scan base-package="kr.green.spring.dao"/> //mapper를 사용하는 dao패키지의 이름 입력
+
+11-5 src/main/java폴더에 dao 패키지 추가 및 dao interface 파일 생성 후 interface 생성
+예시)
+public interface MemberDAO {
+	
+	public String getEmail(String id);
+}
+
+
+11-6 src/main/resources폴더에  mappers 폴더 생성 후 mapper.xml 파일 생성 후 설정
+예시)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.test.dao.MemberDAO">	//kr.green.test.dao 패키지의 MemberDAO파일에 연결
+  <select id="getEmail" resultType="String">	//getEmail 메서드를 호출해서 String으로 반환
+  	select email from member where id = #{id}	//#{id} = (매개변수)
+  </select>
+</mapper>
+
+11-7 Controller 작성
+예시) 회원가입 기능
+package kr.green.test.controller;
+
+@Controller
+public class HomeController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//실행된 클래스와 컨트롤러를 확인하기 위해 현재 정보를 상수인 클래스 멤버변수에 저장
+	
+	@Autowired
+	MemberService memberService;	//memberService의 객체 생성
+	
+	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
+	MemberDAO stdDao;	//memberDAO의 객체를 생성
+	
+	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 /고 방식이 get이면 home 메서드를 실행
+	@RequestMapping(value = "/", method = RequestMethod.GET)	//get방식으로 호출했을 떄 값과 일치하는 메서드를 호출
+	public String home(Model model){
+		logger.info("메인페이지 실행");	//console에 입력되는 메세지		
+		
+		return "home";	//사용자에게 home.jsp를 보내준다
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//화면에 표시되는 페이지는 get방식
+	public String signupGet(Model model){
+		logger.info("회원가입 진행중");
+		
+		return "signup";
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)	//post 방식으로 호출했을 떄 값과 일치하는 메서드를 호출
+	public String signupPost(MemberVO mVo, String pw1){
+		logger.info("회원가입 진행중");
+		
+		if(memberService.signup(mVo,pw1)) {
+			return "redirect:/";	//회원가입에 성공하면 메인 페이지로 이동
+		}else {
+			return "redirect:/signup";	//redirect - 실행 후 get방식으로 재실행(value값이 동일한 매핑에서 get 방식은 1개만 존재해야 한다)
+		}
+	}
+}
+
+11-8 필요에 따라 jsp 작성
+예시) signup.jsp - 회원가입 페이지
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<title>회원가입</title>
+<style>
+	input.form-control:focus{
+		color: green;
+		background-color: aqua;
+		font-size: 30px;
+	}
+	input.form-control:hover{
+		background-color: wheat;
+	}
+	.container{
+		border: 1px solid black;
+		width: 50%;
+	}
+	i.fab{
+		font-size: 100px;
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<div class="row m-5">
+		<div class="container offset-4 col-4">
+			<div class="offset-3"> <h1>회원가입</h1></div>
+			<form method="post" action="">
+				<div class="form-group">
+					<label for="usr">아이디</label>
+					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id">
+				</div>
+				<div class="form-group">
+					<label for="pwd">비밀번호</label>
+					<input type="password" class="form-control col-7" id="pw" placeholder="비밀번호" name="pw">
+				</div>
+				<div class="form-group">
+					<label for="pwdRe">비밀번호 확인</label>
+					<input type="password" class="form-control col-7" id="pw1" placeholder="비밀번호 확인" name="pw1">
+				</div>
+				<div class="form-group">
+					<label for="sel1">성별</label>
+					<select class="form-control col-4" id="sel1" name="gender">
+						<option value="남">남자</option>
+						<option value="여">여자</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="email">이메일</label>
+					<input type="text" class="form-control" id="email" placeholder="이메일" name="email">
+				</div>
+				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">취소</button>
+				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">입력완료</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+<a href="<%=request.getContextPath()%>/signup">회원가입</a>	//회원가입 글자를 누르면 해당 URI로 이동
+
+11-9 필요한 기능에 따라 서비스 interface와 구현 class 생성
+예시) service interface 회원가입 기능
+public interface MemberService {
+	public boolean signup(MemberVO mVo, String pw1);	//기존에 아이디가 있어 가입에 실패했을 경우 false
+}
+예시) service implements class 회원가입 기능
+@Service	//서비스로 인식시키기 위한 키워드
+public class MemberServiceImp implements MemberService{
+
+	@Autowired
+	MemberDAO memberDao;
+	
+	@Override
+	public boolean signup(MemberVO mVo, String pw1) {
+		//기존에 해당 아이디가 있는지 체크
+		//있으면 false 반환하고 종료 없으면 회원가입 진행
+		if(mVo == null){	//예외처리
+			return false;
+		}
+		if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13) {
+			return false;
+		}
+		if(!mVo.getPw().equals(pw1)) {
+			return false;
+		}
+		MemberVO oVo = memberDao.getMember(mVo.getId());	//mVo.getID를 통해 getMember에서 객체를 가져와 oVo에 저장
+		if(oVo != null){	//입력된 id를 통해 가져온 객체가 null이 아니라면(이미 가입돼 있다면)
+			return false;	//false를 반환
+		}
+		mVo.setName("");
+		memberDao.signup(mVo);
+		return true;
+	}
+
+}
+
+11-10 서비스에서 사용될 DAO 추가
+예시) 회원가입 기능
+public interface MemberDAO{
+	void signup(MemberVO mVo);	//VO객체를 통해 mapper를 실행하는 인터페이스
+}
+
+11-11 DAO를 실행할 mapper 구현
+예시) 회원가입 기능
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.spring.dao.MemberDAO">	<!-- 인터페이스가 있는 파일명 -->
+  <insert id="signup">
+  	insert into member(id,pw,gender,email,name)
+  	values(#{id},#{pw},#{gender},#{email},#{name})	//입력받은 VO객체의 멤버변수들을 이름이 같은 컬럼의 속성값으로 추가
+  </insert>
+</mapper>
