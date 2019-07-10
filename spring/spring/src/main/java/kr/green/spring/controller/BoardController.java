@@ -15,7 +15,7 @@ import kr.green.spring.vo.BoardVO;
 
 @Controller
 @RequestMapping(value = "/board")	//URI에 /board가 붙는 모든 페이지를 연결
-public class boardController {
+public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	

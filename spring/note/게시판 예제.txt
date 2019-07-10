@@ -1,6 +1,3 @@
-예제) 게시판
-순서
-
 1. 게시판 테이블 생성
 번호 제목 내용 작성자 작성일 첨부파일 조회수
 num
@@ -12,24 +9,112 @@ file
 views		0
 
 2. URI에 /board/list를 입력하면 게시판 페이지가 보이도록 작업(JSP와 컨트롤러)
+ - URI가 /board/list일 때 처리할 수 있는 메서드 구현 및 서비스에서 실행된 결과를 JSP에게 전송
+예시)
+	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
+	public String listGet(Model model) {
+		logger.info("게시판 목록");
+		
+		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayList에 데이터를 가져온 뒤 복사
+		System.out.println(boardList);	//제대로 출력되는지 확인
+		model.addAttribute("list", boardList);	//jsp에 정보를 보내주기 위해 변수 list에 boardList를 값으로 입력
+		
+		return "/board/list";
+	}
 	
-3. BoardVO 클래스 구현
+3. BoardVO 클래스 구현 - 게시판 정보를 객체로 가져오기 위한 클래스 생성
+예시) 멤버변수와 toString, getter/setter 생성
+	private int num;
+	private String title;
+	private String contents;
+	private String writer;
+	private Date registered;
+	private int views;
+	private String file;
+	
+4. service, implements 클래스 구현 - 기능이 단순하면 서비스 구현 없이 DAO에게 직접 요청 ex) 모든 정보를 가져올 때
+예시)
+ - service
+ArrayList<BoardVO> getBoardList();
 
-4. service, implements 클래스 구현
+ - implements
+@Service
+public class BoardServiceImp implements BoardService {
+
+	@Autowired
+	BoardDAO boardDao;
+	
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		
+		return boardDao.getBoardList();	//리턴에 DAO의 객체.메서드명을 입력해 결과값을 재반환
+	}
 
 5. DAO, mapper 구현
+예시)
+ - DAO
+	ArrayList<BoardVO> getBoardList();
+ - Mapper
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+	  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="kr.green.test.dao.BoardDAO">
+		<select id="getBoardList" resultType="kr.green.test.vo.BoardVO">
+			select * from board
+		</select>
+	</mapper>
 
-6. 컨트롤러에서 서비스 호출을 통해 기능을 실행한 뒤 DB에서 꺼내온 ArrayList 객체를 변수에 저장
+6. 컨트롤러에서 서비스 호출을 통해 기능을 실행한 뒤 DB에서 꺼내온 ArrayList 객체가 제대로 출력되는지 확인한 후 변수에 저장
+예시)
+	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
+	public String listGet(Model model) {
+		logger.info("게시판 목록");
+		
+		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayList에 데이터를 가져온 뒤 복사
+		System.out.println(boardList);	//제대로 출력되는지 확인
+		for(BoardVO tmp:boardList){
+			System.out.println(boardList);
+		}
+		model.addAttribute("list", boardList);	//jsp에 정보를 보내주기 위해 변수 list에 boardList를 값으로 입력
+		
+		return "/board/list";
+	}
 
 7. jsp에서 해당 변수를 호출하여 값을 출력
+예시)
+<body>
+	<h1>게시판</h1>
+	<table class="table">
+		<tr>
+			<th width="10%">번호</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="50%">제목</th>
+			<th width="10%">작성자</th>
+			<th width="20%">등록일</th>
+			<th width="10%">조회수</th>	
+		</tr>
+		<c:forEach var="board" items="${list}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가하고 아래 코드를 실행 -->
+			<tr>
+				<th>${board.num}</th>	<!-- list의 값이 추가된 변수 board의 getter 호출 -->
+				<th><a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a></th>
+				<th>${board.writer}</th>
+				<th>${board.registered}</th>
+				<th>${board.views}</th>		
+			</tr>
+		</c:forEach>
+	</table>
+</body>
 
-8. URI에 /board/display를 입력하면 게시판 빈 페이지가 보이도록 작업
--> 제목을 누르면 /board/display로 이동하도록 구현
+8. URI에 /board/display를 입력하면 게시판 빈 페이지가 보이도록 views 폴더에 board폴더를 생성한 후 display.jsp 파일을 생성
+8-1 제목을 누르면 /board/display로 이동하도록 구현(a태그를 이용해 제목을 입력)
+예시)
+<th> <a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a> </th>	//URI뒤에 ?를 붙여 값을 전송
 
 9. 글의 제목을 클릭하면 해당 글의 게시판 넘버와 일치하는 객체를 컨트롤러로 가져와서 제목, 작성자, 작성일, 조회수, 내용, 첨부파일을 표시
--> GET방식의 URI에서 VO의 멤버변수 명과 일치하는 정보를 매개변수로 가져올 수 있다
+-> GET방식의 URI에서 VO의 멤버변수명과 일치하는 정보를 매개변수로 가져올 수 있다
 
-예시) URI = http://localhost:8080/spring/board/display?num=2
+예시)
+	URI = http://localhost:8080/spring/board/display?num=2
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public String boardDisplayGet(Model model, Integer num){
@@ -39,3 +124,97 @@ views		0
 		return "/board/display";
 	}
 
+10. URI의 변수값이 제대로 출력되는지 확인한 후 URI의 변수를 매개변수로 사용한 Service의 메서드를 선언하고 결과값을 사용할 형식의 변수에 저장한다
+예시)
+	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
+	public String displayGet(Model model, Integer num) {
+		logger.info("게시글 내용");
+		System.out.println(num); //URI의 변수 값이 제대로 넘어오는지 확인
+
+		BoardVO bVo = boardService.getBoardContents(num);	//서비스에서 호출할 메서드를 선언
+
+		return "/board/display";
+	}
+
+11. quick fixed를 통해 선언한 Service의 메서드를 생성한다
+예시)
+	BoardVO getBoardContents(Integer num);
+
+12. 서비스를 구현하는 implements 클래스에서 quick fixed를 통해 해당 인터페이스를 구현하고 DAO의 객체.메서드명을 통해 DAO 인터페이스를 호출한다
+예시)
+	@Override
+	public BoardVO getBoardContents(Integer num){
+
+		return boardDao.getBoardContents(num);
+	}
+
+13. quick fixed를 통해 DAO의 인터페이스를 생성한다
+예시)
+	BoardVO getBoardContents(Integer num);
+
+14. Mapper.xml 파일에서 해당 인터페이스와 쿼리문을 연결한다
+예시)
+<mapper namespace="kr.green.test.dao.BoardDAO">
+	<select id="getBoardContents" resultType="kr.green.test.vo.BoardVO">	//resultType에 VO 클래스를 입력해 VO의 클래스의 객체로 반환
+		select * from board where num = #{num}
+	</select>
+</mapper>
+
+15. Service 인터페이스의 구현 클래스에 매개변수가 null일 경우 계산하지 않게 예외처리를 생성한다
+예시)
+	@Override
+	public BoardVO getBoardContents(Integer num){
+		if(num == null) {
+			return null;
+		}
+		BoardVO bVo = boardDao.getBoardContents(num);
+		if(bVo == null) {
+			return null;
+		}
+		return bVo;
+	}
+
+16. 컨트롤러에서 서비스 호출 결과가 제대로 출력되는지 확인한다
+예시)
+	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
+	public String displayGet(Model model, Integer num) {
+		logger.info("게시글 내용");
+		System.out.println(num); //URI의 변수 값이 제대로 넘어오는지 확인
+
+		BoardVO bVo = boardService.getBoardContents(num);	//서비스에서 호출할 메서드를 선언
+		System.out.println(bVo);	//넘어온 객체값을 확인
+
+		return "/board/display";
+	}
+
+17. 서비스 호출 결과가 제대로 출력된다면 원하는 결과에 맞게 조건식으로 예외처리를 하고 jsp에 전송하기 위해 객체 model의 변수에 값을 저장한다
+예시)
+	public String displayGet(Model model, Integer num) {
+		logger.info("게시글 내용");
+		System.out.println(num); //URI의 변수 값이 제대로 넘어오는지 확인
+		
+		BoardVO bVo = boardService.getBoardContents(num);
+		System.out.println(bVo);
+		if(bVo == null) {
+			return "redirect:/board/list";	//결과값을 찾지 못했을 경우 해당 페이지로 이동
+		}
+		model.addAttribute("board", bVo);	//결과값을 찾았다면 jsp에서 사용할 model의 변수에 해당 결과값을 저장
+		return "/board/display";
+	}
+
+18. 컨트롤러에서 서비스를 통해 얻은 결과를 jsp에서 ${변수명} 형식을 통해 호출하여 페이지에 출력
+예시) 
+	게시글 번호
+	<div>${board.num}</div>	//${컨트롤러의 변수명.VO클래스의 변수명} 형식을 통해 해당 변수의 VO클래스 변수값을 getter를 통해 호출
+	게시글 제목
+	<div>${board.title}</div>
+	작성자
+	<div>${board.writer}</div>
+	게시글 내용
+	<div>${board.contents}</div>
+	조회수
+	<div>${board.views}</div>
+	작성일
+	<div>${board.registered}</div>
+	첨부파일
+	<div>${board.file}</div>
