@@ -59,7 +59,7 @@ public class MemberServiceImp implements MemberService{
 			return false;
 		}
 		if(oVo.getPw().equals(oPw)){
-			if(mVo.getPw() == null || mVo.getPw() == ""){
+			if(mVo.getPw() == null || mVo.getPw() == "" || pw1 == null || pw1 == ""){
 				mVo.setPw(oVo.getPw());
 			}else if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){
 				return false;
