@@ -160,7 +160,7 @@ public class BoardServiceImp implements BoardService {
 	</select>
 </mapper>
 
-15. Service 인터페이스의 구현 클래스에 매개변수가 null일 경우 계산하지 않게 예외처리를 생성한다
+15. Service  구현 클래스에 매개변수가 null일 경우 계산하지 않게 예외처리를 생성한다
 예시)
 	@Override
 	public BoardVO getBoardContents(Integer num){
@@ -218,3 +218,42 @@ public class BoardServiceImp implements BoardService {
 	<div>${board.registered}</div>
 	첨부파일
 	<div>${board.file}</div>
+
+19. 조회수 기능 추가 - 서비스 클래스에서 getBoardContents 메서드에 코드 추가
+예시)
+	@Override
+	public BoardVO getBoardContents(Integer num){
+		if(num == null) {
+			return null;
+		}
+		BoardVO bVo = boardDao.getBoardContents(num);
+		if(bVo == null) {
+			return null;
+		}	//예외처리 후 해당 게시글을 찾았다면
+		boardDao.boardUpdate(num);	//조회수를 증가시키는 인터페이스를 호출한 후 quick fixed를 통해 DAO 인터페이스 구현
+		return boardDao.getBoardContents(num);	//조회수가 증가된 내용을 다시 호출하여 반환
+	}
+
+20. quick fixed를 통해 DAO 인터페이스 구현
+예시)
+	void boardUpdate(Integer num);
+
+21. mapper 파일에서 DAO인터페이스를 연결
+예시)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.test.dao.BoardDAO">
+	<select id="getBoardList" resultType="kr.green.test.vo.BoardVO">
+		select * from board
+	</select>
+	<select id="getBoardContents" resultType="kr.green.test.vo.BoardVO">
+		select * from board where num = #{num}
+	</select>
+	<update id="boardUpdate">
+		update board
+			set views = views+1
+			where num = #{num}
+	</update>
+</mapper>
