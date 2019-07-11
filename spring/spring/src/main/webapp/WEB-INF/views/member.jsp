@@ -9,6 +9,7 @@
 </head>
 <body>
 	<a href="<%=request.getContextPath()%>/member/modify">회원정보 수정</a>	
-	${user}
+	<a href="<%=request.getContextPath()%>/board/list">게시판</a>
+<%-- ${user} 변수 호출을 통해 interceptor에 저장된 객체 정보를 호출  --%>
 </body>
 </html>

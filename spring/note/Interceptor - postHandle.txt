@@ -132,3 +132,17 @@ kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 	${user}
 </body>
 </html>
+
+6. JSP에서 세션에 객체가 저장돼 있는지 여부에 따라 html 구성을 다르게 적용 가능
+예시) home.jsp
+<body>	<!-- eq = equals(같다), ne = !equals(같지 않다) -->
+	<c:if test="${user eq null}">	<!-- test = 조건식(해당 조건식 결과가 true이면 해당 코드를 실행하며, c:if는 else가 없다) -->
+		<a href="<%=request.getContextPath()%>/signup">회원가입</a>
+		<a href="<%=request.getContextPath()%>/signin">로그인</a>
+	</c:if>
+	<c:if test="${user ne null}">
+		<a href="<%=request.getContextPath()%>/member/modify">회원정보 수정</a>
+		<a href="<%=request.getContextPath()%>/board/list">게시판</a>
+	${user} 변수 호출을 통해 interceptor에 저장된 객체 정보를 호출 
+	</c:if>
+</body>

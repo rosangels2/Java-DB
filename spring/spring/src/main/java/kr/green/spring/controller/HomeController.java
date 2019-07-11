@@ -24,14 +24,13 @@ public class HomeController {
 	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
 	MemberDAO stdDao;	//memberDAO의 객체를 생성
 	
-	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 /고 방식이 get이면 home 메서드를 실행
+	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 "/"고 방식이 get이면 home메서드를 실행
 	@RequestMapping(value = "/", method = RequestMethod.GET)	//get방식으로 호출했을 떄 값과 일치하는 메서드를 호출
 	public String home(Model model){
 		logger.info("메인페이지 실행");	//console에 입력되는 메세지		
 		
 		return "home";	//사용자에게 home.jsp를 보내준다
 	}
-	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//화면에 표시되는 페이지는 get방식
 	public String signupGet(Model model){
 		logger.info("회원가입 진행중");
@@ -59,9 +58,9 @@ public class HomeController {
 	public String signinPost(Model model, MemberVO mVo){
 		logger.info("로그인 진행 중");
 		System.out.println(mVo);	//입력한 정보를 제대로 가져오는지 확인
-		MemberVO user = memberService.signin(mVo);
-		if(user != null){
-			model.addAttribute("user", user);
+		MemberVO user = memberService.signin(mVo);	//객체 mVo를 매개변수로 사용한 signin 함수를 호출하여 결과는 객체 user에 저장한다
+		if(user != null){	//user가 null이 아니라면(로그인에 성공했다면)
+			model.addAttribute("user", user);	//interceptor에게 전해주기 위해 변수 user에 객체 user를 저장한다
 			return "redirect:/member"; //로그인 성공 시 member.jsp로 이동
 		}
 		return "redirect:/signin";
