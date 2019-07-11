@@ -1,4 +1,4 @@
-package day8_method;
+package day08_method;
 	
 /*	접근 제한자
  	public- 클래스에 public을 붙일 수 있는 경우는 하나뿐(클래스명과 파일명이 일치하는 경우에만 public을 붙일 수 있다

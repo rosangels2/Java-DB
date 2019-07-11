@@ -1,4 +1,4 @@
-package day8_method;
+package day08_method;
 
 import java.util.Scanner;
 
