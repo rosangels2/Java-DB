@@ -59,7 +59,9 @@ public class HomeController {
 	public String signinPost(Model model, MemberVO mVo){
 		logger.info("로그인 진행 중");
 		System.out.println(mVo);	//입력한 정보를 제대로 가져오는지 확인
-		if(memberService.signin(mVo)){
+		MemberVO user = memberService.signin(mVo);
+		if(user != null){
+			model.addAttribute("user", user);
 			return "redirect:/member"; //로그인 성공 시 member.jsp로 이동
 		}
 		return "redirect:/signin";

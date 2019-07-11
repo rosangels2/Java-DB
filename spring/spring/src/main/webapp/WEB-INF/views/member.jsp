@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/member/modify">회원정보 수정</a>
+	<a href="<%=request.getContextPath()%>/member/modify">회원정보 수정</a>	
+	${user}
 </body>
 </html>

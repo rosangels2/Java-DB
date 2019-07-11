@@ -34,19 +34,19 @@ public class MemberServiceImp implements MemberService{
 		return true;
 	}
 	@Override
-	public boolean signin(MemberVO mVo){
+	public MemberVO signin(MemberVO mVo){
 		if(mVo == null){	//예외처리 
-			return false;
+			return null;
 		}
 		mVo.setName("");
 		MemberVO oVo = memberDao.getMember(mVo.getId());	//mVo.getID를 통해 getMember에서 객체를 가져와 oVo에 저장
 		if(oVo == null){	
-			return false;
+			return null;
 		}
 		if(oVo.getPw().equals(mVo.getPw())){	//oVo의 pw와 mVo의 pw가 일치하다면
-			return true;
+			return oVo;
 		}
-		return false;
+		return null;
 	}
 	@Override
 	public boolean modify(MemberVO mVo, String oPw, String pw1){

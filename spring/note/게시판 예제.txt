@@ -219,7 +219,7 @@ public class BoardServiceImp implements BoardService {
 	첨부파일
 	<div>${board.file}</div>
 
-19. 조회수 기능 추가 - 서비스 클래스에서 getBoardContents 메서드에 코드 추가
+19. 조회수 기능 추가 - 서비스 implements 클래스의 getBoardContents 메서드에서 DAO의 메서드 호출
 예시)
 	@Override
 	public BoardVO getBoardContents(Integer num){
@@ -233,6 +233,41 @@ public class BoardServiceImp implements BoardService {
 		boardDao.boardUpdate(num);	//조회수를 증가시키는 인터페이스를 호출한 후 quick fixed를 통해 DAO 인터페이스 구현
 		return boardDao.getBoardContents(num);	//조회수가 증가된 내용을 다시 호출하여 반환
 	}
+19-1. 조회수 기능 추가1 - 서비스 클래스에 인터페이스 생성
+예시)
+	public void updateViews(Integer num);
+
+19-2. 조회수 기능 추가1 - 서비스 implements 클래스에서 quick fixed를 통해 인터페이스를 구현한 후 DAO의 메서드를 호출
+예시)
+	@Override
+	public void updateViews(Integer num) {
+		
+		BoardVO tmp = boardDao.getBoardContents(num);	//게시글에 맞는 객체를 가져와서 새로운 객체에 저장
+		if(tmp != null) {	//객체가 비어있지 않다면
+			int oldViews = tmp.getViews();	//가져온 객체의 조회수를 변수에 저장 
+			tmp.setViews(oldViews+1);	//setter를 통해 조회수를 기존에서 +1증가한 값으로 변경
+			boardDao.updateBoard(tmp);	//DAO의 메서드를 선언한 뒤 quick fixed를 통해 인터페이스를 생성
+		}
+	}
+
+19-3. 조회수 기능 추가1 - 서비스 implements 클래스에서 quick fixed를 통해 DAO에 인터페이스 생성
+예시)
+	void updateBoard(BoardVO tmp);
+
+19-4. 조회수 기능 추가1 - BoardMapper.xml에서 다오의 인터페이스를 연결하는 쿼리문 작성
+예시)
+	<update id="updateBoard">
+		update board 
+		set title = #{title},
+			contents = #{contents},
+			file = #{file},
+			views = #{views}
+			where num = #{num}
+	</update>
+
+19-5. 조회수 기능 추가1 - 컨트롤러에서 해당 서비스를 호출하여 기능 실행
+예시)
+	boardService.updateViews(num);
 
 20. quick fixed를 통해 DAO 인터페이스 구현
 예시)
@@ -257,3 +292,11 @@ public class BoardServiceImp implements BoardService {
 			where num = #{num}
 	</update>
 </mapper>
+
+22. VO에서 Date 타입 변수의 getter를 수정해서 원하는 형식으로 시간을 표시
+예시)
+	public String getRegistered() {
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//원하는 형식으로 시간을 보여주게 만드는 클래스
+		return f.format(registered);	//변수 registered를 위의 형식으로 변환하여 반환
+	}
+

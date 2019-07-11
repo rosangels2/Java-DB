@@ -43,7 +43,7 @@ public class BoardController {
 		
 		logger.info("게시판 페이지 진행");
 	
-		BoardVO bVo = boardService.getBoard(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
+		BoardVO bVo = boardService.getBoardContents(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
 		
 		model.addAttribute("board", bVo);	//jsp에서 변수를 호출하여 사용하기 위해 변수 board를 생성해 VO객체 bVo를 저장
 		

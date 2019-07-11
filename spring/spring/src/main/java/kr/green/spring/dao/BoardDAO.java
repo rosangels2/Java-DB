@@ -8,6 +8,10 @@ public interface BoardDAO {
 
 	ArrayList<BoardVO> getBoardList();
 	
-	BoardVO getBoard(Integer num);
+	BoardVO getBoardContents(Integer num);
+	
+	void boardUpdate(Integer num);
+
+	void updateBoard(BoardVO tmp);
 	
 }
