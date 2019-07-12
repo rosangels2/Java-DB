@@ -1,11 +1,12 @@
 package kr.green.spring.vo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BoardVO {
 	
-	private int num;
+	private Integer num;
 	private String title;
 	private String contents;
 	private String writer;
@@ -42,8 +43,13 @@ public class BoardVO {
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//원하는 형식으로 시간을 보여주게 만드는 클래스
 		return f.format(registered);	//변수 registered를 위의 형식으로 변환하여 반환
 	}
-	public void setRegistered(Date registered) {
-		this.registered = registered;
+	public void setRegistered(String registered) {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+		try {
+			this.registered = transFormat.parse(registered);
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	public String getFile() {
 		return file;

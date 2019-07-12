@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 </head>
 <style type="text/css">
 .box{
@@ -16,33 +17,41 @@
 }
 </style>
 <body>
-	<div class="box">
-	게시글 번호
-	<div>${board.num}</div>
-	</div>
-	<div class="box">
-	게시글 제목
-	<div>${board.title}</div>
-	</div>
-	<div class="box">
-	작성자
-	<div>${board.writer}</div>
-	</div>
-	<div class="box">
-	게시글 내용
-	<div>${board.contents}</div>
-	</div>
-	<div class="box">
-	조회수
-	<div>${board.views}</div>
-	</div>
-	<div class="box">
-	작성일
-	<div>${board.registered}</div>
-	</div>
-	<div class="box">
-	첨부파일
-	<div>${board.file}</div>
-	</div>
+<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
+<div class="container">         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>게시글 제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>작성일</th>
+        <th>첨부파일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${board.title}</td>
+        <td>${board.writer}</td>
+        <td>${board.views}</td>
+        <td>${board.registered}</td>
+        <td>${board.file}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>게시글 내용</th>
+      </tr>
+    </thead>
+  </table>
+  <div class="contents" style="padding-left: 12px; height: 300px; overflow: auto;">${board.contents}</div>
+  <a href="<%=request.getContextPath()%>/board/list"> <button type="button" class="btn btn-outline-dark">게시글 목록</button> </a>
+  <a href="<%=request.getContextPath()%>/board/register?id=${board.writer}"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
+  <c:if test="${user.id eq board.writer}">	<!-- 로그인 중인 세션 객체 user의 아이디와 글 작성자의 id가 같을 때만 보이게 한다 -->
+  	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"> <button type="button" class="btn btn-outline-dark">게시글 수정</button> </a>
+  	<a href="<%=request.getContextPath()%>/board/delete"> <button type="button" class="btn btn-outline-dark">게시글 삭제</button> </a>
+  </c:if>
 </body>
 </html>

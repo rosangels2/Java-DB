@@ -1,5 +1,8 @@
 package kr.green.spring.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +91,11 @@ public class HomeController {
 			return "redirect:/member/modify";
 		}
 	}
-
+	@RequestMapping(value="/signout")	//로그아웃 기능
+	public String signout(HttpServletRequest request){
+		HttpSession session = request.getSession();	//현재 페이지의 요청에서 세션을 가져와 새로운 객체 세션에 저장
+		session.removeAttribute("user");	//세션에서 user값을 제거
+		
+		return "redirect:/";
+	}
 }

@@ -1,0 +1,146 @@
+display.jsp에서 수정, 등록, 삭제 버튼 추가 및 링크 등록
+
+수정 URI : /board/modify
+
+수정 페이지 추가 및 구현 후 게시글 수정 기능 추가
+
+
+1. board/modify.jsp 파일 생성 후 컨트롤러에서 매핑하고 생성했던 서비스 인터페이스를 통해 제대로 객체 정보가 출력되는지 확인
+예시) 컨트롤러
+	@RequestMapping(value="modify", method = RequestMethod.GET)
+	public String boardModifyGet(Model model, Integer num){
+		logger.info("게시글 수정 진행");
+		
+		BoardVO bVo = boardService.getBoardContents(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
+		model.addAttribute("board", bVo);	//jsp에서 변수를 호출하여 사용하기 위해 변수 board를 생성해 VO객체 bVo를 저장
+		
+		return "/board/modify";
+	}
+
+예시) jsp파일
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>	
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+	<title>display</title>
+<style>
+a{
+	float: right;			
+	color: black;
+	margin-right : 30px;
+}
+</style>
+</head>
+<body>
+	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
+	<form method="post" action="<%=request.getContextPath()%>/board/modify">
+		<input type="hidden" name="num" value="${board.num}">
+		<div class="container-fluid" style="margin-top:20px;">	              
+		    <div class="form-group">
+			  <label>제목</label>
+			  <input type="text" class="form-control" name="title" value="${board.title}">
+		    </div>
+		    <div class="form-group">
+			  <label>작성자</label>
+			  <input type="text" class="form-control" name="writer" value="${board.writer}" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>작성일</label>
+			  <input type="text" class="form-control" name="registered" value="${board.registered}" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>조회수</label>
+			  <input type="text" class="form-control" name="views" value="${board.views }" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>내용</label>
+			  <textarea class="form-control" rows="5" name="contents">${board.contents }</textarea>
+			</div>
+		    <div class="form-group">
+			  <label>파일첨부</label>
+			  <input type="text" class="form-control" name="file" value="${board.file }">
+		    </div>	  		
+		</div>
+		<button style="float: right; margin-right: 20px;">수정 완료</button>
+	</form>
+	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">취소</button></a>
+</body>
+</html>
+
+2. modify.jsp에서 form 태그를 통해 post방식으로 정보를 전송했을 때의 메서드를 컨트롤러에서 매핑하고 서비스 인터페이스를 호출
+예시)
+	@RequestMapping(value="modify", method = RequestMethod.POST)
+	public String boardModifyPost(Model model, BoardVO bVo){
+		logger.info("게시글 수정 진행");
+		
+		if(boardService.modify(bVo)){
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/modify";
+	}
+}
+
+3. quick fixed를 통해 서비스 인터페이스 생성
+예시)
+	boolean modify(BoardVO bVo);
+
+4. quick fixed를 통해 해당 인터페이스 구현 후 DAO 인터페이스 호출
+예시)
+	@Override
+	public boolean modify(BoardVO bVo) {
+		boardDao.updateBoard(bVo);
+		return true;
+	}
+
+5. quick fixed를 통해 DAO 인터페이스 생성하거나 생성했던 인터페이스를 호출해서 사용
+예시)
+	void updateBoard(BoardVO tmp);
+
+6. mapper에 쿼리문을 작성 후 연결하거나 생성했던 쿼리문을 연결
+예시)
+	<update id="updateBoard">
+		update board 
+		set title = #{title},
+			contents = #{contents},
+			file = #{file},
+			views = #{views}
+			where num = #{num}
+	</update>
+
+7. 서비스 구현 클래스에서 예외 처리
+예시)	
+	@Override
+	public boolean modify(BoardVO bVo) {
+		if(bVo == null) {
+			return false;
+		}
+		BoardVO oldbVo = boardDao.getBoardContents(bVo.getNum());
+		if(oldbVo == null){
+			return false;
+		}
+		if(bVo.getTitle() == null || bVo.getTitle() == "" || bVo.getTitle().equals(oldbVo.getTitle())){
+			bVo.setTitle(oldbVo.getTitle());
+		}
+		if(bVo.getContents() == null || bVo.getContents() == "" || bVo.getContents().equals(oldbVo.getContents())){
+			bVo.setContents(oldbVo.getContents());
+		}
+		if(bVo.getFile() == null || bVo.getFile() == "" || bVo.getFile().equals(oldbVo.getFile())){
+			bVo.setFile(oldbVo.getFile());
+		}
+		boardDao.updateBoard(bVo);
+		return true;
+	}
+
+8. 컨트롤러에서 호출한 서비스 인터페이스의 반환값에 따라 return값 결정
+예시)
+	@RequestMapping(value="modify", method = RequestMethod.POST)
+	public String boardModifyPost(Model model, BoardVO bVo){
+		logger.info("게시글 수정 진행");
+		
+		if(boardService.modify(bVo)){
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/modify";
+	}

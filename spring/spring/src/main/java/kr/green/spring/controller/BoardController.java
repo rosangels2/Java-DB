@@ -2,6 +2,8 @@ package kr.green.spring.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ public class BoardController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardListGet(Model model) {
-		
 		logger.info("게시판 리스트 진행");
 		
 		ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
@@ -40,7 +41,6 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public String boardDisplayGet(Model model, Integer num){	//URI의 ? 뒤에 있는 변수명을 매개변수로 사용하여 URI의 값을 가져올 수 있다
-		
 		logger.info("게시판 페이지 진행");
 	
 		BoardVO bVo = boardService.getBoardContents(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
@@ -49,5 +49,38 @@ public class BoardController {
 		
 		return "/board/display";
 	}
-	
+	@RequestMapping(value="modify", method = RequestMethod.GET)
+	public String boardModifyGet(Model model, Integer num){
+		logger.info("게시글 수정 진행");
+		
+		BoardVO bVo = boardService.getBoardContents(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
+		model.addAttribute("board", bVo);	//jsp에서 변수를 호출하여 사용하기 위해 변수 board를 생성해 VO객체 bVo를 저장
+		
+		return "/board/modify";
+	}
+	@RequestMapping(value="modify", method = RequestMethod.POST)
+	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r){
+		logger.info("게시글 수정 진행 중");
+		
+		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능 
+		
+		if(boardService.modify(bVo, r)){
+			return "redirect:/board/display";
+		}
+		return "redirect:/board/modify";
+	}
+	@RequestMapping(value="register", method = RequestMethod.GET)
+	public String BoardRegisterGet(Model model, String id){
+		logger.info("게시글 등록 진행");
+		model.addAttribute("user", id);
+		return "board/register";
+	}
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public String BoardRegisterPost(Model model, BoardVO bVo){
+		System.out.println(bVo);
+		if(boardService.register(bVo)){
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/register";
+	}
 }

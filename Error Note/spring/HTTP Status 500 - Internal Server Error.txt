@@ -112,10 +112,28 @@ select * from board where num = #{num}
 
 
 애러 내용 - Public key Retrieaval is not allowed ... BoardMapper.xml
+
 에러 원인 - DB의 계정 정보가 잘못 입력됐을 때 뜨는 에러지만 정보가 제대로 입력돼있는 상태에서 특별한 일 없이 갑작스럽게 읽지 못하는 경우도 발생
+
 해결 방법 - root-context.xml에서 DB의 계정 정보의 오타를 수정하거나 오타가 없을 시 계정 정보를 바꾸고 서버를 재실행한 뒤 원래대로 복원하고 서버를 재실행
+	   또는 MySQL 실행 후 스프링 서버 재시작
 
 
 
 
 
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'boardVO' on field 'views': rejected value []; codes [typeMismatch.boardVO.views,typeMismatch.views,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [boardVO.views,views]; arguments []; default message [views]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'views'; nested exception is java.lang.NumberFormatException: For input string: ""]
+
+에러 원인 - input창은 입력값이 없으면 null이 아니라 빈 문자열은 전송하기 때문에 자료형이 String이 아닌 변수들이 빈 문자열 값을 전송받아 자료형 에러 발생
+예시)
+	<input type="text" class="form-control" name="views" readonly>
+
+해결 방법 - input창에서 name을 지워 해당 input창의 빈 문자열 값이 들어가는 걸 방지
+예시)
+	<input type="text" class="form-control" name="" readonly>

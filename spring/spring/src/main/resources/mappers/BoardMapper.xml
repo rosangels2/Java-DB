@@ -22,4 +22,8 @@
 			views = #{views}
 			where num = #{num}
 	</update>
+	<insert id="register">
+		insert into board(title, contents, writer, file)
+			values(#{title}, #{contents}, #{writer}, #{file});
+	</insert>
 </mapper>

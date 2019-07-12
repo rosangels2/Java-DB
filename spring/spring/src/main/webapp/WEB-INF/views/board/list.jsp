@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -15,6 +15,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
 	<h1>게시판</h1>
 	<table class="table">
 		<tr>
@@ -34,5 +35,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="<%=request.getContextPath()%>/board/register?id=${board.writer}" style="float: right;"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 </body>
 </html>

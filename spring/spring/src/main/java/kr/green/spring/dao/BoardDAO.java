@@ -13,5 +13,7 @@ public interface BoardDAO {
 	void boardUpdate(Integer num);
 
 	void updateBoard(BoardVO tmp);
+
+	void register(BoardVO bVo);
 	
 }

@@ -2,11 +2,14 @@ package kr.green.spring.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.BoardDAO;
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.MemberVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -44,5 +47,50 @@ public class BoardServiceImp implements BoardService{
 		}
 	}
 
+	@Override
+	public boolean modify(BoardVO bVo, HttpServletRequest r) {
+		MemberVO user = (MemberVO)r.getSession().getAttribute("user");
+		if(user == null || bVo == null){	//세션이 비어있거나 객체가 비어 있다면
+			return false;
+		}
+		if(bVo.getWriter() != null && bVo.getWriter().equals(user.getId())){	//작성자가 null이 아니고 수정글의 작성자와 원본글 작성자가 같으면
+			boardDao.updateBoard(bVo);
+			return true;
+		}
+		return false;
+		
+/*		if(bVo == null) {	//내 방식 - 예외처리(값이 공백이거나 그대로일 때 수정하지 않고 그대로 유지)
+			return false;
+		}
+		BoardVO oldbVo = boardDao.getBoardContents(bVo.getNum());
+		
+		if(oldbVo == null){
+			return false;
+		}
+		if(bVo.getTitle() == null || bVo.getTitle() == "" || bVo.getTitle().equals(oldbVo.getTitle())){
+			bVo.setTitle(oldbVo.getTitle());
+		}
+		if(bVo.getContents() == null || bVo.getContents() == "" || bVo.getContents().equals(oldbVo.getContents())){
+			bVo.setContents(oldbVo.getContents());
+		}
+		if(bVo.getFile() == null || bVo.getFile() == "" || bVo.getFile().equals(oldbVo.getFile())){
+			bVo.setFile(oldbVo.getFile());
+		}	
+		boardDao.updateBoard(bVo);
+		return true;
+*/
+	}
+
+	@Override
+	public boolean register(BoardVO bVo) {
+		if(bVo == null){
+			return false;
+		}
+		if(bVo.getFile() == null || bVo.getFile() == ""){
+			bVo.setFile("");
+		}
+		boardDao.register(bVo);
+		return true;		
+	}
 
 }
