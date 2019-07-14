@@ -53,7 +53,7 @@ public class HashSet_Example_Lotto {
 		메서드명 : countList
 */	
 		public static int countList(List<Integer> lotto, List<Integer> auto){	//매개변수 List 2개가 주어지면 일치하는 개수를 확인하는 메서드를 선언
-			if(lotto.size() < auto.size() || lotto.size() > auto.size()){									//당첨번호의 크기가 자동번호보다 작거나 같다면
+			if(lotto.size() < auto.size() || lotto.size() > auto.size()){		//당첨번호의 개수와 자동번호의 개수가 다르다면
 				return -1;														//-1을 출력해서 잘못됐음을 알린다
 			}
 			
