@@ -17,5 +17,9 @@ public interface BoardService {
 	boolean modify(BoardVO bVo, HttpServletRequest r);
 
 	boolean register(BoardVO bVo);
+
+	boolean boardDelete(Integer num);
+
+	boolean isWriter(Integer num, HttpServletRequest r);
 	
 }

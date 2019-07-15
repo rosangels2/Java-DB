@@ -35,6 +35,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="<%=request.getContextPath()%>/board/register?id=${board.writer}" style="float: right;"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
+	<a href="<%=request.getContextPath()%>/board/register?id=${user.id}" style="float: right;"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 </body>
 </html>

@@ -24,7 +24,7 @@ a{
 		    </div>
 		    <div class="form-group">
 			  <label>작성자</label>
-			  <input type="text" class="form-control" name="" value="${user}" readonly>
+			  <input type="text" class="form-control" name="writer" value="${user.id}" readonly>
 		    </div>
 		    <div class="form-group">
 			  <label>작성일</label>

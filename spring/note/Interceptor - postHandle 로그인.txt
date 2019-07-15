@@ -3,9 +3,10 @@ Interceptor를 이용한 유저 정보 세션에 저장하기
 posthandle - 컨트롤러에서 JSP로 정보를 전송할 때 작동
 prehandle - URI에서 컨트롤러로 정보를 전송할 때 작동
 
-1. 패키지 생성
+1. 패키지 생성 - 경로 : 프로젝트>src/main/java 폴더에 생성
 국가.회사명.프로젝트명.interceptor 패키지 생성
 예 : kr.green.spring.interceptor
+
 2. 컨트롤러에서 유저 정보를 Model에 넘기기
 로그인 창에서 입력 받은 id와 pw를 이용하여 유저 정보 검색
 유저 정보가 있으면 유저 정보를 Model에 추가 후 게시판 리스트 페이지로 이동
@@ -60,10 +61,11 @@ public String home(Model model, HttpServletRequest request) {
 </div>
 </body>
 </html>
-2. 로그인 시도 시 실행할 interceptor 클래스 생성
+
+3. 로그인 시도 시 실행할 interceptor 클래스 생성
 LoginInterceptor 클래스 생성 및 메소드 오버라이딩
 HandlerInterceptorAdapter 클래스를 상속 받은 LoginInterceptor 클래스 생성
-postHandle 메소드를 오버라이딩 함
+postHandle 메소드를 오버라이딩
 Controller에서 Model에 유저 정보를 저장하지 않았으면 modelMap.get("user")를 했을 때 null값이 들어가고 있으면 저장한 정보를 가져온다.
 가져온 정보가 null이 아니면 해당 유저 정보를 세션에 저장
 @Override
@@ -76,23 +78,29 @@ public void postHandle(
     ModelMap modelMap = modelAndView.getModelMap();
     User user = (User)modelMap.get("user");
 
-    if(user != null) {
+    if(user != null){
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
     }
 }
-3. LoginInterceptor를 servlet-context.xml에 interceptor로 등록
+4. LoginInterceptor를 servlet-context.xml에 interceptor로 등록
 kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
+예시)
 <beans:bean id="loginInterceptor" 
-	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	class="kr.green.spring.interceptor.LoginInterceptor">
+</beans:bean>
 로그인 path가 주어졌을 때 loginInterceptor가 호출하도록 interceptor 태그에 등록
+
+예시)
 <interceptors>
     <interceptor>
         <mapping path="/"/>		<!-- URI 경로에 맞는 인터셉터를 실행	-->
         <beans:ref bean="loginInterceptor"/>
     </interceptor>
 </interceptors>
+
 최종적으로 servlet.context.xml에 추가한 코드
+예시)
 <beans:bean id="loginInterceptor" 
 	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>	<!-- 패키지명.클래스명 -->
 <interceptors>
@@ -102,13 +110,11 @@ kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 	</interceptor>
 </interceptors>
 
-4. 컨트롤러에서 객체를 가져왔을 때 해당 객체를 interceptor가 사용할 변수에 저장
+5. 컨트롤러에서 객체를 가져왔을 때 해당 객체를 interceptor가 사용할 변수에 저장
 예시)
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signinPost(Model model, MemberVO mVo){
-		logger.info("로그인 진행 중");
-		System.out.println(mVo);	//입력한 정보를 제대로 가져오는지 확인
-		MemberVO user = memberService.signin(mVo);	//가져온 객체를 새로운 객체 user에 저장
+		MemberVO user = memberService.signin(mVo);	// 리턴 타입을 MemberVO 객체로 바꾸고 가져온 객체를 새로운 객체 user에 저장
 		if(user != null){
 			model.addAttribute("user", user);	//인터셉터에서 사용하기 위해 변수 user에 객체 user 정보를 저장
 			return "redirect:/member"; //로그인 성공 시 member.jsp로 이동
@@ -116,7 +122,7 @@ kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 		return "redirect:/signin";
 	}
 
-5. 원하는 JSP에서 ${user}를 통해 세션이 저장됐을 때의 객체 정보를 확인
+6. 원하는 JSP에서 ${user}를 통해 세션이 저장됐을 때의 객체 정보를 확인
 예시)
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -133,7 +139,7 @@ kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 </body>
 </html>
 
-6. JSP에서 세션에 객체가 저장돼 있는지 여부에 따라 html 구성을 다르게 적용 가능
+7. JSP에서 세션에 객체가 저장돼 있는지 여부에 따라 html 구성을 다르게 적용 가능
 예시) home.jsp
 <body>	<!-- eq = equals(같다), ne = !equals(같지 않다) -->
 	<c:if test="${user eq null}">	<!-- test = 조건식(해당 조건식 결과가 true이면 해당 코드를 실행하며, c:if는 else가 없다) -->

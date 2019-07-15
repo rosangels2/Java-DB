@@ -89,8 +89,33 @@ public class BoardServiceImp implements BoardService{
 		if(bVo.getFile() == null || bVo.getFile() == ""){
 			bVo.setFile("");
 		}
+		if(bVo.getTitle() == null || bVo.getTitle() == "") {
+			bVo.setTitle("제목 없음");
+		}
 		boardDao.register(bVo);
 		return true;		
+	}
+
+	@Override
+	public boolean boardDelete(Integer num) {
+		if(num == null || num < 0) {
+			return false;
+		}
+		boardDao.boardDelete(num);
+		return true;
+	}
+
+	@Override
+	public boolean isWriter(Integer num, HttpServletRequest r){
+		MemberVO user = (MemberVO)r.getSession().getAttribute("user");
+		BoardVO bVo = boardDao.getBoardContents(num);
+		if(bVo == null || user == null){
+			return false;
+		}
+		if(bVo.getWriter() != null && bVo.getWriter().equals(user.getId())){	//DB에서 Not null로 체크했기 때문에 null인지 확인할 필요 x
+			return true;
+		}
+		return false;
 	}
 
 }

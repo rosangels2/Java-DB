@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.green.spring.dao.BoardDAO;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
 
@@ -23,6 +24,8 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	BoardDAO boardDao;
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -50,9 +53,11 @@ public class BoardController {
 		return "/board/display";
 	}
 	@RequestMapping(value="modify", method = RequestMethod.GET)
-	public String boardModifyGet(Model model, Integer num){
+	public String boardModifyGet(Model model, Integer num, HttpServletRequest r){
 		logger.info("게시글 수정 진행");
-		
+		if(!boardService.isWriter(num, r)){
+			return "redirect:/board/list";
+		}
 		BoardVO bVo = boardService.getBoardContents(num);	//BoardService의 객체.메서드명(매개변수)를 통해 해당 클래스의 메서드를 호출하고 결과값을 VO객체에 저장
 		model.addAttribute("board", bVo);	//jsp에서 변수를 호출하여 사용하기 위해 변수 board를 생성해 VO객체 bVo를 저장
 		
@@ -61,26 +66,33 @@ public class BoardController {
 	@RequestMapping(value="modify", method = RequestMethod.POST)
 	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r){
 		logger.info("게시글 수정 진행 중");
-		
-		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능 
-		
-		if(boardService.modify(bVo, r)){
-			return "redirect:/board/display";
+		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능
+		if(!boardService.isWriter(bVo.getNum(), r)){
+			return "redirect:/board/list";
 		}
-		return "redirect:/board/modify";
+		boardService.modify(bVo, r);
+		return "redirect:/board/display";
 	}
 	@RequestMapping(value="register", method = RequestMethod.GET)
-	public String BoardRegisterGet(Model model, String id){
+	public String BoardRegisterGet(){
 		logger.info("게시글 등록 진행");
-		model.addAttribute("user", id);
 		return "board/register";
 	}
 	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String BoardRegisterPost(Model model, BoardVO bVo){
+	public String BoardRegisterPost(BoardVO bVo){
 		System.out.println(bVo);
 		if(boardService.register(bVo)){
 			return "redirect:/board/list";
 		}
 		return "redirect:/board/register";
+	}
+	@RequestMapping(value="delete")
+	public String BoardDeletePost(Integer num, HttpServletRequest r){
+		if(boardService.isWriter(num, r)){
+			boardService.boardDelete(num);
+			return "redirect:/board/list";
+		}		
+		return "redirect:/board/list";
+
 	}
 }
