@@ -32,10 +32,11 @@ CREATE TABLE `board` (
   `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `file` varchar(255) DEFAULT NULL,
   `views` int(11) NOT NULL DEFAULT '0',
+  `valid` varchar(1) NOT NULL DEFAULT 'I',
   PRIMARY KEY (`num`),
   KEY `writer_idx` (`writer`),
   CONSTRAINT `writer` FOREIGN KEY (`writer`) REFERENCES `member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `board` (
 
 LOCK TABLES `board` WRITE;
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
-INSERT INTO `board` VALUES (1,'공지','공지','11111111','2019-07-08 10:40:04',NULL,0),(2,'환영인사','환영인사','11111111','2019-07-08 14:12:47',NULL,0),(3,'그냥 인사','그냥 인사','11111111','2019-07-08 14:14:06',NULL,0);
+INSERT INTO `board` VALUES (1,'공지','공지','11111111','2019-07-08 10:40:04',NULL,11,'I'),(2,'맛점하세요 11111','맛점하세요111222','11111111','2019-07-08 14:12:47','2',166,'I'),(3,'그냥 인사','그냥 인사33333','11111111','2019-07-08 14:14:06',NULL,15,'I'),(4,'가입했습니다','잘 부탁드립니다','11111111','2019-07-12 16:07:06','',2,'I'),(5,'가입했습니다','잘 부탁드립니다','22222222','2019-07-12 16:13:41','',4,'I'),(6,'가입했습니다','잘 부탁드립니다','22222222','2019-07-12 16:38:06','',5,'I'),(7,'111111111111111111','11111111111111111','11111111','2019-07-15 09:31:48','',1,'D'),(9,'555555','555555555','11111111','2019-07-15 09:34:25','',2,'D');
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-08 16:58:57
+-- Dump completed on 2019-07-15 17:17:09
