@@ -1,4 +1,4 @@
-package practice1;
+package practice_class;
 
 public class exam_add {
 
