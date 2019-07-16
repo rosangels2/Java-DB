@@ -32,7 +32,7 @@ public class BoardServiceImp implements BoardService{
 		if(bVo == null) {
 			return null;
 		}
-		boardDao.boardUpdate(num);
+		boardDao.updateViews(num);
 		return boardDao.getBoardContents(num);
 	}
 

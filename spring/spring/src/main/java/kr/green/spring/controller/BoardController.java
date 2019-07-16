@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.green.spring.dao.BoardDAO;
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
 
@@ -27,20 +29,23 @@ public class BoardController {
 	@Autowired
 	BoardDAO boardDao;
 	
-	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardListGet(Model model) {
+	public String boardListGet(Model model, Criteria cri){
 		logger.info("게시판 리스트 진행");
-		
-		ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
-		
+		//ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 /*		for(BoardVO tmp:boardList) {	//향상된 포문으로 BoardVo클래스의 객체 boardList의 값을 하나씩 꺼냄 
 			System.out.println(tmp);	//꺼낸 값을 출력
 		}
-*/		
-		model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
+*/		//model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 		
-		return "/board/list";
+	    int totalCount = boardDao.countBoard();
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCriteria(cri);
+	    pageMaker.setTotalCount(totalCount);
+	    ArrayList<BoardVO> list = (ArrayList)boardDao.listPage(pageMaker.getCriteria());
+	    model.addAttribute("list",list);
+	    model.addAttribute("pageMaker", pageMaker);
+	    return "/board/list";
 	}
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public String boardDisplayGet(Model model, Integer num){	//URI의 ? 뒤에 있는 변수명을 매개변수로 사용하여 URI의 값을 가져올 수 있다
@@ -91,8 +96,7 @@ public class BoardController {
 		if(boardService.isWriter(num, r)){
 			boardService.boardDelete(num);
 			return "redirect:/board/list";
-		}		
+		}
 		return "redirect:/board/list";
-
 	}
 }

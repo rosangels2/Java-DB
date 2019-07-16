@@ -45,6 +45,6 @@ a{
 		</div>
 		<button style="float: right; margin-right: 20px;">수정 완료</button>
 	</form>
-	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">취소</button></a>
+	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/display?num=${board.num}"><button type="button" class="btn btn-outline-primary">취소</button></a>
 </body>
 </html>

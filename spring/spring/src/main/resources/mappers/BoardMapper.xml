@@ -9,7 +9,7 @@
   <select id="getBoardContents" resultType="kr.green.spring.vo.BoardVO">
 	select * from board where num = #{num} and valid = 'I'
   </select>
-  	<update id="boardUpdate">
+  	<update id="updateViews">
 		update board
 			set views = views+1
 			where num = #{num}
@@ -31,4 +31,11 @@
 		set valid = 'D'
 		where num = #{num}
 	</update>
+	<select id="listPage" resultType="kr.green.spring.vo.BoardVO">
+		select * from board	order by num desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+    <select id="countBoard" resultType="int">
+		select count(num) from	board
+	</select>
 </mapper>
