@@ -1,16 +1,16 @@
-1. jsp, service, serviceImp, DAO, VO, mapper ÆÄÀÏ »ı¼º ¶Ç´Â ±¸Çö
+ï»¿1. jsp, service, serviceImp, DAO, VO, mapper íŒŒì¼ ìƒì„± ë˜ëŠ” êµ¬í˜„
 
-2. ÄÁÆ®·Ñ·¯¿¡¼­ URL¿¡ /signupÀ» ÀÔ·Â¹ŞÀ¸¸é ½ÇÇàµÉ ¸Ş¼­µå¸¦ ¸ÅÇÎ
-¿¹½Ã)
+2. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ URLì— /signupì„ ì…ë ¥ë°›ìœ¼ë©´ ì‹¤í–‰ë  ë©”ì„œë“œë¥¼ ë§¤í•‘
+ì˜ˆì‹œ)
 	@RequestMapping(value="/member/signup", method = RequestMethod.GET)
 	public String signupGet() {
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇà");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰");
 		
 		return "member/signup";
 	}
 
-3. signup.jsp¿¡ È­¸é ±¸¼º
-¿¹½Ã)
+3. signup.jspì— í™”ë©´ êµ¬ì„±
+ì˜ˆì‹œ)
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<title>È¸¿ø°¡ÀÔ</title>
+	<title>íšŒì›ê°€ì…</title>
 <style>
 	input.form-control:focus{
 		color: green;
@@ -45,32 +45,32 @@
 	$(document).ready(function(){
 		$('#id').change(function(){
 			if(!checkLength('#id',8,13)){
-				alert('ID´Â 8~13ÀÚ¸®¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.');
+				alert('IDëŠ” 8~13ìë¦¬ë¥¼ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤.');
 			}
 		});
-		//pw1 : ±æÀÌ -> ³»¿ëÀÌ º¯°æµÆÀ» ¶§ Ã¼Å© or °¡ÀÔ ¹öÆ°ÀÌ ´­·ÈÀ» ¶§
+		//pw1 : ê¸¸ì´ -> ë‚´ìš©ì´ ë³€ê²½ëì„ ë•Œ ì²´í¬ or ê°€ì… ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ
 		$('#pw').change(function(){
 			if(!checkLength('#pw',8,13)){
-				alert('ºñ¹Ğ¹øÈ£´Â 8~13ÀÚ¸®¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.');
+				alert('ë¹„ë°€ë²ˆí˜¸ëŠ” 8~13ìë¦¬ë¥¼ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤.');
 			}
 		});
 		$('#pw1').change(function(){
 			if(!equals('#pw','#pw1')){
-				alert('ºñ¹Ğ¹øÈ£¿Í ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù');
+				alert('ë¹„ë°€ë²ˆí˜¸ì™€ ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤');
 			}
 		});
-		//pw2 : pw1°ú °°ÀºÁö È®ÀÎ -> ³»¿ëÀÌ º¯°æµÆÀ» ¶§ Ã¼Å© or °¡ÀÔ ¹öÆ°ÀÌ ´­·ÈÀ» ¶§
+		//pw2 : pw1ê³¼ ê°™ì€ì§€ í™•ì¸ -> ë‚´ìš©ì´ ë³€ê²½ëì„ ë•Œ ì²´í¬ or ê°€ì… ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ
 		$('#ok').click(function(){
 			if(!checkLength('#pw',8,13)){
-				alert('ºñ¹Ğ¹øÈ£´Â 8~13ÀÚ¸®¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.');
+				alert('ë¹„ë°€ë²ˆí˜¸ëŠ” 8~13ìë¦¬ë¥¼ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤.');
 			}else if(!equals('#pw','#pw1')){
-				alert('ºñ¹Ğ¹øÈ£¿Í ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù');
+				alert('ë¹„ë°€ë²ˆí˜¸ì™€ ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤');
 			}
 		});
 	});
-	//ÀÏ¹İÇÔ¼ö ¼±¾ğ ¹× ±¸ÇöÀº .readyÇÔ¼ö ¹Û¿¡¼­ ÇÑ´Ù -> ready ¹Û¿¡¼­ È£ÃâÇÒ °æ¿ì È­¸éÀÌ ±¸¼ºµÇ±â Àü¿¡ ÇÔ¼ö°¡ ½ÇÇàµÅ ¿¡·¯°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Ù
+	//ì¼ë°˜í•¨ìˆ˜ ì„ ì–¸ ë° êµ¬í˜„ì€ .readyí•¨ìˆ˜ ë°–ì—ì„œ í•œë‹¤ -> ready ë°–ì—ì„œ í˜¸ì¶œí•  ê²½ìš° í™”ë©´ì´ êµ¬ì„±ë˜ê¸° ì „ì— í•¨ìˆ˜ê°€ ì‹¤í–‰ë¼ ì—ëŸ¬ê°€ ë°œìƒí•  ìˆ˜ ìˆë‹¤
 	function checkLength(selector,min,max){		
-		var length = $(selector).val().length;	//º¯¼ö length¿¡ ¸Å°³º¯¼ö·Î ÀÔ·Â¹ŞÀº selectorÀÇ value°ª ±æÀÌ¸¦ ÀúÀåÇÑ´Ù
+		var length = $(selector).val().length;	//ë³€ìˆ˜ lengthì— ë§¤ê°œë³€ìˆ˜ë¡œ ì…ë ¥ë°›ì€ selectorì˜ valueê°’ ê¸¸ì´ë¥¼ ì €ì¥í•œë‹¤
 		if(min > max){
 			var tmp = min;
 			min = max;
@@ -94,75 +94,75 @@
 <body>
 	<div class="row m-5">
 		<div class="container offset-4 col-4">
-			<div class="offset-3"> <h1>È¸¿ø°¡ÀÔ</h1></div>
+			<div class="offset-3"> <h1>íšŒì›ê°€ì…</h1></div>
 			<form method="post" action="">
 				<div class="form-group">
-					<label for="usr">¾ÆÀÌµğ</label>
-					<input type="text" class="form-control col-7" id="id" placeholder="¾ÆÀÌµğ" name="id">
+					<label for="usr">ì•„ì´ë””</label>
+					<input type="text" class="form-control col-7" id="id" placeholder="ì•„ì´ë””" name="id">
 				</div>
 				<div class="form-group">
-					<label for="pwd">ºñ¹Ğ¹øÈ£</label>
-					<input type="password" class="form-control col-7" id="pw" placeholder="ºñ¹Ğ¹øÈ£" name="pw">
+					<label for="pwd">ë¹„ë°€ë²ˆí˜¸</label>
+					<input type="password" class="form-control col-7" id="pw" placeholder="ë¹„ë°€ë²ˆí˜¸" name="pw">
 				</div>
 				<div class="form-group">
-					<label for="pwdRe">ºñ¹Ğ¹øÈ£ È®ÀÎ</label>
-					<input type="password" class="form-control col-7" id="pw1" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ" name="pw1">
+					<label for="pwdRe">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+					<input type="password" class="form-control col-7" id="pw1" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" name="pw1">
 				</div>
 				<div class="form-group">
-					<label for="sel1">¼ºº°</label>
+					<label for="sel1">ì„±ë³„</label>
 					<select class="form-control col-4" id="sel1" name="gender">
-						<option value="³²">³²ÀÚ</option>
-						<option value="¿©">¿©ÀÚ</option>
+						<option value="ë‚¨">ë‚¨ì</option>
+						<option value="ì—¬">ì—¬ì</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">ÀÌ¸ŞÀÏ</label>
-					<input type="text" class="form-control" id="email" placeholder="ÀÌ¸ŞÀÏ" name="email">
+					<label for="email">ì´ë©”ì¼</label>
+					<input type="text" class="form-control" id="email" placeholder="ì´ë©”ì¼" name="email">
 				</div>
-				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">Ãë¼Ò</button>
-				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">ÀÔ·Â¿Ï·á</button>
+				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">ì·¨ì†Œ</button>
+				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">ì…ë ¥ì™„ë£Œ</button>
 			</form>
 		</div>
 	</div>
 </body>
 </html>
 
-4. ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º ¼±¾ğ ÈÄ quick fixed¸¦ ÅëÇØ ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+4. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ ì„ ì–¸ í›„ quick fixedë¥¼ í†µí•´ ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	@RequestMapping(value="/member/signup", method = RequestMethod.POST)
 	public String signupPost(Model model, MemberVO mVo) {
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇà Áß");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ ì¤‘");
 
-			memberService.signup(mVo);	//ÇØ´ç ºÎºĞÀÇ quick fixed¸¦ ÅëÇØ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º »ı¼º
+			memberService.signup(mVo);	//í•´ë‹¹ ë¶€ë¶„ì˜ quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ ìƒì„±
 		
 		return "redirect:/member/signup";
 	}
 
-5. quick fixed¸¦ ÅëÇØ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+5. quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	boolean signup(MemberVO mVo);
 
-6. quick fixed¸¦ ÅëÇØ ¼­ºñ½º implements Å¬·¡½º¿¡ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º¸¦ ±¸Çö ÈÄ DAOÀÇ °´Ã¼.¸Ş¼­µå¸íÀ¸·Î DAOÀÇ ÀÎÅÍÆäÀÌ½º¸¦ È£Ãâ
-¿¹½Ã)
+6. quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ implements í´ë˜ìŠ¤ì— ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„ í›„ DAOì˜ ê°ì²´.ë©”ì„œë“œëª…ìœ¼ë¡œ DAOì˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	public boolean signup(MemberVO mVo) {
 		
-		if(mVo == null) {	//¸Å°³º¯¼ö °´Ã¼°¡ nullÀÏ ¶§ÀÇ ¿¹¿ÜÃ³¸®
+		if(mVo == null) {	//ë§¤ê°œë³€ìˆ˜ ê°ì²´ê°€ nullì¼ ë•Œì˜ ì˜ˆì™¸ì²˜ë¦¬
 			return false;
 		}
-		MemberVO oVo = memberDao.getMember(mVo.getId());	//¸â¹ö °´Ã¼¸¦ °¡Á®¿Â µÚ º¯¼ö °´Ã¼¿¡ ÀúÀå
-		if(oVo == null) {	//°¡Á®¿Â °´Ã¼°¡ ºñ¾îÀÖ´Ù¸é È¸¿ø°¡ÀÔ ÁøÇà
-			memberDao.signup(mVo);	//ÇØ´ç ÀÎÅÍÆäÀÌ½º¸¦ quick fixed¸¦ ÅëÇØ DAO¿¡ »ı¼º
+		MemberVO oVo = memberDao.getMember(mVo.getId());	//ë©¤ë²„ ê°ì²´ë¥¼ ê°€ì ¸ì˜¨ ë’¤ ë³€ìˆ˜ ê°ì²´ì— ì €ì¥
+		if(oVo == null) {	//ê°€ì ¸ì˜¨ ê°ì²´ê°€ ë¹„ì–´ìˆë‹¤ë©´ íšŒì›ê°€ì… ì§„í–‰
+			memberDao.signup(mVo);	//í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ë¥¼ quick fixedë¥¼ í†µí•´ DAOì— ìƒì„±
 			return true;
 		} 
 		return false;
 	}
 
-7. DAO ÀÎÅÍÆäÀÌ½º ÆÄÀÏ »ı¼º ¹× DAO ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+7. DAO ì¸í„°í˜ì´ìŠ¤ íŒŒì¼ ìƒì„± ë° DAO ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	void signup(MemberVO mVo); 
 
-8. MemberVO ÆÄÀÏ »ı¼º ¹× Å¬·¡½º ±¸Çö
-¿¹½Ã)
+8. MemberVO íŒŒì¼ ìƒì„± ë° í´ë˜ìŠ¤ êµ¬í˜„
+ì˜ˆì‹œ)
 public class MemberVO {
 	private String id;
 	private String pw;
@@ -233,8 +233,8 @@ public class MemberVO {
 
 }
 
-9. MemberMapper ÆÄÀÏ »ı¼º ¹× DAO ÀÎÅÍÆäÀÌ½º¸¦ Äõ¸®¹®À¸·Î ¿¬°á
-¿¹½Ã)
+9. MemberMapper íŒŒì¼ ìƒì„± ë° DAO ì¸í„°í˜ì´ìŠ¤ë¥¼ ì¿¼ë¦¬ë¬¸ìœ¼ë¡œ ì—°ê²°
+ì˜ˆì‹œ)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -249,20 +249,20 @@ public class MemberVO {
   </insert>
 </mapper>
 
-10. ±¸ÇöÇÑ ¼­ºñ½ºÀÇ °á°ú¸¦ ÅëÇØ ¿¬°áÇÒ ÆäÀÌÁö¸¦ ÄÁÆ®·Ñ·¯ÀÇ ¸Ş¼­µå return¿¡ ÀÔ·Â
-¿¹½Ã)
+10. êµ¬í˜„í•œ ì„œë¹„ìŠ¤ì˜ ê²°ê³¼ë¥¼ í†µí•´ ì—°ê²°í•  í˜ì´ì§€ë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ë©”ì„œë“œ returnì— ì…ë ¥
+ì˜ˆì‹œ)
 	@RequestMapping(value="/signup", method = RequestMethod.GET)
 	public String signupGet() {
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇà");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰");
 		
 		return "signup";
 	}
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
 	public String signupPost(Model model, MemberVO mVo) {
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇà Áß");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ ì¤‘");
 
-			if(memberService.signup(mVo)) {	//°¡ÀÔ¿¡ ¼º°øÇßÀ» °æ¿ì
-				return "redirect:/";		//È¨À¸·Î ÀÌµ¿
+			if(memberService.signup(mVo)) {	//ê°€ì…ì— ì„±ê³µí–ˆì„ ê²½ìš°
+				return "redirect:/";		//í™ˆìœ¼ë¡œ ì´ë™
 			}
 			
 		return "redirect:/signup";

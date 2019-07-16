@@ -1,16 +1,16 @@
-display.jsp¿¡¼­ ¼öÁ¤, µî·Ï, »èÁ¦ ¹öÆ° Ãß°¡ ¹× ¸µÅ© µî·Ï
+ï»¿display.jspì—ì„œ ìˆ˜ì •, ë“±ë¡, ì‚­ì œ ë²„íŠ¼ ì¶”ê°€ ë° ë§í¬ ë“±ë¡
 
-µî·Ï URI : /board/register
+ë“±ë¡ URI : /board/register
 
-1. /board/register.jsp ÆÄÀÏ »ı¼º ¹× ÄÁÆ®·Ñ·¯ ¸ÅÇÎ
-¿¹½Ã) ÄÁÆ®·Ñ·¯
+1. /board/register.jsp íŒŒì¼ ìƒì„± ë° ì»¨íŠ¸ë¡¤ëŸ¬ ë§¤í•‘
+ì˜ˆì‹œ) ì»¨íŠ¸ë¡¤ëŸ¬
 	@RequestMapping(value="register", method = RequestMethod.GET)
-	public String BoardRegisterGet(Model model){		//¼¼¼Ç¿¡ ÀúÀåµÈ user Á¤º¸¸¦ ÀÌ¿ëÇÏ±â ¶§¹®¿¡ ¸Å°³º¯¼ö¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù
-		logger.info("°Ô½Ã±Û µî·Ï ÁøÇà");
+	public String BoardRegisterGet(Model model){		//ì„¸ì…˜ì— ì €ì¥ëœ user ì •ë³´ë¥¼ ì´ìš©í•˜ê¸° ë•Œë¬¸ì— ë§¤ê°œë³€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ëœë‹¤
+		logger.info("ê²Œì‹œê¸€ ë“±ë¡ ì§„í–‰");
 		return "board/register";
 	}
 
-¿¹½Ã) jspÆÄÀÏ 
+ì˜ˆì‹œ) jspíŒŒì¼ 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -28,56 +28,56 @@ a{
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
-	<form method="post" action="<%=request.getContextPath()%>/board/register">	<!-- actionÀÌ µû·Î ¾ø´Ù¸é ÇöÀç jspÀÇ post¹æ½Ä ¸ÅÇÎÀ¸·Î ÀÌµ¿ÇÑ´Ù -->
+	<form method="post" action="<%=request.getContextPath()%>/board/register">	<!-- actionì´ ë”°ë¡œ ì—†ë‹¤ë©´ í˜„ì¬ jspì˜ postë°©ì‹ ë§¤í•‘ìœ¼ë¡œ ì´ë™í•œë‹¤ -->
 
 		<div class="container-fluid" style="margin-top:20px;">	              
 		    <div class="form-group">
-			  <label>Á¦¸ñ</label>
+			  <label>ì œëª©</label>
 			  <input type="text" class="form-control" name="title">
 		    </div>
 		    <div class="form-group">
-			  <label>ÀÛ¼ºÀÚ</label>
+			  <label>ì‘ì„±ì</label>
 			  <input type="text" class="form-control" name="writer" value="${user.id}" readonly>
 		    </div>
 		    <div class="form-group">
-			  <label>ÀÛ¼ºÀÏ</label>
-			  <input type="text" class="form-control" name="" readonly>	<!-- inputÅÂ±×´Â ÀÔ·Â°ªÀÌ ¾øÀ» ½Ã nullÀÌ ¾Æ´Ñ ºó ¹®ÀÚ¿­ÀÌ ÀÔ·ÂµÈ´Ù -->
+			  <label>ì‘ì„±ì¼</label>
+			  <input type="text" class="form-control" name="" readonly>	<!-- inputíƒœê·¸ëŠ” ì…ë ¥ê°’ì´ ì—†ì„ ì‹œ nullì´ ì•„ë‹Œ ë¹ˆ ë¬¸ìì—´ì´ ì…ë ¥ëœë‹¤ -->
 		    </div>
 		    <div class="form-group">
-			  <label>Á¶È¸¼ö</label>
+			  <label>ì¡°íšŒìˆ˜</label>
 			  <input type="text" class="form-control" name="" readonly>
 		    </div>
 		    <div class="form-group">
-			  <label>³»¿ë</label>
+			  <label>ë‚´ìš©</label>
 			  <textarea class="form-control" rows="5" name="contents"></textarea>
 			</div>
 		    <div class="form-group">
-			  <label>ÆÄÀÏÃ·ºÎ</label>
+			  <label>íŒŒì¼ì²¨ë¶€</label>
 			  <input type="text" class="form-control" name="file">
 		    </div>	  		
 		</div>
-		<button style="float: right; margin-right: 20px;">°Ô½Ã±Û µî·Ï</button>
+		<button style="float: right; margin-right: 20px;">ê²Œì‹œê¸€ ë“±ë¡</button>
 	</form>
-	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">Ãë¼Ò</button></a>
+	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">ì·¨ì†Œ</button></a>
 </body>
 </html>
 
-3. register.jsp¿¡¼­ formÅÂ±×¸¦ ÅëÇØ postÇü½ÄÀ¸·Î ³Ñ°Ü¹ŞÀº Á¤º¸¸¦ Ã³¸®ÇÒ POST¸Å¼­µå¸¦ ÄÁÆ®·Ñ·¯¿¡ »ı¼ºÇÏ°í Á¤º¸°¡ Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎ
-¿¹½Ã)
+3. register.jspì—ì„œ formíƒœê·¸ë¥¼ í†µí•´ postí˜•ì‹ìœ¼ë¡œ ë„˜ê²¨ë°›ì€ ì •ë³´ë¥¼ ì²˜ë¦¬í•  POSTë§¤ì„œë“œë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ì— ìƒì„±í•˜ê³  ì •ë³´ê°€ ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
+ì˜ˆì‹œ)
 	@RequestMapping(value="register", method = RequestMethod.POST)
 	public String BoardRegisterPost(Model model, BoardVO bVo){
-		System.out.println(bVo);	//ÀÔ·Â¹ŞÀº Á¤º¸°¡ Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎ
-		if(boardService.register(bVo)){	//Ã³¸® °á°ú¿¡ µû¶ó º¸¿©ÁÙ jsp¸¦ ±¸ºĞ
+		System.out.println(bVo);	//ì…ë ¥ë°›ì€ ì •ë³´ê°€ ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
+		if(boardService.register(bVo)){	//ì²˜ë¦¬ ê²°ê³¼ì— ë”°ë¼ ë³´ì—¬ì¤„ jspë¥¼ êµ¬ë¶„
 			return "redirect:/board/list";
 		}
 		return "redirect:/board/register";
 
-4. ÄÁÆ®·Ñ·¯¿¡¼­ quick fixed¸¦ ÅëÇØ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
-¿¹½Ã)
+4. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
+ì˜ˆì‹œ)
 	boolean register(BoardVO bVo);
 
-5. ¼­ºñ½º implements Å¬·¡½º¿¡¼­ ÇØ´ç ÀÎÅÍÆäÀÌ½º¸¦ quick fixed¸¦ ÅëÇØ »ı¼ºÇÑ ÈÄ ¿¹¿ÜÃ³¸®
-¿¹½Ã)
+5. ì„œë¹„ìŠ¤ implements í´ë˜ìŠ¤ì—ì„œ í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ë¥¼ quick fixedë¥¼ í†µí•´ ìƒì„±í•œ í›„ ì˜ˆì™¸ì²˜ë¦¬
+ì˜ˆì‹œ)
 	@Override
 	public boolean register(BoardVO bVo) {
 		if(bVo == null){
@@ -90,12 +90,12 @@ a{
 		return true;		
 	}
 
-6. quick fixed¸¦ ÅëÇØ DAO ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
-¿¹½Ã)
+6. quick fixedë¥¼ í†µí•´ DAO ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
+ì˜ˆì‹œ)
 	void register(BoardVO bVo);
 
-7. ÇØ´ç DAO ÀÎÅÍÆäÀÌ½º¿Í mapper¸¦ ¿¬°á
-¿¹½Ã)
+7. í•´ë‹¹ DAO ì¸í„°í˜ì´ìŠ¤ì™€ mapperë¥¼ ì—°ê²°
+ì˜ˆì‹œ)
 	<insert id="register">
 		insert into board(title, contents, writer, file)
 			values(#{title}, #{contents}, #{writer}, #{file});

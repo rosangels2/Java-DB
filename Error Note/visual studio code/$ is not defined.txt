@@ -1,3 +1,3 @@
-Uncaught ReferenceError: $ is not defined
-¿øÀÎ : jquery.js ÆÄÀÏÀº ¿¬°áÇÏ±â Àü¿¡ jquery ÄÚµå »ç¿ë
-ÇØ°á ¹æ¹ı : jquery.js ÆÄÀÏÀ» ¿¬°á ÈÄ jquery »ç¿ë
+ï»¿Uncaught ReferenceError: $ is not defined
+ì›ì¸ : jquery.js íŒŒì¼ì€ ì—°ê²°í•˜ê¸° ì „ì— jquery ì½”ë“œ ì‚¬ìš©
+í•´ê²° ë°©ë²• : jquery.js íŒŒì¼ì„ ì—°ê²° í›„ jquery ì‚¬ìš©

@@ -17,9 +17,9 @@
 	font-size:30px;
 }
 </style>
-<script type="text/javascript">
+<script>
 	$(document).ready(function(){
-		$('btn-delete').click(function(){
+		$('#btn-delete').click(function(){
 			alert("게시글을 삭제합니다.");
 		});
 	});
@@ -59,7 +59,7 @@
   <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
   <c:if test="${user.id eq board.writer}">	<!-- 로그인 중인 세션 객체 user의 아이디와 글 작성자의 id가 같을 때만 보이게 한다 -->
   	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"> <button type="button" class="btn btn-outline-dark">게시글 수정</button> </a>
-  	<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"> <button type="button" class="btn btn-outline-dark btn-delete">게시글 삭제</button> </a>
+  	<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"> <button type="button" class="btn btn-outline-dark" id="btn-delete">게시글 삭제</button> </a>
   </c:if>
 </body>
 </html>

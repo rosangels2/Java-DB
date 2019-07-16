@@ -1,5 +1,5 @@
-1. °Ô½ÃÆÇ Å×ÀÌºí »ı¼º
-¹øÈ£ Á¦¸ñ ³»¿ë ÀÛ¼ºÀÚ ÀÛ¼ºÀÏ Ã·ºÎÆÄÀÏ Á¶È¸¼ö
+ï»¿1. ê²Œì‹œíŒ í…Œì´ë¸” ìƒì„±
+ë²ˆí˜¸ ì œëª© ë‚´ìš© ì‘ì„±ì ì‘ì„±ì¼ ì²¨ë¶€íŒŒì¼ ì¡°íšŒìˆ˜
 num
 title
 contents
@@ -8,22 +8,22 @@ registered	now()
 file
 views		0
 
-2. URI¿¡ /board/list¸¦ ÀÔ·ÂÇÏ¸é °Ô½ÃÆÇ ÆäÀÌÁö°¡ º¸ÀÌµµ·Ï ÀÛ¾÷(JSP¿Í ÄÁÆ®·Ñ·¯)
- - URI°¡ /board/listÀÏ ¶§ Ã³¸®ÇÒ ¼ö ÀÖ´Â ¸Ş¼­µå ±¸Çö ¹× ¼­ºñ½º¿¡¼­ ½ÇÇàµÈ °á°ú¸¦ JSP¿¡°Ô Àü¼Û
-¿¹½Ã)
+2. URIì— /board/listë¥¼ ì…ë ¥í•˜ë©´ ê²Œì‹œíŒ í˜ì´ì§€ê°€ ë³´ì´ë„ë¡ ì‘ì—…(JSPì™€ ì»¨íŠ¸ë¡¤ëŸ¬)
+ - URIê°€ /board/listì¼ ë•Œ ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” ë©”ì„œë“œ êµ¬í˜„ ë° ì„œë¹„ìŠ¤ì—ì„œ ì‹¤í–‰ëœ ê²°ê³¼ë¥¼ JSPì—ê²Œ ì „ì†¡
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
 	public String listGet(Model model) {
-		logger.info("°Ô½ÃÆÇ ¸ñ·Ï");
+		logger.info("ê²Œì‹œíŒ ëª©ë¡");
 		
-		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayList¿¡ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â µÚ º¹»ç
-		System.out.println(boardList);	//Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎ
-		model.addAttribute("list", boardList);	//jsp¿¡ Á¤º¸¸¦ º¸³»ÁÖ±â À§ÇØ º¯¼ö list¿¡ boardList¸¦ °ªÀ¸·Î ÀÔ·Â
+		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayListì— ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¨ ë’¤ ë³µì‚¬
+		System.out.println(boardList);	//ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
+		model.addAttribute("list", boardList);	//jspì— ì •ë³´ë¥¼ ë³´ë‚´ì£¼ê¸° ìœ„í•´ ë³€ìˆ˜ listì— boardListë¥¼ ê°’ìœ¼ë¡œ ì…ë ¥
 		
 		return "/board/list";
 	}
 	
-3. BoardVO Å¬·¡½º ±¸Çö - °Ô½ÃÆÇ Á¤º¸¸¦ °´Ã¼·Î °¡Á®¿À±â À§ÇÑ Å¬·¡½º »ı¼º
-¿¹½Ã) ¸â¹öº¯¼ö¿Í toString, getter/setter »ı¼º
+3. BoardVO í´ë˜ìŠ¤ êµ¬í˜„ - ê²Œì‹œíŒ ì •ë³´ë¥¼ ê°ì²´ë¡œ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ í´ë˜ìŠ¤ ìƒì„±
+ì˜ˆì‹œ) ë©¤ë²„ë³€ìˆ˜ì™€ toString, getter/setter ìƒì„±
 	private int num;
 	private String title;
 	private String contents;
@@ -32,8 +32,8 @@ views		0
 	private int views;
 	private String file;
 	
-4. service, implements Å¬·¡½º ±¸Çö - ±â´ÉÀÌ ´Ü¼øÇÏ¸é ¼­ºñ½º ±¸Çö ¾øÀÌ DAO¿¡°Ô Á÷Á¢ ¿äÃ» ex) ¸ğµç Á¤º¸¸¦ °¡Á®¿Ã ¶§
-¿¹½Ã)
+4. service, implements í´ë˜ìŠ¤ êµ¬í˜„ - ê¸°ëŠ¥ì´ ë‹¨ìˆœí•˜ë©´ ì„œë¹„ìŠ¤ êµ¬í˜„ ì—†ì´ DAOì—ê²Œ ì§ì ‘ ìš”ì²­ ex) ëª¨ë“  ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ë•Œ
+ì˜ˆì‹œ)
  - service
 ArrayList<BoardVO> getBoardList();
 
@@ -47,11 +47,11 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public ArrayList<BoardVO> getBoardList() {
 		
-		return boardDao.getBoardList();	//¸®ÅÏ¿¡ DAOÀÇ °´Ã¼.¸Ş¼­µå¸íÀ» ÀÔ·ÂÇØ °á°ú°ªÀ» Àç¹İÈ¯
+		return boardDao.getBoardList();	//ë¦¬í„´ì— DAOì˜ ê°ì²´.ë©”ì„œë“œëª…ì„ ì…ë ¥í•´ ê²°ê³¼ê°’ì„ ì¬ë°˜í™˜
 	}
 
-5. DAO, mapper ±¸Çö
-¿¹½Ã)
+5. DAO, mapper êµ¬í˜„
+ì˜ˆì‹œ)
  - DAO
 	ArrayList<BoardVO> getBoardList();
  - Mapper
@@ -65,37 +65,37 @@ public class BoardServiceImp implements BoardService {
 		</select>
 	</mapper>
 
-6. ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º È£ÃâÀ» ÅëÇØ ±â´ÉÀ» ½ÇÇàÇÑ µÚ DB¿¡¼­ ²¨³»¿Â ArrayList °´Ã¼°¡ Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎÇÑ ÈÄ º¯¼ö¿¡ ÀúÀå
-¿¹½Ã)
+6. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì„œë¹„ìŠ¤ í˜¸ì¶œì„ í†µí•´ ê¸°ëŠ¥ì„ ì‹¤í–‰í•œ ë’¤ DBì—ì„œ êº¼ë‚´ì˜¨ ArrayList ê°ì²´ê°€ ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸í•œ í›„ ë³€ìˆ˜ì— ì €ì¥
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
 	public String listGet(Model model) {
-		logger.info("°Ô½ÃÆÇ ¸ñ·Ï");
+		logger.info("ê²Œì‹œíŒ ëª©ë¡");
 		
-		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayList¿¡ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â µÚ º¹»ç
-		System.out.println(boardList);	//Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎ
+		ArrayList<BoardVO> boardList = boardService.getBoardList();	//ArrayListì— ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¨ ë’¤ ë³µì‚¬
+		System.out.println(boardList);	//ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
 		for(BoardVO tmp:boardList){
 			System.out.println(boardList);
 		}
-		model.addAttribute("list", boardList);	//jsp¿¡ Á¤º¸¸¦ º¸³»ÁÖ±â À§ÇØ º¯¼ö list¿¡ boardList¸¦ °ªÀ¸·Î ÀÔ·Â
+		model.addAttribute("list", boardList);	//jspì— ì •ë³´ë¥¼ ë³´ë‚´ì£¼ê¸° ìœ„í•´ ë³€ìˆ˜ listì— boardListë¥¼ ê°’ìœ¼ë¡œ ì…ë ¥
 		
 		return "/board/list";
 	}
 
-7. jsp¿¡¼­ ÇØ´ç º¯¼ö¸¦ È£ÃâÇÏ¿© °ªÀ» Ãâ·Â
-¿¹½Ã)
+7. jspì—ì„œ í•´ë‹¹ ë³€ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ ê°’ì„ ì¶œë ¥
+ì˜ˆì‹œ)
 <body>
-	<h1>°Ô½ÃÆÇ</h1>
+	<h1>ê²Œì‹œíŒ</h1>
 	<table class="table">
 		<tr>
-			<th width="10%">¹øÈ£</th>		<!-- width¸¦ ÅëÇØ °¡·Î¸¦ ÁöÁ¤ -->
-			<th width="50%">Á¦¸ñ</th>
-			<th width="10%">ÀÛ¼ºÀÚ</th>
-			<th width="20%">µî·ÏÀÏ</th>
-			<th width="10%">Á¶È¸¼ö</th>	
+			<th width="10%">ë²ˆí˜¸</th>		<!-- widthë¥¼ í†µí•´ ê°€ë¡œë¥¼ ì§€ì • -->
+			<th width="50%">ì œëª©</th>
+			<th width="10%">ì‘ì„±ì</th>
+			<th width="20%">ë“±ë¡ì¼</th>
+			<th width="10%">ì¡°íšŒìˆ˜</th>	
 		</tr>
-		<c:forEach var="board" items="${list}">	<!-- Çâ»óµÈ Æ÷¹®Ã³·³ items¿¡ ÀÖ´Â º¯¼ö listÀÇ °ªÀ» 0¹øÁöºÎÅÍ ÇÏ³ª¾¿ ²¨³»¼­ board¿¡ Ãß°¡ÇÏ°í ¾Æ·¡ ÄÚµå¸¦ ½ÇÇà -->
+		<c:forEach var="board" items="${list}">	<!-- í–¥ìƒëœ í¬ë¬¸ì²˜ëŸ¼ itemsì— ìˆëŠ” ë³€ìˆ˜ listì˜ ê°’ì„ 0ë²ˆì§€ë¶€í„° í•˜ë‚˜ì”© êº¼ë‚´ì„œ boardì— ì¶”ê°€í•˜ê³  ì•„ë˜ ì½”ë“œë¥¼ ì‹¤í–‰ -->
 			<tr>
-				<th>${board.num}</th>	<!-- listÀÇ °ªÀÌ Ãß°¡µÈ º¯¼ö boardÀÇ getter È£Ãâ -->
+				<th>${board.num}</th>	<!-- listì˜ ê°’ì´ ì¶”ê°€ëœ ë³€ìˆ˜ boardì˜ getter í˜¸ì¶œ -->
 				<th><a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a></th>
 				<th>${board.writer}</th>
 				<th>${board.registered}</th>
@@ -105,63 +105,63 @@ public class BoardServiceImp implements BoardService {
 	</table>
 </body>
 
-8. URI¿¡ /board/display¸¦ ÀÔ·ÂÇÏ¸é °Ô½ÃÆÇ ºó ÆäÀÌÁö°¡ º¸ÀÌµµ·Ï views Æú´õ¿¡ boardÆú´õ¸¦ »ı¼ºÇÑ ÈÄ display.jsp ÆÄÀÏÀ» »ı¼º
-8-1 Á¦¸ñÀ» ´©¸£¸é /board/display·Î ÀÌµ¿ÇÏµµ·Ï ±¸Çö(aÅÂ±×¸¦ ÀÌ¿ëÇØ Á¦¸ñÀ» ÀÔ·Â)
-¿¹½Ã)
-<th> <a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a> </th>	//URIµÚ¿¡ ?¸¦ ºÙ¿© °ªÀ» Àü¼Û
+8. URIì— /board/displayë¥¼ ì…ë ¥í•˜ë©´ ê²Œì‹œíŒ ë¹ˆ í˜ì´ì§€ê°€ ë³´ì´ë„ë¡ views í´ë”ì— boardí´ë”ë¥¼ ìƒì„±í•œ í›„ display.jsp íŒŒì¼ì„ ìƒì„±
+8-1 ì œëª©ì„ ëˆ„ë¥´ë©´ /board/displayë¡œ ì´ë™í•˜ë„ë¡ êµ¬í˜„(aíƒœê·¸ë¥¼ ì´ìš©í•´ ì œëª©ì„ ì…ë ¥)
+ì˜ˆì‹œ)
+<th> <a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a> </th>	//URIë’¤ì— ?ë¥¼ ë¶™ì—¬ ê°’ì„ ì „ì†¡
 
-9. ±ÛÀÇ Á¦¸ñÀ» Å¬¸¯ÇÏ¸é ÇØ´ç ±ÛÀÇ °Ô½ÃÆÇ ³Ñ¹ö¿Í ÀÏÄ¡ÇÏ´Â °´Ã¼¸¦ ÄÁÆ®·Ñ·¯·Î °¡Á®¿Í¼­ Á¦¸ñ, ÀÛ¼ºÀÚ, ÀÛ¼ºÀÏ, Á¶È¸¼ö, ³»¿ë, Ã·ºÎÆÄÀÏÀ» Ç¥½Ã
--> GET¹æ½ÄÀÇ URI¿¡¼­ VOÀÇ ¸â¹öº¯¼ö¸í°ú ÀÏÄ¡ÇÏ´Â Á¤º¸¸¦ ¸Å°³º¯¼ö·Î °¡Á®¿Ã ¼ö ÀÖ´Ù
+9. ê¸€ì˜ ì œëª©ì„ í´ë¦­í•˜ë©´ í•´ë‹¹ ê¸€ì˜ ê²Œì‹œíŒ ë„˜ë²„ì™€ ì¼ì¹˜í•˜ëŠ” ê°ì²´ë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ë¡œ ê°€ì ¸ì™€ì„œ ì œëª©, ì‘ì„±ì, ì‘ì„±ì¼, ì¡°íšŒìˆ˜, ë‚´ìš©, ì²¨ë¶€íŒŒì¼ì„ í‘œì‹œ
+-> GETë°©ì‹ì˜ URIì—ì„œ VOì˜ ë©¤ë²„ë³€ìˆ˜ëª…ê³¼ ì¼ì¹˜í•˜ëŠ” ì •ë³´ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ê°€ì ¸ì˜¬ ìˆ˜ ìˆë‹¤
 
-¿¹½Ã)
+ì˜ˆì‹œ)
 	URI = http://localhost:8080/spring/board/display?num=2
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public String boardDisplayGet(Model model, Integer num){
 		
-		System.out.println(num); 	//URIÀÇ num°ªÀÎ 2°¡ Ãâ·ÂµÈ´Ù
+		System.out.println(num); 	//URIì˜ numê°’ì¸ 2ê°€ ì¶œë ¥ëœë‹¤
 		
 		return "/board/display";
 	}
 
-10. URIÀÇ º¯¼ö°ªÀÌ Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎÇÑ ÈÄ URIÀÇ º¯¼ö¸¦ ¸Å°³º¯¼ö·Î »ç¿ëÇÑ ServiceÀÇ ¸Ş¼­µå¸¦ ¼±¾ğÇÏ°í °á°ú°ªÀ» »ç¿ëÇÒ Çü½ÄÀÇ º¯¼ö¿¡ ÀúÀåÇÑ´Ù
-¿¹½Ã)
+10. URIì˜ ë³€ìˆ˜ê°’ì´ ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸í•œ í›„ URIì˜ ë³€ìˆ˜ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ì‚¬ìš©í•œ Serviceì˜ ë©”ì„œë“œë¥¼ ì„ ì–¸í•˜ê³  ê²°ê³¼ê°’ì„ ì‚¬ìš©í•  í˜•ì‹ì˜ ë³€ìˆ˜ì— ì €ì¥í•œë‹¤
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
 	public String displayGet(Model model, Integer num) {
-		logger.info("°Ô½Ã±Û ³»¿ë");
-		System.out.println(num); //URIÀÇ º¯¼ö °ªÀÌ Á¦´ë·Î ³Ñ¾î¿À´ÂÁö È®ÀÎ
+		logger.info("ê²Œì‹œê¸€ ë‚´ìš©");
+		System.out.println(num); //URIì˜ ë³€ìˆ˜ ê°’ì´ ì œëŒ€ë¡œ ë„˜ì–´ì˜¤ëŠ”ì§€ í™•ì¸
 
-		BoardVO bVo = boardService.getBoardContents(num);	//¼­ºñ½º¿¡¼­ È£ÃâÇÒ ¸Ş¼­µå¸¦ ¼±¾ğ
+		BoardVO bVo = boardService.getBoardContents(num);	//ì„œë¹„ìŠ¤ì—ì„œ í˜¸ì¶œí•  ë©”ì„œë“œë¥¼ ì„ ì–¸
 
 		return "/board/display";
 	}
 
-11. quick fixed¸¦ ÅëÇØ ¼±¾ğÇÑ ServiceÀÇ ¸Ş¼­µå¸¦ »ı¼ºÇÑ´Ù
-¿¹½Ã)
+11. quick fixedë¥¼ í†µí•´ ì„ ì–¸í•œ Serviceì˜ ë©”ì„œë“œë¥¼ ìƒì„±í•œë‹¤
+ì˜ˆì‹œ)
 	BoardVO getBoardContents(Integer num);
 
-12. ¼­ºñ½º¸¦ ±¸ÇöÇÏ´Â implements Å¬·¡½º¿¡¼­ quick fixed¸¦ ÅëÇØ ÇØ´ç ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ°í DAOÀÇ °´Ã¼.¸Ş¼­µå¸íÀ» ÅëÇØ DAO ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇÑ´Ù
-¿¹½Ã)
+12. ì„œë¹„ìŠ¤ë¥¼ êµ¬í˜„í•˜ëŠ” implements í´ë˜ìŠ¤ì—ì„œ quick fixedë¥¼ í†µí•´ í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ê³  DAOì˜ ê°ì²´.ë©”ì„œë“œëª…ì„ í†µí•´ DAO ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œí•œë‹¤
+ì˜ˆì‹œ)
 	@Override
 	public BoardVO getBoardContents(Integer num){
 
 		return boardDao.getBoardContents(num);
 	}
 
-13. quick fixed¸¦ ÅëÇØ DAOÀÇ ÀÎÅÍÆäÀÌ½º¸¦ »ı¼ºÇÑ´Ù
-¿¹½Ã)
+13. quick fixedë¥¼ í†µí•´ DAOì˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±í•œë‹¤
+ì˜ˆì‹œ)
 	BoardVO getBoardContents(Integer num);
 
-14. Mapper.xml ÆÄÀÏ¿¡¼­ ÇØ´ç ÀÎÅÍÆäÀÌ½º¿Í Äõ¸®¹®À» ¿¬°áÇÑ´Ù
-¿¹½Ã)
+14. Mapper.xml íŒŒì¼ì—ì„œ í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ì™€ ì¿¼ë¦¬ë¬¸ì„ ì—°ê²°í•œë‹¤
+ì˜ˆì‹œ)
 <mapper namespace="kr.green.test.dao.BoardDAO">
-	<select id="getBoardContents" resultType="kr.green.test.vo.BoardVO">	//resultType¿¡ VO Å¬·¡½º¸¦ ÀÔ·ÂÇØ VOÀÇ Å¬·¡½ºÀÇ °´Ã¼·Î ¹İÈ¯
+	<select id="getBoardContents" resultType="kr.green.test.vo.BoardVO">	//resultTypeì— VO í´ë˜ìŠ¤ë¥¼ ì…ë ¥í•´ VOì˜ í´ë˜ìŠ¤ì˜ ê°ì²´ë¡œ ë°˜í™˜
 		select * from board where num = #{num}
 	</select>
 </mapper>
 
-15. Service  ±¸Çö Å¬·¡½º¿¡ ¸Å°³º¯¼ö°¡ nullÀÏ °æ¿ì °è»êÇÏÁö ¾Ê°Ô ¿¹¿ÜÃ³¸®¸¦ »ı¼ºÇÑ´Ù
-¿¹½Ã)
+15. Service  êµ¬í˜„ í´ë˜ìŠ¤ì— ë§¤ê°œë³€ìˆ˜ê°€ nullì¼ ê²½ìš° ê³„ì‚°í•˜ì§€ ì•Šê²Œ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ ìƒì„±í•œë‹¤
+ì˜ˆì‹œ)
 	@Override
 	public BoardVO getBoardContents(Integer num){
 		if(num == null) {
@@ -174,53 +174,53 @@ public class BoardServiceImp implements BoardService {
 		return bVo;
 	}
 
-16. ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º È£Ãâ °á°ú°¡ Á¦´ë·Î Ãâ·ÂµÇ´ÂÁö È®ÀÎÇÑ´Ù
-¿¹½Ã)
+16. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì„œë¹„ìŠ¤ í˜¸ì¶œ ê²°ê³¼ê°€ ì œëŒ€ë¡œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸í•œë‹¤
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
 	public String displayGet(Model model, Integer num) {
-		logger.info("°Ô½Ã±Û ³»¿ë");
-		System.out.println(num); //URIÀÇ º¯¼ö °ªÀÌ Á¦´ë·Î ³Ñ¾î¿À´ÂÁö È®ÀÎ
+		logger.info("ê²Œì‹œê¸€ ë‚´ìš©");
+		System.out.println(num); //URIì˜ ë³€ìˆ˜ ê°’ì´ ì œëŒ€ë¡œ ë„˜ì–´ì˜¤ëŠ”ì§€ í™•ì¸
 
-		BoardVO bVo = boardService.getBoardContents(num);	//¼­ºñ½º¿¡¼­ È£ÃâÇÒ ¸Ş¼­µå¸¦ ¼±¾ğ
-		System.out.println(bVo);	//³Ñ¾î¿Â °´Ã¼°ªÀ» È®ÀÎ
+		BoardVO bVo = boardService.getBoardContents(num);	//ì„œë¹„ìŠ¤ì—ì„œ í˜¸ì¶œí•  ë©”ì„œë“œë¥¼ ì„ ì–¸
+		System.out.println(bVo);	//ë„˜ì–´ì˜¨ ê°ì²´ê°’ì„ í™•ì¸
 
 		return "/board/display";
 	}
 
-17. ¼­ºñ½º È£Ãâ °á°ú°¡ Á¦´ë·Î Ãâ·ÂµÈ´Ù¸é ¿øÇÏ´Â °á°ú¿¡ ¸Â°Ô Á¶°Ç½ÄÀ¸·Î ¿¹¿ÜÃ³¸®¸¦ ÇÏ°í jsp¿¡ Àü¼ÛÇÏ±â À§ÇØ °´Ã¼ modelÀÇ º¯¼ö¿¡ °ªÀ» ÀúÀåÇÑ´Ù
-¿¹½Ã)
+17. ì„œë¹„ìŠ¤ í˜¸ì¶œ ê²°ê³¼ê°€ ì œëŒ€ë¡œ ì¶œë ¥ëœë‹¤ë©´ ì›í•˜ëŠ” ê²°ê³¼ì— ë§ê²Œ ì¡°ê±´ì‹ìœ¼ë¡œ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ í•˜ê³  jspì— ì „ì†¡í•˜ê¸° ìœ„í•´ ê°ì²´ modelì˜ ë³€ìˆ˜ì— ê°’ì„ ì €ì¥í•œë‹¤
+ì˜ˆì‹œ)
 	public String displayGet(Model model, Integer num) {
-		logger.info("°Ô½Ã±Û ³»¿ë");
-		System.out.println(num); //URIÀÇ º¯¼ö °ªÀÌ Á¦´ë·Î ³Ñ¾î¿À´ÂÁö È®ÀÎ
+		logger.info("ê²Œì‹œê¸€ ë‚´ìš©");
+		System.out.println(num); //URIì˜ ë³€ìˆ˜ ê°’ì´ ì œëŒ€ë¡œ ë„˜ì–´ì˜¤ëŠ”ì§€ í™•ì¸
 		
 		BoardVO bVo = boardService.getBoardContents(num);
 		System.out.println(bVo);
 		if(bVo == null) {
-			return "redirect:/board/list";	//°á°ú°ªÀ» Ã£Áö ¸øÇßÀ» °æ¿ì ÇØ´ç ÆäÀÌÁö·Î ÀÌµ¿
+			return "redirect:/board/list";	//ê²°ê³¼ê°’ì„ ì°¾ì§€ ëª»í–ˆì„ ê²½ìš° í•´ë‹¹ í˜ì´ì§€ë¡œ ì´ë™
 		}
-		model.addAttribute("board", bVo);	//°á°ú°ªÀ» Ã£¾Ò´Ù¸é jsp¿¡¼­ »ç¿ëÇÒ modelÀÇ º¯¼ö¿¡ ÇØ´ç °á°ú°ªÀ» ÀúÀå
+		model.addAttribute("board", bVo);	//ê²°ê³¼ê°’ì„ ì°¾ì•˜ë‹¤ë©´ jspì—ì„œ ì‚¬ìš©í•  modelì˜ ë³€ìˆ˜ì— í•´ë‹¹ ê²°ê³¼ê°’ì„ ì €ì¥
 		return "/board/display";
 	}
 
-18. ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º¸¦ ÅëÇØ ¾òÀº °á°ú¸¦ jsp¿¡¼­ ${º¯¼ö¸í} Çü½ÄÀ» ÅëÇØ È£ÃâÇÏ¿© ÆäÀÌÁö¿¡ Ãâ·Â
-¿¹½Ã) 
-	°Ô½Ã±Û ¹øÈ£
-	<div>${board.num}</div>	//${ÄÁÆ®·Ñ·¯ÀÇ º¯¼ö¸í.VOÅ¬·¡½ºÀÇ º¯¼ö¸í} Çü½ÄÀ» ÅëÇØ ÇØ´ç º¯¼öÀÇ VOÅ¬·¡½º º¯¼ö°ªÀ» getter¸¦ ÅëÇØ È£Ãâ
-	°Ô½Ã±Û Á¦¸ñ
+18. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì„œë¹„ìŠ¤ë¥¼ í†µí•´ ì–»ì€ ê²°ê³¼ë¥¼ jspì—ì„œ ${ë³€ìˆ˜ëª…} í˜•ì‹ì„ í†µí•´ í˜¸ì¶œí•˜ì—¬ í˜ì´ì§€ì— ì¶œë ¥
+ì˜ˆì‹œ) 
+	ê²Œì‹œê¸€ ë²ˆí˜¸
+	<div>${board.num}</div>	//${ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ë³€ìˆ˜ëª….VOí´ë˜ìŠ¤ì˜ ë³€ìˆ˜ëª…} í˜•ì‹ì„ í†µí•´ í•´ë‹¹ ë³€ìˆ˜ì˜ VOí´ë˜ìŠ¤ ë³€ìˆ˜ê°’ì„ getterë¥¼ í†µí•´ í˜¸ì¶œ
+	ê²Œì‹œê¸€ ì œëª©
 	<div>${board.title}</div>
-	ÀÛ¼ºÀÚ
+	ì‘ì„±ì
 	<div>${board.writer}</div>
-	°Ô½Ã±Û ³»¿ë
+	ê²Œì‹œê¸€ ë‚´ìš©
 	<div>${board.contents}</div>
-	Á¶È¸¼ö
+	ì¡°íšŒìˆ˜
 	<div>${board.views}</div>
-	ÀÛ¼ºÀÏ
+	ì‘ì„±ì¼
 	<div>${board.registered}</div>
-	Ã·ºÎÆÄÀÏ
+	ì²¨ë¶€íŒŒì¼
 	<div>${board.file}</div>
 
-19. Á¶È¸¼ö ±â´É Ãß°¡ - ¼­ºñ½º implements Å¬·¡½ºÀÇ getBoardContents ¸Ş¼­µå¿¡¼­ DAOÀÇ ¸Ş¼­µå È£Ãâ
-¿¹½Ã)
+19. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€ - ì„œë¹„ìŠ¤ implements í´ë˜ìŠ¤ì˜ getBoardContents ë©”ì„œë“œì—ì„œ DAOì˜ ë©”ì„œë“œ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	@Override
 	public BoardVO getBoardContents(Integer num){
 		if(num == null) {
@@ -229,33 +229,33 @@ public class BoardServiceImp implements BoardService {
 		BoardVO bVo = boardDao.getBoardContents(num);
 		if(bVo == null) {
 			return null;
-		}	//¿¹¿ÜÃ³¸® ÈÄ ÇØ´ç °Ô½Ã±ÛÀ» Ã£¾Ò´Ù¸é
-		boardDao.boardUpdate(num);	//Á¶È¸¼ö¸¦ Áõ°¡½ÃÅ°´Â ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇÑ ÈÄ quick fixed¸¦ ÅëÇØ DAO ÀÎÅÍÆäÀÌ½º ±¸Çö
-		return boardDao.getBoardContents(num);	//Á¶È¸¼ö°¡ Áõ°¡µÈ ³»¿ëÀ» ´Ù½Ã È£ÃâÇÏ¿© ¹İÈ¯
+		}	//ì˜ˆì™¸ì²˜ë¦¬ í›„ í•´ë‹¹ ê²Œì‹œê¸€ì„ ì°¾ì•˜ë‹¤ë©´
+		boardDao.boardUpdate(num);	//ì¡°íšŒìˆ˜ë¥¼ ì¦ê°€ì‹œí‚¤ëŠ” ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œí•œ í›„ quick fixedë¥¼ í†µí•´ DAO ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„
+		return boardDao.getBoardContents(num);	//ì¡°íšŒìˆ˜ê°€ ì¦ê°€ëœ ë‚´ìš©ì„ ë‹¤ì‹œ í˜¸ì¶œí•˜ì—¬ ë°˜í™˜
 	}
-19-1. Á¶È¸¼ö ±â´É Ãß°¡1 - ¼­ºñ½º Å¬·¡½º¿¡ ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+19-1. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€1 - ì„œë¹„ìŠ¤ í´ë˜ìŠ¤ì— ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	public void updateViews(Integer num);
 
-19-2. Á¶È¸¼ö ±â´É Ãß°¡1 - ¼­ºñ½º implements Å¬·¡½º¿¡¼­ quick fixed¸¦ ÅëÇØ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÑ ÈÄ DAOÀÇ ¸Ş¼­µå¸¦ È£Ãâ
-¿¹½Ã)
+19-2. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€1 - ì„œë¹„ìŠ¤ implements í´ë˜ìŠ¤ì—ì„œ quick fixedë¥¼ í†µí•´ ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•œ í›„ DAOì˜ ë©”ì„œë“œë¥¼ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	@Override
 	public void updateViews(Integer num) {
 		
-		BoardVO tmp = boardDao.getBoardContents(num);	//°Ô½Ã±Û¿¡ ¸Â´Â °´Ã¼¸¦ °¡Á®¿Í¼­ »õ·Î¿î °´Ã¼¿¡ ÀúÀå
-		if(tmp != null) {	//°´Ã¼°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é
-			int oldViews = tmp.getViews();	//°¡Á®¿Â °´Ã¼ÀÇ Á¶È¸¼ö¸¦ º¯¼ö¿¡ ÀúÀå 
-			tmp.setViews(oldViews+1);	//setter¸¦ ÅëÇØ Á¶È¸¼ö¸¦ ±âÁ¸¿¡¼­ +1Áõ°¡ÇÑ °ªÀ¸·Î º¯°æ
-			boardDao.updateBoard(tmp);	//DAOÀÇ ¸Ş¼­µå¸¦ ¼±¾ğÇÑ µÚ quick fixed¸¦ ÅëÇØ ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
+		BoardVO tmp = boardDao.getBoardContents(num);	//ê²Œì‹œê¸€ì— ë§ëŠ” ê°ì²´ë¥¼ ê°€ì ¸ì™€ì„œ ìƒˆë¡œìš´ ê°ì²´ì— ì €ì¥
+		if(tmp != null) {	//ê°ì²´ê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
+			int oldViews = tmp.getViews();	//ê°€ì ¸ì˜¨ ê°ì²´ì˜ ì¡°íšŒìˆ˜ë¥¼ ë³€ìˆ˜ì— ì €ì¥ 
+			tmp.setViews(oldViews+1);	//setterë¥¼ í†µí•´ ì¡°íšŒìˆ˜ë¥¼ ê¸°ì¡´ì—ì„œ +1ì¦ê°€í•œ ê°’ìœ¼ë¡œ ë³€ê²½
+			boardDao.updateBoard(tmp);	//DAOì˜ ë©”ì„œë“œë¥¼ ì„ ì–¸í•œ ë’¤ quick fixedë¥¼ í†µí•´ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
 		}
 	}
 
-19-3. Á¶È¸¼ö ±â´É Ãß°¡1 - ¼­ºñ½º implements Å¬·¡½º¿¡¼­ quick fixed¸¦ ÅëÇØ DAO¿¡ ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+19-3. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€1 - ì„œë¹„ìŠ¤ implements í´ë˜ìŠ¤ì—ì„œ quick fixedë¥¼ í†µí•´ DAOì— ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	void updateBoard(BoardVO tmp);
 
-19-4. Á¶È¸¼ö ±â´É Ãß°¡1 - BoardMapper.xml¿¡¼­ ´Ù¿ÀÀÇ ÀÎÅÍÆäÀÌ½º¸¦ ¿¬°áÇÏ´Â Äõ¸®¹® ÀÛ¼º
-¿¹½Ã)
+19-4. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€1 - BoardMapper.xmlì—ì„œ ë‹¤ì˜¤ì˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ ì—°ê²°í•˜ëŠ” ì¿¼ë¦¬ë¬¸ ì‘ì„±
+ì˜ˆì‹œ)
 	<update id="updateBoard">
 		update board 
 		set title = #{title},
@@ -265,16 +265,16 @@ public class BoardServiceImp implements BoardService {
 			where num = #{num}
 	</update>
 
-19-5. Á¶È¸¼ö ±â´É Ãß°¡1 - ÄÁÆ®·Ñ·¯¿¡¼­ ÇØ´ç ¼­ºñ½º¸¦ È£ÃâÇÏ¿© ±â´É ½ÇÇà
-¿¹½Ã)
+19-5. ì¡°íšŒìˆ˜ ê¸°ëŠ¥ ì¶”ê°€1 - ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ í•´ë‹¹ ì„œë¹„ìŠ¤ë¥¼ í˜¸ì¶œí•˜ì—¬ ê¸°ëŠ¥ ì‹¤í–‰
+ì˜ˆì‹œ)
 	boardService.updateViews(num);
 
-20. quick fixed¸¦ ÅëÇØ DAO ÀÎÅÍÆäÀÌ½º ±¸Çö
-¿¹½Ã)
+20. quick fixedë¥¼ í†µí•´ DAO ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„
+ì˜ˆì‹œ)
 	void boardUpdate(Integer num);
 
-21. mapper ÆÄÀÏ¿¡¼­ DAOÀÎÅÍÆäÀÌ½º¸¦ ¿¬°á
-¿¹½Ã)
+21. mapper íŒŒì¼ì—ì„œ DAOì¸í„°í˜ì´ìŠ¤ë¥¼ ì—°ê²°
+ì˜ˆì‹œ)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -293,10 +293,10 @@ public class BoardServiceImp implements BoardService {
 	</update>
 </mapper>
 
-22. VO¿¡¼­ Date Å¸ÀÔ º¯¼öÀÇ getter¸¦ ¼öÁ¤ÇØ¼­ ¿øÇÏ´Â Çü½ÄÀ¸·Î ½Ã°£À» Ç¥½Ã
-¿¹½Ã)
+22. VOì—ì„œ Date íƒ€ì… ë³€ìˆ˜ì˜ getterë¥¼ ìˆ˜ì •í•´ì„œ ì›í•˜ëŠ” í˜•ì‹ìœ¼ë¡œ ì‹œê°„ì„ í‘œì‹œ
+ì˜ˆì‹œ)
 	public String getRegistered() {
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//¿øÇÏ´Â Çü½ÄÀ¸·Î ½Ã°£À» º¸¿©ÁÖ°Ô ¸¸µå´Â Å¬·¡½º
-		return f.format(registered);	//º¯¼ö registered¸¦ À§ÀÇ Çü½ÄÀ¸·Î º¯È¯ÇÏ¿© ¹İÈ¯
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//ì›í•˜ëŠ” í˜•ì‹ìœ¼ë¡œ ì‹œê°„ì„ ë³´ì—¬ì£¼ê²Œ ë§Œë“œëŠ” í´ë˜ìŠ¤
+		return f.format(registered);	//ë³€ìˆ˜ registeredë¥¼ ìœ„ì˜ í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜
 	}
 

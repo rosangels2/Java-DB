@@ -1,4 +1,4 @@
-¿¡·¯ ÀÌ¸§ - could not get IDBC COnnection: nested exception is java.sql.SQLExeption
-¿¡·¯ ³»¿ë - Unable to load authentication plugin 'caching sha2 password'
-¿øÀÎ - MySQL ¹öÀüÀÌ ´Ş¶ó »ı±â´Â È£È¯ ¹®Á¦
-ÇØ°á ¹æ¹ı - pom.xmlÀÇ mysql ¹öÀüÀ» 6.¿¡¼­ 8. ÀÌ»óÀÎ 8.0.11·Î º¯°æ
+ï»¿ì—ëŸ¬ ì´ë¦„ - could not get IDBC COnnection: nested exception is java.sql.SQLExeption
+ì—ëŸ¬ ë‚´ìš© - Unable to load authentication plugin 'caching sha2 password'
+ì›ì¸ - MySQL ë²„ì „ì´ ë‹¬ë¼ ìƒê¸°ëŠ” í˜¸í™˜ ë¬¸ì œ
+í•´ê²° ë°©ë²• - pom.xmlì˜ mysql ë²„ì „ì„ 6.ì—ì„œ 8. ì´ìƒì¸ 8.0.11ë¡œ ë³€ê²½

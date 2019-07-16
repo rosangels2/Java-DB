@@ -1,23 +1,23 @@
-display.jsp¿¡¼­ ¼öÁ¤, µî·Ï, »èÁ¦ ¹öÆ° Ãß°¡ ¹× ¸µÅ© µî·Ï
+ï»¿display.jspì—ì„œ ìˆ˜ì •, ë“±ë¡, ì‚­ì œ ë²„íŠ¼ ì¶”ê°€ ë° ë§í¬ ë“±ë¡
 
-¼öÁ¤ URI : /board/modify
+ìˆ˜ì • URI : /board/modify
 
-¼öÁ¤ ÆäÀÌÁö Ãß°¡ ¹× ±¸Çö ÈÄ °Ô½Ã±Û ¼öÁ¤ ±â´É Ãß°¡
+ìˆ˜ì • í˜ì´ì§€ ì¶”ê°€ ë° êµ¬í˜„ í›„ ê²Œì‹œê¸€ ìˆ˜ì • ê¸°ëŠ¥ ì¶”ê°€
 
 
-1. board/modify.jsp ÆÄÀÏ »ı¼º ÈÄ ÄÁÆ®·Ñ·¯¿¡¼­ ¸ÅÇÎÇÏ°í »ı¼ºÇß´ø ¼­ºñ½º ÀÎÅÍÆäÀÌ½º¸¦ ÅëÇØ Á¦´ë·Î °´Ã¼ Á¤º¸°¡ Ãâ·ÂµÇ´ÂÁö È®ÀÎ
-¿¹½Ã) ÄÁÆ®·Ñ·¯
+1. board/modify.jsp íŒŒì¼ ìƒì„± í›„ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë§¤í•‘í•˜ê³  ìƒì„±í–ˆë˜ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ë¥¼ í†µí•´ ì œëŒ€ë¡œ ê°ì²´ ì •ë³´ê°€ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
+ì˜ˆì‹œ) ì»¨íŠ¸ë¡¤ëŸ¬
 	@RequestMapping(value="modify", method = RequestMethod.GET)
 	public String boardModifyGet(Model model, Integer num){
-		logger.info("°Ô½Ã±Û ¼öÁ¤ ÁøÇà");
+		logger.info("ê²Œì‹œê¸€ ìˆ˜ì • ì§„í–‰");
 		
-		BoardVO bVo = boardService.getBoardContents(num);	//BoardServiceÀÇ °´Ã¼.¸Ş¼­µå¸í(¸Å°³º¯¼ö)¸¦ ÅëÇØ ÇØ´ç Å¬·¡½ºÀÇ ¸Ş¼­µå¸¦ È£ÃâÇÏ°í °á°ú°ªÀ» VO°´Ã¼¿¡ ÀúÀå
-		model.addAttribute("board", bVo);	//jsp¿¡¼­ º¯¼ö¸¦ È£ÃâÇÏ¿© »ç¿ëÇÏ±â À§ÇØ º¯¼ö board¸¦ »ı¼ºÇØ VO°´Ã¼ bVo¸¦ ÀúÀå
+		BoardVO bVo = boardService.getBoardContents(num);	//BoardServiceì˜ ê°ì²´.ë©”ì„œë“œëª…(ë§¤ê°œë³€ìˆ˜)ë¥¼ í†µí•´ í•´ë‹¹ í´ë˜ìŠ¤ì˜ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ê³  ê²°ê³¼ê°’ì„ VOê°ì²´ì— ì €ì¥
+		model.addAttribute("board", bVo);	//jspì—ì„œ ë³€ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ë³€ìˆ˜ boardë¥¼ ìƒì„±í•´ VOê°ì²´ bVoë¥¼ ì €ì¥
 		
 		return "/board/modify";
 	}
 
-¿¹½Ã) jspÆÄÀÏ
+ì˜ˆì‹œ) jspíŒŒì¼
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,41 +39,41 @@ a{
 		<input type="hidden" name="num" value="${board.num}">
 		<div class="container-fluid" style="margin-top:20px;">	              
 		    <div class="form-group">
-			  <label>Á¦¸ñ</label>
+			  <label>ì œëª©</label>
 			  <input type="text" class="form-control" name="title" value="${board.title}">
 		    </div>
 		    <div class="form-group">
-			  <label>ÀÛ¼ºÀÚ</label>
+			  <label>ì‘ì„±ì</label>
 			  <input type="text" class="form-control" name="writer" value="${board.writer}" readonly>
 		    </div>
 		    <div class="form-group">
-			  <label>ÀÛ¼ºÀÏ</label>
+			  <label>ì‘ì„±ì¼</label>
 			  <input type="text" class="form-control" name="registered" value="${board.registered}" readonly>
 		    </div>
 		    <div class="form-group">
-			  <label>Á¶È¸¼ö</label>
+			  <label>ì¡°íšŒìˆ˜</label>
 			  <input type="text" class="form-control" name="views" value="${board.views }" readonly>
 		    </div>
 		    <div class="form-group">
-			  <label>³»¿ë</label>
+			  <label>ë‚´ìš©</label>
 			  <textarea class="form-control" rows="5" name="contents">${board.contents }</textarea>
 			</div>
 		    <div class="form-group">
-			  <label>ÆÄÀÏÃ·ºÎ</label>
+			  <label>íŒŒì¼ì²¨ë¶€</label>
 			  <input type="text" class="form-control" name="file" value="${board.file }">
 		    </div>	  		
 		</div>
-		<button style="float: right; margin-right: 20px;">¼öÁ¤ ¿Ï·á</button>
+		<button style="float: right; margin-right: 20px;">ìˆ˜ì • ì™„ë£Œ</button>
 	</form>
-	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">Ãë¼Ò</button></a>
+	<a style="float: left; margin-left: 20px;" href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-primary">ì·¨ì†Œ</button></a>
 </body>
 </html>
 
-2. modify.jsp¿¡¼­ form ÅÂ±×¸¦ ÅëÇØ post¹æ½ÄÀ¸·Î Á¤º¸¸¦ Àü¼ÛÇßÀ» ¶§ÀÇ ¸Ş¼­µå¸¦ ÄÁÆ®·Ñ·¯¿¡¼­ ¸ÅÇÎÇÏ°í ¼­ºñ½º ÀÎÅÍÆäÀÌ½º¸¦ È£Ãâ
-¿¹½Ã)
+2. modify.jspì—ì„œ form íƒœê·¸ë¥¼ í†µí•´ postë°©ì‹ìœ¼ë¡œ ì •ë³´ë¥¼ ì „ì†¡í–ˆì„ ë•Œì˜ ë©”ì„œë“œë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë§¤í•‘í•˜ê³  ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	@RequestMapping(value="modify", method = RequestMethod.POST)
 	public String boardModifyPost(Model model, BoardVO bVo){
-		logger.info("°Ô½Ã±Û ¼öÁ¤ ÁøÇà");
+		logger.info("ê²Œì‹œê¸€ ìˆ˜ì • ì§„í–‰");
 		
 		if(boardService.modify(bVo)){
 			return "redirect:/board/list";
@@ -82,24 +82,24 @@ a{
 	}
 }
 
-3. quick fixed¸¦ ÅëÇØ ¼­ºñ½º ÀÎÅÍÆäÀÌ½º »ı¼º
-¿¹½Ã)
+3. quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ ìƒì„±
+ì˜ˆì‹œ)
 	boolean modify(BoardVO bVo);
 
-4. quick fixed¸¦ ÅëÇØ ÇØ´ç ÀÎÅÍÆäÀÌ½º ±¸Çö ÈÄ DAO ÀÎÅÍÆäÀÌ½º È£Ãâ
-¿¹½Ã)
+4. quick fixedë¥¼ í†µí•´ í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„ í›„ DAO ì¸í„°í˜ì´ìŠ¤ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	@Override
 	public boolean modify(BoardVO bVo) {
 		boardDao.updateBoard(bVo);
 		return true;
 	}
 
-5. quick fixed¸¦ ÅëÇØ DAO ÀÎÅÍÆäÀÌ½º »ı¼ºÇÏ°Å³ª »ı¼ºÇß´ø ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇØ¼­ »ç¿ë
-¿¹½Ã)
+5. quick fixedë¥¼ í†µí•´ DAO ì¸í„°í˜ì´ìŠ¤ ìƒì„±í•˜ê±°ë‚˜ ìƒì„±í–ˆë˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œí•´ì„œ ì‚¬ìš©
+ì˜ˆì‹œ)
 	void updateBoard(BoardVO tmp);
 
-6. mapper¿¡ Äõ¸®¹®À» ÀÛ¼º ÈÄ ¿¬°áÇÏ°Å³ª »ı¼ºÇß´ø Äõ¸®¹®À» ¿¬°á
-¿¹½Ã)
+6. mapperì— ì¿¼ë¦¬ë¬¸ì„ ì‘ì„± í›„ ì—°ê²°í•˜ê±°ë‚˜ ìƒì„±í–ˆë˜ ì¿¼ë¦¬ë¬¸ì„ ì—°ê²°
+ì˜ˆì‹œ)
 	<update id="updateBoard">
 		update board 
 		set title = #{title},
@@ -109,8 +109,8 @@ a{
 			where num = #{num}
 	</update>
 
-7. ¼­ºñ½º ±¸Çö Å¬·¡½º¿¡¼­ ¿¹¿Ü Ã³¸®
-¿¹½Ã)	
+7. ì„œë¹„ìŠ¤ êµ¬í˜„ í´ë˜ìŠ¤ì—ì„œ ì˜ˆì™¸ ì²˜ë¦¬
+ì˜ˆì‹œ)	
 	@Override
 	public boolean modify(BoardVO bVo) {
 		if(bVo == null) {
@@ -133,11 +133,11 @@ a{
 		return true;
 	}
 
-8. ÄÁÆ®·Ñ·¯¿¡¼­ È£ÃâÇÑ ¼­ºñ½º ÀÎÅÍÆäÀÌ½ºÀÇ ¹İÈ¯°ª¿¡ µû¶ó return°ª °áÁ¤
-¿¹½Ã)
+8. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ í˜¸ì¶œí•œ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ì˜ ë°˜í™˜ê°’ì— ë”°ë¼ returnê°’ ê²°ì •
+ì˜ˆì‹œ)
 	@RequestMapping(value="modify", method = RequestMethod.POST)
 	public String boardModifyPost(Model model, BoardVO bVo){
-		logger.info("°Ô½Ã±Û ¼öÁ¤ ÁøÇà");
+		logger.info("ê²Œì‹œê¸€ ìˆ˜ì • ì§„í–‰");
 		
 		if(boardService.modify(bVo)){
 			return "redirect:/board/list";

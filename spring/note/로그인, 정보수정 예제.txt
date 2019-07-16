@@ -1,40 +1,40 @@
-¿¹Á¦) ·Î±×ÀÎ ±â´É
-¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£¸¦ ÀÔ·Â ÈÄ ·Î±×ÀÎ ¹öÆ°À» Å¬¸¯ÇÏ¸é µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â È¸¿ø Å×ÀÌºí¿¡ ¾ÆÀÌµð¿Í ÀÏÄ¡ÇÏ´Â Á¤º¸°¡ ÀÖ´ÂÁö °Ë»öÇÏ°í
-ÀÏÄ¡ÇÏ´Â Á¤º¸°¡ ¾øÀ¸¸é ·Î±×ÀÎ ½ÇÆÐ Ã³¸®, ÀÖÀ¸¸é ÇØ´ç Á¤º¸¸¦ °¡Á®¿Í¼­ ºñ¹Ð¹øÈ£ ºñ±³ ÈÄ ÀÏÄ¡ÇÏ¸é ·Î±×ÀÎ ¼º°ø Ã³¸®
+ï»¿ì˜ˆì œ) ë¡œê·¸ì¸ ê¸°ëŠ¥
+ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥ í›„ ë¡œê·¸ì¸ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ë°ì´í„°ë² ì´ìŠ¤ì— ìžˆëŠ” íšŒì› í…Œì´ë¸”ì— ì•„ì´ë””ì™€ ì¼ì¹˜í•˜ëŠ” ì •ë³´ê°€ ìžˆëŠ”ì§€ ê²€ìƒ‰í•˜ê³ 
+ì¼ì¹˜í•˜ëŠ” ì •ë³´ê°€ ì—†ìœ¼ë©´ ë¡œê·¸ì¸ ì‹¤íŒ¨ ì²˜ë¦¬, ìžˆìœ¼ë©´ í•´ë‹¹ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë¹„ë°€ë²ˆí˜¸ ë¹„êµ í›„ ì¼ì¹˜í•˜ë©´ ë¡œê·¸ì¸ ì„±ê³µ ì²˜ë¦¬
 
-¼ø¼­
-1. ·Î±×ÀÎ ¹öÆ°À» Å¬¸¯ÇÏ¸é ÀÔ·ÂÇÑ Á¤º¸¸¦ ÄÁÆ®·Ñ·¯¿¡ post ¹æ½ÄÀ¸·Î Àü´Þ(jsp)
- - °³ÀÎ Á¤º¸°¡ ÀÖÀ¸¹Ç·Î
+ìˆœì„œ
+1. ë¡œê·¸ì¸ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ìž…ë ¥í•œ ì •ë³´ë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ì— post ë°©ì‹ìœ¼ë¡œ ì „ë‹¬(jsp)
+ - ê°œì¸ ì •ë³´ê°€ ìžˆìœ¼ë¯€ë¡œ
 
-2. ¼­ºñ½º¿¡°Ô È¸¿ø ¿©ºÎ¸¦ È®ÀÎÇÏ¿© È¸¿øÀÌ ¸ÂÀ¸¸é ¸ÞÀÎ ÆäÀÌÁö·Î, ¾Æ´Ï¸é ·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿(ÄÁÆ®·Ñ·¯)
+2. ì„œë¹„ìŠ¤ì—ê²Œ íšŒì› ì—¬ë¶€ë¥¼ í™•ì¸í•˜ì—¬ íšŒì›ì´ ë§žìœ¼ë©´ ë©”ì¸ íŽ˜ì´ì§€ë¡œ, ì•„ë‹ˆë©´ ë¡œê·¸ì¸ íŽ˜ì´ì§€ë¡œ ì´ë™(ì»¨íŠ¸ë¡¤ëŸ¬)
 
-3. dao¿¡°Ô id¿Í ÀÏÄ¡ÇÏ´Â È¸¿ø Á¤º¸¸¦ °¡Á®¿Í ÀúÀåÇÑ ÈÄ, ÀúÀåµÈ È¸¿ø Á¤º¸°¡ ¾øÀ¸¸é(nullÀÌ¸é) ÄÁÆ®·Ñ·¯¿¡°Ô È¸¿øÀÌ ¾Æ´ÔÀ» ¾Ë·ÁÁÖ°í,
-   ÀÖÀ¸¸é °¡Á®¿Â È¸¿øÁ¤º¸ ºñ¹Ð¹øÈ£¿Í ÀÔ·ÂÇÑ È¸¿øÁ¤º¸ ºñ¹Ð¹øÈ£¸¦ ºñ±³ÇÏ¿© ÀÏÄ¡ÇÏ¸é ÄÁÆ®·Ñ·¯¿¡°Ô ·Î±×ÀÎ ¼º°øÀ»,
-   ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é ·Î±×ÀÎ ½ÇÆÐ¸¦ ¾Ë·ÁÁØ´Ù
-
-
+3. daoì—ê²Œ idì™€ ì¼ì¹˜í•˜ëŠ” íšŒì› ì •ë³´ë¥¼ ê°€ì ¸ì™€ ì €ìž¥í•œ í›„, ì €ìž¥ëœ íšŒì› ì •ë³´ê°€ ì—†ìœ¼ë©´(nullì´ë©´) ì»¨íŠ¸ë¡¤ëŸ¬ì—ê²Œ íšŒì›ì´ ì•„ë‹˜ì„ ì•Œë ¤ì£¼ê³ ,
+   ìžˆìœ¼ë©´ ê°€ì ¸ì˜¨ íšŒì›ì •ë³´ ë¹„ë°€ë²ˆí˜¸ì™€ ìž…ë ¥í•œ íšŒì›ì •ë³´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¹„êµí•˜ì—¬ ì¼ì¹˜í•˜ë©´ ì»¨íŠ¸ë¡¤ëŸ¬ì—ê²Œ ë¡œê·¸ì¸ ì„±ê³µì„,
+   ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ ë¡œê·¸ì¸ ì‹¤íŒ¨ë¥¼ ì•Œë ¤ì¤€ë‹¤
 
 
 
-¿¹Á¦) Á¤º¸ ¼öÁ¤ ±â´É
-È¸¿ø°¡ÀÔ ÆäÀÌÁö¸¦ ÀÌ¿ëÇÏ¿© È¸¿ø ¼öÁ¤ ÆäÀÌÁö¸¦ »ý¼ºÇÏ°í È¸¿ø ¼öÁ¤ ±â´ÉÀ» Ãß°¡
 
-¼ø¼­
+
+ì˜ˆì œ) ì •ë³´ ìˆ˜ì • ê¸°ëŠ¥
+íšŒì›ê°€ìž… íŽ˜ì´ì§€ë¥¼ ì´ìš©í•˜ì—¬ íšŒì› ìˆ˜ì • íŽ˜ì´ì§€ë¥¼ ìƒì„±í•˜ê³  íšŒì› ìˆ˜ì • ê¸°ëŠ¥ì„ ì¶”ê°€
+
+ìˆœì„œ
 jsp
-·Î±×ÀÎ ½Ã È¸¿ø Á¤º¸ ¼öÁ¤ ¸Þ´º°¡ ÀÖ´Â member.jsp ±¸Çö
-È¸¿ø Á¤º¸ ¼öÁ¤ ¼±ÅÃ ½Ã ÀÌµ¿ÇÒ ÆäÀÌÁöÀÎ È¸¿ø Á¤º¸ ¼öÁ¤ ÄÚµå¸¦ /member/modify.jspÆÄÀÏ¿¡ ±¸Çö
+ë¡œê·¸ì¸ ì‹œ íšŒì› ì •ë³´ ìˆ˜ì • ë©”ë‰´ê°€ ìžˆëŠ” member.jsp êµ¬í˜„
+íšŒì› ì •ë³´ ìˆ˜ì • ì„ íƒ ì‹œ ì´ë™í•  íŽ˜ì´ì§€ì¸ íšŒì› ì •ë³´ ìˆ˜ì • ì½”ë“œë¥¼ /member/modify.jspíŒŒì¼ì— êµ¬í˜„
 
-ÄÁÆ®·Ñ·¯
-@RequestMappingÀ» ÅëÇØ ÇØ´ç URLÀÇ °æ·Î¿¡¼­ º¸¿©ÁÙ JSPÆÄÀÏÀ» return
-ÇØ´ç JSPÆÄÀÏ¿¡¼­ ÀÔ·ÂÇÑ °ªÀÌ ¸Å°³º¯¼ö¸¦ ÅëÇØ °´Ã¼¿¡ Àß ÀúÀåµÇ´ÂÁö ÄÜ¼ÖÀ» ÅëÇØ È®ÀÎ
-ÀÔ·ÂµÈ °ªÀÌ Á¦´ë·Î Ãâ·ÂµÈ´Ù¸é Service Å¬·¡½º¿¡ ÇØ´ç ¸Å°³º¯¼öµéÀ» »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ð
-Mapper.xml¿¡¼­ DAOÀÇ ±¸ÇöÀÌ ³¡³ª¸é Service¸¦ È£ÃâÇÏ¿© ±â´ÉÀ» ½ÇÇàÇÑ µÚ °á°ú¿¡ µû¶ó º¸¿©ÁÙ JSP ÆäÀÌÁö¸¦ return
+ì»¨íŠ¸ë¡¤ëŸ¬
+@RequestMappingì„ í†µí•´ í•´ë‹¹ URLì˜ ê²½ë¡œì—ì„œ ë³´ì—¬ì¤„ JSPíŒŒì¼ì„ return
+í•´ë‹¹ JSPíŒŒì¼ì—ì„œ ìž…ë ¥í•œ ê°’ì´ ë§¤ê°œë³€ìˆ˜ë¥¼ í†µí•´ ê°ì²´ì— ìž˜ ì €ìž¥ë˜ëŠ”ì§€ ì½˜ì†”ì„ í†µí•´ í™•ì¸
+ìž…ë ¥ëœ ê°’ì´ ì œëŒ€ë¡œ ì¶œë ¥ëœë‹¤ë©´ Service í´ëž˜ìŠ¤ì— í•´ë‹¹ ë§¤ê°œë³€ìˆ˜ë“¤ì„ ì‚¬ìš©í•˜ëŠ” ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì„ ì–¸
+Mapper.xmlì—ì„œ DAOì˜ êµ¬í˜„ì´ ëë‚˜ë©´ Serviceë¥¼ í˜¸ì¶œí•˜ì—¬ ê¸°ëŠ¥ì„ ì‹¤í–‰í•œ ë’¤ ê²°ê³¼ì— ë”°ë¼ ë³´ì—¬ì¤„ JSP íŽ˜ì´ì§€ë¥¼ return
 
-¼­ºñ½º
-ÄÁÆ®·Ñ·¯¿¡¼­ ÁöÁ¤ÇÑ ¸Å°³º¯¼öµéÀ» »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ðÇÑ µÚ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÒ implements Å¬·¡½º¸¦ »ý¼º
-implements Å¬·¡½º¿¡ @Service Å°¿öµå ÀÔ·ÂÀ» ÅëÇØ ¼­ºñ½º Å¬·¡½º »ç¿ëÀ» ¼±¾ð
-Á¶°Ç½ÄÀ» ÀÌ¿ëÇØ null°ªÀÌ ÀÔ·ÂµÆÀ» ¶§ÀÇ ¿¹¿Ü Ã³¸®¿Í ¿øÇÏ´Â Á¤º¸¸¦ ¾ò±â À§ÇÑ ±â´ÉÀ» Ã³¸®
-¿¹½Ã)
+ì„œë¹„ìŠ¤
+ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì§€ì •í•œ ë§¤ê°œë³€ìˆ˜ë“¤ì„ ì‚¬ìš©í•˜ëŠ” ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì„ ì–¸í•œ ë’¤ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•  implements í´ëž˜ìŠ¤ë¥¼ ìƒì„±
+implements í´ëž˜ìŠ¤ì— @Service í‚¤ì›Œë“œ ìž…ë ¥ì„ í†µí•´ ì„œë¹„ìŠ¤ í´ëž˜ìŠ¤ ì‚¬ìš©ì„ ì„ ì–¸
+ì¡°ê±´ì‹ì„ ì´ìš©í•´ nullê°’ì´ ìž…ë ¥ëì„ ë•Œì˜ ì˜ˆì™¸ ì²˜ë¦¬ì™€ ì›í•˜ëŠ” ì •ë³´ë¥¼ ì–»ê¸° ìœ„í•œ ê¸°ëŠ¥ì„ ì²˜ë¦¬
+ì˜ˆì‹œ)
 	public boolean modify(MemberVO mVo, String oPw){
 		if(mVo == null) {
 			return false;
@@ -42,18 +42,18 @@ implements Å¬·¡½º¿¡ @Service Å°¿öµå ÀÔ·ÂÀ» ÅëÇØ ¼­ºñ½º Å¬·¡½º »ç¿ëÀ» ¼±¾ð
 		mVo.setName("");
 		MemberVO oVo = memberDao.getMember(mVo.getId());
 		if(oVo.getPw().equals(oPw)){
-			memberDao.modify(mVo);	//¿øÇÏ´Â Á¶°ÇÀ» ¸¸Á·ÇÏ¸é DAOÅ¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇØ Äõ¸®¹®À» ½ÇÇà
+			memberDao.modify(mVo);	//ì›í•˜ëŠ” ì¡°ê±´ì„ ë§Œì¡±í•˜ë©´ DAOí´ëž˜ìŠ¤ì˜ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ í˜¸ì¶œí•´ ì¿¼ë¦¬ë¬¸ì„ ì‹¤í–‰
 			return true;
 		}
 		return false;
 	}
-¿øÇÏ´Â Á¶°Ç¿¡ ¸¸Á·ÇÏÁö ¸øÇÏ¸é false¸¦, ¿øÇÏ´Â Á¤º¸¸¦ ¾ò´Â Á¶°ÇÀ» ¸¸Á·ÇÏ¸é true¸¦ ¹ÝÈ¯ÇÏ¸ç DAOÅ¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º¸¦ È£Ãâ
+ì›í•˜ëŠ” ì¡°ê±´ì— ë§Œì¡±í•˜ì§€ ëª»í•˜ë©´ falseë¥¼, ì›í•˜ëŠ” ì •ë³´ë¥¼ ì–»ëŠ” ì¡°ê±´ì„ ë§Œì¡±í•˜ë©´ trueë¥¼ ë°˜í™˜í•˜ë©° DAOí´ëž˜ìŠ¤ì˜ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ í˜¸ì¶œ
 
 DAO
-serviceÅ¬·¡½º¿¡¼­ È£ÃâÇÏ¿© ½ÇÇàµÉ ¸Å°³º¯¼ö¸¦ °¡Áø ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ð
-Mapper.xml¿¡¼­ ÇØ´ç ÀÎÅÍÆäÀÌ½ºÀÇ ¸Å°³º¯¼ö Á¤º¸¸¦ ÀÌ¿ëÇØ ½ÇÇàµÇ´Â Äõ¸®¹®À» ÀÛ¼ºÇØ ÀÎÅÍÆäÀÌ½º¸¦ ±¸Çö
-Äõ¸®¹®À¸·Î ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¸é ÄÁÆ®·Ñ·¯¿¡¼­ ¼­ºñ½º¸¦ È£ÃâÇÏ¿© DAO¸¦ Â÷·Ê´ë·Î È£Ãâ
+serviceí´ëž˜ìŠ¤ì—ì„œ í˜¸ì¶œí•˜ì—¬ ì‹¤í–‰ë  ë§¤ê°œë³€ìˆ˜ë¥¼ ê°€ì§„ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì„ ì–¸
+Mapper.xmlì—ì„œ í•´ë‹¹ ì¸í„°íŽ˜ì´ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜ ì •ë³´ë¥¼ ì´ìš©í•´ ì‹¤í–‰ë˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ìž‘ì„±í•´ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„
+ì¿¼ë¦¬ë¬¸ìœ¼ë¡œ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ë©´ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì„œë¹„ìŠ¤ë¥¼ í˜¸ì¶œí•˜ì—¬ DAOë¥¼ ì°¨ë¡€ëŒ€ë¡œ í˜¸ì¶œ
 
 DB
-xmlÀÇ Äõ¸®¹®À» ÅëÇØ ÇØ´ç Á¤º¸¿¡ ´ëÇÑ ±â´ÉÀ» ½ÇÇàÇÏ´Â ¿ªÇÒ
+xmlì˜ ì¿¼ë¦¬ë¬¸ì„ í†µí•´ í•´ë‹¹ ì •ë³´ì— ëŒ€í•œ ê¸°ëŠ¥ì„ ì‹¤í–‰í•˜ëŠ” ì—­í• 
 

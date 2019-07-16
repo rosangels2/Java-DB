@@ -1,24 +1,46 @@
-¿¡·¯ ÀÌ¸§ - HTTP Status 404 - Not Fount
-¿¡·¯ ³»¿ë
+ï»¿ì—ëŸ¬ ë‚´ìš©
 Type Status Report
 Description The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
 Pivotal tc Runtime 9.0.13.B.RELEASE
-¿¡·¯ ¿øÀÎ - ÄÁÆ®·Ñ·¯¿¡ ÇØ´ç URL¿¡ ¸Â´Â ¸Ş¼­µå°¡ ¾ø¾î¼­
-ÇØ°á ¹æ¹ı - ÄÁÆ®·Ñ·¯¿¡ ÇØ´ç URI¿¡ ¸Â´Â ¸Ş¼­µå Ãß°¡
-¿¹½Ã)
+ì—ëŸ¬ ì›ì¸ - ì»¨íŠ¸ë¡¤ëŸ¬ì— í•´ë‹¹ URLì— ë§ëŠ” ë©”ì„œë“œê°€ ì—†ì–´ì„œ
+
+í•´ê²° ë°©ë²• - ì»¨íŠ¸ë¡¤ëŸ¬ì— í•´ë‹¹ URIì— ë§ëŠ” ë©”ì„œë“œ ì¶”ê°€
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signupGet(Model model){
-		logger.info("¸ŞÀÎÆäÀÌÁö ½ÇÇà");	//console¿¡ ÀÔ·ÂµÇ´Â ¸Ş¼¼Áö
-		return "signup";	//»ç¿ëÀÚ¿¡°Ô signup.jsp¸¦ º¸³»ÁØ´Ù
+		logger.info("ë©”ì¸í˜ì´ì§€ ì‹¤í–‰");	//consoleì— ì…ë ¥ë˜ëŠ” ë©”ì„¸ì§€
+		return "signup";	//ì‚¬ìš©ìì—ê²Œ signup.jspë¥¼ ë³´ë‚´ì¤€ë‹¤
 	}
 
 
 
-¿¡·¯ ÀÌ¸§ - HTTP Status 404 - Not Fount
-¿¡·¯ ³»¿ë
+
+
+ì—ëŸ¬ ë‚´ìš©
 Type Status Report
 Message /spring/WEB-INF/views/signup.jsp
 Description The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
 Pivotal tc Runtime 9.0.13.B.RELEASE
-¿¡·¯ ¿øÀÎ - ÇØ´ç Æú´õ¿¡ JSPÆÄÀÏÀÌ ¾ø¾î¼­
-ÇØ°á ¹æ¹ı - ÇØ´ç Æú´õ¿¡ JSPÆÄÀÏ Ãß°¡
+
+ì—ëŸ¬ ì›ì¸ - í•´ë‹¹ í´ë”ì— JSPíŒŒì¼ì´ ì—†ì–´ì„œ
+
+í•´ê²° ë°©ë²• - í•´ë‹¹ í´ë”ì— JSPíŒŒì¼ ì¶”ê°€
+
+
+
+
+
+ì—ëŸ¬ ë‚´ìš©
+HTTP Status 404 â€“ Not Found
+Type Status Report
+Message /test/WEB-INF/views/redirect/board/list.jsp
+Description The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+Pivotal tc Runtime 9.0.13.B.RELEASE
+
+ì—ëŸ¬ ì›ì¸ - ì»¨íŠ¸ë¡¤ëŸ¬ returnì— ì˜¤íƒ€ ë°œìƒ
+ì˜ˆì‹œ)
+	return "redirect/board/list";	//redirect ë’¤ì— :ë¥¼ ë¹¼ê³  ì…ë ¥í•˜ì—¬ ì—ëŸ¬ ë°œìƒ
+
+í•´ê²° ë°©ë²• - ì»¨íŠ¸ë¡¤ëŸ¬ì˜ returnì—ì„œ ì˜¤íƒ€ ìˆ˜ì •
+ì˜ˆì‹œ)
+	return "redirect:/board/list";

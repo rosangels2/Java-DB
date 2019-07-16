@@ -1,16 +1,16 @@
-Interceptor¸¦ ÀÌ¿ëÇÑ À¯Àú Á¤º¸ ¼¼¼Ç¿¡ ÀúÀåÇÏ±â
+ï»¿Interceptorë¥¼ ì´ìš©í•œ ìœ ì € ì •ë³´ ì„¸ì…˜ì— ì €ì¥í•˜ê¸°
 
-posthandle - ÄÁÆ®·Ñ·¯¿¡¼­ JSP·Î Á¤º¸¸¦ Àü¼ÛÇÒ ¶§ ÀÛµ¿
-prehandle - URI¿¡¼­ ÄÁÆ®·Ñ·¯·Î Á¤º¸¸¦ Àü¼ÛÇÒ ¶§ ÀÛµ¿
+posthandle - ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ JSPë¡œ ì •ë³´ë¥¼ ì „ì†¡í•  ë•Œ ì‘ë™
+prehandle - URIì—ì„œ ì»¨íŠ¸ë¡¤ëŸ¬ë¡œ ì •ë³´ë¥¼ ì „ì†¡í•  ë•Œ ì‘ë™
 
-1. ÆĞÅ°Áö »ı¼º - °æ·Î : ÇÁ·ÎÁ§Æ®>src/main/java Æú´õ¿¡ »ı¼º
-±¹°¡.È¸»ç¸í.ÇÁ·ÎÁ§Æ®¸í.interceptor ÆĞÅ°Áö »ı¼º
-¿¹ : kr.green.spring.interceptor
+1. íŒ¨í‚¤ì§€ ìƒì„± - ê²½ë¡œ : í”„ë¡œì íŠ¸>src/main/java í´ë”ì— ìƒì„±
+êµ­ê°€.íšŒì‚¬ëª….í”„ë¡œì íŠ¸ëª….interceptor íŒ¨í‚¤ì§€ ìƒì„±
+ì˜ˆ : kr.green.spring.interceptor
 
-2. ÄÁÆ®·Ñ·¯¿¡¼­ À¯Àú Á¤º¸¸¦ Model¿¡ ³Ñ±â±â
-·Î±×ÀÎ Ã¢¿¡¼­ ÀÔ·Â ¹ŞÀº id¿Í pw¸¦ ÀÌ¿ëÇÏ¿© À¯Àú Á¤º¸ °Ë»ö
-À¯Àú Á¤º¸°¡ ÀÖÀ¸¸é À¯Àú Á¤º¸¸¦ Model¿¡ Ãß°¡ ÈÄ °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö·Î ÀÌµ¿
-¾øÀ¸¸é ·Î±×ÀÎ ÆäÀÌÁö À¯Áö
+2. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ìœ ì € ì •ë³´ë¥¼ Modelì— ë„˜ê¸°ê¸°
+ë¡œê·¸ì¸ ì°½ì—ì„œ ì…ë ¥ ë°›ì€ idì™€ pwë¥¼ ì´ìš©í•˜ì—¬ ìœ ì € ì •ë³´ ê²€ìƒ‰
+ìœ ì € ì •ë³´ê°€ ìˆìœ¼ë©´ ìœ ì € ì •ë³´ë¥¼ Modelì— ì¶”ê°€ í›„ ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ë¡œ ì´ë™
+ì—†ìœ¼ë©´ ë¡œê·¸ì¸ í˜ì´ì§€ ìœ ì§€
 @Autowired
 private UserMapper userMapper;
 
@@ -28,7 +28,7 @@ public String home(Model model, HttpServletRequest request) {
 
     return "home";
 }
-·Î±×ÀÎ ÆäÀÌÁö ¼Ò½º
+ë¡œê·¸ì¸ í˜ì´ì§€ ì†ŒìŠ¤
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -45,7 +45,7 @@ public String home(Model model, HttpServletRequest request) {
 
 <div class="container">
 <h1>
-	·Î±×ÀÎ  
+	ë¡œê·¸ì¸  
 </h1>
   <form>
     <div class="form-group">
@@ -56,18 +56,18 @@ public String home(Model model, HttpServletRequest request) {
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" name="pw">
     </div>
-    <button type="submit" class="btn btn-primary">·Î±×ÀÎ</button>
+    <button type="submit" class="btn btn-primary">ë¡œê·¸ì¸</button>
   </form>
 </div>
 </body>
 </html>
 
-3. ·Î±×ÀÎ ½Ãµµ ½Ã ½ÇÇàÇÒ interceptor Å¬·¡½º »ı¼º
-LoginInterceptor Å¬·¡½º »ı¼º ¹× ¸Ş¼Òµå ¿À¹ö¶óÀÌµù
-HandlerInterceptorAdapter Å¬·¡½º¸¦ »ó¼Ó ¹ŞÀº LoginInterceptor Å¬·¡½º »ı¼º
-postHandle ¸Ş¼Òµå¸¦ ¿À¹ö¶óÀÌµù
-Controller¿¡¼­ Model¿¡ À¯Àú Á¤º¸¸¦ ÀúÀåÇÏÁö ¾Ê¾ÒÀ¸¸é modelMap.get("user")¸¦ ÇßÀ» ¶§ null°ªÀÌ µé¾î°¡°í ÀÖÀ¸¸é ÀúÀåÇÑ Á¤º¸¸¦ °¡Á®¿Â´Ù.
-°¡Á®¿Â Á¤º¸°¡ nullÀÌ ¾Æ´Ï¸é ÇØ´ç À¯Àú Á¤º¸¸¦ ¼¼¼Ç¿¡ ÀúÀå
+3. ë¡œê·¸ì¸ ì‹œë„ ì‹œ ì‹¤í–‰í•  interceptor í´ë˜ìŠ¤ ìƒì„±
+LoginInterceptor í´ë˜ìŠ¤ ìƒì„± ë° ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+HandlerInterceptorAdapter í´ë˜ìŠ¤ë¥¼ ìƒì† ë°›ì€ LoginInterceptor í´ë˜ìŠ¤ ìƒì„±
+postHandle ë©”ì†Œë“œë¥¼ ì˜¤ë²„ë¼ì´ë”©
+Controllerì—ì„œ Modelì— ìœ ì € ì •ë³´ë¥¼ ì €ì¥í•˜ì§€ ì•Šì•˜ìœ¼ë©´ modelMap.get("user")ë¥¼ í–ˆì„ ë•Œ nullê°’ì´ ë“¤ì–´ê°€ê³  ìˆìœ¼ë©´ ì €ì¥í•œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+ê°€ì ¸ì˜¨ ì •ë³´ê°€ nullì´ ì•„ë‹ˆë©´ í•´ë‹¹ ìœ ì € ì •ë³´ë¥¼ ì„¸ì…˜ì— ì €ì¥
 @Override
 public void postHandle(
     HttpServletRequest request, 
@@ -83,47 +83,47 @@ public void postHandle(
         session.setAttribute("user", user);
     }
 }
-4. LoginInterceptor¸¦ servlet-context.xml¿¡ interceptor·Î µî·Ï
-kr.green.spring.interceptor.LoginInterceptor Å¬·¡½º¸¦ bean¿¡ µî·Ï
-¿¹½Ã)
+4. LoginInterceptorë¥¼ servlet-context.xmlì— interceptorë¡œ ë“±ë¡
+kr.green.spring.interceptor.LoginInterceptor í´ë˜ìŠ¤ë¥¼ beanì— ë“±ë¡
+ì˜ˆì‹œ)
 <beans:bean id="loginInterceptor" 
 	class="kr.green.spring.interceptor.LoginInterceptor">
 </beans:bean>
-·Î±×ÀÎ path°¡ ÁÖ¾îÁ³À» ¶§ loginInterceptor°¡ È£ÃâÇÏµµ·Ï interceptor ÅÂ±×¿¡ µî·Ï
+ë¡œê·¸ì¸ pathê°€ ì£¼ì–´ì¡Œì„ ë•Œ loginInterceptorê°€ í˜¸ì¶œí•˜ë„ë¡ interceptor íƒœê·¸ì— ë“±ë¡
 
-¿¹½Ã)
+ì˜ˆì‹œ)
 <interceptors>
     <interceptor>
-        <mapping path="/"/>		<!-- URI °æ·Î¿¡ ¸Â´Â ÀÎÅÍ¼ÁÅÍ¸¦ ½ÇÇà	-->
+        <mapping path="/"/>		<!-- URI ê²½ë¡œì— ë§ëŠ” ì¸í„°ì…‰í„°ë¥¼ ì‹¤í–‰	-->
         <beans:ref bean="loginInterceptor"/>
     </interceptor>
 </interceptors>
 
-ÃÖÁ¾ÀûÀ¸·Î servlet.context.xml¿¡ Ãß°¡ÇÑ ÄÚµå
-¿¹½Ã)
+ìµœì¢…ì ìœ¼ë¡œ servlet.context.xmlì— ì¶”ê°€í•œ ì½”ë“œ
+ì˜ˆì‹œ)
 <beans:bean id="loginInterceptor" 
-	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>	<!-- ÆĞÅ°Áö¸í.Å¬·¡½º¸í -->
+	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>	<!-- íŒ¨í‚¤ì§€ëª….í´ë˜ìŠ¤ëª… -->
 <interceptors>
 	<interceptor>
-		<mapping path="/"/>	<!-- URI °æ·Î¿¡ ¸Â´Â ÀÎÅÍ¼ÁÅÍ¸¦ ½ÇÇà	-->
-		<beans:ref bean="loginInterceptor"/>	<!-- À§ÂÊ beansÀÇ id¿Í ÀÏÄ¡ÇØ¾ß ÇÑ´Ù -->
+		<mapping path="/"/>	<!-- URI ê²½ë¡œì— ë§ëŠ” ì¸í„°ì…‰í„°ë¥¼ ì‹¤í–‰	-->
+		<beans:ref bean="loginInterceptor"/>	<!-- ìœ„ìª½ beansì˜ idì™€ ì¼ì¹˜í•´ì•¼ í•œë‹¤ -->
 	</interceptor>
 </interceptors>
 
-5. ÄÁÆ®·Ñ·¯¿¡¼­ °´Ã¼¸¦ °¡Á®¿ÔÀ» ¶§ ÇØ´ç °´Ã¼¸¦ interceptor°¡ »ç¿ëÇÒ º¯¼ö¿¡ ÀúÀå
-¿¹½Ã)
+5. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ê°ì²´ë¥¼ ê°€ì ¸ì™”ì„ ë•Œ í•´ë‹¹ ê°ì²´ë¥¼ interceptorê°€ ì‚¬ìš©í•  ë³€ìˆ˜ì— ì €ì¥
+ì˜ˆì‹œ)
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signinPost(Model model, MemberVO mVo){
-		MemberVO user = memberService.signin(mVo);	// ¸®ÅÏ Å¸ÀÔÀ» MemberVO °´Ã¼·Î ¹Ù²Ù°í °¡Á®¿Â °´Ã¼¸¦ »õ·Î¿î °´Ã¼ user¿¡ ÀúÀå
+		MemberVO user = memberService.signin(mVo);	// ë¦¬í„´ íƒ€ì…ì„ MemberVO ê°ì²´ë¡œ ë°”ê¾¸ê³  ê°€ì ¸ì˜¨ ê°ì²´ë¥¼ ìƒˆë¡œìš´ ê°ì²´ userì— ì €ì¥
 		if(user != null){
-			model.addAttribute("user", user);	//ÀÎÅÍ¼ÁÅÍ¿¡¼­ »ç¿ëÇÏ±â À§ÇØ º¯¼ö user¿¡ °´Ã¼ user Á¤º¸¸¦ ÀúÀå
-			return "redirect:/member"; //·Î±×ÀÎ ¼º°ø ½Ã member.jsp·Î ÀÌµ¿
+			model.addAttribute("user", user);	//ì¸í„°ì…‰í„°ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ë³€ìˆ˜ userì— ê°ì²´ user ì •ë³´ë¥¼ ì €ì¥
+			return "redirect:/member"; //ë¡œê·¸ì¸ ì„±ê³µ ì‹œ member.jspë¡œ ì´ë™
 		}
 		return "redirect:/signin";
 	}
 
-6. ¿øÇÏ´Â JSP¿¡¼­ ${user}¸¦ ÅëÇØ ¼¼¼ÇÀÌ ÀúÀåµÆÀ» ¶§ÀÇ °´Ã¼ Á¤º¸¸¦ È®ÀÎ
-¿¹½Ã)
+6. ì›í•˜ëŠ” JSPì—ì„œ ${user}ë¥¼ í†µí•´ ì„¸ì…˜ì´ ì €ì¥ëì„ ë•Œì˜ ê°ì²´ ì •ë³´ë¥¼ í™•ì¸
+ì˜ˆì‹œ)
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -134,21 +134,21 @@ kr.green.spring.interceptor.LoginInterceptor Å¬·¡½º¸¦ bean¿¡ µî·Ï
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/member/modify">È¸¿øÁ¤º¸ ¼öÁ¤</a>
+	<a href="<%=request.getContextPath()%>/member/modify">íšŒì›ì •ë³´ ìˆ˜ì •</a>
 	${user}
 </body>
 </html>
 
-7. JSP¿¡¼­ ¼¼¼Ç¿¡ °´Ã¼°¡ ÀúÀåµÅ ÀÖ´ÂÁö ¿©ºÎ¿¡ µû¶ó html ±¸¼ºÀ» ´Ù¸£°Ô Àû¿ë °¡´É
-¿¹½Ã) home.jsp
-<body>	<!-- eq = equals(°°´Ù), ne = !equals(°°Áö ¾Ê´Ù) -->
-	<c:if test="${user eq null}">	<!-- test = Á¶°Ç½Ä(ÇØ´ç Á¶°Ç½Ä °á°ú°¡ trueÀÌ¸é ÇØ´ç ÄÚµå¸¦ ½ÇÇàÇÏ¸ç, c:if´Â else°¡ ¾ø´Ù) -->
-		<a href="<%=request.getContextPath()%>/signup">È¸¿ø°¡ÀÔ</a>
-		<a href="<%=request.getContextPath()%>/signin">·Î±×ÀÎ</a>
+7. JSPì—ì„œ ì„¸ì…˜ì— ê°ì²´ê°€ ì €ì¥ë¼ ìˆëŠ”ì§€ ì—¬ë¶€ì— ë”°ë¼ html êµ¬ì„±ì„ ë‹¤ë¥´ê²Œ ì ìš© ê°€ëŠ¥
+ì˜ˆì‹œ) home.jsp
+<body>	<!-- eq = equals(ê°™ë‹¤), ne = !equals(ê°™ì§€ ì•Šë‹¤) -->
+	<c:if test="${user eq null}">	<!-- test = ì¡°ê±´ì‹(í•´ë‹¹ ì¡°ê±´ì‹ ê²°ê³¼ê°€ trueì´ë©´ í•´ë‹¹ ì½”ë“œë¥¼ ì‹¤í–‰í•˜ë©°, c:ifëŠ” elseê°€ ì—†ë‹¤) -->
+		<a href="<%=request.getContextPath()%>/signup">íšŒì›ê°€ì…</a>
+		<a href="<%=request.getContextPath()%>/signin">ë¡œê·¸ì¸</a>
 	</c:if>
 	<c:if test="${user ne null}">
-		<a href="<%=request.getContextPath()%>/member/modify">È¸¿øÁ¤º¸ ¼öÁ¤</a>
-		<a href="<%=request.getContextPath()%>/board/list">°Ô½ÃÆÇ</a>
-	${user} º¯¼ö È£ÃâÀ» ÅëÇØ interceptor¿¡ ÀúÀåµÈ °´Ã¼ Á¤º¸¸¦ È£Ãâ 
+		<a href="<%=request.getContextPath()%>/member/modify">íšŒì›ì •ë³´ ìˆ˜ì •</a>
+		<a href="<%=request.getContextPath()%>/board/list">ê²Œì‹œíŒ</a>
+	${user} ë³€ìˆ˜ í˜¸ì¶œì„ í†µí•´ interceptorì— ì €ì¥ëœ ê°ì²´ ì •ë³´ë¥¼ í˜¸ì¶œ 
 	</c:if>
 </body>

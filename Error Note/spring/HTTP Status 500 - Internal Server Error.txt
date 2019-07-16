@@ -1,82 +1,82 @@
-¿¡·¯ ³»¿ë - Invalid bound statement (not fount); ÆĞÅ°Áö¸í.¸Ş¼­µå¸í
+ï»¿ì—ëŸ¬ ë‚´ìš© - Invalid bound statement (not fount); íŒ¨í‚¤ì§€ëª….ë©”ì„œë“œëª…
 
-¿øÀÎ
-1. **Mapper.xml ÆÄÀÏ¿¡¼­ namespace¿¡ ¿ÀÅ¸, ´ë¼Ò¹®ÀÚ ºÒÀÏÄ¡
-2. **Mapper.xml ÆÄÀÏ¿¡¼­ id ºÎºĞ¿¡ ÇØ´ç ¸Ş¼­µå°¡ ¾ø´Â °æ¿ì
-3. **Mapper.xml ÆÄÀÏÀÌ ¾ø´Â °æ¿ì
+ì›ì¸
+1. **Mapper.xml íŒŒì¼ì—ì„œ namespaceì— ì˜¤íƒ€, ëŒ€ì†Œë¬¸ì ë¶ˆì¼ì¹˜
+2. **Mapper.xml íŒŒì¼ì—ì„œ id ë¶€ë¶„ì— í•´ë‹¹ ë©”ì„œë“œê°€ ì—†ëŠ” ê²½ìš°
+3. **Mapper.xml íŒŒì¼ì´ ì—†ëŠ” ê²½ìš°
 
-ÇØ°á ¹æ¹ı
-1, 2¹ø -  ¸Ş¼­µå¸í ¶Ç´Â ÆÄÀÏ °æ·Î¿¡ ¿ÀÅ¸ È®ÀÎ
-3¹ø - **Mapper.xml »ı¼º ÈÄ ÇØ´ç ¸Ş¼­µå Ãß°¡
-
-
+í•´ê²° ë°©ë²•
+1, 2ë²ˆ -  ë©”ì„œë“œëª… ë˜ëŠ” íŒŒì¼ ê²½ë¡œì— ì˜¤íƒ€ í™•ì¸
+3ë²ˆ - **Mapper.xml ìƒì„± í›„ í•´ë‹¹ ë©”ì„œë“œ ì¶”ê°€
 
 
-¿¡·¯ ³»¿ë
+
+
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message Servlet.init() for servlet [appServlet] threw exception
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
 
-¿¡·¯ ¿øÀÎ - RequestMappingÀÇ value¿Í method°¡ µ¿ÀÏÇÑ ÄÁÆ®·Ñ·¯ ¸Ş¼­µå°¡ ÀÖ´Â °æ¿ì(½ÇÇàÇÒ ¸Ş¼­µå¸¦ ¼±ÅÃ ºÒ°¡)
-	   -> º¹»ç ºÙ¿©³Ö±â ÈÄ ¼öÁ¤ÇÏÁö ¾ÊÀ» ¶§ ÀÚÁÖ ¹ß»ı
+ì—ëŸ¬ ì›ì¸ - RequestMappingì˜ valueì™€ methodê°€ ë™ì¼í•œ ì»¨íŠ¸ë¡¤ëŸ¬ ë©”ì„œë“œê°€ ìˆëŠ” ê²½ìš°(ì‹¤í–‰í•  ë©”ì„œë“œë¥¼ ì„ íƒ ë¶ˆê°€)
+	   -> ë³µì‚¬ ë¶™ì—¬ë„£ê¸° í›„ ìˆ˜ì •í•˜ì§€ ì•Šì„ ë•Œ ìì£¼ ë°œìƒ
 
-¿¹½Ã) °°Àº value°ª¿¡¼­ GET¹æ½ÄÀº 1°³¸¸ Á¸ÀçÇØ¾ß ÇÑ´Ù
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//get ¹æ½ÄÀ¸·Î È£ÃâÇßÀ» ‹š °ª°ú ÀÏÄ¡ÇÏ´Â ¸Ş¼­µå¸¦ È£Ãâ
+ì˜ˆì‹œ) ê°™ì€ valueê°’ì—ì„œ GETë°©ì‹ì€ 1ê°œë§Œ ì¡´ì¬í•´ì•¼ í•œë‹¤
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//get ë°©ì‹ìœ¼ë¡œ í˜¸ì¶œí–ˆì„ ë–„ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œ
 	public String signupGet(Model model){
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇàÁß");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ì¤‘");
 		return "signup";
 	}
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//post ¹æ½ÄÀ¸·Î È£ÃâÇßÀ» ‹š °ª°ú ÀÏÄ¡ÇÏ´Â ¸Ş¼­µå¸¦ È£Ãâ
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//post ë°©ì‹ìœ¼ë¡œ í˜¸ì¶œí–ˆì„ ë–„ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œ
 	public String signupPost(Model model){
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇàÁß");
-		return "redirect:/signup";	//redirect - ½ÇÇà ÈÄ get¹æ½ÄÀ¸·Î Àç½ÇÇà(value°ªÀÌ µ¿ÀÏÇÑ ¸ÅÇÎ¿¡¼­ get ¹æ½ÄÀº 1°³¸¸ Á¸ÀçÇØ¾ß ÇÑ´Ù)
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ì¤‘");
+		return "redirect:/signup";	//redirect - ì‹¤í–‰ í›„ getë°©ì‹ìœ¼ë¡œ ì¬ì‹¤í–‰(valueê°’ì´ ë™ì¼í•œ ë§¤í•‘ì—ì„œ get ë°©ì‹ì€ 1ê°œë§Œ ì¡´ì¬í•´ì•¼ í•œë‹¤)
 	}
-ÇØ°á ¹æ¹ı - ¸Ş¼­µå¸¦ ¼öÁ¤ÇÏ°Å³ª value°ªÀ» ¼öÁ¤ÇÑ´Ù
+í•´ê²° ë°©ë²• - ë©”ì„œë“œë¥¼ ìˆ˜ì •í•˜ê±°ë‚˜ valueê°’ì„ ìˆ˜ì •í•œë‹¤
 
 
 
 
-¿¡·¯ ³»¿ë
+ì—ëŸ¬ ë‚´ìš©
 ### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'gender' at row 1
 
-¿¡·¯ ¿øÀÎ - gender ÀÚ·áÇüÀÇ ±æÀÌ¸¦ varchar 1·Î ÇØ³ù´Âµ¥ value¸¦ ÁÖÁö ¾Ê¾Æ on/off·Î ÀÔ·ÂµÅ ÀÚ·áÇü ±æÀÌ¸¦ ÃÊ°ú
+ì—ëŸ¬ ì›ì¸ - gender ìë£Œí˜•ì˜ ê¸¸ì´ë¥¼ varchar 1ë¡œ í•´ë†¨ëŠ”ë° valueë¥¼ ì£¼ì§€ ì•Šì•„ on/offë¡œ ì…ë ¥ë¼ ìë£Œí˜• ê¸¸ì´ë¥¼ ì´ˆê³¼
 
-ÇØ°á ¹æ¹ı - ÀÚ·áÇü ±æÀÌ¿¡ ¸Â°Ô ÇÑ ±ÛÀÚÀÇ value°ªÀ» ÀÔ·Â
-
-
+í•´ê²° ë°©ë²• - ìë£Œí˜• ê¸¸ì´ì— ë§ê²Œ í•œ ê¸€ìì˜ valueê°’ì„ ì…ë ¥
 
 
-¿¡·¯ ³»¿ë
+
+
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.green.test.dao.MemberDAO.getEmail
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
 
-¿¡·¯ ¿øÀÎ - Mapper ÆÄÀÏ¿¡¼­ namespace¿¡ ¿ÀÅ¸ ¹ß»ıÀ¸·Î ÀÎÇØ DAO ÆÄÀÏ µîÀ» ¿¬°á ÇÒ ¼ö ¾øÀ» ‹š
-¿¹½Ã)
-<mapper namespace="kr.green.test.dao.MemberDao">	//¿¡·¯ ¿øÀÎ
+ì—ëŸ¬ ì›ì¸ - Mapper íŒŒì¼ì—ì„œ namespaceì— ì˜¤íƒ€ ë°œìƒìœ¼ë¡œ ì¸í•´ DAO íŒŒì¼ ë“±ì„ ì—°ê²° í•  ìˆ˜ ì—†ì„ ë–„
+ì˜ˆì‹œ)
+<mapper namespace="kr.green.test.dao.MemberDao">	//ì—ëŸ¬ ì›ì¸
 
-ÇØ°á ¹æ¹ı - ¿ÀÅ¸ È®ÀÎ µîÀ¸·Î Á¤È®ÇÑ ÆÄÀÏ¸í ¿¬°á
-¿¹½Ã)
+í•´ê²° ë°©ë²• - ì˜¤íƒ€ í™•ì¸ ë“±ìœ¼ë¡œ ì •í™•í•œ íŒŒì¼ëª… ì—°ê²°
+ì˜ˆì‹œ)
 <mapper namespace="kr.green.test.dao.MemberDAO">
 
 
 
 
 
-¿¡·¯ ³»¿ë
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.green.test.dao.BoardDAO.getBoardList
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
 Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.green.test.dao.BoardDAO.getBoardList
-¿¡·¯ ¿øÀÎ - MapperÆÄÀÏ¿¡¼­ DAO ¸Ş¼­µå È£Ãâ ½Ã ¸Ş¼­µå¸í ¿ÀÅ¸
-ÇØ°á ¹æ¹ı - ¿ÀÅ¸ ¼öÁ¤À¸·Î Á¤È®ÇÑ ¸Ş¼­µå¸í ÀÔ·Â
+ì—ëŸ¬ ì›ì¸ - MapperíŒŒì¼ì—ì„œ DAO ë©”ì„œë“œ í˜¸ì¶œ ì‹œ ë©”ì„œë“œëª… ì˜¤íƒ€
+í•´ê²° ë°©ë²• - ì˜¤íƒ€ ìˆ˜ì •ìœ¼ë¡œ ì •í™•í•œ ë©”ì„œë“œëª… ì…ë ¥
 
 
 
 
 
-¿¡·¯ ³»¿ë
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message An exception occurred processing [/WEB-INF/views/board/list.jsp] at line [22]
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
@@ -85,44 +85,44 @@ org.apache.jasper.JasperException: An exception occurred processing [/WEB-INF/vi
 19: 		</tr>
 20: 		<c:forEach var="board" items="list">
 
-¿¡·¯ ¿øÀÎ - jspÆÄÀÏ¿¡¼­ ÄÁÆ®·Ñ·¯ÀÇ º¯¼ö¸¦ È£ÃâÇÒ ‹š ${º¯¼ö¸í}ÀÇ Çü½ÄÀ¸·Î È£ÃâÇØ¾ß ÇÏ´Âµ¥ ÀÏ¹İ º¯¼ö¸íÀÇ Çü½ÄÀ¸·Î È£Ãâ
-ÇØ°á ¹æ¹ı - jsp ÆÄÀÏÀÇ ÄÁÆ®·Ñ·¯ º¯¼ö È£Ãâ Çü½Ä¿¡ ¸ÂÃç º¯¼ö¸¦ È£Ãâ
+ì—ëŸ¬ ì›ì¸ - jspíŒŒì¼ì—ì„œ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ë³€ìˆ˜ë¥¼ í˜¸ì¶œí•  ë–„ ${ë³€ìˆ˜ëª…}ì˜ í˜•ì‹ìœ¼ë¡œ í˜¸ì¶œí•´ì•¼ í•˜ëŠ”ë° ì¼ë°˜ ë³€ìˆ˜ëª…ì˜ í˜•ì‹ìœ¼ë¡œ í˜¸ì¶œ
+í•´ê²° ë°©ë²• - jsp íŒŒì¼ì˜ ì»¨íŠ¸ë¡¤ëŸ¬ ë³€ìˆ˜ í˜¸ì¶œ í˜•ì‹ì— ë§ì¶° ë³€ìˆ˜ë¥¼ í˜¸ì¶œ
 
 
 
 
 
-¿¡·¯ ³»¿ë
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'num' in 'class java.lang.Integer'
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
 Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'num' in 'class java.lang.Integer'
 
-¿¡·¯ ¿øÀÎ - Mapper¿¡¼­ º¯¼ö È£Ãâ ¹æ¹ıÀº #{º¯¼ö¸í}ÀÎµ¥ ${º¯¼ö¸í}À» ÅëÇØ È£ÃâÇßÀ» ¶§ ¹ß»ı
-¿¹½Ã)
+ì—ëŸ¬ ì›ì¸ - Mapperì—ì„œ ë³€ìˆ˜ í˜¸ì¶œ ë°©ë²•ì€ #{ë³€ìˆ˜ëª…}ì¸ë° ${ë³€ìˆ˜ëª…}ì„ í†µí•´ í˜¸ì¶œí–ˆì„ ë•Œ ë°œìƒ
+ì˜ˆì‹œ)
 select * from board where num = ${num}
 
-ÇØ°á ¹æ¹ı - MapperÀÇ º¯¼ö È£Ãâ ¹æ½Ä¿¡ ¸Â°Ô ${º¯¼ö¸í}À» #{º¯¼ö¸í}À¸·Î º¯°æ
-¿¹½Ã)
+í•´ê²° ë°©ë²• - Mapperì˜ ë³€ìˆ˜ í˜¸ì¶œ ë°©ì‹ì— ë§ê²Œ ${ë³€ìˆ˜ëª…}ì„ #{ë³€ìˆ˜ëª…}ìœ¼ë¡œ ë³€ê²½
+ì˜ˆì‹œ)
 select * from board where num = #{num}
 
 
 
 
 
-¾Ö·¯ ³»¿ë - Public key Retrieaval is not allowed ... BoardMapper.xml
+ì• ëŸ¬ ë‚´ìš© - Public key Retrieaval is not allowed ... BoardMapper.xml
 
-¿¡·¯ ¿øÀÎ - DBÀÇ °èÁ¤ Á¤º¸°¡ Àß¸ø ÀÔ·ÂµÆÀ» ¶§ ¶ß´Â ¿¡·¯Áö¸¸ Á¤º¸°¡ Á¦´ë·Î ÀÔ·ÂµÅÀÖ´Â »óÅÂ¿¡¼­ Æ¯º°ÇÑ ÀÏ ¾øÀÌ °©ÀÛ½º·´°Ô ÀĞÁö ¸øÇÏ´Â °æ¿ìµµ ¹ß»ı
+ì—ëŸ¬ ì›ì¸ - DBì˜ ê³„ì • ì •ë³´ê°€ ì˜ëª» ì…ë ¥ëì„ ë•Œ ëœ¨ëŠ” ì—ëŸ¬ì§€ë§Œ ì •ë³´ê°€ ì œëŒ€ë¡œ ì…ë ¥ë¼ìˆëŠ” ìƒíƒœì—ì„œ íŠ¹ë³„í•œ ì¼ ì—†ì´ ê°‘ì‘ìŠ¤ëŸ½ê²Œ ì½ì§€ ëª»í•˜ëŠ” ê²½ìš°ë„ ë°œìƒ
 
-ÇØ°á ¹æ¹ı - root-context.xml¿¡¼­ DBÀÇ °èÁ¤ Á¤º¸ÀÇ ¿ÀÅ¸¸¦ ¼öÁ¤ÇÏ°Å³ª ¿ÀÅ¸°¡ ¾øÀ» ½Ã °èÁ¤ Á¤º¸¸¦ ¹Ù²Ù°í ¼­¹ö¸¦ Àç½ÇÇàÇÑ µÚ ¿ø·¡´ë·Î º¹¿øÇÏ°í ¼­¹ö¸¦ Àç½ÇÇà
-	   ¶Ç´Â MySQL ½ÇÇà ÈÄ ½ºÇÁ¸µ ¼­¹ö Àç½ÃÀÛ
-
-
+í•´ê²° ë°©ë²• - root-context.xmlì—ì„œ DBì˜ ê³„ì • ì •ë³´ì˜ ì˜¤íƒ€ë¥¼ ìˆ˜ì •í•˜ê±°ë‚˜ ì˜¤íƒ€ê°€ ì—†ì„ ì‹œ ê³„ì • ì •ë³´ë¥¼ ë°”ê¾¸ê³  ì„œë²„ë¥¼ ì¬ì‹¤í–‰í•œ ë’¤ ì›ë˜ëŒ€ë¡œ ë³µì›í•˜ê³  ì„œë²„ë¥¼ ì¬ì‹¤í–‰
+	   ë˜ëŠ” MySQL ì‹¤í–‰ í›„ ìŠ¤í”„ë§ ì„œë²„ ì¬ì‹œì‘
 
 
 
-¿¡·¯ ³»¿ë
+
+
+ì—ëŸ¬ ë‚´ìš©
 Type Exception Report
 Message Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
@@ -130,10 +130,10 @@ Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
 Field error in object 'boardVO' on field 'views': rejected value []; codes [typeMismatch.boardVO.views,typeMismatch.views,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [boardVO.views,views]; arguments []; default message [views]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'views'; nested exception is java.lang.NumberFormatException: For input string: ""]
 
-¿¡·¯ ¿øÀÎ - inputÃ¢Àº ÀÔ·Â°ªÀÌ ¾øÀ¸¸é nullÀÌ ¾Æ´Ï¶ó ºó ¹®ÀÚ¿­Àº Àü¼ÛÇÏ±â ¶§¹®¿¡ ÀÚ·áÇüÀÌ StringÀÌ ¾Æ´Ñ º¯¼öµéÀÌ ºó ¹®ÀÚ¿­ °ªÀ» Àü¼Û¹Ş¾Æ ÀÚ·áÇü ¿¡·¯ ¹ß»ı
-¿¹½Ã)
+ì—ëŸ¬ ì›ì¸ - inputì°½ì€ ì…ë ¥ê°’ì´ ì—†ìœ¼ë©´ nullì´ ì•„ë‹ˆë¼ ë¹ˆ ë¬¸ìì—´ì€ ì „ì†¡í•˜ê¸° ë•Œë¬¸ì— ìë£Œí˜•ì´ Stringì´ ì•„ë‹Œ ë³€ìˆ˜ë“¤ì´ ë¹ˆ ë¬¸ìì—´ ê°’ì„ ì „ì†¡ë°›ì•„ ìë£Œí˜• ì—ëŸ¬ ë°œìƒ
+ì˜ˆì‹œ)
 	<input type="text" class="form-control" name="views" readonly>
 
-ÇØ°á ¹æ¹ı - inputÃ¢¿¡¼­ nameÀ» Áö¿ö ÇØ´ç inputÃ¢ÀÇ ºó ¹®ÀÚ¿­ °ªÀÌ µé¾î°¡´Â °É ¹æÁö
-¿¹½Ã)
+í•´ê²° ë°©ë²• - inputì°½ì—ì„œ nameì„ ì§€ì›Œ í•´ë‹¹ inputì°½ì˜ ë¹ˆ ë¬¸ìì—´ ê°’ì´ ë“¤ì–´ê°€ëŠ” ê±¸ ë°©ì§€
+ì˜ˆì‹œ)
 	<input type="text" class="form-control" name="" readonly>

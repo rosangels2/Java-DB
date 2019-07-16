@@ -1,9 +1,9 @@
-Interceptor¸¦ ÀÌ¿ëÇÑ ±ÇÇÑ¿¡ µû¸¥ ÆäÀÌÁö »ç¿ë °áÁ¤
-1. AuthInterceptor »ı¼º
-HandlerInterceptorAdapter¸¦ »ó¼Ó¹ŞÀº AuthInterceptor »ı¼º
-preHandle ¸Ş¼Òµå ¿À¹ö¶óÀÌµù
-¼¼¼Ç¿¡ user Á¤º¸¸¦ °¡Á®¿Í¼­ null°ªÀÌ¸é ·Î±×ÀÎ È­¸éÀ¸·Î º¸³¿
-Á¤º¸°¡ ÀÖÀ¸¸é ±×³É ³Ñ¾î°¨
+ï»¿Interceptorë¥¼ ì´ìš©í•œ ê¶Œí•œì— ë”°ë¥¸ í˜ì´ì§€ ì‚¬ìš© ê²°ì •
+1. AuthInterceptor ìƒì„±
+HandlerInterceptorAdapterë¥¼ ìƒì†ë°›ì€ AuthInterceptor ìƒì„±
+preHandle ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+ì„¸ì…˜ì— user ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ nullê°’ì´ë©´ ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ë³´ëƒ„
+ì •ë³´ê°€ ìˆìœ¼ë©´ ê·¸ëƒ¥ ë„˜ì–´ê°
 package kr.green.springwebproject.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +27,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		return true;
 	}
 }
-2. servlet-context.xml¿¡ AuthInterceptor Ãß°¡
-kr.green.spring.interceptor.AuthInterceptor¸¦ authInterceptor·Î bean¿¡ Ãß°¡
+2. servlet-context.xmlì— AuthInterceptor ì¶”ê°€
+kr.green.spring.interceptor.AuthInterceptorë¥¼ authInterceptorë¡œ beanì— ì¶”ê°€
 <beans:bean id="authInterceptor" 
 	class="kr.green.spring.interceptor.AuthInterceptor"></beans:bean>
-·Î±×ÀÎ ÈÄ Á¢±ÙÇØ¾ß ÇÏ´Â °æ·Î(URI) °¡ ÁÖ¾îÁ³À» ¶§ authInterceptor°¡ È£ÃâÇÏµµ·Ï interceptorÅÂ±×¿¡ µî·Ï
-¿¹½Ã) LoginInterceptorÀÇ °æ·Î¸¦ Ãß°¡Çß´ø interceptorsÀÇ ¾È¿¡ ÀÌ¾î¼­ Ãß°¡ÇÑ´Ù
+ë¡œê·¸ì¸ í›„ ì ‘ê·¼í•´ì•¼ í•˜ëŠ” ê²½ë¡œ(URI) ê°€ ì£¼ì–´ì¡Œì„ ë•Œ authInterceptorê°€ í˜¸ì¶œí•˜ë„ë¡ interceptoríƒœê·¸ì— ë“±ë¡
+ì˜ˆì‹œ) LoginInterceptorì˜ ê²½ë¡œë¥¼ ì¶”ê°€í–ˆë˜ interceptorsì˜ ì•ˆì— ì´ì–´ì„œ ì¶”ê°€í•œë‹¤
 	<interceptors>
 	    <interceptor>
-	        <mapping path="/signin"/>	<!--	<mapping path="/"/>	 URI °æ·Î¿¡ ¸Â´Â ÀÎÅÍ¼ÁÅÍ¸¦ ½ÇÇà		-->
-	        <beans:ref bean="loginInterceptor"/>	<!-- À§ÂÊ beansÀÇ id¿Í ÀÏÄ¡ÇØ¾ß ÇÑ´Ù -->
+	        <mapping path="/signin"/>	<!--	<mapping path="/"/>	 URI ê²½ë¡œì— ë§ëŠ” ì¸í„°ì…‰í„°ë¥¼ ì‹¤í–‰		-->
+	        <beans:ref bean="loginInterceptor"/>	<!-- ìœ„ìª½ beansì˜ idì™€ ì¼ì¹˜í•´ì•¼ í•œë‹¤ -->
 	    </interceptor>
    		<interceptor>
 	        <mapping path="/board/*"/>
@@ -44,8 +44,8 @@ kr.green.spring.interceptor.AuthInterceptor¸¦ authInterceptor·Î bean¿¡ Ãß°¡
 		</interceptor>
 	</interceptors>	
 
-ÃÖÁ¾ÀûÀ¸·Î servlet.context.xml¿¡ Ãß°¡ÇÑ ÄÚµå - ±âÁ¸¿¡ Ãß°¡ÇÑ loginInterceptor Æ÷ÇÔ
-¿¹½Ã)
+ìµœì¢…ì ìœ¼ë¡œ servlet.context.xmlì— ì¶”ê°€í•œ ì½”ë“œ - ê¸°ì¡´ì— ì¶”ê°€í•œ loginInterceptor í¬í•¨
+ì˜ˆì‹œ)
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.spring.interceptor.LoginInterceptor">
 	</beans:bean>
@@ -54,8 +54,8 @@ kr.green.spring.interceptor.AuthInterceptor¸¦ authInterceptor·Î bean¿¡ Ãß°¡
 	</beans:bean>
 	<interceptors>
 	    <interceptor>
-	        <mapping path="/signin"/>	<!--	<mapping path="/"/>	 URI °æ·Î¿¡ ¸Â´Â ÀÎÅÍ¼ÁÅÍ¸¦ ½ÇÇà		-->
-	        <beans:ref bean="loginInterceptor"/>	<!-- À§ÂÊ beansÀÇ id¿Í ÀÏÄ¡ÇØ¾ß ÇÑ´Ù -->
+	        <mapping path="/signin"/>	<!--	<mapping path="/"/>	 URI ê²½ë¡œì— ë§ëŠ” ì¸í„°ì…‰í„°ë¥¼ ì‹¤í–‰		-->
+	        <beans:ref bean="loginInterceptor"/>	<!-- ìœ„ìª½ beansì˜ idì™€ ì¼ì¹˜í•´ì•¼ í•œë‹¤ -->
 	    </interceptor>
    		<interceptor>
 	        <mapping path="/board/*"/>

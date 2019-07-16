@@ -1,14 +1,14 @@
-1. ÄÁÆ®·Ñ·¯¿¡¼­ ÇØ´ç URLÀ» ÀÔ·Â¹Ş¾ÒÀ» ¶§ ¿¬°áÇÒ ¸Ş¼­µå¸¦ ±¸Çö ÈÄ ¸ÅÇÎÇÏ°í jspÆÄÀÏÀ» »ı¼º
-¿¹½Ã)
+ï»¿1. ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ í•´ë‹¹ URLì„ ì…ë ¥ë°›ì•˜ì„ ë•Œ ì—°ê²°í•  ë©”ì„œë“œë¥¼ êµ¬í˜„ í›„ ë§¤í•‘í•˜ê³  jspíŒŒì¼ì„ ìƒì„±
+ì˜ˆì‹œ)
 	@RequestMapping(value="/member/modify", method = RequestMethod.GET)
 	public String modifyGet(Model model) {
-		logger.info("È¸¿øÁ¤º¸ ¼öÁ¤");
+		logger.info("íšŒì›ì •ë³´ ìˆ˜ì •");
 		
 		return "member/modify";
 	}
 	@RequestMapping(value="/member/modify", method = RequestMethod.POST)
 	public String modifyPost(Model model, MemberVO mVo, String oPw, String pw1){
-		logger.info("È¸¿øÁ¤º¸ ¼öÁ¤");
+		logger.info("íšŒì›ì •ë³´ ìˆ˜ì •");
 		
 		if(memberService.modify(mVo, oPw, pw1)){
 			return "redirect:/";
@@ -16,32 +16,32 @@
 		return "redirect:/member/modify";
 	}
 
-2. quick fixed¸¦ ÅëÇØ ¼­ºñ½º¿¡ ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
-¿¹½Ã)
+2. quick fixedë¥¼ í†µí•´ ì„œë¹„ìŠ¤ì— ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
+ì˜ˆì‹œ)
 	boolean modify(MemberVO mVo, String oPw, String pw1);
 
-3. ¼­ºñ½º ±¸Çö Å¬·¡½º¿¡¼­ quick fixed¸¦ ÅëÇØ ÇØ´ç ¼­ºñ½º ÀÎÅÍÆäÀÌ½º¸¦ ±¸Çö ÈÄ DAOÀÇ ÀÎÅÍÆäÀÌ½º È£Ãâ
-¿¹½Ã)
+3. ì„œë¹„ìŠ¤ êµ¬í˜„ í´ë˜ìŠ¤ì—ì„œ quick fixedë¥¼ í†µí•´ í•´ë‹¹ ì„œë¹„ìŠ¤ ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„ í›„ DAOì˜ ì¸í„°í˜ì´ìŠ¤ í˜¸ì¶œ
+ì˜ˆì‹œ)
 	@Override
 	public boolean modify(MemberVO mVo, String oPw, String pw1) {
-		memberDao.modify(mVo);	//ÇØ´ç ¸Ş¼­µå¸í¿¡¼­ quick fixed¸¦ ÅëÇØ ´Ù¿À¿¡ ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
+		memberDao.modify(mVo);	//í•´ë‹¹ ë©”ì„œë“œëª…ì—ì„œ quick fixedë¥¼ í†µí•´ ë‹¤ì˜¤ì— ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
 		return false;
 	}
 
-4. quick fixed¸¦ ÅëÇØ DAO¿¡ ÀÎÅÍÆäÀÌ½º¸¦ »ı¼º
-¿¹½Ã)
+4. quick fixedë¥¼ í†µí•´ DAOì— ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±
+ì˜ˆì‹œ)
 	void modify(MemberVO mVo); 
 
-5. Mapper¿¡¼­ ÇØ´ç ÀÎÅÍÆäÀÌ½º¿¡ ¸Â´Â Äõ¸®¹®À» ÀÛ¼º ÈÄ ¿¬°á
-¿¹½Ã)
+5. Mapperì—ì„œ í•´ë‹¹ ì¸í„°í˜ì´ìŠ¤ì— ë§ëŠ” ì¿¼ë¦¬ë¬¸ì„ ì‘ì„± í›„ ì—°ê²°
+ì˜ˆì‹œ)
   <update id="modify">
   	update member
   	set pw = #{pw}, gender = #{gender}, email = #{email}, name = #{name}
   	where id = #{id}
   </update>
 
-6. ¼­ºñ½º ±¸Çö Å¬·¡½º¿¡¼­ ÇØ´ç DAO ÀÎÅÍÆäÀÌ½º¸¦ È£ÃâÇÒ Á¶°Ç½ÄÀ» ±¸Çö
-¿¹½Ã)
+6. ì„œë¹„ìŠ¤ êµ¬í˜„ í´ë˜ìŠ¤ì—ì„œ í•´ë‹¹ DAO ì¸í„°í˜ì´ìŠ¤ë¥¼ í˜¸ì¶œí•  ì¡°ê±´ì‹ì„ êµ¬í˜„
+ì˜ˆì‹œ)
 	@Override
 	public boolean modify(MemberVO mVo, String oPw, String pw1) {
 		if(mVo == null){
@@ -51,19 +51,19 @@
 		if(oVo == null){
 			return false;
 		}
-		if(oVo.getPw().equals(oPw)){	//DB¿¡¼­ °¡Á®¿Â °´Ã¼ÀÇ ºñ¹Ğ¹øÈ£¿Í ÇöÀç ÀÔ·ÂÇÑ ºñ¹Ğ¹øÈ£°¡ °°´Ù¸é
-			if(mVo.getPw() == null || mVo.getPw() == "" || pw1 == null || pw1 == ""){	//ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏÁö ¾Ê´Â °æ¿ì
+		if(oVo.getPw().equals(oPw)){	//DBì—ì„œ ê°€ì ¸ì˜¨ ê°ì²´ì˜ ë¹„ë°€ë²ˆí˜¸ì™€ í˜„ì¬ ì…ë ¥í•œ ë¹„ë°€ë²ˆí˜¸ê°€ ê°™ë‹¤ë©´
+			if(mVo.getPw() == null || mVo.getPw() == "" || pw1 == null || pw1 == ""){	//ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 				mVo.setPw(oPw);
-			}else if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){	//»õ ºñ¹Ğ¹øÈ£ÀÇ ±æÀÌ°¡ ¸ÂÁö ¾Ê´Ù¸é
+			}else if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){	//ìƒˆ ë¹„ë°€ë²ˆí˜¸ì˜ ê¸¸ì´ê°€ ë§ì§€ ì•Šë‹¤ë©´
 				return false;
-			}else if(!mVo.getPw().equals(pw1)){	//»õ ºñ¹Ğ¹øÈ£¿Í »õ ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ °°Áö ¾Ê´Ù¸é
+			}else if(!mVo.getPw().equals(pw1)){	//ìƒˆ ë¹„ë°€ë²ˆí˜¸ì™€ ìƒˆ ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ê°™ì§€ ì•Šë‹¤ë©´
 				return false;
 			}
-			if(mVo.getEmail() == null || mVo.getEmail() == "") {	//emailÀ» º¯°æÇÏÁö ¾Ê´Â °æ¿ì
+			if(mVo.getEmail() == null || mVo.getEmail() == "") {	//emailì„ ë³€ê²½í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 				mVo.setEmail(oVo.getEmail());
 			}
-			memberDao.modify(mVo);	//DAO¿¡¼­ modify ÀÎÅÍÆäÀÌ½º¸¦ ½ÇÇàÇÏ°í  
-			return true;	//true¸¦ ¹İÈ¯
+			memberDao.modify(mVo);	//DAOì—ì„œ modify ì¸í„°í˜ì´ìŠ¤ë¥¼ ì‹¤í–‰í•˜ê³   
+			return true;	//trueë¥¼ ë°˜í™˜
 		}
 		return false;
 	}

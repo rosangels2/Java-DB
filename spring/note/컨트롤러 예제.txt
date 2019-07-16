@@ -1,31 +1,31 @@
-@Controller	//annotation - ÀÔ·ÂÇÏ¸é controller·Î ÀÎ½Ä(¾øÀ» °æ¿ì ÀÏ¹İ Å¬·¡½º·Î ÀÎ½Ä)
+ï»¿@Controller	//annotation - ì…ë ¥í•˜ë©´ controllerë¡œ ì¸ì‹(ì—†ì„ ê²½ìš° ì¼ë°˜ í´ë˜ìŠ¤ë¡œ ì¸ì‹)
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	//½ÇÇàµÈ Å¬·¡½º¿Í ÄÁÆ®·Ñ·¯¸¦ È®ÀÎÇÏ±â À§ÇØ ÇöÀç Á¤º¸¸¦ »ó¼öÀÎ Å¬·¡½º ¸â¹öº¯¼ö¿¡ ÀúÀå
+	//ì‹¤í–‰ëœ í´ë˜ìŠ¤ì™€ ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ í™•ì¸í•˜ê¸° ìœ„í•´ í˜„ì¬ ì •ë³´ë¥¼ ìƒìˆ˜ì¸ í´ë˜ìŠ¤ ë©¤ë²„ë³€ìˆ˜ì— ì €ì¥
 	
 	@Autowired
-	MemberService memberService;	//memberServiceÀÇ °´Ã¼ »ı¼º
+	MemberService memberService;	//memberServiceì˜ ê°ì²´ ìƒì„±
 	
-	@Autowired	//»ı¼ºÀÚ¸¦ ´ë½Å »ç¿ëÇØÁÖ´Â ±â´É(ÇÏ³ªÀÇ °´Ã¼¸¦ ¸¸µé¾î¼­ ÇØ´ç Å¬·¡½ºÀÇ °´Ã¼¸¦ »ç¿ëÇÒ ¶§ ÀÚµ¿ ¿¬°á)
-	MemberDAO stdDao;	//memberDAOÀÇ °´Ã¼¸¦ »ı¼º
+	@Autowired	//ìƒì„±ìë¥¼ ëŒ€ì‹  ì‚¬ìš©í•´ì£¼ëŠ” ê¸°ëŠ¥(í•˜ë‚˜ì˜ ê°ì²´ë¥¼ ë§Œë“¤ì–´ì„œ í•´ë‹¹ í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ì‚¬ìš©í•  ë•Œ ìë™ ì—°ê²°)
+	MemberDAO stdDao;	//memberDAOì˜ ê°ì²´ë¥¼ ìƒì„±
 	
-	//@RequestMapping(¿äÃ»À» ¿¬°á) - ¼­¹ö ºÎºĞÀ» Á¦¿ÜÇÑ URLÀÌ /°í ¹æ½ÄÀÌ getÀÌ¸é home ¸Ş¼­µå¸¦ ½ÇÇà
-	@RequestMapping(value = "/", method = RequestMethod.GET)	//get¹æ½ÄÀ¸·Î È£ÃâÇßÀ» ‹š °ª°ú ÀÏÄ¡ÇÏ´Â ¸Ş¼­µå¸¦ È£Ãâ
+	//@RequestMapping(ìš”ì²­ì„ ì—°ê²°) - ì„œë²„ ë¶€ë¶„ì„ ì œì™¸í•œ URLì´ /ê³  ë°©ì‹ì´ getì´ë©´ home ë©”ì„œë“œë¥¼ ì‹¤í–‰
+	@RequestMapping(value = "/", method = RequestMethod.GET)	//getë°©ì‹ìœ¼ë¡œ í˜¸ì¶œí–ˆì„ ë–„ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œ
 	public String home(Model model){
-		logger.info("¸ŞÀÎÆäÀÌÁö ½ÇÇà");	//console¿¡ ÀÔ·ÂµÇ´Â ¸Ş¼¼Áö		
+		logger.info("ë©”ì¸í˜ì´ì§€ ì‹¤í–‰");	//consoleì— ì…ë ¥ë˜ëŠ” ë©”ì„¸ì§€		
 		
-		//model - È­¸é(jsp)°ú °ü·ÃµÈ Á¤º¸¸¦ ÀúÀåÇÏ´Â °´Ã¼
-		model.addAttribute("serverTime", "¾È³çÇÏ¼¼¿ä" ); //°´Ã¼.addAttribute(º¯¼ö,°ª) - ÇØ´ç °´Ã¼ÀÇ º¯¼ö¿¡ °ªÀ» Ãß°¡ÇÏ´Â ±â´ÉÀ» °¡Áø ¸Ş¼­µå 
+		//model - í™”ë©´(jsp)ê³¼ ê´€ë ¨ëœ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” ê°ì²´
+		model.addAttribute("serverTime", "ì•ˆë…•í•˜ì„¸ìš”" ); //ê°ì²´.addAttribute(ë³€ìˆ˜,ê°’) - í•´ë‹¹ ê°ì²´ì˜ ë³€ìˆ˜ì— ê°’ì„ ì¶”ê°€í•˜ëŠ” ê¸°ëŠ¥ì„ ê°€ì§„ ë©”ì„œë“œ 
 		model.addAttribute("name", id);
 		
-		int res = num1+num2;	//¸Å°³º¯¼ö·Î °´Ã¼¸¦ °¡Á®¿ÔÀ» °æ¿ì ÀÚ·áÇüÀÌ ÀÏÄ¡ÇØ¾ß ÇÑ´Ù(¶Ç´Â Integer·Î ÇßÀ» ¶§ null+nullÀ» ½ÇÇàÇØ ¿¡·¯ ¹ß»ı °¡´É)	
+		int res = num1+num2;	//ë§¤ê°œë³€ìˆ˜ë¡œ ê°ì²´ë¥¼ ê°€ì ¸ì™”ì„ ê²½ìš° ìë£Œí˜•ì´ ì¼ì¹˜í•´ì•¼ í•œë‹¤(ë˜ëŠ” Integerë¡œ í–ˆì„ ë•Œ null+nullì„ ì‹¤í–‰í•´ ì—ëŸ¬ ë°œìƒ ê°€ëŠ¥)	
 		if(num1 != null && num2 != null) {
 			model.addAttribute("res",num1+num2);
 		}
 		model.addAttribute("num1", num1);
 		model.addAttribute("num2", num2);
-		//model.addAttribute("res", num1+num2); //num1, num2 ÀÔ·Â ¾øÀÌ °è»êÇÒ °æ¿ì nullPointException ¹ß»ı
+		//model.addAttribute("res", num1+num2); //num1, num2 ì…ë ¥ ì—†ì´ ê³„ì‚°í•  ê²½ìš° nullPointException ë°œìƒ
 		
 		if(zero == null) {
 			zero = 0;
@@ -46,6 +46,6 @@ public class HomeController {
 	  String formattedDate = dateFormat.format(date);
 	  
 	  model.addAttribute("serverTime", formattedDate)); 
-	  return "home"; //»ç¿ëÀÚ¿¡°Ô home.jsp¸¦ º¸³»ÁØ´Ù 
+	  return "home"; //ì‚¬ìš©ìì—ê²Œ home.jspë¥¼ ë³´ë‚´ì¤€ë‹¤ 
 	}
 }
