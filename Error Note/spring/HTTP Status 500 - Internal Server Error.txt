@@ -137,3 +137,58 @@ Field error in object 'boardVO' on field 'views': rejected value []; codes [type
 해결 방법 - input창에서 name을 지워 해당 input창의 빈 문자열 값이 들어가는 걸 방지
 예시)
 	<input type="text" class="form-control" name="" readonly>
+
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException:
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by num desc
+  	limit 0, 5' at line 5
+
+에러 원인 - 쿼리문에 불필요하게 and를 사용
+예시)
+<select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board where valid = 'I' and
+  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+  	order by num desc
+  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+</select>
+
+해결 방법 - and를 제거
+예시)
+<select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board where valid = 'I'
+  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+  	order by num desc
+  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+</select>
+
+
+
+
+
+에러내용
+ype Exception Report
+Message Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'criteria' on field 'type': rejected value [1$search=가입]; codes [typeMismatch.criteria.type,typeMismatch.type,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [criteria.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'type'; nested exception is java.lang.NumberFormatException: For input string: "1$search=가입"]
+
+에러 원인 - a태그의 href에서 ?로 정보를 전송할 때 & 대신 $를 입력(search 앞에 $)
+예시)
+<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}$search=${pageMaker.criteria.search}">${index}</a>
+
+해결 방법 - $를 &로 수정하여 정보를 전송(search 앞에 $를 &로 수정)
+예시)
+<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>

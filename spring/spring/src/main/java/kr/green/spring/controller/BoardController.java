@@ -38,12 +38,13 @@ public class BoardController {
 		}
 */		//model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 		
-		cri.setPerPageNum(5);	//보여줄 게시글 개수를 5로 재설정
+		System.out.println(cri);
+		cri.setPerPageNum(2);	//보여줄 게시글 개수를 5로 재설정
 		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장 
 	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
 	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
 	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정
-	    int totalCount = boardService.getTotalCount();	//총 게시글 수를 계산하여 변수에 저장
+	    int totalCount = boardService.getTotalCount(cri);	//총 게시글 수를 계산하여 변수에 저장
 	    pM.setTotalCount(totalCount);	//페이지네이션을 계산하기 위해 총 게시글 수를 수정
 	    model.addAttribute("pageMaker", pM);	//pageMaker의 객체를 model의 변수에 저장
 	    model.addAttribute("list", boardList);	//limit 설정에 맞는 게시글들을 가져와 model의 변수에 저장하여 jsp에서 사용

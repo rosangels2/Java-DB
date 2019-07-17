@@ -4,7 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.spring.dao.BoardDAO">	<!-- 인터페이스가 있는 파일명 -->
   <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
-  	select * from board where valid = 'I' limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+  	select * from board where valid = 'I'
+  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+  	order by num desc
+  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
   </select>
   <select id="getBoardContents" resultType="kr.green.spring.vo.BoardVO">
 	select * from board where num = #{num} and valid = 'I'
@@ -37,5 +42,8 @@
 	</select>
     <select id="getTotalCount" resultType="int">
 		select count(*) from board where valid = 'I'
+		<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+	  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+	  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
 	</select>
 </mapper>

@@ -23,6 +23,6 @@ public interface BoardService {
 
 	boolean isWriter(Integer num, HttpServletRequest r);
 
-	int getTotalCount();
+	int getTotalCount(Criteria cri);
 	
 }
