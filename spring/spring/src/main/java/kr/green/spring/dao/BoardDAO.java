@@ -8,7 +8,7 @@ import kr.green.spring.vo.BoardVO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardVO> getBoardList();
+	ArrayList<BoardVO> getBoardList(Criteria cri);
 	
 	BoardVO getBoardContents(Integer num);
 	
@@ -21,6 +21,6 @@ public interface BoardDAO {
 	void boardDelete(Integer num);
 	
 	public List<BoardVO> listPage(Criteria cri); 
-	
-    public int countBoard();
+
+	int getTotalCount();
 }

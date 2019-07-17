@@ -11,6 +11,9 @@
       <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="https://github.com/st8324" target="blank">gitHub</a>	<!-- 타겟 blank = 새 탭 -->
+    </li>
+    <li class="nav-item">
       <a class="nav-link nav-logout" href="<%=request.getContextPath()%>/signout" style="position: absolute;right: 0;width: 100px;">로그아웃</a>
     </li>
   </ul>

@@ -38,17 +38,24 @@
 	<a href="<%=request.getContextPath()%>/board/register?id=${user.id}" style="float: right;"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 	
 	<ul class="pagination" style="justify-content: center;">
-	    <c:if test="${pageMaker.prev}">
+	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
 	        <li class="page-item">
 	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}">Previous</a>
-	        </li>
+	        </li>																<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
 	    </c:if>
-	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">
-	        <li class="page-item">
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
+	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
+	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 -->
+	        <li class="page-item active">													<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>	<!-- 숫자를 찍는 역할 -->
 	        </li>
+	        </c:if>
+	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
+	        <li class="page-item">															<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	        </li>
+	        </c:if>
 	    </c:forEach>
-	    <c:if test="${pageMaker.next}">
+	    <c:if test="${pageMaker.next}">	<!-- 다음버튼 -->
 	        <li class="page-item">
 	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}">Next</a>
 	        </li>

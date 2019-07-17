@@ -30,21 +30,23 @@ public class BoardController {
 	BoardDAO boardDao;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardListGet(Model model, Criteria cri){
-		logger.info("게시판 리스트 진행");
+	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
+/*		logger.info("게시판 리스트 진행");
 		//ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
-/*		for(BoardVO tmp:boardList) {	//향상된 포문으로 BoardVo클래스의 객체 boardList의 값을 하나씩 꺼냄 
+		for(BoardVO tmp:boardList) {	//향상된 포문으로 BoardVo클래스의 객체 boardList의 값을 하나씩 꺼냄 
 			System.out.println(tmp);	//꺼낸 값을 출력
 		}
 */		//model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 		
-	    int totalCount = boardDao.countBoard();
-	    PageMaker pageMaker = new PageMaker();
-	    pageMaker.setCriteria(cri);
-	    pageMaker.setTotalCount(totalCount);
-	    ArrayList<BoardVO> list = (ArrayList)boardDao.listPage(pageMaker.getCriteria());
-	    model.addAttribute("list",list);
-	    model.addAttribute("pageMaker", pageMaker);
+		cri.setPerPageNum(5);	//보여줄 게시글 개수를 5로 재설정
+		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장 
+	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
+	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
+	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정
+	    int totalCount = boardService.getTotalCount();	//총 게시글 수를 계산하여 변수에 저장
+	    pM.setTotalCount(totalCount);	//페이지네이션을 계산하기 위해 총 게시글 수를 수정
+	    model.addAttribute("pageMaker", pM);	//pageMaker의 객체를 model의 변수에 저장
+	    model.addAttribute("list", boardList);	//limit 설정에 맞는 게시글들을 가져와 model의 변수에 저장하여 jsp에서 사용
 	    return "/board/list";
 	}
 	@RequestMapping(value = "/display", method = RequestMethod.GET)

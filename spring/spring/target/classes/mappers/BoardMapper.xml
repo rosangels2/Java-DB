@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.spring.dao.BoardDAO">	<!-- 인터페이스가 있는 파일명 -->
   <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
-  	select * from board where valid = 'I'
+  	select * from board where valid = 'I' limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
   </select>
   <select id="getBoardContents" resultType="kr.green.spring.vo.BoardVO">
 	select * from board where num = #{num} and valid = 'I'
@@ -12,7 +12,7 @@
   	<update id="updateViews">
 		update board
 			set views = views+1
-			where num = #{num}
+			where num = #{num}	<!-- #{변수명}으로 호출한 값은 멤버변수가 아니라 멤버변수의 getter -->
 	</update>
 	<update id="updateBoard">
 		update board 
@@ -35,7 +35,7 @@
 		select * from board	order by num desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
-    <select id="countBoard" resultType="int">
-		select count(num) from	board
+    <select id="getTotalCount" resultType="int">
+		select count(*) from board where valid = 'I'
 	</select>
 </mapper>
