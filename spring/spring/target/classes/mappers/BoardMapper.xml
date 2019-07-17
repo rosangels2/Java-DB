@@ -36,10 +36,6 @@
 		set valid = 'D'
 		where num = #{num}
 	</update>
-	<select id="listPage" resultType="kr.green.spring.vo.BoardVO">
-		select * from board	order by num desc
-		limit #{pageStart}, #{perPageNum}
-	</select>
     <select id="getTotalCount" resultType="int">
 		select count(*) from board where valid = 'I'
 		<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->

@@ -31,16 +31,16 @@ public class BoardController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
-/*		logger.info("게시판 리스트 진행");
-		//ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
+		logger.info("게시판 리스트 진행");
+/*		ArrayList<BoardVO> boardList = boardService.getBoardList();	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 		for(BoardVO tmp:boardList) {	//향상된 포문으로 BoardVo클래스의 객체 boardList의 값을 하나씩 꺼냄 
 			System.out.println(tmp);	//꺼낸 값을 출력
 		}
-*/		//model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
-		
+		model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
+*/		
 		System.out.println(cri);
 		cri.setPerPageNum(2);	//보여줄 게시글 개수를 5로 재설정
-		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장 
+		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
 	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
 	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정

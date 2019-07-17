@@ -4,8 +4,8 @@ public class Criteria {
 		
 		private int page; //현재 페이지
 		private int perPageNum;	//한 페이지 당 컨텐츠 갯수
-		private int type;
-		private String search;
+		private int type;	//검색 카테고리
+		private String search;	//검색할 값
 		
 		public Criteria() {	//기본 생성자
 			this.page = 1;
@@ -53,8 +53,7 @@ public class Criteria {
 					+ "]";
 		}
 
-		/* 쿼리문에서 limit에 사용되는 인덱스를 계산하는 getter */
-		public int getPageStart() {
+		public int getPageStart() {		//쿼리문에서 limit에 사용되는 인덱스를 계산하는 getter
 			return (this.page -1) * perPageNum;	//쿼리문 limit 번지, 개수; 에서 번지를 결정 하기 위한 코드
 		}
 	

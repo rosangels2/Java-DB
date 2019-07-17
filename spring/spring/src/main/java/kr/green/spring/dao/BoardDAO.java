@@ -20,7 +20,5 @@ public interface BoardDAO {
 
 	void boardDelete(Integer num);
 	
-	public List<BoardVO> listPage(Criteria cri); 
-
 	int getTotalCount(Criteria cri);
 }
