@@ -52,8 +52,7 @@
     </param-value>
 </context-param>
 
-4. 회원 가입 시 비밀번호를 암호화
-회원 가입 시 암호화가 진행되는 Controller에 BCryptPasswordEncoder 멤버 객체 추가
+4. 회원 가입 시 비밀번호를 암호화 - MemberServiceImp.java의 구현부에 어노테이션 추가와 메서드 코드 추가
 예시) MemberServiceImp.java의 signup 메서드
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
