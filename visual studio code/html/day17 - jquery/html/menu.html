@@ -38,7 +38,6 @@
 			$('.box').click(function(){
 				$(this).addClass('border-red');	//또는 전부 삭제 후 this만 클래스 추가
 				$(this).siblings().removeClass('border-red');	//not 사용 - $('.box').not($(this)).removeClass('border-red');
-
 				//서브메뉴 추가
 				var str = '메뉴'+this.id+'<div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div><div class="subMenu"></div>';
 				$(this).append().html(str);	//클릭된 객체의 자식 태그로 str을 추가한다(text도 자식으로 취급)

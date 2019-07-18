@@ -44,4 +44,20 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 수정전 web.xml-->
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>
+	        /WEB-INF/spring/root-context.xml
+	    </param-value>
+	</context-param>
+	<!-- 수정후 web.xml-->
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>
+	        /WEB-INF/spring/root-context.xml
+	        /WEB-INF/spring/spring-security.xml
+	    </param-value>
+	</context-param>
 </web-app>

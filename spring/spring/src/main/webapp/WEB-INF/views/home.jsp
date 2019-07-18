@@ -7,8 +7,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+	<!-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css"> css, js 연결 예시 -->
 	<title>회원가입</title>
 	<style>
 	input.form-control:focus{
@@ -28,11 +28,16 @@
 		color: red;
 	}
 	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#id').focus();
+		});
+	</script>
 </head>
 <body>
 	<div class="row m-5">
 		<div class="container offset-4 col-4">
-			<div class="offset-3"> <h1>로그인</h1></div>
+			<div class="offset-4"> <h1>로그인</h1></div>
 			<form method="post" action="<%=request.getContextPath()%>/signin">	<!-- signinPost메서드에 매핑 -->
 				<div class="form-group">
 					<label for="usr">아이디</label>
@@ -42,6 +47,7 @@
 					<label for="pwd">비밀번호</label>
 					<input type="password" class="form-control col-7" id="pw" placeholder="비밀번호" name="pw">
 				</div>
+					<a href="<%=request.getContextPath()%>/signup"> <button type="button">회원가입</button> </a>
 				<button type="submit" class="btn btn-primary float-right">로그인</button>
 			</form>
 		</div>

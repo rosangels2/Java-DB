@@ -1,15 +1,23 @@
 package kr.green.spring.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.green.spring.dao.MemberDAO;
 import kr.green.spring.service.MemberService;
@@ -23,9 +31,10 @@ public class HomeController {
 	
 	@Autowired
 	MemberService memberService;	//memberService의 객체 생성
-	
 	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
 	MemberDAO stdDao;	//memberDAO의 객체를 생성
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 "/"고 방식이 get이면 home메서드를 실행
 	@RequestMapping(value = "/", method = RequestMethod.GET)	//get방식으로 호출했을 떄 값과 일치하는 메서드를 호출
@@ -97,5 +106,51 @@ public class HomeController {
 		session.removeAttribute("user");	//세션에서 user값을 제거
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value ="/dup")	//id 중복검사를 위한 메서드 매핑
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String id){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    boolean isMember =  true;	//플래그 선언
+	    if(stdDao.getMember(id) == null){	//id와 일치하는 MemberVO 객체를 가져오지 못했을 경우
+	    	isMember = false;	//일치하는 회원이 없다고 판단
+	    }else{	//id와 일치하는 MemberVO 객체를 가져왔을 경우
+	    	isMember = true;	//일치하는 회원이 있다고 판단
+	    }
+	    map.put("isMember", isMember);	//돌려줄 정보를 map의 변수에 저장
+	    return map;
+	}
+	
+	
+	@RequestMapping(value = "/mail/mailForm")
+	public String mailForm(){
+
+	    return "mail";
+	}
+	@RequestMapping(value = "/mail/mailSending")	//메일 보내기 코드
+	public String mailSending(HttpServletRequest request) {
+
+	    String setfrom = "stajun@naver.com";         
+	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
+	    String title   = request.getParameter("title");      // 제목
+	    String content = request.getParameter("content");    // 내용
+
+	    try {
+	        MimeMessage message = mailSender.createMimeMessage();
+	        MimeMessageHelper messageHelper 
+	            = new MimeMessageHelper(message, true, "UTF-8");
+
+	        messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+	        messageHelper.setTo(tomail);     // 받는사람 이메일
+	        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+	        messageHelper.setText(content);  // 메일 내용
+
+	        mailSender.send(message);
+	    } catch(Exception e){
+	        System.out.println(e);
+	    }
+
+	    return "redirect:/mail/mailForm";
 	}
 }

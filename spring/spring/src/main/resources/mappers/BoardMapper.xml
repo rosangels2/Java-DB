@@ -8,7 +8,7 @@
   	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
   	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
   	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
-  	order by num desc
+  	order by num desc	<!-- asc : 정렬, desc : 역순으로 정렬 -->
   	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
   </select>
   <select id="getBoardContents" resultType="kr.green.spring.vo.BoardVO">
