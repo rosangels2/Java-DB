@@ -47,9 +47,10 @@
 					<label for="pwd">비밀번호</label>
 					<input type="password" class="form-control col-7" id="pw" placeholder="비밀번호" name="pw">
 				</div>
-					<a href="<%=request.getContextPath()%>/signup"> <button type="button">회원가입</button> </a>
+					<a href="<%=request.getContextPath()%>/signup" class="float-right"> <button type="button">회원가입</button> </a>
 				<button type="submit" class="btn btn-primary float-right">로그인</button>
 			</form>
+			<a href="<%=request.getContextPath()%>/password/find" class="float-left">비밀번호 찾기</a>
 		</div>
 	</div>
 </body>
