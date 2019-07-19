@@ -1,0 +1,40 @@
+﻿	/*	문제)a~z,A~Z, 0~9로 조합된 8자리의 임시 비밀번호 발급하는 코드를 작성하시오
+		a~z : 26개, A~Z : 26개, 0~9개
+		62개, 0~61
+		0~9 : '0'~'9'
+		10~35 : 'a'~'z'
+		36~61 : 'A'~'Z'
+		랜덤한 수가 60 : 'Y'
+	*/	
+		
+		/*	문자+정수 = 정수
+		문자 = 정수//불가능
+		문자 = (char)정수//가능		*/
+		
+	/*	char[] pw = new char[8];
+		for(int i=0; i<pw.length; i++){
+			int r = (int)(Math.random()*62);
+			if(r<=9){
+				pw[i] = (char)('0'+r);
+			}else if(r<=35){
+				pw[i] = (char)('a'+(r-10));
+			}else{
+				pw[i] = (char)('A'+(r-36));
+			}
+		}
+		System.out.println(pw);
+	*/	
+	
+		
+		//abcd...z
+	/*	int numA = 'a';
+		int numB = 'b';
+		System.out.println(numA); // 문자 a에 대한 유니코드 정수값 : 97
+		System.out.println(numB); // 문자 b에 대한 유니코드 정수값 : 98
+		
+		int numC = 'A';
+		int numD = 'B';
+		System.out.println(numC); // 문자 A에 대한 유니코드 정수값 : 65
+		System.out.println(numD); // 문자 B에 대한 유니코드 정수값 : 66
+	*/	
+		
