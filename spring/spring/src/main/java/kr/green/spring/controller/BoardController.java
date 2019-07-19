@@ -39,7 +39,7 @@ public class BoardController {
 		model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 */		
 		System.out.println(cri);
-		cri.setPerPageNum(2);	//보여줄 게시글 개수를 5로 재설정
+		cri.setPerPageNum(5);	//보여줄 게시글 개수를 5로 재설정
 		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
 	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정

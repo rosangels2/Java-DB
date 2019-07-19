@@ -41,6 +41,36 @@ public class HomeController {
 	public String home(Model model){
 		logger.info("메인페이지 실행");	//console에 입력되는 메세지		
 		
+		//방법1 - char[] 사용 시 출력할 떄 toString에서 원하지 않는 값이 출력될 수 있다
+		char[] pw = new char[8];
+		for(int i=0 ; i<8 ; i++){
+			int r = (int)(Math.random()*62);
+			if(r <= 9){
+				pw[i] = (char)('0'+r);
+			}else if(r <= 35){
+				pw[i] = (char)('a'+(r-10));	//아스키 코드값이 연속적인 걸 이용
+			}else{
+				pw[i] = (char)('A'+(r-36));
+			}
+		}
+		System.out.println("pw = " + pw);
+		//방법2 - char[] 사용 시 출력할 떄 toString에서 원하지 않는 값이 출력될 수 있다
+		char[] pw1 = new char[]{0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+		char[] password = new char[8];
+		for(int i=0 ; i<8 ; i++){
+			int r = (int)(Math.random()*62);
+			password[i] = pw1[r-1];
+		}
+		System.out.println("pw1 = " + pw1);
+		//방법3
+		String str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String pw2 = "";
+		for(int i=0 ; i<8 ; i++){
+			int r = (int)(Math.random()*62);
+			pw2 += str.charAt(r);
+		}
+		System.out.println("pw2 = " + pw2);
+		
 		return "home";	//사용자에게 home.jsp를 보내준다
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//화면에 표시되는 페이지는 get방식
@@ -131,7 +161,7 @@ public class HomeController {
 	@RequestMapping(value = "/mail/mailSending")	//메일 보내기 코드
 	public String mailSending(HttpServletRequest request) {
 
-	    String setfrom = "stajun@naver.com";         
+	    String setfrom = "abc12345678@naver.com";         
 	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
 	    String title   = request.getParameter("title");      // 제목
 	    String content = request.getParameter("content");    // 내용
@@ -152,5 +182,38 @@ public class HomeController {
 	    }
 
 	    return "redirect:/mail/mailForm";
+	}
+	@RequestMapping(value = "pwSearch")
+	public String pwSearch(Model model, String id, HttpServletRequest request){
+		String str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String pw2 = "";
+		for(int i=0 ; i<8 ; i++){
+			int r = (int)(Math.random()*62);
+			pw2 += str.charAt(r);
+		}
+		System.out.println(pw2);
+		if(memberService.pwSearch(id, pw2)){
+			String setfrom = "abc12345678@naver.com";         
+		    String tomail  = "rosangels2@naver.com";     // 받는 사람 이메일
+		    String title   = "임시 비밀번호 발급";      // 제목
+		    String content = pw2;    // 내용
+
+		    try {
+		        MimeMessage message = mailSender.createMimeMessage();
+		        MimeMessageHelper messageHelper 
+		            = new MimeMessageHelper(message, true, "UTF-8");
+
+		        messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+		        messageHelper.setTo(tomail);     // 받는사람 이메일
+		        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+		        messageHelper.setText(content);  // 메일 내용
+
+		        mailSender.send(message);
+		    } catch(Exception e){
+		        System.out.println(e);
+		    }
+			return "redirect:/";
+		}
+		return "redirect:/";
 	}
 }

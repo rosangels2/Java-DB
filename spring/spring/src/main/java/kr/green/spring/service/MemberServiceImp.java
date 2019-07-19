@@ -81,5 +81,19 @@ public class MemberServiceImp implements MemberService{
 		}
 		return false;
 	}
+	@Override
+	public boolean pwSearch(String id, String pw2) {
+		if(id == null || pw2 == null){	//예외처리
+			return false;
+		}
+		MemberVO mVo = memberDao.getMember(id);	//id를 통해 객체를 가져와 정보를 저장
+		if(mVo != null){	//예외처리
+			String encodePw = passwordEncoder.encode(pw2);	//생성된 임시 비밀번호를 암호화
+			mVo.setPw(encodePw);	//암호화된 비밀번호로 객체 정보를 수정
+			memberDao.modify(mVo);	//수정된 정보를 통해 modify 인터페이스로 회원정보 수정
+			return true;
+		}		
+		return false;
+	}
 	
 }
