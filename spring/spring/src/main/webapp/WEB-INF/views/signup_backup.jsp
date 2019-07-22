@@ -9,8 +9,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.js"></script>
 	<title>회원가입</title>
 <style>
 	input.form-control:focus{
@@ -31,27 +29,6 @@
 	}
 </style>
 <script type="text/javascript">
-//일반함수 선언 및 구현은 .ready함수 밖에서 한다 -> ready 밖에서 호출할 경우 화면이 구성되기 전에 함수가 실행돼 에러가 발생할 수 있다
-function checkLength(selector,min,max){		
-	var length = $(selector).val().length;	//변수 length에 매개변수로 입력받은 selector의 value값 길이를 저장한다
-	if(min > max){
-		var tmp = min;
-		min = max;
-		max = tmp;
-	}
-	if(length < min || length > max){
-		return false;
-	}else{
-		return true;
-	}
-}
-function equals(sel1,sel2){
-	if($(sel1).val() == $(sel2).val()){
-		return true;
-	}else{
-		return false;
-	}
-}	
 
 	var idCheck = 0;	//플래그로 사용할 전역변수 선언
 	
@@ -119,7 +96,6 @@ function equals(sel1,sel2){
 				idCheck = 0;	//전역변수를 초기화
 				return true;
 		});
-		
 		$('#dup').click(function(){
 			var id = $('input[name=id]').val();	//data를 통해 넘겨줄 매개변수에 저장할 값을 입력
 			 $.ajax({
@@ -140,61 +116,28 @@ function equals(sel1,sel2){
 		       	}
 		    });
 		});
-		$("form").validate({
-	        rules: {
-	            id: {
-	                required : true,	//필수 항목인지 여부
-	                minlength : 8,
-	                maxlength : 20
-	            },
-	            pw: {
-	                required : true,
-	                minlength : 8,
-	                maxlength : 20,
-	                regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/	//정규표현식
-	            },
-	            pw1: {
-	                required : true,
-	                equalTo : pw
-	            },
-	            email: {
-	                required : true,
-	                email : true	//email 형식에 맞는지 여부
-	            }
-	        },
-	        messages : {	//규칙체크 실패시 출력될 메시지
-	            id: {
-	                required : "필수로 입력하세요",
-	                minlength : "최소 {0}글자 이상이어야 합니다",
-	                maxlength : "최대 {0}글자 이하여야 합니다"
-	            },
-	            pw: {
-	                required : "필수로 입력하세요",
-	                minlength : "최소 {0}글자 이상이어야 합니다",
-	                maxlength : "최대 {0}글자 이하여야 합니다",
-	                regex : "영문자, 숫자로 이루어져 있으며 최소 하나이상 포함"
-	            },
-	            pw1: {
-	                required : "필수로 입력하세요",
-	                minlength : "최소 {0}글자 이상이어야 합니다",
-	                equalTo : "비밀번호가 일치하지 않습니다."
-	            },
-	            email: {
-	                required : "필수로 입력하세요",
-	                minlength : "최소 {0}글자 이상이어야 합니다",
-	                email : "메일규칙에 어긋납니다"
-	            }
-	        }
-	    });
-	});		//ready 끝
-	$.validator.addMethod(
-		    "regex",
-		    function(value, element, regexp) {
-		        var re = new RegExp(regexp);
-		        return this.optional(element) || re.test(value);
-		    },
-		    "Please check your input."
-		);
+	});
+	//일반함수 선언 및 구현은 .ready함수 밖에서 한다 -> ready 밖에서 호출할 경우 화면이 구성되기 전에 함수가 실행돼 에러가 발생할 수 있다
+	function checkLength(selector,min,max){		
+		var length = $(selector).val().length;	//변수 length에 매개변수로 입력받은 selector의 value값 길이를 저장한다
+		if(min > max){
+			var tmp = min;
+			min = max;
+			max = tmp;
+		}
+		if(length < min || length > max){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function equals(sel1,sel2){
+		if($(sel1).val() == $(sel2).val()){
+			return true;
+		}else{
+			return false;
+		}
+	}	
 </script>
 </head>
 <body>
@@ -205,7 +148,6 @@ function equals(sel1,sel2){
 				<div class="form-group">
 					<label for="usr">아이디</label>
 					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id">
-					<label id="id-error" class="offset-4 col-7" for="id"></label>
 				</div>
 				<div>
 					<button type="button" class="btn btn-outline-success col-7" id="dup">아이디 중복확인</button>
