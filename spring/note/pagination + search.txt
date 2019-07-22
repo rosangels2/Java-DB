@@ -4,7 +4,7 @@ http://bootstrap4.kr/docs/4.0/components/pagination/
 https://www.w3schools.com/bootstrap4/bootstrap_pagination.asp
 
 
-1. Criteria 클래스 생성
+1. Criteria 클래스 생성 후 구현
 예시) 경로 - src/main/java > kr.green.spring.pagination 패키지 생성 > Criteria 클래스 생성
 public class Criteria {
 		
@@ -14,8 +14,6 @@ public class Criteria {
 		public Criteria() {	//기본 생성자
 			this.page = 1;
 			this.perPageNum = 10;
-			this.type = 0;
-			this.search = "";
 		}
 	
 		public int getPage() {
@@ -78,6 +76,7 @@ public class Criteria {
 	public int getTotalCount(Criteria cri) {
 		return boardDao.getTotalCount(cri);
 	}
+
 5. 서비스에서 호출하는 DAO 인터페이스에도 매개변수를 추가
 예시) boardDAO.java
 	ArrayList<BoardVO> getBoardList(Criteria cri);
@@ -177,7 +176,7 @@ public class PageMaker {
 				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", criteria=" + criteria + "]";
 	}
 
-8. /views/board/list.jsp에 페이지네이션을 이용할 코드를 추가
+8. /views/board/list.jsp에 페이지네이션 코드를 추가
 예시)
 	<ul class="pagination" style="justify-content: center;">
 	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
@@ -208,8 +207,8 @@ public class PageMaker {
 예시)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
-		logger.info("게시판 리스트 진행");		
-	    System.out.println(cri);
+	    logger.info("게시판 리스트 진행");		
+	    System.out.println("cri = "+cri);
 	    cri.setPerPageNum(2);	//보여줄 게시글 개수를 5로 재설정
 	    ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
@@ -222,6 +221,7 @@ public class PageMaker {
 	    return "/board/list";
 	}
 
++검색기능 추가
 10. 검색 기능 추가를 위해 Criteria클래스에 멤버변수로 검색어와 타입을 추가하고 getter/setter 호출 및 toString 재호출(객체 정보 출력을 위해)
 예시) Criteria.java
 		private int page; //현재 페이지
@@ -247,7 +247,7 @@ public class PageMaker {
 	<form class="" method="get" action="<%=request.getContextPath()%>/board/list">
 		<select name="type" class="float-left">
 			<option value="0">선택</option>
-			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >제목</option>
+			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >제목</option>		<!-- URI 정보대로 선택 유지-->
 			<option value="2" <c:if test="${pageMaker.criteria.type eq 2}">selected</c:if> >내용</option>
 			<option value="3" <c:if test="${pageMaker.criteria.type eq 3}">selected</c:if> >작성자</option>
 		</select>
@@ -261,10 +261,11 @@ public class PageMaker {
 	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
 	        <li class="page-item">
 	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">Previous</a>
-	        </li>																<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
+	        </li>							<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
 	    </c:if>
+	    <!-- 페이지네이션 목록 -->
 	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
-	        <li class="page-item">															<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	        <li class="page-item">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
 	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
 	        </li>
 	    </c:forEach>
@@ -279,30 +280,31 @@ public class PageMaker {
 예시)
 <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
   	select * from board where valid = 'I'
-  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
-  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>		<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>	<!-- like를 통해 검색 기능을 적용 -->
   	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
   	order by num desc
   	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
 </select>
 <select id="getTotalCount" resultType="int">
 	select count(*) from board where valid = 'I'
-	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
-	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>		<!-- concat : 값을 이어 붙이는 함수 -->
+	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>	<!-- 페이지네이션에 적용하기 위해 페이지수를 다시 계산 -->
 	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
 </select>
 
 14.  /board/list.jsp에서 현재 페이지가 표시되도록 부트스트랩을 통해 active를 적용(페이지 번호가 생성되는 페이지네이션의 index와 같다면 active를 활성화)
 예시) list.jsp
+	    <!-- 페이지네이션 목록 -->
 	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
 	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 active를 추가-->
-	        <li class="page-item active">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	        </li>
+	      	  <li class="page-item active">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	       	     <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	      	  </li>
 	        </c:if>
 	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
-	        <li class="page-item">								<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	        </li>
+	      	  <li class="page-item">								<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	     	       <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	    	    </li>
 	        </c:if>
 	    </c:forEach>
