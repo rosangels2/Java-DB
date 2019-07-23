@@ -8,8 +8,8 @@ https://www.w3schools.com/bootstrap4/bootstrap_pagination.asp
 예시) 경로 - src/main/java > kr.green.spring.pagination 패키지 생성 > Criteria 클래스 생성
 public class Criteria {
 		
-		private int page; //현재 페이지
-		private int perPageNum;	//한 페이지 당 컨텐츠 갯수
+		private int page;		//현재 페이지를 저장할 멤버변수
+		private int perPageNum;	//한 페이지에 보여줄 개시글 개수를 정하는 멤버변수
 		
 		public Criteria() {	//기본 생성자
 			this.page = 1;
@@ -20,7 +20,7 @@ public class Criteria {
 			return page;
 		}
 		public void setPage(int page) {
-			if(page <= 0) {		//현재 페이지 번호를 음수로 설정하려 할 때
+			if(page <= 0) {		//현재 페이지 번호를 0보다 작게 설정하려 할 때
 				this.page = 1;
 			}
 			else
@@ -30,7 +30,7 @@ public class Criteria {
 			return perPageNum;
 		}
 		public void setPerPageNum(int perPageNum) {
-			if(perPageNum <=0 || perPageNum > 100) {	//한 페이지당 컨텐츠 개수를 100개까지로 제한
+			if(perPageNum <=0 || perPageNum > 100) {	//한 페이지당 컨텐츠 개수를 100개로 제한
 				this.perPageNum = 10;
 			}
 			else
@@ -43,58 +43,63 @@ public class Criteria {
 					+ "]";
 		}
 
-		/* 쿼리문에서 limit에 사용되는 인덱스를 계산하는 getter */
 		public int getPageStart() {
-			return (this.page -1) * perPageNum;	//쿼리문 limit 번지, 개수; 에서 번지를 결정 하기 위한 코드
-		}
+			return (this.page -1) * perPageNum;	//getBoardList에서 limit을 통해 보여줄 개시글 수를 제한할 때 사용될 getter
+		}	//쿼리문에선 멤버변수를 호출하는 게 아니라 멤버변수의 getter를 호출하기 때문에 생성하지 않은 멤버변수여도 getter를 생성해서 호출 가능(기존 멤버변수로 계산이 가능하기 때문)
 	
 }
 
-2. /board/list를 매핑하는 컨트롤러에 매개변수로 Criteria 클래스의 객체를 추가하고 메서드의 매개변수에도 추가
+2. 컨트롤러에서 매개변수로 Criteria 객체 생성 후 출력
 예시)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
-	    System.out.println(cri);	//criteria클래스의 객체 cri를 출력
-	    ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
-	    int totalCount = boardService.getTotalCount(cri);
+	public String listGet(Model model, Criteria cri) {
+		logger.info("게시판 목록");
+		System.out.println("cri = "+cri);	//설정값이 없을 경우 기본 생성자의 page=1, perPageNum=10의 값으로 설정돼 출력(설정이 안돼있어도 page=1을 화면에 표시)
+
 	    return "/board/list";
 	}
 
-3. 컨트롤러에서 매개변수를 추가한 서비스 인터페이스에 매개변수로 Criteria클래스 객체 cri를 추가
-예시) boardService.java
-	ArrayList<BoardVO> getBoardList(Criteria cri);
-	int getTotalCount(Criteria cri);
+3. 컨트롤러에서 서비스 호출 매개변수에 Criteria cri를 추가
+예시)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String listGet(Model model, Criteria cri) {
+		logger.info("게시판 목록");
+		System.out.println("cri = "+cri);	//설정값이 없을 경우 기본 생성자의 page=1, perPageNum=10의 값으로 설정돼 출력(설정이 안돼있어도 page=1을 화면에 표시)
+		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//cri의 setPerPageNum을 설정한 뒤 리스트를 호출해야 변경된 값이 적용
 
-4. 해당 서비스 구현 클래스에서도 매개변수를 수정
-예시) boardServiceImp.java
+	    return "/board/list";
+	}
+
+4. 서비스 DAO 인터페이스에서도 매개변수 Criteria cri 추가
+예시) BoardService.java
+	ArrayList<BoardVO> getBoardList(Criteria cri);
+
+예시) BoardServiceImp.java
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
 		
 		return boardDao.getBoardList(cri);
 	}
-	@Override
-	public int getTotalCount(Criteria cri) {
-		return boardDao.getTotalCount(cri);
-	}
 
-5. 서비스에서 호출하는 DAO 인터페이스에도 매개변수를 추가
-예시) boardDAO.java
+예시) BoardDAO.java
 	ArrayList<BoardVO> getBoardList(Criteria cri);
 
-	int getTotalCount(Criteria cri);
+5. mapper에서 cri를 적용해 정렬과 limit을 추가(getter를 통해 pageStart 값을 호출)
+예시)
+	<select id="getBoardList" resultType="kr.green.test.vo.BoardVO">
+		select * from board where valid = 'I'
+		order by num desc	<!-- 게시글들을 내림차순으로 정렬(최신글부터 보여주기 위해) -->
+  		limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 시작 게시글의 번지와 한 페이지에 표시할 게시글 수를 제한 -->
+ 	</select>
 
-6. mapper에서 쿼리문 수정
-예시) boardMapper.xml
-  <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
-  	select * from board where valid = 'I'
-  	order by num desc
-  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 시작 게시글의 번지와 한 페이지에 표시할 게시글 수를 제한 -->
-  </select>
-  <select id="getTotalCount" resultType="int">
-		select count(*) from board where valid = 'I'
-   </select>
+6. 화면 확인 > 게시글 10개씩 정렬 > URI에서 페이지 입력 시 해당 페이지 호출
+예시)
+	http://localhost:8080/test/board/list?page=1
+	http://localhost:8080/test/board/list?page=2
+	http://localhost:8080/test/board/list?page=3
+	http://localhost:8080/test/board/list?page=4
 
-7. 전체적으로 페이지를 관리하는 PageMaker 클래스 생성
+7. 페이지네이션을 표시할 페이지메이커 클래스를 생성
 예시) 경로 - src/main/java > kr.green.spring.pagination 패키지 생성 > PageMaker 클래스 생성
 public class PageMaker {
 
@@ -110,7 +115,7 @@ public class PageMaker {
 		//startPage와 endPage는 현재 페이지 정보인 criteria와 displayPageNum을 이용하여 계산
 		endPage = (int) (Math.ceil(criteria.getPage()/(double) displayPageNum)*displayPageNum);
 		//displayPageNum이 10이고 현재 페이지가 3페이지면 startPage = 1, endPage = 10이 되도록 계산
-		//ceil - 올림을 하는 함수
+		//ceil - 올림 함수
 		
 		startPage = (endPage - displayPageNum)+1;	//마지막 페이지 기준으로 계산
 		//startPage = 31 , perPageNum = 15, totalCount = 563
@@ -124,7 +129,7 @@ public class PageMaker {
 		prev = startPage == 1 ? false : true;	//스타트페이지가 1이면 false로 만들고 1이 아니면 true로 만든다
 		
 		next = endPage * criteria.getPerPageNum() >= totalCount ? false:true; 
-		//마지막 페이의 게시글 수가 총 게시글 수보다 크면 next를 숨김(게시글이 더 남아있기 때문)
+		//마지막 페이지의 게시글 수가 총 게시글 수보다 크면 next를 숨긴다(게시글이 더 남아있기 때문)
 	}
 	
 	public int getTotalCount() {
@@ -176,58 +181,149 @@ public class PageMaker {
 				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", criteria=" + criteria + "]";
 	}
 
-8. /views/board/list.jsp에 페이지네이션 코드를 추가
+8. 컨트롤러에서 페이지메이커의 객체 pm을 기본 생성자를 통해 생성
 예시)
-	<ul class="pagination" style="justify-content: center;">
-	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
-	        <li class="page-item">
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}">Previous</a>
-	        </li>							<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
-	    </c:if>
-	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
-	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 -->
-	        <li class="page-item active">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	        </li>
-	        </c:if>
-	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
-	        <li class="page-item">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	        </li>
-	        </c:if>
-	    </c:forEach>
-	    <c:if test="${pageMaker.next}">	<!-- 다음버튼 -->
-	        <li class="page-item">
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}">Next</a>
-	        </li>
-	    </c:if>
-	</ul>
-
-9. boardController에서 pageMaker를 호출
-예시)
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
-	    logger.info("게시판 리스트 진행");		
-	    System.out.println("cri = "+cri);
-	    cri.setPerPageNum(2);	//보여줄 게시글 개수를 5로 재설정
-	    ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
-	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
-	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정
-	    int totalCount = boardService.getTotalCount(cri);	//총 게시글 수를 계산하여 변수에 저장
+	    pM.setCriteria(cri);			//보여줄 게시글들의 설정을 수정
+
+9. setDisplayPageNum을 통해 보여줄 페이지네이션의 개수를 설정(페이지네이션 개수 초과시 next/preview 표시)
+예시)
+	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정(setDisplayPageNum을 먼저 호출해서 계산해야 setTotalCount함수가 정상적으로 작동)
+
+10. 총 게시글 수를 가져오는 서비스, DAO 인터페이스와 mapper를 생성해 count쿼리문으로 게시판 테이블의 총 데이터 개수를 가져온다
+예시)
+	    int totalCount = boardService.getTotalCount(cri);	//총 게시글 수를 계산하여 변수에 저장하는 인터페이스를 호출
+
+10.1 quick fixed를 통해 인터페이스 생성
+예시)
+	int getTotalCount(Criteria cri);
+
+10.2 quick fixed를 통해 인터페이스 구현 및 DAO 인터페이스 호출
+예시)
+	@Override
+	public int getTotalCount(Criteria cri) {
+		
+		return boardDao.getTotalCount(cri);
+	}
+
+10.3 quick fixed를 통해 DAO 인터페이스 생성
+예시)
+	int getTotalCount(Criteria cri);
+
+10.4 mapper에서 쿼리문 작성
+예시)
+  	<select id="getTotalCount" resultType="int">
+		select count(*) from board where valid = 'I'	<!-- 총 개시글 수를 계산하여 정수로 반환 -->
+	 </select>
+
+11. setTotalCount를 통해 가져온 총 게시글 수를 입력하고 pm을 출력하여 제대로 입력됐는지 확인
+예시)
 	    pM.setTotalCount(totalCount);	//페이지네이션을 계산하기 위해 총 게시글 수를 수정
+	    System.out.println(pM);
+
+12. model의 변수에 list와 pm을 넣어주고 jsp를 리턴
+예시)
 	    model.addAttribute("pageMaker", pM);	//pageMaker의 객체를 model의 변수에 저장
 	    model.addAttribute("list", boardList);	//limit 설정에 맞는 게시글들을 가져와 model의 변수에 저장하여 jsp에서 사용
 	    return "/board/list";
+
+최종 예시)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String listGet(Model model, Criteria cri) {
+		logger.info("게시판 목록");
+		System.out.println("cri = "+cri);	//설정값이 없을 경우 기본 생성자의 page=1, perPageNum=10의 값으로 설정돼 출력(설정이 안돼있어도 page=1을 화면에 표시)
+		
+		cri.setPerPageNum(5);	//보여줄 게시글 개수를 5로 재설정(보드 테이블의 데이터가 부족해 10개씩 나열할 시 next/preview를 보기가 어려워 임의로 개시글 수를 낮게 설정)
+		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//cri의 setPerPageNum을 설정한 뒤 리스트를 호출해야 변경된 값이 적용
+		
+	    PageMaker pM = new PageMaker();	//pageMaker 객체를 생성 후 복사
+	    pM.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
+	    pM.setDisplayPageNum(5);	//페이지네이션의 개수를 설정(setDisplayPageNum을 먼저 호출해서 계산해야 setTotalCount함수가 정상적으로 작동)
+	    int totalCount = boardService.getTotalCount(cri);	//총 게시글 수를 계산하여 변수에 저장
+	    pM.setTotalCount(totalCount);	//페이지네이션을 계산하기 위해 총 게시글 수를 수정
+	    System.out.println(pM);
+	    
+	    model.addAttribute("pageMaker", pM);	//pageMaker의 객체를 model의 변수에 저장
+	    model.addAttribute("list", boardList);	//limit 설정에 맞는 게시글들을 가져와 model의 변수에 저장하여 jsp에서 사용
+	    
+	    return "/board/list";
 	}
 
+13. list.jsp의 등록 버튼 위에 페이지네이션 코드를 추가하고 확인
+예시)
+<ul class="pagination" style="justify-content: center;">
+    <c:if test="${pageMaker.prev}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}">Previous</a>
+        </li>
+    </c:if>
+    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
+        </li>
+    </c:forEach>
+    <c:if test="${pageMaker.next}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}">Next</a>
+        </li>
+    </c:if>
+</ul>
+
+14. li태그 클래스에 active를 추가해 페이지네이션에 active가 적용되는지 확인
+예시)
+<ul class="pagination" style="justify-content: center;">
+    <c:if test="${pageMaker.prev}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}">Previous</a>
+        </li>
+    </c:if>
+    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">
+        <li class="page-item active">	//부트스트랩 active 클래스를 호출하여 css를 적용
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
+        </li>
+    </c:forEach>
+    <c:if test="${pageMaker.next}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}">Next</a>
+        </li>
+    </c:if>
+</ul>
+
+15. 현재 페이지만 active가 적용되도록 c:if문을 사용
+예시)
+<ul class="pagination" style="justify-content: center;">
+    <c:if test="${pageMaker.prev}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}">Previous</a>
+        </li>
+    </c:if>
+    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">
+       <c:if test="${pageMaker.criteria.page == index}">
+        <li class="page-item active">	//부트스트랩 active 클래스를 호출하여 css를 적용
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
+        </li>
+       </c:if>
+       <c:if test="${pageMaker.criteria.page != index}">
+        <li class="page-item">	//부트스트랩 active 클래스를 호출하여 css를 적용
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
+        </li>
+       </c:if>
+    </c:forEach>
+    <c:if test="${pageMaker.next}">
+        <li class="page-item">
+            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}">Next</a>
+        </li>
+    </c:if>
+</ul>
+
+
 +검색기능 추가
-10. 검색 기능 추가를 위해 Criteria클래스에 멤버변수로 검색어와 타입을 추가하고 getter/setter 호출 및 toString 재호출(객체 정보 출력을 위해)
+1. 검색 기능 추가를 위해 Criteria클래스에 멤버변수로 검색어와 타입을 추가하고 getter/setter 호출 및 toString 재호출(객체 정보 출력을 위해)
 예시) Criteria.java
-		private int page; //현재 페이지
-		private int perPageNum;	//한 페이지 당 컨텐츠 갯수
-		private int type;	//검색 카테고리
-		private String search;	//검색할 값
+		private int page;		//현재 페이지를 저장할 멤버변수
+		private int perPageNum;	//한 페이지에 보여줄 개시글 개수를 정하는 멤버변수
+		private int type;		//검색 카테고리 값을 저장할 멤버변수
+		private String search;	//검색창에 입력된 값을 저장할 멤버변수
 		
 		public Criteria() {	//기본 생성자
 			this.page = 1;
@@ -242,20 +338,20 @@ public class PageMaker {
 					+ "]";
 		}
 
-11. list.jsp에 검색을 위한 form태그, 카테고리를 분류할 select태그, 검색값을 입력받을 input창, 검색을 전송할 button을 추가
+2. list.jsp에 검색을 위한 form태그, 카테고리를 분류할 select태그, 검색값을 입력받을 input창, 검색을 전송할 button을 추가
 예시) list.jsp
 	<form class="" method="get" action="<%=request.getContextPath()%>/board/list">
 		<select name="type" class="float-left">
 			<option value="0">선택</option>
-			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >제목</option>		<!-- URI 정보대로 선택 유지-->
-			<option value="2" <c:if test="${pageMaker.criteria.type eq 2}">selected</c:if> >내용</option>
-			<option value="3" <c:if test="${pageMaker.criteria.type eq 3}">selected</c:if> >작성자</option>
+			<option value="1">제목</option>
+			<option value="2">내용</option>
+			<option value="3">작성자</option>
 		</select>
 		<input type="text" name="search" class="float-left" value="${pageMaker.criteria.search}">
 		<button type="submit" class="btn btn-outline-success float-left">검색</button>
 	</form>
 
-12. 검색창이 적용되도록 list.jsp의 페이지네이션을 수정
+3. 검색한 값이 적용되도록 list.jsp의 페이지네이션을 수정(URI에 type과 search값을 전송)
 예시) list.jsp
 	<ul class="pagination" style="justify-content: center;">
 	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
@@ -276,7 +372,7 @@ public class PageMaker {
 	    </c:if>
 	</ul>
 
-13. boardMapper.xml에서 쿼리문에 검색 기능을 추가
+4. boardMapper.xml에서 쿼리문에 검색 기능을 추가
 예시)
 <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
   	select * from board where valid = 'I'
@@ -293,18 +389,15 @@ public class PageMaker {
 	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
 </select>
 
-14.  /board/list.jsp에서 현재 페이지가 표시되도록 부트스트랩을 통해 active를 적용(페이지 번호가 생성되는 페이지네이션의 index와 같다면 active를 활성화)
-예시) list.jsp
-	    <!-- 페이지네이션 목록 -->
-	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
-	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 active를 추가-->
-	      	  <li class="page-item active">							<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	       	     <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	      	  </li>
-	        </c:if>
-	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
-	      	  <li class="page-item">								<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	     	       <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
-	    	    </li>
-	        </c:if>
-	    </c:forEach>
+5. 검색한 타입과 검색값을 유지하기 위해 셀렉트박스의 옵션에 c:if문으로 selected를 추가
+예시)
+	<form class="" method="get" action="<%=request.getContextPath()%>/board/list">
+		<select name="type" class="float-left">
+			<option value="0">선택</option>
+			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >제목</option>		<!-- URI 정보대로 선택 유지-->
+			<option value="2" <c:if test="${pageMaker.criteria.type eq 2}">selected</c:if> >내용</option>
+			<option value="3" <c:if test="${pageMaker.criteria.type eq 3}">selected</c:if> >작성자</option>
+		</select>
+		<input type="text" name="search" class="float-left" value="${pageMaker.criteria.search}">
+		<button type="submit" class="btn btn-outline-success float-left">검색</button>
+	</form>
