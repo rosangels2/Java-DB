@@ -32,7 +32,7 @@ public class HomeController {
 	@Autowired
 	MemberService memberService;	//memberService의 객체 생성
 	@Autowired	//생성자를 대신 사용해주는 기능(하나의 객체를 만들어서 해당 클래스의 객체를 사용할 때 자동 연결)
-	MemberDAO stdDao;	//memberDAO의 객체를 생성
+	MemberDAO memberDao;	//memberDAO의 객체를 생성
 	
 	//@RequestMapping(요청을 연결) - 서버 부분을 제외한 URL이 "/"고 방식이 get이면 home메서드를 실행
 	@RequestMapping(value = "/", method = RequestMethod.GET)	//get방식으로 호출했을 떄 값과 일치하는 메서드를 호출
@@ -141,7 +141,7 @@ public class HomeController {
 	public Map<Object, Object> idcheck(@RequestBody String id){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    boolean isMember =  true;	//플래그 선언
-	    if(stdDao.getMember(id) == null){	//id와 일치하는 MemberVO 객체를 가져오지 못했을 경우
+	    if(memberDao.getMember(id) == null){	//id와 일치하는 MemberVO 객체를 가져오지 못했을 경우
 	    	isMember = false;	//일치하는 회원이 없다고 판단
 	    }else{	//id와 일치하는 MemberVO 객체를 가져왔을 경우
 	    	isMember = true;	//일치하는 회원이 있다고 판단

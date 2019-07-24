@@ -2,6 +2,9 @@
 비밀번호 암호화를 위하여 Spring-security를 이용한다.
 회원 가입 시 비밀번호를 인코딩하여 저장한다.
 로그인 시 입력한 비밀 번호와 인코딩 된 비밀번호를 비교하여 (디코딩을 하지 않고서) 같으면 로그인 성공, 실패하면 로그인 실패
+Reference
+블로그 : https://shj7242.github.io/2017/12/10/Spring31/
+
 
 1. pom.xml에 의존성 추가
 예시)
@@ -101,6 +104,3 @@
 		}
 		return null;
 	}
-
-Reference
-블로그 : https://shj7242.github.io/2017/12/10/Spring31/

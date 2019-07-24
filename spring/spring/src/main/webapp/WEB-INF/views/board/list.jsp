@@ -63,7 +63,6 @@
 	</ul>
 	<form class="" method="get" action="<%=request.getContextPath()%>/board/list">
 		<select name="type" class="float-left">
-			<option value="0">선택</option>
 			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >제목</option>
 			<option value="2" <c:if test="${pageMaker.criteria.type eq 2}">selected</c:if> >내용</option>
 			<option value="3" <c:if test="${pageMaker.criteria.type eq 3}">selected</c:if> >작성자</option>
