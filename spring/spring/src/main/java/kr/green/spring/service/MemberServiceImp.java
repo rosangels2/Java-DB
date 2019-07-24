@@ -99,10 +99,11 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public String getVal(String id) {
 		String [] arr = id.split("=");	//입력받은 문자열을 =을 기준으로 배열로 나눠서 저장 
-		if(arr.length == 2)	//배열의 길이가 2라면 	예시)id=xxx -> 0번지 = id, 1번지 = xxx
+		if(arr.length == 2){	//배열의 길이가 2라면 	예시)id=xxx -> 0번지 = id, 1번지 = xxx
 			return arr[1];	//배열의 1번지를 반환(실제 입력값인 xxx)
-		else
+		}else{
 			return "";
+		}
 	}
 	
 	@Override
