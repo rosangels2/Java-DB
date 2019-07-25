@@ -70,7 +70,7 @@ public String mailSending(HttpServletRequest request) {
     return "redirect:/mail/mailForm";
 }
 
-4. mial.jsp추가 - /views 폴더에 mail.jsp를 생성 후 코드 추가
+4. mail.jsp추가 - /views 폴더에 mail.jsp를 생성 후 코드 추가
 예시)
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

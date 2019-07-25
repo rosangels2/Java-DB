@@ -14,7 +14,7 @@ public interface MemberService {
 	
 	public boolean isMember(String id);		//아이디가 중복되는지 확인
 	
-	public String getVal(String id);	//입력받은 값에서 실제 값만을 추출	예시)id=xxx > xxx추출
+	public String getVal(String str);	//입력받은 값에서 실제 값만을 추출	예시)id=xxx > xxx추출
 	
 	public String createPw();	//새 비밀번호를 랜덤으로 생성
 	

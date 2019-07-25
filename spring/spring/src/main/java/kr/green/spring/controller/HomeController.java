@@ -193,6 +193,7 @@ public class HomeController {
 	    
 	    boolean isOk = memberService.checkMember(id,email);	//입력받은 id와 email이 회원 정보와 일치하는지 확인하고 결과를 boolean 변수에 저장
 	    map.put("isOk",isOk);	//ajax에 전송할 변수 isOk에 boolean 변수값을 저장 
+	    
 	    return map;	//map 정보를 ajax에 반환
 	}
 	@RequestMapping(value = "/password/send")
