@@ -16,7 +16,7 @@
 				var id = $('input[name=id]').val();		//인풋창에 입력받은 값을 저장
 				var email = $('input[name=email]').val();
 				$.ajax({
-		        async:true,
+		        async:true,	//true(동기화) : ajax가 실행되고 나서 다른 작업을 실행, false(비동기화) : 동시에 두 작업을 처리
 		        type:'POST',
 		        data:{'id':id, 'email': email},		//매개변수로 컨트롤러에 변수값을 전송
 		        url:"<%=request.getContextPath()%>/checkemail",

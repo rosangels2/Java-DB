@@ -40,7 +40,7 @@
   	where id = #{id}
   </update>
 
-6. 서비스 구현 클래스에서 해당 DAO 인터페이스를 호출할 조건식을 구현
+6. 서비스 구현 클래스에서 해당 DAO 인터페이스를 호출할 조건식을 구현(미입력 시 기존 정보 그대로 유지)
 예시)
 	@Override
 	public boolean modify(MemberVO mVo, String oPw, String pw1) {
@@ -67,3 +67,28 @@
 		}
 		return false;
 	}
+
+7. modify.jsp에서 정규표현식을 통해 유효성 검사
+예시)
+		$('#ok').click(function(){	//입력완료 버튼이 클릭됐을 때
+			if($('#pw').val() == null || $('#pw').val() == "" || $('#pw1').val() == null || $('#pw1').val() == ""){
+				alert('비밀번호를 변경하지 않습니다.');
+				return true;
+			}
+			var regex = /^\w*(\d[A-z]|[A-z]\d)\w*$/;
+			if(!regex.test($('#pw').val())){
+				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
+				return false;
+			}else if(!regex.test($('#pw1').val())){
+				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
+				return false;
+			}
+			if(!checkLength('#pw',8,13)){
+				alert('비밀번호는 8~13자리를 입력해야 합니다.');
+				return false;
+			}else if(!equals('#pw','#pw1')){
+				alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다');
+				return false;
+			}
+			return true;
+		});
