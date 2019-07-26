@@ -29,6 +29,9 @@
 		font-size: 100px;
 		color: red;
 	}
+		.error{
+		color : red;
+	}
 </style>
 <script type="text/javascript">
 //일반함수 선언 및 구현은 .ready함수 밖에서 한다 -> ready 밖에서 호출할 경우 화면이 구성되기 전에 함수가 실행돼 에러가 발생할 수 있다

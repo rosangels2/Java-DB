@@ -30,30 +30,7 @@ i.fab{
 }
 </style>
 <script type="text/javascript">
-	$(document).ready(function(){
-		//pw1 : 길이 -> 내용이 변경됐을 때 체크 or 가입 버튼이 눌렸을 때
-		$('#pw').change(function(){
-			if(!checkLength('#pw',8,13)){
-				alert('비밀번호는 8~13자리를 입력해야 합니다.');
-			}
-		});
-		$('#pw1').change(function(){
-			if(!equals('#pw','#pw1')){
-				alert('비밀번호와 비밀번호 확인이 일치하지 않습니다');
-			}
-		});
-		//pw2 : pw1과 같은지 확인 -> 내용이 변경됐을 때 체크 or 가입 버튼이 눌렸을 때
-		$('#ok').click(function(){
-			if($('#pw').val() == null || $('#pw').val() == "" || $('#pw1').val() == null || $('#pw1').val() == ""){
-				alert('비밀번호를 변경하지 않습니다.');
-			}
-			else if(!checkLength('#pw',8,13)){
-				alert('비밀번호는 8~13자리를 입력해야 합니다.');
-			}else if(!equals('#pw','#pw1')){
-				alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다');
-			}
-		});
-	});
+
 	//일반함수 선언 및 구현은 .ready함수 밖에서 한다 -> ready 밖에서 호출할 경우 화면이 구성되기 전에 함수가 실행돼 에러가 발생할 수 있다
 	function checkLength(selector,min,max){		
 		var length = $(selector).val().length;	//변수 length에 매개변수로 입력받은 selector의 value값 길이를 저장한다
@@ -75,6 +52,71 @@ i.fab{
 			return false;
 		}
 	}	
+
+	$(document).ready(function(){
+		//pw1 : 길이 -> 내용이 변경됐을 때 체크 or 가입 버튼이 눌렸을 때
+		$('#pw').change(function(){
+			if(!checkLength('#pw',8,13)){
+				alert('비밀번호는 8~13자리를 입력해야 합니다.');
+			}
+		});
+		$('#pw1').change(function(){
+			if(!equals('#pw','#pw1')){
+				alert('비밀번호와 비밀번호 확인이 일치하지 않습니다');
+			}
+		});
+		//pw2 : pw1과 같은지 확인 -> 내용이 변경됐을 때 체크 or 가입 버튼이 눌렸을 때
+		$('#ok').click(function(){
+			if($('#pw').val() == null || $('#pw').val() == "" || $('#pw1').val() == null || $('#pw1').val() == ""){
+				alert('비밀번호를 변경하지 않습니다.');
+				return true;
+			}
+			var regex = /^\w*(\d[A-z]|[A-z]\d)\w*$/;
+			if(!regex.test($('#pw').val())){
+				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
+				return false;
+			}else if(!regex.test($('#pw1').val())){
+				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
+				return false;
+			}
+			if(!checkLength('#pw',8,13)){
+				alert('비밀번호는 8~13자리를 입력해야 합니다.');
+				return false;
+			}else if(!equals('#pw','#pw1')){
+				alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다');
+				return false;
+			}
+			return true;
+		});
+		
+		$('#cancel').click(function(){
+			location.href="<%=request.getContextPath()%>/board/list";
+		});
+		
+		//var success = ${sucess};(x)
+		//var sucess = ;
+		/* var success;
+		if(${success ne null}){
+			success = ${success};
+		} */
+/* 		if(${success ne null}){
+			if(${success eq true}){
+				alert('수정이 완료되었습니다.');
+			}
+			else{
+				alert('기존 비밀번호를 잘못 입력하였습니다.');
+			}
+		} */
+				
+		$('body').keydown(function(e){
+			//F5의 키값이 116
+			if(e.which == 116){
+				location.href = "<%=request.getContextPath()%>/member/modify";
+			}
+		})
+		
+		
+	});		//레디
 </script>
 </head>
 <body>

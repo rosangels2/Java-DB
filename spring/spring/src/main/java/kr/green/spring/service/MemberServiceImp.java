@@ -1,6 +1,8 @@
 package kr.green.spring.service;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -62,33 +64,33 @@ public class MemberServiceImp implements MemberService{
 		return null;
 	}
 	@Override
-	public boolean modify(MemberVO mVo, String oPw, String pw1){
+	public MemberVO modify(MemberVO mVo, String oPw, String pw1){
 		if(mVo == null) {
-			return false;
+			return null;
 		}
 		mVo.setName("");
 		MemberVO oVo = memberDao.getMember(mVo.getId());
 		if(oVo == null) {
-			return false;
+			return null;
 		}
 		if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){	//새 비밀번호의 길이가 맞지 않다면(변경o)
-			return false;
+			return null;
 		}
 		if(!mVo.getPw().equals(pw1)) {	//새 비밀번호와 새 비밀번호 확인이 일치하지 않는다면(변경o)
-			return false;
+			return null;
 		}
 		if(!passwordEncoder.matches(oPw, oVo.getPw())){	//현재 비밀번호와 회원의 비밀번호가 일치하다면
-			return false;
+			return null;
 		}
 		if(mVo.getPw() == null || mVo.getPw() == ""){	//새 비밀번호를 입력하지 않은 경우(변경x)
 			mVo.setPw(oVo.getPw());
 			memberDao.modify(mVo);
-			return true;
+			return mVo;
 		}
 		String encodePw = passwordEncoder.encode(mVo.getPw());
 		mVo.setPw(encodePw);
 		memberDao.modify(mVo);
-		return true;
+		return mVo;
 	}
 
 	@Override
@@ -156,5 +158,14 @@ public class MemberServiceImp implements MemberService{
 	    } catch(Exception e){
 	        System.out.println(e);
 	    }
+	}
+	@Override
+	public boolean updateUserToSession(HttpServletRequest r, MemberVO nUser){
+		if(nUser == null)
+			return false;
+		HttpSession s = r.getSession();
+		s.removeAttribute("user");//이전 회원정보 제거
+		s.setAttribute("user", nUser);//새 회원 정보 추가
+		return true;
 	}
 }

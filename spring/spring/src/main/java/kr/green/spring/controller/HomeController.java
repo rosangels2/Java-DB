@@ -114,19 +114,17 @@ public class HomeController {
 	@RequestMapping(value = "/member/modify", method = RequestMethod.GET)
 	public String loginGet(){
 		logger.info("정보 수정 진행");
-		
 		return "/member/modify";	//get 방식은 보여줄 페이지와 경로가 일치하는 jsp를 반환
 	}
 	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
-	public String loginPost(Model model, MemberVO mVo, String oPw, String pw1){
+	public String loginPost(Model model, MemberVO mVo, String oPw, String pw1, HttpServletRequest r){
 		logger.info("정보 수정 진행 중");
 		System.out.println("정보 수정 진행 중 : " + mVo + " , " + oPw + " , " +pw1);
-		if(memberService.modify(mVo,oPw,pw1)){	//Mapper까지 실행한 후 결과값에 따라 홈페이지를 리턴
-			System.out.println(mVo.getPw()+" , "+pw1);
-			return "redirect:/member";
-		}else {
-			return "redirect:/member/modify";
-		}
+		MemberVO nUser = memberService.modify(mVo,oPw,pw1);	//Mapper까지 실행한 후 결과값에 따라 홈페이지를 리턴
+		boolean t = memberService.updateUserToSession(r,nUser);
+		model.addAttribute("success",t);
+		System.out.println("정보 수정 진행 중 : " + t);
+		return "redirect:/member/modify";
 	}
 	@RequestMapping(value="/signout")	//로그아웃 기능
 	public String signout(HttpServletRequest request){

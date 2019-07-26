@@ -1,5 +1,7 @@
 package kr.green.spring.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.vo.MemberVO;
@@ -10,7 +12,7 @@ public interface MemberService {
 
 	public MemberVO signin(MemberVO mVo);
 	
-	public boolean modify(MemberVO mVo, String oPw, String pw1);
+	public MemberVO modify(MemberVO mVo, String oPw, String pw1);
 	
 	public boolean isMember(String id);		//아이디가 중복되는지 확인
 	
@@ -23,5 +25,7 @@ public interface MemberService {
 	public boolean checkMember(String id, String email);	//회원정보와 입력한 email이 일치하는지 확인
 	
 	public void sendMail(String email, String title, String contents);	//매개변수를 입력받아 email을 전송하는 인터페이스
+
+	public boolean updateUserToSession(HttpServletRequest r, MemberVO nUser);
 	
 }
