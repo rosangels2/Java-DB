@@ -71,9 +71,9 @@ public class MemberServiceImp implements MemberService{
 		if(oVo == null) {
 			return false;
 		}
-		if(oVo.getPw().equals(oPw)){	//현재 비밀번호와 회원의 비밀번호가 일치하다면
+		if(passwordEncoder.matches(oPw, oVo.getPw())){	//현재 비밀번호와 회원의 비밀번호가 일치하다면
 			if(mVo.getPw() == null || mVo.getPw() == "" || pw1 == null || pw1 == ""){	//새 비밀번호를 입력하지 않은 경우(변경x)
-				mVo.setPw(oVo.getPw());	//새 비밀번호에 기존 비밀번호를 저장
+				mVo.setPw(passwordEncoder.encode(oPw));	//새 비밀번호에 기존 비밀번호를 저장
 			}else if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){	//새 비밀번호의 길이가 맞지 않다면(변경o)
 				return false;
 			}else if(!mVo.getPw().equals(pw1)) {	//새 비밀번호와 새 비밀번호 확인이 일치하지 않는다면(변경o)

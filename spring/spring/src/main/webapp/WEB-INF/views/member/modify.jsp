@@ -84,7 +84,7 @@ i.fab{
 			<form method="post" action="">
 				<div class="form-group">
 					<label for="usr">아이디</label>
-					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id">
+					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id" value="${user.id}" readonly>
 				</div>
 				<div class="form-group">
 					<label for="pwd">현재 비밀번호</label>
@@ -107,7 +107,7 @@ i.fab{
 				</div>
 				<div class="form-group">
 					<label for="email">이메일</label>
-					<input type="text" class="form-control" id="email" placeholder="이메일" name="email">
+					<input type="text" class="form-control" id="email" placeholder="이메일" name="email" value="${user.email}">
 				</div>
 				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">취소</button>
 				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">입력완료</button>
