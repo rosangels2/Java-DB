@@ -11,7 +11,23 @@ a{
 	color: black;
 	margin-right : 30px;
 }
+.file-box{
+	position: relative;
+}
+.file-cancel{
+	position: absolute;
+	float: right;
+	right: 0;
+	top: 4px;
+}
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.file-cancel').click(function(){
+		$('input[name=file]').val("");
+	});
+});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
@@ -40,7 +56,10 @@ a{
 			</div>
 		    <div class="form-group">
 			  <label>파일첨부</label>
+			  <div class="file-box">
 			  <input type="text" class="form-control" name="file" value="${board.fileName}" readonly>
+			  <button type="button" class="file-cancel">X</button>
+			  </div>
 			  <input type="file" class="form-control" name="file2">
 		    </div>	  		
 		</div>

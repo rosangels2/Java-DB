@@ -99,8 +99,12 @@ public class BoardController {
 			String file  = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
 			bVo.setFile(file);
 		}else{	//첨부파일에 추가한 파일이 없는 경우
-			BoardVO tmp = boardService.getBoardContents(bVo.getNum());
-			bVo.setFile(tmp.getFile());
+			if(bVo.getFile().length() == 0){
+				bVo.setFile("");				
+			}else {
+				BoardVO tmp = boardService.getBoardContents(bVo.getNum());
+				bVo.setFile(tmp.getFile());
+			}
 		}
 		boardService.modify(bVo, r);
 		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능
