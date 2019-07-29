@@ -15,8 +15,7 @@ a{
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
-	<form method="post" action="<%=request.getContextPath()%>/board/register">	<!-- action이 따로 없다면 현재 jsp의 post방식 매핑으로 이동한다 -->
-
+	<form method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">	<!-- action이 따로 없다면 현재 jsp 경로에 전송 -->
 		<div class="container-fluid" style="margin-top:20px;">	              
 		    <div class="form-group">
 			  <label>제목</label>
@@ -40,7 +39,7 @@ a{
 			</div>
 		    <div class="form-group">
 			  <label>파일첨부</label>
-			  <input type="text" class="form-control" name="file">
+			  <input type="file" class="form-control" name="file2">
 		    </div>	  		
 		</div>
 		<button style="float: right; margin-right: 20px;">게시글 등록</button>

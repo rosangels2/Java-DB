@@ -192,3 +192,30 @@ Field error in object 'criteria' on field 'type': rejected value [1$search=가�
 해결 방법 - $를 &로 수정하여 정보를 전송(search 앞에 $를 &로 수정)
 예시)
 <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>
+
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'boardVO' on field 'file': rejected value [org.springframework.web.multipart.commons.CommonsMultipartFile@48a89c95]; codes [typeMismatch.boardVO.file,typeMismatch.file,typeMismatch.java.lang.String,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [boardVO.file,file]; arguments []; default message [file]]; default message [Failed to convert property value of type 'org.springframework.web.multipart.commons.CommonsMultipartFile' to required type 'java.lang.String' for property 'file'; nested exception is java.lang.IllegalStateException: Cannot convert value of type [org.springframework.web.multipart.commons.CommonsMultipartFile] to required type [java.lang.String] for property 'file': no matching editors or conversion strategy found]
+에러 원인 - BoardVO의 멤버변수인 file로 먼저 호출이 돼 스트링 파일로 받아져 에러가 발생
+해결 방법 - 업로드 파일의 네임을 바꾸거나 BoardVO 수정
+
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is java.lang.NullPointerException
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+에러 원인 - 매개변수 명을 바꾸고 jsp에서 name을 변경하지 않아서 NullPointerException이 발생
+해결 방법 - value를 전송하는 jsp의 태그 name을 맞게 수정

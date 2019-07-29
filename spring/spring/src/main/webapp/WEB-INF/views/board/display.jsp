@@ -43,7 +43,7 @@
         <td>${board.writer}</td>
         <td>${board.views}</td>
         <td>${board.registered}</td>
-        <td>${board.file}</td>
+        <td>${board.fileName}</td>
       </tr>
     </tbody>
   </table>

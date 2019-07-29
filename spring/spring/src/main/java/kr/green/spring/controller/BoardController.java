@@ -1,7 +1,11 @@
 package kr.green.spring.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -9,13 +13,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.spring.dao.BoardDAO;
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
+import kr.green.spring.utils.UploadFileUtils;
 import kr.green.spring.vo.BoardVO;
 
 @Controller
@@ -28,6 +35,9 @@ public class BoardController {
 	BoardService boardService;
 	@Autowired
 	BoardDAO boardDao;
+	
+	@Resource	//해당 id를 가진 beans의 경로를 호출
+	private String uploadPath;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardListGet(Model model, Criteria cri){	//Criteria의 기본 생성자를 통해 객체를 생성
@@ -87,9 +97,11 @@ public class BoardController {
 		return "board/register";
 	}
 	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String BoardRegisterPost(BoardVO bVo){
-		System.out.println(bVo);
-		if(boardService.register(bVo)){
+	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{
+		if(file2.getOriginalFilename().length() != 0){
+			String file  = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
+			bVo.setFile(file);
+			boardService.register(bVo);		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
 			return "redirect:/board/list";
 		}
 		return "redirect:/board/register";
@@ -102,4 +114,14 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	//첨부파일 업로드 메서드(매핑 없이 컨트롤러 내에서 자체적으로 실행)
+	private String uploadFile(String name, byte[] data)
+			throws Exception{
+			UUID uid = UUID.randomUUID();	//동일한 파일명이 있어도 중복되지 않게 구분해주는 식별자
+			String savaName = uid.toString() + "_" + name;
+			File target = new File(uploadPath, savaName);
+			FileCopyUtils.copy(data, target);
+			return savaName;
+		}
+	
 }
