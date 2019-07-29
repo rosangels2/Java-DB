@@ -43,7 +43,7 @@
         <td>${board.writer}</td>
         <td>${board.views}</td>
         <td>${board.registered}</td>
-        <td>${board.fileName}</td>
+        <td><a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.fileName}</a></td>
       </tr>
     </tbody>
   </table>

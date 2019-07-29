@@ -1,21 +1,29 @@
 package kr.green.spring.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.spring.dao.BoardDAO;
@@ -82,13 +90,20 @@ public class BoardController {
 		return "/board/modify";
 	}
 	@RequestMapping(value="modify", method = RequestMethod.POST)
-	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r){
+	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r, MultipartFile file2) throws IOException, Exception{
 		logger.info("게시글 수정 진행 중");
-		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능
 		if(!boardService.isWriter(bVo.getNum(), r)){
 			return "redirect:/board/list";
 		}
+		if(file2.getOriginalFilename().length() != 0){
+			String file  = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
+			bVo.setFile(file);
+		}else{	//첨부파일에 추가한 파일이 없는 경우
+			BoardVO tmp = boardService.getBoardContents(bVo.getNum());
+			bVo.setFile(tmp.getFile());
+		}
 		boardService.modify(bVo, r);
+		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능
 		return "redirect:/board/display";
 	}
 	@RequestMapping(value="register", method = RequestMethod.GET)
@@ -103,8 +118,12 @@ public class BoardController {
 			bVo.setFile(file);
 			boardService.register(bVo);		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
 			return "redirect:/board/list";
+		}else{
+			bVo.setFile("");
+			boardService.register(bVo);		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
+			return "redirect:/board/list";
 		}
-		return "redirect:/board/register";
+
 	}
 	@RequestMapping(value="delete")
 	public String BoardDeletePost(Integer num, HttpServletRequest r){
@@ -114,14 +133,29 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
-	//첨부파일 업로드 메서드(매핑 없이 컨트롤러 내에서 자체적으로 실행)
-	private String uploadFile(String name, byte[] data)
-			throws Exception{
-			UUID uid = UUID.randomUUID();	//동일한 파일명이 있어도 중복되지 않게 구분해주는 식별자
-			String savaName = uid.toString() + "_" + name;
-			File target = new File(uploadPath, savaName);
-			FileCopyUtils.copy(data, target);
-			return savaName;
-		}
+	//다운로드
+	@ResponseBody
+	@RequestMapping("/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+	    InputStream in = null;
+	    ResponseEntity<byte[]> entity = null;
+	    try{
+	        String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
+	        HttpHeaders headers = new HttpHeaders();
+	        in = new FileInputStream(uploadPath+fileName);
+
+	        fileName = fileName.substring(fileName.indexOf("_")+1);
+	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	        headers.add("Content-Disposition",  "attachment; filename=\"" 
+				+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
+	        entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.CREATED);
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+	    }finally {
+	        in.close();
+	    }
+	    return entity;
+	}
 	
 }

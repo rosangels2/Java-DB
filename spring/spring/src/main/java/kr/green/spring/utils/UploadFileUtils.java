@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import org.springframework.util.FileCopyUtils;
 
-public class UploadFileUtils {
+public class UploadFileUtils{
 
 	public static String uploadFile(String uploadPath, String originalName, byte[] 	//파일을 업로드하는 메소드
 			fileData)throws Exception{

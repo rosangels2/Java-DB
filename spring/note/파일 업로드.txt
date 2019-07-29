@@ -102,7 +102,8 @@ private String uploadPath;
 		return file.substring(index+1);	//언더바 다음 위치의 문자열을 서브스트링으로 변환하여 반환
 	}
 
-10. 해당 getter를 호출하여 게시글에서 첨부파일명 값을 호출하여 출력 - display.jsp, modify.jsp
+10. 첨부파일을 표시할 jsp파일에서 getter를 호출하여 게시글에서 첨부파일명을 출력 - display.jsp, modify.jsp
+
 예시) display.jsp
   <table class="table">
     <thead>
@@ -192,14 +193,15 @@ public class UploadFileUtils {
 13. 업로드된 파일 다운로드 테스트
 예시) uploadfiles 폴더에 2019/07/29 폴더가 생성되고 그 안에 첨부파일이 저장
 
-14. 다운로드
+14. 다운로드 기능 추가
+예시) BoardController에 메서드를 복사 후 붙여넣고 import(ResponseBody , java.io, org.springframework)
+//다운로드
 @ResponseBody
 @RequestMapping("download")
 public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
     InputStream in = null;
     ResponseEntity<byte[]> entity = null;
     try{
-        String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
         HttpHeaders headers = new HttpHeaders();
         in = new FileInputStream(uploadPath+fileName);
 
@@ -216,6 +218,86 @@ public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
     }
     return entity;
 }
+
+15. 다운로드 테스트
+예시) http://localhost:8080/spring/board/download?fileName=/2019/07/29/9d73a94d-7773-4380-9dda-fb3647daf6e0_cat1.png URI 입력
+
+16. 첨부파일 클릭 시 다운로드가 진행되도록 코드를 수정
+예시) display.jsp
+  <table class="table">
+    <thead>
+      <tr>
+        <th>게시글 제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>작성일</th>
+        <th>첨부파일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${board.title}</td>
+        <td>${board.writer}</td>
+        <td>${board.views}</td>
+        <td>${board.registered}</td>
+        <td><a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.fileName}</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+17. 게시글 수정 시에도 첨부파일 변경이 적용되도록 코드 추가
+예시) modify.jsp에서 현재 첨부파일과 새로 선택할 첨부파일을 보여줄 인풋창을 생성하여 구분
+	<form method="post" action="<%=request.getContextPath()%>/board/modify" enctype="multipart/form-data">	<!-- action이 따로 없다면 현재 jsp의 post방식 매핑으로 이동한다 -->
+		<input type="hidden" name="num" value="${board.num}">
+		<div class="container-fluid" style="margin-top:20px;">	              
+		    <div class="form-group">
+			  <label>제목</label>
+			  <input type="text" class="form-control" name="title" value="${board.title}">
+		    </div>
+		    <div class="form-group">
+			  <label>작성자</label>
+			  <input type="text" class="form-control" name="writer" value="${board.writer}" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>작성일</label>
+			  <input type="text" class="form-control" name="registered" value="${board.registered}" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>조회수</label>
+			  <input type="text" class="form-control" name="views" value="${board.views }" readonly>
+		    </div>
+		    <div class="form-group">
+			  <label>내용</label>
+			  <textarea class="form-control" rows="5" name="contents">${board.contents }</textarea>
+			</div>
+		    <div class="form-group">
+			  <label>파일첨부</label>
+			  <input type="text" class="form-control" name="file" value="${board.fileName}" readonly>
+			  <input type="file" class="form-control" name="file2">
+		    </div>	  		
+		</div>
+		<button style="float: right; margin-right: 20px;">수정 완료</button>
+	</form>
+
+18. BoardController에서 file2를 매개변수로 추가하고 코드를 추가
+예시)
+	@RequestMapping(value="modify", method = RequestMethod.POST)
+	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r, MultipartFile file2) throws IOException, Exception{
+		logger.info("게시글 수정 진행 중");
+		if(!boardService.isWriter(bVo.getNum(), r)){
+			return "redirect:/board/list";
+		}
+		if(file2.getOriginalFilename().length() != 0){
+			String file  = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
+			bVo.setFile(file);
+		}else{	//첨부파일에 추가한 파일이 없는 경우
+			BoardVO tmp = boardService.getBoardContents(bVo.getNum());
+			bVo.setFile(tmp.getFile());
+		}
+		boardService.modify(bVo, r);
+		model.addAttribute("num", bVo.getNum());	//model.addAttribute를 통해 변수를 모델에 담아서 보내면 다른 매핑에서 해당 변수를 매개변수로 사용 가능
+		return "redirect:/board/display";
+	}
 
 
 

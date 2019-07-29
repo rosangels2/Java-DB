@@ -15,7 +15,7 @@ a{
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
-	<form method="post" action="<%=request.getContextPath()%>/board/modify">	<!-- action이 따로 없다면 현재 jsp의 post방식 매핑으로 이동한다 -->
+	<form method="post" action="<%=request.getContextPath()%>/board/modify" enctype="multipart/form-data">	<!-- action이 따로 없다면 현재 jsp의 post방식 매핑으로 이동한다 -->
 		<input type="hidden" name="num" value="${board.num}">
 		<div class="container-fluid" style="margin-top:20px;">	              
 		    <div class="form-group">
@@ -40,7 +40,8 @@ a{
 			</div>
 		    <div class="form-group">
 			  <label>파일첨부</label>
-			  <input type="text" class="form-control" name="file" value="${board.fileName}">
+			  <input type="text" class="form-control" name="file" value="${board.fileName}" readonly>
+			  <input type="file" class="form-control" name="file2">
 		    </div>	  		
 		</div>
 		<button style="float: right; margin-right: 20px;">수정 완료</button>

@@ -219,3 +219,15 @@ Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
 에러 원인 - 매개변수 명을 바꾸고 jsp에서 name을 변경하지 않아서 NullPointerException이 발생
 해결 방법 - value를 전송하는 jsp의 태그 name을 맞게 수정
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: The current request is not a multipart request
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: The current request is not a multipart request
+에러 원인 - form 태그에 enctype="multipart/form-data"를 입력하지 않아서 에러 발생
+해결 방법 - form 태그에 enctype="multipart/form-data" 추가
