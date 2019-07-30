@@ -1,5 +1,7 @@
 package kr.green.spring.service;
 
+import java.util.ArrayList;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.MemberDAO;
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.MemberVO;
 
 @Service	//서비스로 인식시키기 위한 키워드
@@ -167,5 +170,23 @@ public class MemberServiceImp implements MemberService{
 		s.removeAttribute("user");//이전 회원정보 제거
 		s.setAttribute("user", nUser);//새 회원 정보 추가
 		return true;
+	}
+	@Override
+	public ArrayList<MemberVO> getUserList(Criteria cri){
+		return  memberDao.getUserList(cri);
+	}
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return memberDao.getTotalCount(cri);
+	}
+	@Override
+	public void modify(MemberVO mVo) {
+		MemberVO oVo = memberDao.getMember(mVo.getId());
+		if(oVo == null){
+			return;
+		}
+		oVo.setAuthority(mVo.getAuthority());
+		memberDao.modify(oVo);
+		return;
 	}
 }

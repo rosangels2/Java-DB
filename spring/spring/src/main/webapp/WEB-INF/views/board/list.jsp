@@ -10,13 +10,24 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		$('#perPageNum').change(function(){
+			var type = $('select[name=type]').val();	//검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 추가
+			var search = $('input[name=search]').val();
+				location.href = "<%=request.getContextPath()%>/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
+		});
 	});
 </script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/nav.jsp"></jsp:include>
 	<h1>게시판</h1>
+	  	<select class="form-control col-3 float-right" id="perPageNum">
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 5} ">selected</c:if> >5</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 10}">selected</c:if> >10</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 15}">selected</c:if> >15</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 20}">selected</c:if> >20</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 20}">selected</c:if> >50</option>
+		</select>
 	<table class="table">
 		<tr>
 			<th width="10%">번호</th>		<!-- width를 통해 가로를 지정 -->
@@ -40,24 +51,24 @@
 	<ul class="pagination" style="justify-content: center;">
 	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
 	        <li class="page-item">
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">Previous</a>
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.startPage-1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">Previous</a>
 	        </li>																<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
 	    </c:if>
 	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
 	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 active를 추가-->
 	        <li class="page-item active">													<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
 	        </li>
 	        </c:if>
 	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
 	        <li class="page-item">															<!-- index : 반복문의 i같은 역할로 증감연산 -->
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
 	        </li>
 	        </c:if>
 	    </c:forEach>
 	    <c:if test="${pageMaker.next}">	<!-- 다음버튼 -->
 	        <li class="page-item">
-	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">Next</a>
+	            <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pageMaker.endPage+1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">Next</a>
 	        </li>
 	    </c:if>
 	</ul>

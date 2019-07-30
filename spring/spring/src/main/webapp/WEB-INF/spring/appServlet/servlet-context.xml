@@ -26,13 +26,14 @@
 	<beans:bean id="loginInterceptor"	
 		class="kr.green.spring.interceptor.LoginInterceptor">	<!-- 클래스에 파일명을 입력하고 id에는 밑의 interceptors에서 연결할 이름을 입력  -->
 	</beans:bean>
-	
 	<beans:bean id="authInterceptor" 
 		class="kr.green.spring.interceptor.AuthInterceptor">	
 	</beans:bean>
-	
 	<beans:bean id="unauthInterceptor" 
 		class="kr.green.spring.interceptor.UnauthInterceptor">	
+	</beans:bean>
+	<beans:bean id="adminInterceptor" 
+		class="kr.green.spring.interceptor.AdminInterceptor">	
 	</beans:bean>
 	
 	<interceptors>
@@ -41,7 +42,7 @@
 	        <beans:ref bean="loginInterceptor"/>	<!-- 위쪽 beans의 id와 일치해야 한다 -->
 	    </interceptor>
    		<interceptor>
-	        <mapping path="/board/*"/>	<!-- 로그인이 안됐을 떄 board 경로에 접근할 시 -->
+	        <mapping path="/board/**"/>	<!-- 로그인이 안됐을 떄 board 경로에 접근할 시 -->
 	        <beans:ref bean="authInterceptor"/>	<!-- 로그인이 안됐을 때 접근을 막는 preHandle -->
 		</interceptor>
    		<interceptor>
@@ -49,6 +50,10 @@
 	        <mapping path="/signup"/>
 	        <mapping path="/"/>
 	        <beans:ref bean="unauthInterceptor"/>	<!-- 로그인이 됐을 때 접근을 막는 preHandle 인터페이스 -->
+		</interceptor>
+   		<interceptor>
+	        <mapping path="/admin/**"/>	<!-- 로그인이 안됐을 떄 board 경로에 접근할 시 -->
+	        <beans:ref bean="adminInterceptor"/>	<!-- 로그인이 안됐을 때 접근을 막는 preHandle -->
 		</interceptor>
 	</interceptors>	
 	

@@ -55,9 +55,9 @@
     </thead>
   </table>
   <div class="contents" style="padding-left: 12px; height: 300px; overflow: auto;">${board.contents}</div>
-  <a href="<%=request.getContextPath()%>/board/list"> <button type="button" class="btn btn-outline-dark">게시글 목록</button> </a>
+  <a href="<%=request.getContextPath()%>/board/list?page=${cri.page}&type=${cri.type}&search=${cri.search}&perPageNum=${cri.perPageNum}"> <button type="button" class="btn btn-outline-dark">게시글 목록</button> </a>
   <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
-  <c:if test="${user.id eq board.writer}">	<!-- 로그인 중인 세션 객체 user의 아이디와 글 작성자의 id가 같을 때만 보이게 한다 -->
+  <c:if test="${user ne null && user.id eq board.writer}">	<!-- 로그인 중인 세션 객체 user의 아이디와 글 작성자의 id가 같을 때만 보이게 한다 -->
   	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"> <button type="button" class="btn btn-outline-dark">게시글 수정</button> </a>
   	<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"> <button type="button" class="btn btn-outline-dark" id="btn-delete">게시글 삭제</button> </a>
   </c:if>

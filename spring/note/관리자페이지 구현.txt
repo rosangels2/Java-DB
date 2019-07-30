@@ -1,0 +1,167 @@
+﻿1. DB에서 authority 속성 추가(Not null, default - USER) 및 관리자 계정의 속성값을 ADMIN으로 변경
+
+2. authority가 ADMIN일 경우에만 관리자 페이지로 이동하는 css 코드 추가
+예시)
+    <c:if test="${user.authority eq 'ADMIN'}">
+        <li class="nav-item">
+	  <a class="nav-link" href="<%=request.getContextPath()%>/admin/user/list" style="color: white;">관리자 페이지</a>
+        </li>
+    </c:if>
+
+3. 해당 URI를 매핑하는 컨트롤러 메서드 생성
+예시) AdminController 생성
+@Controller
+@RequestMapping(value="/admin")
+public class AdminController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	PageMakerService pageMakerService;
+	
+	@RequestMapping(value = "/user/list")
+	public String userListGet(){
+		logger.info("회원 리스트 확인");
+		return "admin/user/list";
+	}
+	
+}
+
+4. 해당 경로에 jsp파일을 생성하고 회원 리스트를 표시할 테이블 생성
+예시) views/admin/user/list.jsp
+	<table class="table">
+		<tr>
+			<th width="20%">아이디</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="10%">이름</th>
+			<th width="30%">이메일</th>
+			<th width="10%">등급</th>
+			<th width="10%">수정</th>
+		</tr>
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>이메일</th>
+			<th>등급</th>
+			<th>수정</th>
+		</tr>
+	</table>
+
+5. jsp에서 표시할 회원 정보를 가져오는 서비스를 컨트롤러에서 호출
+예시)
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model){
+		logger.info("회원 리스트 확인");
+		ArrayList<MemberVO> userList = memberService.getUserList();	
+		return "admin/user/list";
+	}
+
+6. quick fixed를 통해 서비스 인터페이스를 생성
+예시) MemberService.java
+	public ArrayList<MemberVO> getUserList();
+
+7. quick fixed를 통해 인터페이스를 구현하고 다오를 호출
+예시) MemberServiceImp.java
+	@Override
+	public ArrayList<MemberVO> getUserList(){		
+		return  memberDao.getUserList();
+	}
+
+8. quick fixed를 통해 MemberDAO에 인터페이스를 생성
+예시)
+	ArrayList<MemberVO> getUserList(Criteria cri);
+
+9. 해당 DAO 인터페이스를 MemberMapper에서 쿼리문으로 연결
+예시)
+  <select id="getUserList" resultType="kr.green.spring.vo.MemberVO">	<!-- id = 인터페이스명, resultType = 리턴타입 -->
+    select id, name, email, authority from member
+  </select>
+
+10. 서비스를 통해 가져온 정보를 model에 담아 jsp에 전송
+예시)
+		model.addAttribute("userList", userList);
+
+11. 컨트롤러에서 model에 담아 전송한 정보를 c:forEach문을 통해 하나씩 나열
+예시)
+	<table class="table">
+		<tr>
+			<th width="20%">아이디</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="10%">이름</th>
+			<th width="30%">이메일</th>
+			<th width="10%">등급</th>
+			<th width="10%">수정</th>
+		</tr>
+		<c:forEach var="userList" items="${userList}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
+			<tr>
+				<th>${userList.id}</th>
+				<th>${userList.name}</th>
+				<th>${userList.email}</th>
+				<th>${userList.authority}</th>
+				<th>수정</th>
+			</tr>
+		</c:forEach>
+	</table>
+
+12. URI 접근을 통해 회원 정보 리스트가 제대로 출력되는지 확인
+
+13. 회원 등급 수정 기능 추가를 위해 수정 항목에 셀렉트 박스를 추가
+예시)
+	<table class="table">
+		<tr>
+			<th width="20%">아이디</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="10%">이름</th>
+			<th width="30%">이메일</th>
+			<th width="10%">등급</th>
+			<th width="10%">수정</th>
+		</tr>
+		<c:forEach var="userList" items="${userList}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
+			<tr>
+				<th>${userList.id}</th>
+				<th>${userList.name}</th>
+				<th>${userList.email}</th>
+				<th>${userList.authority}</th>
+				<th>
+					<select name="userModifySelect">
+						<option>USER</option>
+						<option>ADMIN</option>
+					</select>
+				</th>
+			</tr>
+		</c:forEach>
+	</table>
+
+14. 해당 회원의 등급에 맞게 셀렉트박스의 체크 상태를 다르게 적용
+예시)
+	<table class="table">
+		<tr>
+			<th width="20%">아이디</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="10%">이름</th>
+			<th width="30%">이메일</th>
+			<th width="10%">등급</th>
+			<th width="10%">수정</th>
+		</tr>
+		<c:forEach var="userList" items="${userList}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
+			<tr>
+				<th>${userList.id}</th>
+				<th>${userList.name}</th>
+				<th>${userList.email}</th>
+				<th>${userList.authority}</th>
+				<th>
+					<select name="userModifySelect">
+						<option <c:if test="${userList.authority eq 'USER'}">selected</c:if> >USER</option>
+						<option <c:if test="${userList.authority eq 'ADMIN'}">selected</c:if> >ADMIN</option>
+					</select>
+				</th>
+			</tr>
+		</c:forEach>
+	</table>
+
+15. 해당 셀렉트 박스의 값이 바뀌었을 때 실행되는 java script를 생성
+예시)
+	$(document).ready(function(){
+		$('select[name=userModifySelect]').change(function(){
+			
+		});
+		
+	});	//레디

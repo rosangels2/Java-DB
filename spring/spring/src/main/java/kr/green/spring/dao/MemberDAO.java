@@ -1,5 +1,8 @@
 package kr.green.spring.dao;
 
+import java.util.ArrayList;
+
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.MemberVO;
 
 public interface MemberDAO{
@@ -9,5 +12,9 @@ public interface MemberDAO{
 	void signup(MemberVO mVo);
 
 	void modify(MemberVO mVo);
+
+	ArrayList<MemberVO> getUserList(Criteria cri);
+
+	int getTotalCount(Criteria cri);
 	
 }

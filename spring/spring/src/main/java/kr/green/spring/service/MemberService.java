@@ -1,9 +1,12 @@
 package kr.green.spring.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.MemberVO;
 
 public interface MemberService {
@@ -27,5 +30,11 @@ public interface MemberService {
 	public void sendMail(String email, String title, String contents);	//매개변수를 입력받아 email을 전송하는 인터페이스
 
 	public boolean updateUserToSession(HttpServletRequest r, MemberVO nUser);
+
+	public ArrayList<MemberVO> getUserList(Criteria cri);
+
+	public int getTotalCount(Criteria cri);
+
+	public void modify(MemberVO mVo);
 	
 }
