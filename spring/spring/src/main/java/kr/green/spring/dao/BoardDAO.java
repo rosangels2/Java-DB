@@ -10,7 +10,11 @@ public interface BoardDAO {
 
 	ArrayList<BoardVO> getBoardList(Criteria cri);
 	
+	ArrayList<BoardVO> adminGetBoardList(Criteria cri);
+	
 	BoardVO getBoardContents(Integer num);
+	
+	BoardVO adminGetBoardContents(Integer num);
 	
 	void updateViews(Integer num);
 
@@ -21,4 +25,8 @@ public interface BoardDAO {
 	void boardDelete(Integer num);
 	
 	int getTotalCount(Criteria cri);
+	
+	int adminGetTotalCount(Criteria cri);
+
+	void validModify(BoardVO bVo);
 }

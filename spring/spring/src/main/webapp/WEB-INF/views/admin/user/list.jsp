@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <style type="text/css">
 </style>

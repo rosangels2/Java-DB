@@ -10,6 +10,8 @@ import kr.green.spring.vo.BoardVO;
 public interface BoardService {
 
 	ArrayList<BoardVO> getBoardList(Criteria cri);
+	
+	ArrayList<BoardVO> adminGetBoardList(Criteria cri);
 
 	BoardVO getBoardContents(Integer num);
 	
@@ -24,5 +26,9 @@ public interface BoardService {
 	boolean isWriter(Integer num, HttpServletRequest r);
 
 	int getTotalCount(Criteria cri);
+	
+	int adminGetTotalCount(Criteria cri);
+
+	void modify(BoardVO bVo);
 	
 }

@@ -13,8 +13,15 @@ public class BoardVO {
 	private Date registered;
 	private String file;
 	private int views;
+	private String valid;
 	
 	
+	public String getValid() {
+		return valid;
+	}
+	public void setValid(String valid) {
+		this.valid = valid;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -75,11 +82,7 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [num=" + num + ", title=" + title + ", contents=" + contents + ", writer=" + writer
-				+ ", registered=" + registered + ", file=" + file + ", views=" + views + "]";
+				+ ", registered=" + registered + ", file=" + file + ", views=" + views + ", valid=" + valid + "]";
 	}
-	
-	
-	
-	
 	
 }

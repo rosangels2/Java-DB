@@ -59,8 +59,6 @@ public class BoardController {
 		}
 		model.addAttribute("list", boardList);	//변수 리스트에 boardList를 추가하여 jsp에서 사용
 */		
-		System.out.println(cri);
-
 		ArrayList<BoardVO> boardList = boardService.getBoardList(cri);	//boardService클래스의 getBoardList 인터페이스를 호출해 결과값을 저장
 	    int totalCount = boardService.getTotalCount(cri);	//총 게시글 수를 계산하여 변수에 저장
 	    PageMaker pm = pageMakerService.getPageMaker(5, cri, totalCount);

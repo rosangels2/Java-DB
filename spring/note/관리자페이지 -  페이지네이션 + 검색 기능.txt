@@ -394,7 +394,7 @@ public class AdminController {
 
 
 +검색 기능 추가
-1. 1. /views/admin/user/list.jsp에서 검색창 생성
+1. 1. /views/admin/user/list.jsp에서 검색창 생성 후 get방식으로 정보 전송
 예시)
 	<form class="" method="get" action="<%=request.getContextPath()%>/admin/user/list">
 		<select name="type" class="float-left">
@@ -424,7 +424,75 @@ public class AdminController {
   	<if test="type == 3"> where email like concat('%', #{search}, '%') </if>
   </select>
 
-3. 
+3. 페이지네이션의 URI 전송값에 search와 type 값을 추가
+예시)list.jsp
+	<ul class="pagination" style="justify-content: center;">
+	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
+	        <li class="page-item">
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/board/list?page=${pageMaker.startPage-1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">Previous</a>
+	        </li>																<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
+	    </c:if>
+	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
+	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 active를 추가-->
+	        <li class="page-item active">													<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	        </li>
+	        </c:if>
+	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
+	        <li class="page-item">															<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	        </li>
+	        </c:if>
+	    </c:forEach>
+	    <c:if test="${pageMaker.next}">	<!-- 다음버튼 -->
+	        <li class="page-item">
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/board/list?page=${pageMaker.endPage+1}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}&perPageNum=${pageMaker.criteria.perPageNum}">Next</a>
+	        </li>
+	    </c:if>
+	</ul>
 
 
-+한 화면에 표시할 수 선택
+
+
+
++한 화면에 표시할 수 선택 기능 추가
+1. list.jsp에 게시글 수를 선택할 셀렉트 박스를 추가
+예시)
+	  	<select class="form-control col-3 float-right" id="perPageNum">
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 5} ">selected</c:if> >5</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 10}">selected</c:if> >10</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 15}">selected</c:if> >15</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 20}">selected</c:if> >20</option>
+		    <option <c:if test="${pageMaker.criteria.perPageNum == 20}">selected</c:if> >50</option>
+		</select>
+
+2. 해당 셀렉트 박스가 선택되면 셀렉트 값을 전송하도록 jquery에 location 코드를 추가
+예시)
+		$('#perPageNum').change(function(){
+				location.href = "<%=request.getContextPath()%>/admin/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
+		});
+
+3. 해당 검색값을 적용하여 게시글을 보여주도록 mapper에 조건식을 추가
+예시)
+  <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board where valid = 'I'
+  	<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+  	order by num desc	<!-- asc : 정렬, desc : 역순으로 정렬 -->
+  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+  </select>
+  <select id="getTotalCount" resultType="int">
+		select count(*) from board where valid = 'I'
+		<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+	  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
+	  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+    </select>
+
+4. 검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 jquery에 코드 추가 
+예시)
+		$('#perPageNum').change(function(){
+			var type = $('select[name=type]').val();	
+			var search = $('input[name=search]').val();
+				location.href = "<%=request.getContextPath()%>/admin/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
+		});

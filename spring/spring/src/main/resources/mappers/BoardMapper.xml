@@ -11,6 +11,14 @@
   	order by num desc	<!-- asc : 정렬, desc : 역순으로 정렬 -->
   	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
   </select>
+  <select id="adminGetBoardList" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board 
+	<if test="type == 1"> where title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> where contents like concat('%', #{search}, '%') </if>
+  	<if test="type == 3"> where writer like concat('%', #{search}, '%') </if>
+  	order by num desc	<!-- asc : 정렬, desc : 역순으로 정렬 -->
+  	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+  </select>
   <select id="getBoardContents" resultType="kr.green.spring.vo.BoardVO">
 	select * from board where num = #{num} and valid = 'I'
   </select>
@@ -24,7 +32,7 @@
 		set title = #{title},
 			contents = #{contents},
 			file = #{file},
-			views = #{views}
+			views = #{views},
 			where num = #{num}
 	</update>
 	<insert id="register">
@@ -41,5 +49,16 @@
 		<if test="type == 1"> and title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
 	  	<if test="type == 2"> and contents like concat('%', #{search}, '%') </if>
 	  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
+	</select>
+	<update id="validModify">
+		update board 
+		set valid = #{valid}
+		where num = #{num}
+	</update>
+    <select id="adminGetTotalCount" resultType="int">
+		select count(*) from board
+		<if test="type == 1"> where title like concat('%', #{search}, '%') </if>	<!-- concat : 값을 이어 붙이는 함수 -->
+	  	<if test="type == 2"> where contents like concat('%', #{search}, '%') </if>
+	  	<if test="type == 3"> where writer like concat('%', #{search}, '%') </if>
 	</select>
 </mapper>

@@ -20,7 +20,10 @@
     </c:if>
     <c:if test="${user.authority eq 'ADMIN'}">
         <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/admin/user/list" style="color: white;">관리자 페이지</a>
+	      <a class="nav-link" href="<%=request.getContextPath()%>/admin/user/list" style="color: white;">회원 등급 관리</a>
+	    </li>
+        <li class="nav-item">
+	      <a class="nav-link" href="<%=request.getContextPath()%>/admin/board/list" style="color: white;">게시글 관리</a>
 	    </li>
     </c:if>
     <li class="nav-item">
