@@ -202,7 +202,7 @@
 		where num = #{num}
 	</update>
 
-14. 페이지네이션 적용을 위해 컨트롤러에서 pageMaker 코드를 복사 후 서비스 인터페이스의 이름에 admin을 추가해서 새로 호출
+14. 페이지네이션 적용을 위해 컨트롤러에서 pageMaker 코드를 복사 후 서비스 인터페이스의 이름에 admin을 추가해서 관리자용으로 새로 호출
 예시)
 	@RequestMapping(value = "/board/list")
 	public String adminBoardList(Model model, Criteria cri){
@@ -285,7 +285,7 @@
 				location.href = "<%=request.getContextPath()%>/admin/board/list?perPageNum="+$(this).val();
 		});
 
-22. 검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 검색값을 추가 전송
+22. 검색한 상태에서 게시글 개수를 변경했을 때 검색한 값을 유지하기 위해 검색값을 URI에 추가로 전송
 예시)
 	$(document).ready(function(){
 		$('#perPageNum').change(function(){

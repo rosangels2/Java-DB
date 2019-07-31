@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<script>
+		$(document).ready(function(){
+			$('button').click(function(){
+				$(this).siblings('span').text('');
+				//$(this).prev().text('');
+				//$('span').html('');
+				//$('span').empty();
+			});
+		});	//레디
+	</script>
+</head>
+<body>
+	<div>
+		<span> 안녕하세요 <div></div> </span>
+		<button>제거</button>
+	</div>
+	<div>
+		<span> 제 이름은 홍길동입니다. <div></div> </span>
+		<button>제거</button>
+	</div>
+</body>
+</html>
