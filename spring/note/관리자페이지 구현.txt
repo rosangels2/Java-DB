@@ -9,7 +9,7 @@
     </c:if>
 
 3. 해당 URI를 매핑하는 컨트롤러 메서드 생성
-예시) AdminController 생성
+예시) AdminController.java 생성
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {
@@ -80,7 +80,13 @@ public class AdminController {
 
 10. 서비스를 통해 가져온 정보를 model에 담아 jsp에 전송
 예시)
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model){
+		logger.info("회원 리스트 확인");
+		ArrayList<MemberVO> userList = memberService.getUserList();	
 		model.addAttribute("userList", userList);
+		return "admin/user/list";
+	}
 
 11. 컨트롤러에서 model에 담아 전송한 정보를 c:forEach문을 통해 하나씩 나열
 예시)
@@ -161,7 +167,264 @@ public class AdminController {
 예시)
 	$(document).ready(function(){
 		$('select[name=userModifySelect]').change(function(){
-			
+			location.href = "<%=request.getContextPath()%>/admin/user/modify?"+$(this).val()";
 		});
 		
 	});	//레디
+
+16. 샐렉트박스의 값과 해당 유저의 id 정보를 전송하기 위해 셀렉트 박스의 value를 수정
+예시)
+	<th>
+		<select name="userModifySelect">
+			<option value="id=${userList.id}&authority=USER" <c:if test="${userList.authority eq 'USER'}">selected</c:if> >USER</option>
+			<option value="id=${userList.id}&authority=ADMIN" <c:if test="${userList.authority eq 'ADMIN'}">selected</c:if> >ADMIN</option>
+		</select>
+	</th>
+
+17. 셀렉트박스의 value를 jquery의 location.href를 통해 URI로 전송
+예시)
+		$('select[name=userModifySelect]').change(function(){
+			location.href = "<%=request.getContextPath()%>/admin/user/modify?"+$(this).val()";
+		});
+
+18. get방식으로 전송받은 정보를 매개변수로 받아서 DB를 수정하는 서비스 호출
+예시)
+	@RequestMapping(value = "/user/modify")
+	public String adminUserModify(Model model, MemberVO mVo, Criteria cri){
+		System.out.println(mVo);
+		memberService.modify(mVo);
+		return "redirect:/admin/user/list";
+	}
+
+19. quick fixed를 통해 서비스 인터페이스를 생성
+예시)
+	public void modify(MemberVO mVo);
+
+20. quick fixed를 통해 인터페이스를 구현하고 회원정보를 수정하는 DAO 인터페이스 modify를 호출
+예시)
+	@Override
+	public void modify(MemberVO mVo) {
+		MemberVO oVo = memberDao.getMember(mVo.getId());
+		if(oVo == null){
+			return;
+		}
+		oVo.setAuthority(mVo.getAuthority());
+		memberDao.modify(oVo);
+		return;
+	}
+
+22. 새로 추가된 authority 속성을 변경하도록 mapper의 쿼리문을 수정
+예시)
+  <update id="modify">
+  	update member
+  	set pw = #{pw}, gender = #{gender}, email = #{email}, name = #{name}, authority = #{authority}
+  	where id = #{id}
+  </update>
+
+
+
+
++페이지네이션 추가
+1. /views/admin/user/list.jsp에서 페이지네이션 코드를 추가
+예시)
+	<ul class="pagination" style="justify-content: center;">
+	    <c:if test="${pageMaker.prev}">	<!-- 이전 버튼(boolean 값이 true면 보여준다) -->
+	        <li class="page-item">
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${pageMaker.startPage-1}&perPageNum=${pageMaker.criteria.perPageNum}">Previous</a>
+	        </li>																<!-- 현재 페이지의 스타트 페이지에서 -1을 뺀 값을 페이지로 결정 -->
+	    </c:if>
+	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="index">	<!-- begin/end를 통해 시작과 끝을 지정하고 반복 -->
+	        <c:if test="${pageMaker.criteria.page == index}">	<!-- uri의 페이지 번호가 index와 같다면 active를 추가-->
+	        <li class="page-item active">													<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${index}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	        </li>
+	        </c:if>
+	        <c:if test="${pageMaker.criteria.page != index}">	<!-- uri의 페이지 번호가 index와 다르다면 -->
+	        <li class="page-item">															<!-- index : 반복문의 i같은 역할로 증감연산 -->
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${index}&perPageNum=${pageMaker.criteria.perPageNum}">${index}</a>	<!-- 숫자를 찍는 역할 -->
+	        </li>
+	        </c:if>
+	    </c:forEach>
+	    <c:if test="${pageMaker.next}">	<!-- 다음버튼 -->
+	        <li class="page-item">
+	            <a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${pageMaker.endPage+1}&perPageNum=${pageMaker.criteria.perPageNum}">Next</a>
+	        </li>
+	    </c:if>
+	</ul>
+
+2. 페이지 정보를 매개변수로 받아 서비스의 매개변수로 추가
+예시)
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model, Criteria cri){
+		logger.info("회원 리스트 확인");
+		ArrayList<MemberVO> userList = memberService.getUserList(cri);
+		model.addAttribute("userList", userList);
+		return "admin/user/list";
+	}
+
+3. 서비스 인터페이스의 매개변수를 변경
+예시)
+	public ArrayList<MemberVO> getUserList(Criteria cri);
+
+4. 서비스 인터페이스의 구현 메서드에도 매개변수를 변경
+예시)
+	@Override
+	public ArrayList<MemberVO> getUserList(Criteria cri){
+		return  memberDao.getUserList(cri);
+	}
+
+5. DAO 인터페이스에도 매개변수를 변경
+예시)
+	ArrayList<MemberVO> getUserList(Criteria cri);
+
+6. 현재 페이지 정보가 적용되도록 mapper를 수정
+예시)
+  <select id="getUserList" resultType="kr.green.spring.vo.MemberVO">	<!-- id = 인터페이스명, resultType = 리턴타입 -->
+    select id, name, email, authority
+    from member
+    limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+  </select>
+
+7. 현재 페이지 정보를 페이지네이션에 적용하도록 페이지메이커에서 사용할 totalCount를 구하는 서비스를 호출
+예시)
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model, Criteria cri){
+		logger.info("회원 리스트 확인");
+		System.out.println("회원 리스트 확인 cri : " + cri);
+		ArrayList<MemberVO> userList = memberService.getUserList(cri);
+		int totalCount = memberService.getTotalCount(cri);
+		model.addAttribute("userList", userList);
+		return "admin/user/list";
+	}
+
+8. 나열할 정보의 총 수를 계산하는 getTotalCount 인터페이스를 quick fixed를 통해 생성
+예시)
+	public int getTotalCount(Criteria cri);
+
+9. 인터페이스를 구현 후 DAO 인터페이스를 호출
+예시)
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return memberDao.getTotalCount(cri);
+	}
+
+10. quick fixed를 통해 DAO 인터페이스를 생성
+예시)
+	int getTotalCount(Criteria cri);
+
+11. DAO 인터페이스를 mapper의 쿼리문으로 연결
+예시)
+  <select id="getTotalCount" resultType="int">
+		select count(*) from member
+  </select>
+
+12. 서비스 호출을 통해 얻은 getTotalCount, displayPageNum, Criteria cri를 매개변수로 사용하는 PageMaker 서비스 인터페이스 호출
+예시)
+	@Autowired
+	PageMakerService pageMakerService;
+
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model, Criteria cri){
+		logger.info("회원 리스트 확인");
+		System.out.println("회원 리스트 확인 cri : " + cri);
+		ArrayList<MemberVO> userList = memberService.getUserList(cri);
+	  	int totalCount = memberService.getTotalCount(cri);
+		PageMaker pm = pageMakerService.getPageMaker(5, cri, totalCount);
+		model.addAttribute("userList", userList);
+		return "admin/user/list";
+	}
+
+13. quick fixed를 통해 서비스 인터페이스 생성
+예시)
+	PageMaker getPageMaker(int displayPageNum, Criteria cri, int totalCount);
+
+14. quick fixed를 통해 인터페이스를 구현하고 코드를 추가
+예시)
+	@Override
+	public PageMaker getPageMaker(int displayPageNum, Criteria cri, int totalCount) {
+	    PageMaker pm = new PageMaker();	//pageMaker 객체를 생성 후 복사
+	    pm.setCriteria(cri);		//보여줄 게시글들의 설정을 수정
+	    pm.setDisplayPageNum(displayPageNum);	//페이지네이션의 개수를 설정
+	    pm.setTotalCount(totalCount);	//페이지네이션을 계산하기 위해 총 게시글 수를 수정
+	    return pm;
+	}
+
+15. 계산된 페이지메이커의 정보를 model에 담아 jsp에 전송
+예시)
+	@RequestMapping(value = "/user/list")
+	public String userListGet(Model model, Criteria cri){
+		logger.info("회원 리스트 확인");
+		System.out.println("회원 리스트 확인 cri : " + cri);
+		ArrayList<MemberVO> userList = memberService.getUserList(cri);
+		int totalCount = memberService.getTotalCount(cri);
+		PageMaker pm = pageMakerService.getPageMaker(5, cri, totalCount);
+		model.addAttribute("pageMaker", pm);	//pageMaker의 객체를 model의 변수에 저장	
+		model.addAttribute("userList", userList);
+		return "admin/user/list";
+	}
+
+16. 등급 수정을 진행해도 페이지정보가 적용되도록 select박스의 value에 페이지 정보를 추가
+예시)
+	<table class="table">
+		<tr>
+			<th width="20%">아이디</th>		<!-- width를 통해 가로를 지정 -->
+			<th width="10%">이름</th>
+			<th width="30%">이메일</th>
+			<th width="10%">등급</th>
+			<th width="10%">수정</th>
+		</tr>
+		<c:forEach var="userList" items="${userList}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
+			<tr>
+				<th>${userList.id}</th>
+				<th>${userList.name}</th>
+				<th>${userList.email}</th>
+				<th>${userList.authority}</th>
+				<th>
+					<select name="userModifySelect">
+						<option value="id=${userList.id}&authority=USER&page=${pageMaker.criteria.page}" <c:if test="${userList.authority eq 'USER'}">selected</c:if> >USER</option>
+						<option value="id=${userList.id}&authority=ADMIN&page=${pageMaker.criteria.page}" <c:if test="${userList.authority eq 'ADMIN'}">selected</c:if> >ADMIN</option>
+					</select>
+				</th>
+			</tr>
+		</c:forEach>
+	</table>
+
+
+
+
+
++검색 기능 추가
+1. 1. /views/admin/user/list.jsp에서 검색창 생성
+예시)
+	<form class="" method="get" action="<%=request.getContextPath()%>/admin/user/list">
+		<select name="type" class="float-left">
+			<option value="0" <c:if test="${pageMaker.criteria.type eq 0}">selected</c:if> >선택</option>
+			<option value="1" <c:if test="${pageMaker.criteria.type eq 1}">selected</c:if> >아이디</option>		<!-- URI 정보대로 선택 유지-->
+			<option value="2" <c:if test="${pageMaker.criteria.type eq 2}">selected</c:if> >이름</option>
+			<option value="3" <c:if test="${pageMaker.criteria.type eq 3}">selected</c:if> >이메일</option>
+		</select>
+		<input type="text" name="search" class="float-left" value="${pageMaker.criteria.search}">
+		<button type="submit" class="btn btn-outline-success float-left">검색</button>
+	</form>
+
+2. 검색값이 적용된 결과만을 보여주도록 mapper에서 조건식을 추가
+예시)
+  <select id="getUserList" resultType="kr.green.spring.vo.MemberVO">	<!-- id = 인터페이스명, resultType = 리턴타입 -->
+    select id, name, email, authority
+    from member
+ 	<if test="type == 1"> where id like concat('%', #{search}, '%') </if>		<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> where name like concat('%', #{search}, '%') </if>	<!-- like를 통해 검색 기능을 적용 -->
+  	<if test="type == 3"> where email like concat('%', #{search}, '%') </if>
+    limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
+  </select>
+  <select id="getTotalCount" resultType="int">
+	select count(*) from member
+	<if test="type == 1"> where id like concat('%', #{search}, '%') </if>		<!-- concat : 값을 이어 붙이는 함수 -->
+  	<if test="type == 2"> where name like concat('%', #{search}, '%') </if>	<!-- like를 통해 검색 기능을 적용 -->
+  	<if test="type == 3"> where email like concat('%', #{search}, '%') </if>
+  </select>
+
+3. 
+
+
++한 화면에 표시할 수 선택
