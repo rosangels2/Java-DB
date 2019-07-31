@@ -393,6 +393,13 @@ public class AdminController {
 
 
 
++ admin 인터셉터 기능 추가
+1. 
+
+
+
+
+
 +검색 기능 추가
 1. 1. /views/admin/user/list.jsp에서 검색창 생성 후 get방식으로 정보 전송
 예시)
@@ -489,7 +496,7 @@ public class AdminController {
 	  	<if test="type == 3"> and writer like concat('%', #{search}, '%') </if>
     </select>
 
-4. 검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 jquery에 코드 추가 
+4. 검색한 상태에서 페이지네이션을 변경했을 떄 검색한 값을 유지하기 위해 jquery에 코드 추가 
 예시)
 		$('#perPageNum').change(function(){
 			var type = $('select[name=type]').val();	
