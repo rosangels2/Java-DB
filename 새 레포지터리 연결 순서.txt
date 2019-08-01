@@ -1,4 +1,7 @@
-﻿github 새 레포지터리 생성 후 깃크라켄 연결
+﻿https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0
+https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC2-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+
+github 새 레포지터리 생성 후 깃크라켄 연결
 
 1. 새 레포지터리 생성
 
