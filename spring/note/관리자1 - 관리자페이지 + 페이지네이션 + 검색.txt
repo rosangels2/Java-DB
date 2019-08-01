@@ -224,6 +224,38 @@ public class AdminController {
 
 
 
+
++ AdminInterceptor 등록으로 관리자가 아닐 시 접근을 제한
+1. AuthInterceptor 파일 복사 및 붙여넣기 후 AdminInterceptor로 이름과 코드 일부 수정
+예시)
+	@Override
+	public boolean preHandle(	//URI에서 컨트롤러로 정보를 전송할 때 작동하는 interceptor
+		HttpServletRequest request, 
+		HttpServletResponse response, 
+		Object handler)
+		throws Exception {
+		HttpSession session = request.getSession();	//현재 요청된 페이지의 세션 객체를 가져와서  새 세션 객체에 저장한다
+		MemberVO user = (MemberVO)session.getAttribute("user");	//세션에서 변수 user를 가져와 객체 Object객체 user에 저장한다
+		if(user == null || !user.getAuthority().equals("ADMIN")) {	//유저가 ADMIN이 아닐 경우의 접근을 제한
+			response.sendRedirect(request.getContextPath()+"/");	//response.sendRedirect를 통해 해당 URI의 경로인 홈으로 이동한다
+		}
+		return true;	//조건식에 해당되지 않는다면 true를 반환해 그대로 전송한다
+	}
+
+2. servlet-context.xml에서 해당 인터셉터를 beans에 등록
+예시)
+	<beans:bean id="adminInterceptor" 
+		class="kr.green.spring.interceptor.AdminInterceptor">	
+	</beans:bean>
+
+3. 해당 AdminInterceptor가 실행될 URI경로를 매핑
+예시)
+   		<interceptor>
+	       		 <mapping path="/admin/**"/>	<!-- 로그인이 안됐을 떄 board 경로에 접근할 시 -->
+	      		 <beans:ref bean="adminInterceptor"/>	<!-- 로그인이 안됐을 때 접근을 막는 preHandle -->
+		</interceptor>
+
+
 +페이지네이션 추가
 1. /views/admin/user/list.jsp에서 페이지네이션 코드를 추가
 예시)
