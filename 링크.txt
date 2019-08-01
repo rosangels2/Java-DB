@@ -1,0 +1,42 @@
+﻿css 강의자료
+http://cris.joongbu.ac.kr/course/2017-1/wp/ppt.html
+
+w3school
+https://www.w3schools.com/
+
+강사님 블로그
+https://stajun.tistory.com/
+
+ERD 클라우드
+https://www.erdcloud.com/
+
+NCS 학습모듈
+https://www.ncs.go.kr/unity/th03/ncsSearchMain.do
+
+MY SQL 인스톨러
+https://dev.mysql.com/downloads/installer/
+
+깃크라켄
+https://www.gitkraken.com/download/windows64
+
+깃허브
+https://github.com/
+
+깃이그노어
+https://www.gitignore.io/
+
+fontawesome
+https://fontawesome.com/
+
+jquery
+https://jquery.com/
+
+bootstrap4
+https://getbootstrap.com/
+
+
+icon 링크(visual studio code의 html에 link)
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+bootstrap 링크(visual studio code의 html에 link)
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">

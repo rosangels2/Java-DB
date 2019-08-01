@@ -1,34 +1,34 @@
-github »õ ·¹Æ÷ÁöÅÍ¸® »ı¼º ÈÄ ±êÅ©¶óÄË ¿¬°á
+ï»¿github ìƒˆ ë ˆí¬ì§€í„°ë¦¬ ìƒì„± í›„ ê¹ƒí¬ë¼ì¼„ ì—°ê²°
 
-1. »õ ·¹Æ÷ÁöÅÍ¸® »ı¼º
+1. ìƒˆ ë ˆí¬ì§€í„°ë¦¬ ìƒì„±
 
-2. ±êÅ©¶óÄË > clone repo > ±êÇãºê ¿¬µ¿À¸·Î ÇØ´ç ·¹Æ÷ÁöÅÍ¸® ¼±ÅÃ ÈÄ browse¿¡¼­ ¿¬µ¿ÇÒ Æú´õ ¼±ÅÃ ÈÄ clone the repo! Å¬¸¯
-	      clone repo > clone with URL¿¡¼­ ±êÇãºêÀÇ ·¹Æ÷ÁöÅÍ¸® HTPSÁÖ¼Ò¸¦ º¹»çÇÑ ÈÄ browse¿¡¼­ ¿¬µ¿ÇÒ Æú´õ ¼±ÅÃ
+2. ê¹ƒí¬ë¼ì¼„ > clone repo > ê¹ƒí—ˆë¸Œ ì—°ë™ìœ¼ë¡œ í•´ë‹¹ ë ˆí¬ì§€í„°ë¦¬ ì„ íƒ í›„ browseì—ì„œ ì—°ë™í•  í´ë” ì„ íƒ í›„ clone the repo! í´ë¦­
+	      clone repo > clone with URLì—ì„œ ê¹ƒí—ˆë¸Œì˜ ë ˆí¬ì§€í„°ë¦¬ HTPSì£¼ì†Œë¥¼ ë³µì‚¬í•œ í›„ browseì—ì„œ ì—°ë™í•  í´ë” ì„ íƒ
 
-3. ±êÅ©¶óÄË¿¡¼­ ÃÊ±â Ä¿¹Ô ¾Ë¸²Ã¢ÀÌ ¶ß¸é initialize¸¦ ÅëÇØ ÀÌ¸§À» Á¤ÇÏ°í push¸¦ ÅëÇØ ¿¬°á
+3. ê¹ƒí¬ë¼ì¼„ì—ì„œ ì´ˆê¸° ì»¤ë°‹ ì•Œë¦¼ì°½ì´ ëœ¨ë©´ initializeë¥¼ í†µí•´ ì´ë¦„ì„ ì •í•˜ê³  pushë¥¼ í†µí•´ ì—°ê²°
 
-4. spring > file > new > spring legacy project >¿¬°áÇÒ ÇÁ·ÎÁ§Æ® °æ·Î ¼±ÅÃ ÈÄ Templates¿¡¼­ spring MVC Project ¼±ÅÃ ÈÄ next 
-> ÇÁ·ÎÁ§Æ®¸í ÀÔ·Â ÈÄ finish(ÀÏ¹İÀûÀ¸·Î ±¹°¡.È¸»ç¸í.¾ÛÀÌ¸§ ¼øÀ¸·Î ÆĞÅ°Áö ÀÌ¸§ »ı¼º ex)kr.green.myapp)
+4. spring > file > new > spring legacy project >ì—°ê²°í•  í”„ë¡œì íŠ¸ ê²½ë¡œ ì„ íƒ í›„ Templatesì—ì„œ spring MVC Project ì„ íƒ í›„ next 
+> í”„ë¡œì íŠ¸ëª… ì…ë ¥ í›„ finish(ì¼ë°˜ì ìœ¼ë¡œ êµ­ê°€.íšŒì‚¬ëª….ì•±ì´ë¦„ ìˆœìœ¼ë¡œ íŒ¨í‚¤ì§€ ì´ë¦„ ìƒì„± ex)kr.green.myapp)
 
-5. gitignore.io¿¡¼­ java¿Í java-web °Ë»ö ÈÄ ÄÚµå º¹»ç
+5. gitignore.ioì—ì„œ javaì™€ java-web ê²€ìƒ‰ í›„ ì½”ë“œ ë³µì‚¬
 
-6. ±êÅ©¶óÄË¿¡¼­ targetÆÄÀÏµé Áß ÇÏ³ª¸¦ ¿À¸¥ÂÊ ¸¶¿ì½º·Î Å¬¸¯ÇÑ µÚ ignore > ¾Æ¹«°Å³ª Å¬¸¯ ÈÄ ignore ¼±ÅÃ
+6. ê¹ƒí¬ë¼ì¼„ì—ì„œ targetíŒŒì¼ë“¤ ì¤‘ í•˜ë‚˜ë¥¼ ì˜¤ë¥¸ìª½ ë§ˆìš°ìŠ¤ë¡œ í´ë¦­í•œ ë’¤ ignore > ì•„ë¬´ê±°ë‚˜ í´ë¦­ í›„ ignore ì„ íƒ
 
-7. ignoreÆÄÀÏÀÌ »ı±â¸é edit this fileÀ» Å¬¸¯ ÈÄ gitignore¿¡¼­ º¹»çÇÑ ÄÚµå¸¦ ºÙ¿©³Ö°í save and stage change¸¦ ¼±ÅÃ ÈÄ commit
+7. ignoreíŒŒì¼ì´ ìƒê¸°ë©´ edit this fileì„ í´ë¦­ í›„ gitignoreì—ì„œ ë³µì‚¬í•œ ì½”ë“œë¥¼ ë¶™ì—¬ë„£ê³  save and stage changeë¥¼ ì„ íƒ í›„ commit
 
-8. ignoreÆÄÀÏÀÌ Àû¿ëµÇ°í ³­ ÈÄÀÇ ÆÄÀÏµéÀ» stage all change¸¦ ÅëÇØ commitÇÑ µÚ push
+8. ignoreíŒŒì¼ì´ ì ìš©ë˜ê³  ë‚œ í›„ì˜ íŒŒì¼ë“¤ì„ stage all changeë¥¼ í†µí•´ commití•œ ë’¤ push
 
-9. spring > file >  ¿ÀÇÂ ÇÁ·ÎÁ§Æ® >  ÇÁ·ÎÁ§Æ® Æú´õ °æ·Î ¼±ÅÃ > finish
+9. spring > file >  ì˜¤í”ˆ í”„ë¡œì íŠ¸ >  í”„ë¡œì íŠ¸ í´ë” ê²½ë¡œ ì„ íƒ > finish
 
-10. ÇÁ·ÎÁ§Æ® ¿ìÅ¬¸¯ > run as > run on server > next > remove allÀ» ÅëÇØ ´Ù¸¥ ÇÁ·ÎÁ§Æ®¸¦ Á¦°ÅÇÑ ÈÄ next > finish
-10-1 ºê¶ó¿ìÀú¿¡ localhost:8080/ÇÁ·ÎÁ§Æ®¸í ÀÔ·Â ÈÄ °á°ú È®ÀÎ
+10. í”„ë¡œì íŠ¸ ìš°í´ë¦­ > run as > run on server > next > remove allì„ í†µí•´ ë‹¤ë¥¸ í”„ë¡œì íŠ¸ë¥¼ ì œê±°í•œ í›„ next > finish
+10-1 ë¸Œë¼ìš°ì €ì— localhost:8080/í”„ë¡œì íŠ¸ëª… ì…ë ¥ í›„ ê²°ê³¼ í™•ì¸
 
-11. DB¿Í ¿¬µ¿ÇÏ±â À§ÇÑ ¼³Á¤µé Ãß°¡
+11. DBì™€ ì—°ë™í•˜ê¸° ìœ„í•œ ì„¤ì •ë“¤ ì¶”ê°€
 
-11-1 ÀÎÄÚµù UTF-8 ¼öÁ¤
-src/main/webapp/WEB-INF/web.xml ÆÄÀÏ¿¡ ¾Æ·¡ ÄÚµå Ãß°¡
-¸Ç ¸¶Áö¸· ÁÙÀÎ </web-app> À§¿¡ ÄÚµå¸¦ Ãß°¡
-¿¹½Ã)
+11-1 ì¸ì½”ë”© UTF-8 ìˆ˜ì •
+src/main/webapp/WEB-INF/web.xml íŒŒì¼ì— ì•„ë˜ ì½”ë“œ ì¶”ê°€
+ë§¨ ë§ˆì§€ë§‰ ì¤„ì¸ </web-app> ìœ„ì— ì½”ë“œë¥¼ ì¶”ê°€
+ì˜ˆì‹œ)
 <filter>
 	<filter-name>encoding</filter-name>
 	<filter-class>
@@ -46,23 +46,23 @@ src/main/webapp/WEB-INF/web.xml ÆÄÀÏ¿¡ ¾Æ·¡ ÄÚµå Ãß°¡
 </filter-mapping>
 </web-app>
 
-11-2 STS UTF-¼³Á¤
- - ÇÁ·ÎÁ§Æ® ÀÎÄÚµù ¼³Á¤
-¸Ş´º Window > Preferences Å¬¸¯
-General > Workspace Å¬¸¯
-Text file encoding> Other¿¡¼­ UTF-8 ¼³Á¤ ÈÄ Apply
+11-2 STS UTF-ì„¤ì •
+ - í”„ë¡œì íŠ¸ ì¸ì½”ë”© ì„¤ì •
+ë©”ë‰´ Window > Preferences í´ë¦­
+General > Workspace í´ë¦­
+Text file encoding> Otherì—ì„œ UTF-8 ì„¤ì • í›„ Apply
 
- - JSP ÀÎÄÚµù ¼³Á¤
-¸Ş´º Window > Preferences Å¬¸¯
-Web > JSP Files Å¬¸¯
-Encoding¿¡¼­ ISO 10646/Unicode(UTF-8) ¼±ÅÃ ÈÄ Apply
+ - JSP ì¸ì½”ë”© ì„¤ì •
+ë©”ë‰´ Window > Preferences í´ë¦­
+Web > JSP Files í´ë¦­
+Encodingì—ì„œ ISO 10646/Unicode(UTF-8) ì„ íƒ í›„ Apply
 
- - jsp ÆÄÀÏ ¼³Á¤
-jsp ÆÄÀÏ Á¦ÀÏ »ó´Ü¿¡ ¾Æ·¡ ÄÚµå¸¦ Ãß°¡
+ - jsp íŒŒì¼ ì„¤ì •
+jsp íŒŒì¼ ì œì¼ ìƒë‹¨ì— ì•„ë˜ ì½”ë“œë¥¼ ì¶”ê°€
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-11-3 target > pom.xml ÆÄÀÏ ½ÇÇà 
+11-3 target > pom.xml íŒŒì¼ ì‹¤í–‰ 
 <!-- Test -->
 <dependency>
 	<groupId>junit</groupId>
@@ -70,8 +70,8 @@ jsp ÆÄÀÏ Á¦ÀÏ »ó´Ü¿¡ ¾Æ·¡ ÄÚµå¸¦ Ãß°¡
 	<version>4.7</version>
 	<scope>test</scope>
 </dependency>        
-	¹Ø¿¡ spring ÇÁ·ÎÁ§Æ® ÀÇÁ¸¼º Ãß°¡
-¿¹½Ã)
+	ë°‘ì— spring í”„ë¡œì íŠ¸ ì˜ì¡´ì„± ì¶”ê°€
+ì˜ˆì‹œ)
 <!-- Test -->
 <dependency>
 	<groupId>junit</groupId>
@@ -79,137 +79,137 @@ jsp ÆÄÀÏ Á¦ÀÏ »ó´Ü¿¡ ¾Æ·¡ ÄÚµå¸¦ Ãß°¡
 	<version>4.7</version>
 	<scope>test</scope>
 </dependency>  
-<!-- DB¿¬µ¿ --> 
-<dependency>	//mybatis Ãß°¡
+<!-- DBì—°ë™ --> 
+<dependency>	//mybatis ì¶”ê°€
     <groupId>org.mybatis</groupId>	
     <artifactId>mybatis</artifactId>
     <version>3.4.1</version>
 </dependency>
-<dependency>	//mybatis-spring Ãß°¡
+<dependency>	//mybatis-spring ì¶”ê°€
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-spring</artifactId>
     <version>1.3.0</version>
 </dependency>
-<dependency>	//mysql-connector-java Ãß°¡
+<dependency>	//mysql-connector-java ì¶”ê°€
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.11</version>
 </dependency>
-<dependency>	//spring-jdbc Ãß°¡
+<dependency>	//spring-jdbc ì¶”ê°€
     <groupId>org.springframework</groupId>
     <artifactId>spring-jdbc</artifactId>
     <version>${org.springframework-version}</version>
 </dependency>
 
-11-4 root-context.xml ¼öÁ¤
- - ³×ÀÓ½ºÆäÀÌ½º Ãß°¡
-root-context.xml ÆÄÀÏÀ» ¿­¾î namespace ÅÇ Å¬¸¯
-aop, beans, context, jdbc, mybatis-spring ¼±ÅÃ ÈÄ ÀúÀå
+11-4 root-context.xml ìˆ˜ì •
+ - ë„¤ì„ìŠ¤í˜ì´ìŠ¤ ì¶”ê°€
+root-context.xml íŒŒì¼ì„ ì—´ì–´ namespace íƒ­ í´ë¦­
+aop, beans, context, jdbc, mybatis-spring ì„ íƒ í›„ ì €ì¥
 
- - mysql Á¤º¸ Ãß°¡
-root-context.xml ÆÄÀÏ ½ÇÇà ÈÄ sourceÀÇ ¸Ç ¹ØÁÙ </beans> À§¿¡ ÄÚµå Ãß°¡
+ - mysql ì •ë³´ ì¶”ê°€
+root-context.xml íŒŒì¼ ì‹¤í–‰ í›„ sourceì˜ ë§¨ ë°‘ì¤„ </beans> ìœ„ì— ì½”ë“œ ì¶”ê°€
 
 <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <!-- mysql ¹öÀü¿¡ µû¶ó driverClassNameÀÇ value°ªÀÌ ´Ş¶óÁü ¾Æ·¡ ÄÚµå´Â Mysql 8±âÁØ -->
+    <!-- mysql ë²„ì „ì— ë”°ë¼ driverClassNameì˜ valueê°’ì´ ë‹¬ë¼ì§ ì•„ë˜ ì½”ë“œëŠ” Mysql 8ê¸°ì¤€ -->
     <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
     <property name="url"
-              value="jdbc:mysql://localhost:3306/½ºÅ°¸¶ÀÌ¸§?useSSL=false&amp;serverTimezone=UTC">
+              value="jdbc:mysql://localhost:3306/ìŠ¤í‚¤ë§ˆì´ë¦„?useSSL=false&amp;serverTimezone=UTC">
     </property>
-    <property name="username" value="mysql°èÁ¤¾ÆÀÌµğ"></property>
-    <property name="password" value="mysql°èÁ¤ºñ¹ø"></property>
+    <property name="username" value="mysqlê³„ì •ì•„ì´ë””"></property>
+    <property name="password" value="mysqlê³„ì •ë¹„ë²ˆ"></property>
 </bean> 
 
-¿¹½Ã)
+ì˜ˆì‹œ)
 <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
     <property name="url"
-              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=UTC">	//µ¥ÀÌÅÍº£ÀÌ½º¸íÀ» localhost¹øÈ£ µÚ¿¡ ÀÔ·Â
+              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=UTC">	//ë°ì´í„°ë² ì´ìŠ¤ëª…ì„ localhostë²ˆí˜¸ ë’¤ì— ì…ë ¥
     </property>
     <property name="username" value="green"></property>
     <property name="password" value="cjgreen"></property>
 </bean>
 
- - Mapper ¼³Á¤
-root-context.xml ÆÄÀÏ ½ÇÇà ÈÄ sourceÀÇ ¸Ç ¹ØÁÙ </beans> À§¿¡ ÄÚµå Ãß°¡
+ - Mapper ì„¤ì •
+root-context.xml íŒŒì¼ ì‹¤í–‰ í›„ sourceì˜ ë§¨ ë°‘ì¤„ </beans> ìœ„ì— ì½”ë“œ ì¶”ê°€
 
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
-    <property name="mapperLocations" value="classpath:°æ·Î/*Mapper.xml"></property>
+    <property name="mapperLocations" value="classpath:ê²½ë¡œ/*Mapper.xml"></property>
 </bean>
-<mybatis-spring:scan base-package="¸ÊÇÎÇÒÆĞÅ°ÁöÀÌ¸§"/>
+<mybatis-spring:scan base-package="ë§µí•‘í• íŒ¨í‚¤ì§€ì´ë¦„"/>
 
-¿¹½Ã)
+ì˜ˆì‹œ)
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
-</bean>						//mappersÆú´õ ¹ØÀÇ ¸ğµç Æú´õµé ¹Ø¿¡ xxMapper.xmlÆÄÀÏµé
-<mybatis-spring:scan base-package="kr.green.spring.dao"/> //mapper¸¦ »ç¿ëÇÏ´Â daoÆĞÅ°ÁöÀÇ ÀÌ¸§ ÀÔ·Â
+</bean>						//mappersí´ë” ë°‘ì˜ ëª¨ë“  í´ë”ë“¤ ë°‘ì— xxMapper.xmlíŒŒì¼ë“¤
+<mybatis-spring:scan base-package="kr.green.spring.dao"/> //mapperë¥¼ ì‚¬ìš©í•˜ëŠ” daoíŒ¨í‚¤ì§€ì˜ ì´ë¦„ ì…ë ¥
 
-11-5 src/main/javaÆú´õ¿¡ dao ÆĞÅ°Áö Ãß°¡ ¹× dao interface ÆÄÀÏ »ı¼º ÈÄ interface »ı¼º
-¿¹½Ã)
+11-5 src/main/javaí´ë”ì— dao íŒ¨í‚¤ì§€ ì¶”ê°€ ë° dao interface íŒŒì¼ ìƒì„± í›„ interface ìƒì„±
+ì˜ˆì‹œ)
 public interface MemberDAO {
 	
 	public String getEmail(String id);
 }
 
 
-11-6 src/main/resourcesÆú´õ¿¡  mappers Æú´õ »ı¼º ÈÄ mapper.xml ÆÄÀÏ »ı¼º ÈÄ ¼³Á¤
-¿¹½Ã)
+11-6 src/main/resourcesí´ë”ì—  mappers í´ë” ìƒì„± í›„ mapper.xml íŒŒì¼ ìƒì„± í›„ ì„¤ì •
+ì˜ˆì‹œ)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.green.test.dao.MemberDAO">	//kr.green.test.dao ÆĞÅ°ÁöÀÇ MemberDAOÆÄÀÏ¿¡ ¿¬°á
-  <select id="getEmail" resultType="String">	//getEmail ¸Ş¼­µå¸¦ È£ÃâÇØ¼­ StringÀ¸·Î ¹İÈ¯
-  	select email from member where id = #{id}	//#{id} = (¸Å°³º¯¼ö)
+<mapper namespace="kr.green.test.dao.MemberDAO">	//kr.green.test.dao íŒ¨í‚¤ì§€ì˜ MemberDAOíŒŒì¼ì— ì—°ê²°
+  <select id="getEmail" resultType="String">	//getEmail ë©”ì„œë“œë¥¼ í˜¸ì¶œí•´ì„œ Stringìœ¼ë¡œ ë°˜í™˜
+  	select email from member where id = #{id}	//#{id} = (ë§¤ê°œë³€ìˆ˜)
   </select>
 </mapper>
 
-11-7 Controller ÀÛ¼º
-¿¹½Ã) È¸¿ø°¡ÀÔ ±â´É
+11-7 Controller ì‘ì„±
+ì˜ˆì‹œ) íšŒì›ê°€ì… ê¸°ëŠ¥
 package kr.green.test.controller;
 
 @Controller
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	//½ÇÇàµÈ Å¬·¡½º¿Í ÄÁÆ®·Ñ·¯¸¦ È®ÀÎÇÏ±â À§ÇØ ÇöÀç Á¤º¸¸¦ »ó¼öÀÎ Å¬·¡½º ¸â¹öº¯¼ö¿¡ ÀúÀå
+	//ì‹¤í–‰ëœ í´ë˜ìŠ¤ì™€ ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ í™•ì¸í•˜ê¸° ìœ„í•´ í˜„ì¬ ì •ë³´ë¥¼ ìƒìˆ˜ì¸ í´ë˜ìŠ¤ ë©¤ë²„ë³€ìˆ˜ì— ì €ì¥
 	
 	@Autowired
-	MemberService memberService;	//memberServiceÀÇ °´Ã¼ »ı¼º
+	MemberService memberService;	//memberServiceì˜ ê°ì²´ ìƒì„±
 	
-	@Autowired	//»ı¼ºÀÚ¸¦ ´ë½Å »ç¿ëÇØÁÖ´Â ±â´É(ÇÏ³ªÀÇ °´Ã¼¸¦ ¸¸µé¾î¼­ ÇØ´ç Å¬·¡½ºÀÇ °´Ã¼¸¦ »ç¿ëÇÒ ¶§ ÀÚµ¿ ¿¬°á)
-	MemberDAO stdDao;	//memberDAOÀÇ °´Ã¼¸¦ »ı¼º
+	@Autowired	//ìƒì„±ìë¥¼ ëŒ€ì‹  ì‚¬ìš©í•´ì£¼ëŠ” ê¸°ëŠ¥(í•˜ë‚˜ì˜ ê°ì²´ë¥¼ ë§Œë“¤ì–´ì„œ í•´ë‹¹ í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ì‚¬ìš©í•  ë•Œ ìë™ ì—°ê²°)
+	MemberDAO stdDao;	//memberDAOì˜ ê°ì²´ë¥¼ ìƒì„±
 	
-	//@RequestMapping(¿äÃ»À» ¿¬°á) - ¼­¹ö ºÎºĞÀ» Á¦¿ÜÇÑ URLÀÌ /°í ¹æ½ÄÀÌ getÀÌ¸é home ¸Ş¼­µå¸¦ ½ÇÇà
-	@RequestMapping(value = "/", method = RequestMethod.GET)	//get¹æ½ÄÀ¸·Î È£ÃâÇßÀ» ‹š °ª°ú ÀÏÄ¡ÇÏ´Â ¸Ş¼­µå¸¦ È£Ãâ
+	//@RequestMapping(ìš”ì²­ì„ ì—°ê²°) - ì„œë²„ ë¶€ë¶„ì„ ì œì™¸í•œ URLì´ /ê³  ë°©ì‹ì´ getì´ë©´ home ë©”ì„œë“œë¥¼ ì‹¤í–‰
+	@RequestMapping(value = "/", method = RequestMethod.GET)	//getë°©ì‹ìœ¼ë¡œ í˜¸ì¶œí–ˆì„ ë–„ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œ
 	public String home(Model model){
-		logger.info("¸ŞÀÎÆäÀÌÁö ½ÇÇà");	//console¿¡ ÀÔ·ÂµÇ´Â ¸Ş¼¼Áö		
+		logger.info("ë©”ì¸í˜ì´ì§€ ì‹¤í–‰");	//consoleì— ì…ë ¥ë˜ëŠ” ë©”ì„¸ì§€		
 		
-		return "home";	//»ç¿ëÀÚ¿¡°Ô home.jsp¸¦ º¸³»ÁØ´Ù
+		return "home";	//ì‚¬ìš©ìì—ê²Œ home.jspë¥¼ ë³´ë‚´ì¤€ë‹¤
 	}
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//È­¸é¿¡ Ç¥½ÃµÇ´Â ÆäÀÌÁö´Â get¹æ½Ä
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//í™”ë©´ì— í‘œì‹œë˜ëŠ” í˜ì´ì§€ëŠ” getë°©ì‹
 	public String signupGet(Model model){
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇàÁß");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ì¤‘");
 		
 		return "signup";
 	}
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)	//post ¹æ½ÄÀ¸·Î È£ÃâÇßÀ» ‹š °ª°ú ÀÏÄ¡ÇÏ´Â ¸Ş¼­µå¸¦ È£Ãâ
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)	//post ë°©ì‹ìœ¼ë¡œ í˜¸ì¶œí–ˆì„ ë–„ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ë©”ì„œë“œë¥¼ í˜¸ì¶œ
 	public String signupPost(MemberVO mVo, String pw1){
-		logger.info("È¸¿ø°¡ÀÔ ÁøÇàÁß");
+		logger.info("íšŒì›ê°€ì… ì§„í–‰ì¤‘");
 		
 		if(memberService.signup(mVo,pw1)) {
-			return "redirect:/";	//È¸¿ø°¡ÀÔ¿¡ ¼º°øÇÏ¸é ¸ŞÀÎ ÆäÀÌÁö·Î ÀÌµ¿
+			return "redirect:/";	//íšŒì›ê°€ì…ì— ì„±ê³µí•˜ë©´ ë©”ì¸ í˜ì´ì§€ë¡œ ì´ë™
 		}else {
-			return "redirect:/signup";	//redirect - ½ÇÇà ÈÄ get¹æ½ÄÀ¸·Î Àç½ÇÇà(value°ªÀÌ µ¿ÀÏÇÑ ¸ÅÇÎ¿¡¼­ get ¹æ½ÄÀº 1°³¸¸ Á¸ÀçÇØ¾ß ÇÑ´Ù)
+			return "redirect:/signup";	//redirect - ì‹¤í–‰ í›„ getë°©ì‹ìœ¼ë¡œ ì¬ì‹¤í–‰(valueê°’ì´ ë™ì¼í•œ ë§¤í•‘ì—ì„œ get ë°©ì‹ì€ 1ê°œë§Œ ì¡´ì¬í•´ì•¼ í•œë‹¤)
 		}
 	}
 }
 
-11-8 ÇÊ¿ä¿¡ µû¶ó jsp ÀÛ¼º
-¿¹½Ã) signup.jsp - È¸¿ø°¡ÀÔ ÆäÀÌÁö
+11-8 í•„ìš”ì— ë”°ë¼ jsp ì‘ì„±
+ì˜ˆì‹œ) signup.jsp - íšŒì›ê°€ì… í˜ì´ì§€
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -220,7 +220,7 @@ public class HomeController {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-	<title>È¸¿ø°¡ÀÔ</title>
+	<title>íšŒì›ê°€ì…</title>
 <style>
 	input.form-control:focus{
 		color: green;
@@ -243,47 +243,47 @@ public class HomeController {
 <body>
 	<div class="row m-5">
 		<div class="container offset-4 col-4">
-			<div class="offset-3"> <h1>È¸¿ø°¡ÀÔ</h1></div>
+			<div class="offset-3"> <h1>íšŒì›ê°€ì…</h1></div>
 			<form method="post" action="">
 				<div class="form-group">
-					<label for="usr">¾ÆÀÌµğ</label>
-					<input type="text" class="form-control col-7" id="id" placeholder="¾ÆÀÌµğ" name="id">
+					<label for="usr">ì•„ì´ë””</label>
+					<input type="text" class="form-control col-7" id="id" placeholder="ì•„ì´ë””" name="id">
 				</div>
 				<div class="form-group">
-					<label for="pwd">ºñ¹Ğ¹øÈ£</label>
-					<input type="password" class="form-control col-7" id="pw" placeholder="ºñ¹Ğ¹øÈ£" name="pw">
+					<label for="pwd">ë¹„ë°€ë²ˆí˜¸</label>
+					<input type="password" class="form-control col-7" id="pw" placeholder="ë¹„ë°€ë²ˆí˜¸" name="pw">
 				</div>
 				<div class="form-group">
-					<label for="pwdRe">ºñ¹Ğ¹øÈ£ È®ÀÎ</label>
-					<input type="password" class="form-control col-7" id="pw1" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ" name="pw1">
+					<label for="pwdRe">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+					<input type="password" class="form-control col-7" id="pw1" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" name="pw1">
 				</div>
 				<div class="form-group">
-					<label for="sel1">¼ºº°</label>
+					<label for="sel1">ì„±ë³„</label>
 					<select class="form-control col-4" id="sel1" name="gender">
-						<option value="³²">³²ÀÚ</option>
-						<option value="¿©">¿©ÀÚ</option>
+						<option value="ë‚¨">ë‚¨ì</option>
+						<option value="ì—¬">ì—¬ì</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">ÀÌ¸ŞÀÏ</label>
-					<input type="text" class="form-control" id="email" placeholder="ÀÌ¸ŞÀÏ" name="email">
+					<label for="email">ì´ë©”ì¼</label>
+					<input type="text" class="form-control" id="email" placeholder="ì´ë©”ì¼" name="email">
 				</div>
-				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">Ãë¼Ò</button>
-				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">ÀÔ·Â¿Ï·á</button>
+				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">ì·¨ì†Œ</button>
+				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">ì…ë ¥ì™„ë£Œ</button>
 			</form>
 		</div>
 	</div>
 </body>
 </html>
-<a href="<%=request.getContextPath()%>/signup">È¸¿ø°¡ÀÔ</a>	//È¸¿ø°¡ÀÔ ±ÛÀÚ¸¦ ´©¸£¸é ÇØ´ç URI·Î ÀÌµ¿
+<a href="<%=request.getContextPath()%>/signup">íšŒì›ê°€ì…</a>	//íšŒì›ê°€ì… ê¸€ìë¥¼ ëˆ„ë¥´ë©´ í•´ë‹¹ URIë¡œ ì´ë™
 
-11-9 ÇÊ¿äÇÑ ±â´É¿¡ µû¶ó ¼­ºñ½º interface¿Í ±¸Çö class »ı¼º
-¿¹½Ã) service interface È¸¿ø°¡ÀÔ ±â´É
+11-9 í•„ìš”í•œ ê¸°ëŠ¥ì— ë”°ë¼ ì„œë¹„ìŠ¤ interfaceì™€ êµ¬í˜„ class ìƒì„±
+ì˜ˆì‹œ) service interface íšŒì›ê°€ì… ê¸°ëŠ¥
 public interface MemberService {
-	public boolean signup(MemberVO mVo, String pw1);	//±âÁ¸¿¡ ¾ÆÀÌµğ°¡ ÀÖ¾î °¡ÀÔ¿¡ ½ÇÆĞÇßÀ» °æ¿ì false
+	public boolean signup(MemberVO mVo, String pw1);	//ê¸°ì¡´ì— ì•„ì´ë””ê°€ ìˆì–´ ê°€ì…ì— ì‹¤íŒ¨í–ˆì„ ê²½ìš° false
 }
-¿¹½Ã) service implements class È¸¿ø°¡ÀÔ ±â´É
-@Service	//¼­ºñ½º·Î ÀÎ½Ä½ÃÅ°±â À§ÇÑ Å°¿öµå
+ì˜ˆì‹œ) service implements class íšŒì›ê°€ì… ê¸°ëŠ¥
+@Service	//ì„œë¹„ìŠ¤ë¡œ ì¸ì‹ì‹œí‚¤ê¸° ìœ„í•œ í‚¤ì›Œë“œ
 public class MemberServiceImp implements MemberService{
 
 	@Autowired
@@ -291,9 +291,9 @@ public class MemberServiceImp implements MemberService{
 	
 	@Override
 	public boolean signup(MemberVO mVo, String pw1) {
-		//±âÁ¸¿¡ ÇØ´ç ¾ÆÀÌµğ°¡ ÀÖ´ÂÁö Ã¼Å©
-		//ÀÖÀ¸¸é false ¹İÈ¯ÇÏ°í Á¾·á ¾øÀ¸¸é È¸¿ø°¡ÀÔ ÁøÇà
-		if(mVo == null){	//¿¹¿ÜÃ³¸®
+		//ê¸°ì¡´ì— í•´ë‹¹ ì•„ì´ë””ê°€ ìˆëŠ”ì§€ ì²´í¬
+		//ìˆìœ¼ë©´ false ë°˜í™˜í•˜ê³  ì¢…ë£Œ ì—†ìœ¼ë©´ íšŒì›ê°€ì… ì§„í–‰
+		if(mVo == null){	//ì˜ˆì™¸ì²˜ë¦¬
 			return false;
 		}
 		if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13) {
@@ -302,9 +302,9 @@ public class MemberServiceImp implements MemberService{
 		if(!mVo.getPw().equals(pw1)) {
 			return false;
 		}
-		MemberVO oVo = memberDao.getMember(mVo.getId());	//mVo.getID¸¦ ÅëÇØ getMember¿¡¼­ °´Ã¼¸¦ °¡Á®¿Í oVo¿¡ ÀúÀå
-		if(oVo != null){	//ÀÔ·ÂµÈ id¸¦ ÅëÇØ °¡Á®¿Â °´Ã¼°¡ nullÀÌ ¾Æ´Ï¶ó¸é(ÀÌ¹Ì °¡ÀÔµÅ ÀÖ´Ù¸é)
-			return false;	//false¸¦ ¹İÈ¯
+		MemberVO oVo = memberDao.getMember(mVo.getId());	//mVo.getIDë¥¼ í†µí•´ getMemberì—ì„œ ê°ì²´ë¥¼ ê°€ì ¸ì™€ oVoì— ì €ì¥
+		if(oVo != null){	//ì…ë ¥ëœ idë¥¼ í†µí•´ ê°€ì ¸ì˜¨ ê°ì²´ê°€ nullì´ ì•„ë‹ˆë¼ë©´(ì´ë¯¸ ê°€ì…ë¼ ìˆë‹¤ë©´)
+			return false;	//falseë¥¼ ë°˜í™˜
 		}
 		mVo.setName("");
 		memberDao.signup(mVo);
@@ -313,21 +313,21 @@ public class MemberServiceImp implements MemberService{
 
 }
 
-11-10 ¼­ºñ½º¿¡¼­ »ç¿ëµÉ DAO Ãß°¡
-¿¹½Ã) È¸¿ø°¡ÀÔ ±â´É
+11-10 ì„œë¹„ìŠ¤ì—ì„œ ì‚¬ìš©ë  DAO ì¶”ê°€
+ì˜ˆì‹œ) íšŒì›ê°€ì… ê¸°ëŠ¥
 public interface MemberDAO{
-	void signup(MemberVO mVo);	//VO°´Ã¼¸¦ ÅëÇØ mapper¸¦ ½ÇÇàÇÏ´Â ÀÎÅÍÆäÀÌ½º
+	void signup(MemberVO mVo);	//VOê°ì²´ë¥¼ í†µí•´ mapperë¥¼ ì‹¤í–‰í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤
 }
 
-11-11 DAO¸¦ ½ÇÇàÇÒ mapper ±¸Çö
-¿¹½Ã) È¸¿ø°¡ÀÔ ±â´É
+11-11 DAOë¥¼ ì‹¤í–‰í•  mapper êµ¬í˜„
+ì˜ˆì‹œ) íšŒì›ê°€ì… ê¸°ëŠ¥
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.green.spring.dao.MemberDAO">	<!-- ÀÎÅÍÆäÀÌ½º°¡ ÀÖ´Â ÆÄÀÏ¸í -->
+<mapper namespace="kr.green.spring.dao.MemberDAO">	<!-- ì¸í„°í˜ì´ìŠ¤ê°€ ìˆëŠ” íŒŒì¼ëª… -->
   <insert id="signup">
   	insert into member(id,pw,gender,email,name)
-  	values(#{id},#{pw},#{gender},#{email},#{name})	//ÀÔ·Â¹ŞÀº VO°´Ã¼ÀÇ ¸â¹öº¯¼öµéÀ» ÀÌ¸§ÀÌ °°Àº ÄÃ·³ÀÇ ¼Ó¼º°ªÀ¸·Î Ãß°¡
+  	values(#{id},#{pw},#{gender},#{email},#{name})	//ì…ë ¥ë°›ì€ VOê°ì²´ì˜ ë©¤ë²„ë³€ìˆ˜ë“¤ì„ ì´ë¦„ì´ ê°™ì€ ì»¬ëŸ¼ì˜ ì†ì„±ê°’ìœ¼ë¡œ ì¶”ê°€
   </insert>
 </mapper>

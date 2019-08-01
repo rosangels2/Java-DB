@@ -1,0 +1,252 @@
+﻿웹사이트 개발 순서
+
+1.포트폴리오를 위한 주제 선정
+
+쇼핑몰 - 로그인, 상품 소개, 구매, 장바구니, 좋아요, 구매내역 확인, 상품수령 확인, 구매 후기, 문의
+
+패스트푸드 - 로그인, 상품 소개, 구매, 장바구니, 좋아요, 구매내역 확인, 구매 후기, 문의
+
+기업 - 로그인, 기업 소개 및 공지, 부서 분류, 부서별 게시판,  메시지 및 파일첨부
+
+웨이트 Gym - 로그인, 공지, 체육관 소개, 트레이너 정보, 운동 정보, 문의, 등록 기간 확인, 회원 게시판
+
+
+
+
+2. 요구 분석 명세서 작성
+ID - RQ-001
+요구사항명 - ID 글자수 제한
+요구사항 내용 - 회원가입시 ID는 최대 12자리로 제한한다
+
+ID - RQ-002
+요구사항명 - ID 형식 제한
+요구사항 내용 - ID에는 특수문자가 들어갈 수 없다
+
+
+3. 스토리보드 작성
+
+
+
+4. DB설계
+	- ERD 작성(ppt) -> 개념모델링
+	- 논리적 설계, 물리적 설계(엑셀)
+	- 데이터베이스 구축(sql 파일)
+	- 기능 테스트 쿼리문
+
+
+
+5. 웹사이트 구현
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+문의 게시판 보기
+SELECT * FROM board where board_category_code = 1;
+
+자유 게시판 보기
+SELECT * FROM board where board_category_code = 2;
+
+공지 게시판 보기
+SELECT * FROM board where board_category_code = 3;
+
+운동정보 게시판 보기
+SELECT * FROM board where board_category_code = 4;
+
+체육관 소개 게시판 보기
+SELECT * FROM board where board_category_code = 5;
+
+뒷담 게시판 보기
+SELECT * FROM board where board_category_code = 9;
+
+인증 게시판 보기
+SELECT * FROM board where board_category_code = 10;
+
+
+
+해당 시간에 진행중인 pt 일정이 있는지 검색
+SELECT * FROM pt where pt_schedule = '13:00~15:00';
+
+
+
+현재 진행중인 PT 정보 검색
+select member.member_name, pt_schedule, pt_round, trainer_schedule, member_address, member_phone
+from pt
+join trainer
+on pt_trainer_no = trainer.trainer_no
+join member
+on trainer.trainer_member_id = member.member_id;
+
+
+
+게시글 작성
+insert into board(board_category_code, board_writer, board_title, board_contents)
+ values('int', ' 		 ', '		 ','		  ');
+
+
+
+
+
+회원정보 검색
+SELECT member_name,
+  member_nickname,
+    	member_address,
+    	member_phone,
+    	member_period,
+    	member_course_no
+FROM member
+where member_id = 'avbnn';
+
+
+
+A회원의 pt정보와 담당 trainer 정보 검색
+SELECT member.member_name,
+    	member.member_phone,
+  		pt.pt_schedule,
+pt.pt_round,
+    	pt.pt_contents,
+detail.member_name trainer_name,
+detail.member_phone trainer_phone
+FROM pt
+join member
+on pt.pt_member_id = member.member_id
+join (select * from trainer join member on trainer.trainer_member_id = member.member_id) as detail
+on pt.pt_trainer_no = detail.trainer_no
+where pt.pt_member_id = 'lee2324';
+
+
+
+트레이너 정보 검색
+SELECT member_name,
+ 		 member_phone,
+    	 trainer_schedule,
+    	 member_address,
+    	 member_period
+FROM trainer
+join member
+on trainer_member_id = member.member_id;
+게시글의 첨부파일 확인
+SELECT * FROM upload where upload_board_no = 3;
+
+
+글 내용에 ‘파인 옷’이 들어가는 글을 검색
+SELECT * FROM board where board_contents like '%파인 옷%';
+
+
+글 제목에 ‘파인 옷’이 들어가는 글을 검색
+SELECT * FROM board where board_title like '%파인 옷%';
+
+
+작성자명이 ‘lee’로 시작하는 글을 검색
+SELECT * FROM board where board_writer like 'lee%';
+
+
+2019-05-03 00:00:00 이후 작성된 글을 검색
+SELECT * FROM board where board_register_date like '2019-05-03%';
+
+
+
+
+
+수강 등록 후 member테이블의 course_no와 program 테이블의 program_total을 수정
+insert into course(course_program_no, course_member_id, course_period)
+values(1, 'avbnn', '2019-04-01~2019-05-31');
+update member
+set member_course_no = (select course_no from course where course_member_id = 'avbnn')
+where member_id = 'avbnn';
+update program
+set program_total = program_total+1
+where program_no = 1;
+
+
+
+
+
+
+
+
+
+
+
+A회원의 수강정보를 검색
+SELECT member.member_name as '이름',
+   course.course_no as '수강번호',
+   detail.member_name as '담당 트레이너 이름',
+   course_period as '수강 기간',
+   program.program_title as '프로그램명',
+   program.program_contents as '프로그램 내용',
+   program.program_schedule as '프로그램 일정',
+   program.program_total_limit as '최대 인원',
+   program.program_total as '현재 인원'
+FROM member
+join course
+on member.member_course_no = course.course_no
+join program
+on course.course_program_no = program.program_no
+join (select * from trainer join member on trainer.trainer_member_id = member.member_id) as detail
+on program.program_trainer_no = detail.trainer_no
+where member.member_id = 'aaafgeg';
+
+
+
+A회원 정보를 검색하는 프로시저로 변환
+drop procedure if exists search_member_program;
+delimiter //
+create procedure search_member_program( in in_member_id varchar(45) )
+begin
+SELECT member.member_name as '이름',
+   course.course_no as '수강번호',
+   detail.member_name as '담당 트레이너 이름',
+   course_period as '수강 기간',
+   program.program_title as '프로그램명',
+   program.program_contents as '프로그램 내용',
+   program.program_schedule as '프로그램 일정',
+   program.program_total_limit as '최대 인원',
+   program.program_total as '현재 인원’
+ FROM member
+ join course
+ on member.member_course_no = course.course_no
+ join program
+ on course.course_program_no = program.program_no
+ join (select * from trainer join member on trainer.trainer_member_id = member.member_id) as detail
+ on program.program_trainer_no = detail.trainer_no
+ where member.member_id = in_member_id;
+end //
+delimiter ;
+show procedure status;
+Gym 트리거 생성
+course 테이블에 insert시
+-> 1.프로그램 no가 일치하는 프로그램 테이블의 program_total을  증가시킨다
+-> 2. 멤버 id가 일치하는 멤버 테이블의 member_course_no에  course_no을 입력한다
+use gym;
+drop trigger if exists add_course;
+delimiter //
+create trigger add_course after insert on course
+for each row
+begin
+declare _program_total int default 0;
+declare _member_course_no int default 0;
+set _program_total = (select count(*) from course where new.course_program_no = course_program_no);
+set _member_course_no = new.course_no;
+update program
+set program_total = _program_total
+where program_no = new.course_program_no;
+update member
+set member_course_no = _member_course_no
+where member_id = new.course_member_id;
+end //
+delimiter ;
+show triggers;
+
+

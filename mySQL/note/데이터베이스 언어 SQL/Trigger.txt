@@ -1,0 +1,133 @@
+﻿트리거(trigger) - 정보가 수정됐을 때 연결된 테이블에서 참조하는 값을 함께 변경한다
+before - 트리거를 작동한 뒤 쿼리문을 실행하게 함
+after - 쿼리문을 실행한 뒤 트리거가 작동하게 함
+instead of - 트리거를 원래 문장 대신 수행하게 함
+when - 트리거를 시작하는 조건식을 지정
+
+문법
+DELIMITER // 
+CREATE TRIGGER 트리거명 
+BEFORE|AFTER INSERT|UPDATE|DELETE ON 테이블명 
+[REFERENCING NEW ROW AS n, OLD ROW AS O]
+FOR EACH ROW 	-> 실행문이 여러개일 때 하나씩 실행한다(향상된 for문과 비슷)
+BEGIN
+... 
+END // 
+DELIMITER ;
+
+
+트리거는 재귀호출로 자신을 호출하여 자신을 수정하는 방법으로는 사용할 수 없다
+	-> 프로시저 사용
+
+
+
+green DB에 테이블 생성
+CREATE TABLE `class` (
+ `no` int(11) NOT NULL,
+ `name` varchar(45) DEFAULT NULL,
+ `total` int(11) NOT NULL DEFAULT '0',
+ PRIMARY KEY (`no`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8 
+
+
+
+
+course 테이블 생성
+CREATE TABLE `course` (
+ `no` int(11) NOT NULL,
+ `class_no` int(11) NOT NULL,
+ `student_no` int(11) NOT NULL,
+ KEY `class_no_idx` (`no`),
+ CONSTRAINT `class_no` FOREIGN KEY (`no`) REFERENCES `class` (`no`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ )  ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+
+트리거 생성
+use green; DROP TRIGGER IF EXISTS input_course;
+DELIMITER //
+CREATE TRIGGER input_course AFTER INSERT ON course
+FOR EACH ROW
+BEGIN
+declare _total int default 0; 
+set _total = (select count(*) from course where new.class_no = class_no);
+update class
+set total = _total
+where no = new.class_no;
+END//
+DELIMITER ;
+show triggers;
+
+
+
+테스트
+insert into class(no,name,total) values(1,'컴퓨터공학',0); 
+insert into course(no,class_no,student_no) values(1, 1, 2019160135);
+SELECT * FROM green.class;
+
+
+
+
+
+Gym 트리거 생성
+course 테이블에 insert시
+ -> 1.프로그램 no가 일치하는 프로그램 테이블의 program_total을  증가시킨다
+ -> 2. 멤버 id가 일치하는 멤버 테이블의 member_course_no에  course_no을 입력한다
+use gym;
+drop trigger if exists add_course;
+delimiter //
+create trigger add_course after insert on course
+for each row
+begin
+declare _program_total int default 0;
+declare _member_course_no int default 0;
+set _program_total = (select count(*) from course where new.course_program_no = course_program_no);
+set _member_course_no = new.course_no;
+update program
+set program_total = _program_total
+where program_no = new.course_program_no;
+update member
+set member_course_no = _member_course_no
+where member_id = new.course_member_id;
+end //
+delimiter ;
+show triggers;
+예제) update 트리거를 통해 old를 사용
+course에서 give_up의 값을 변경하면 class_no이 일치하는 class테이블의 total이 변경되는 트리거
+use green;
+DROP TRIGGER IF EXISTS update_course;
+DELIMITER //
+CREATE TRIGGER update_course AFTER update ON course
+FOR EACH ROW
+BEGIN
+ -- 수강 신청했다가 포기를 하는 경우 -> give_up 테이블의 값이 N이었다가 Y로 바뀌는 경우
+ if old.give_up = 'N' and new.give_up = 'Y' then
+	update class
+	set total = total-1
+	where no = new.class_no;
+	end if;
+	-- 수강 포기를 철회하는 경우 -> give_up 테이블의 값이 Y였다가 N으로 바뀌는 경우
+	if old.give_up = 'Y' and new.give_up = 'N' then
+	update class
+	set total = total+1
+	where no = new.class_no;
+	end if;
+END//
+DELIMITER ;
+show triggers;
+
+
+예제)수강 상태가 N인 수강 목록이 삭제되면 class_no가 일치하는 class테이블의 total을 변경하는 트리거
+drop trigger if exists delete_course;
+delimiter //
+create trigger delete_course after delete on course
+for each row
+begin
+ if old.give_up = 'N' then
+	update class
+	set total = total-1
+	where old.class_no = no;
+	end if;
+end //
+delimiter ;

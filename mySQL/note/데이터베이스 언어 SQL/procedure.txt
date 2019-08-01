@@ -1,0 +1,256 @@
+﻿preocedure - 메서드와 비슷한 기능
+
+프로시저의 장점
+1.	하나의 요청으로 여러 SQL문을 실행할 수 있다.(네트워크에 대한 부하를 줄일 수 있다.)
+2.	미리 구문 분석 및 내부 중간 코드로 변환을 끝내야 하므로 처리 시간이 줄어든다.
+3.	데이터베이스 트리거와 결합하여 복잡한 규칙에 의한 데이터의 참조무결성 유지가 가능하게 된다. 간단히 말하면 응용 프로그램 측 로직을 가지지 않고도 데이터베이스의 데이터 앞뒤가 맞게 될 수 있다.
+4.	보수성이 뛰어 나다.
+
+
+프로시저 목록 확인 방법
+show procedure status;
+
+프로시저 확인 방법
+show create procedure 프로시저명;
+
+declare - 지역변수를 선언하는 명령어
+
+
+프로시저 정의 방법
+DROP PROCEDURE IF EXISTS search_user;	-> search_user라는 이름의 프로시저가 있다면 지운다
+DELIMITER //		-> delimiter 후 기호를 쓰면 해당 기호를 한번 더 만날 때까지 실행하지 않는다
+CREATE PROCEDURE search_user()			-> search_user라는 이름의 프로시저를 생성
+BEGIN
+SELECT USER,HOST FROM MYSQL.USER;		-> 해당 쿼리문을 실행하는 기능
+END //		-> 앞에서 쓴 //를 만났으므로 실행된다
+DELIMITER ;
+show procedure status;	-> 현재 프로시저를 확인
+
+
+
+if 사용법
+SET total = in_mid + in_end + in_att + in_rep;		-> 변수 선언
+IF total >= 95 AND total <= 100 THEN SET grade = 'A+'; 
+END IF; 
+IF total >=90 AND total < 95 THEN SET grade = 'A'; 
+END IF;
+
+
+else if 사용법
+SET total = in_mid + in_end + in_att + in_rep;		-> 변수 선언
+IF total >= 95 AND total <= 100 THEN 
+SET grade = 'A+'; 
+ELSE 
+IF total >= 90 THEN 
+SET grade = 'A';
+END IF; 
+END IF;
+
+
+
+학점을 계산하는 프로시저 생성
+DROP PROCEDURE IF EXISTS calculate_grade; 
+DELIMITER // 
+CREATE PROCEDURE calculate_grade(
+IN in_mid DOUBLE, 
+IN in_end DOUBLE,
+IN in_att INT, 
+IN in_rep INT, 
+IN in_class_num INT, 
+IN in_student_num INT)
+BEGIN 
+DECLARE total DOUBLE DEFAULT 0;
+DECLARE grade VARCHAR(2); 
+SET total = in_mid + in_end + in_att + in_rep;
+IF total >= 95 AND total <= 100 THEN 
+SET grade = 'A+';
+END IF; 
+IF total >=90 AND total < 95 THEN 
+SET grade = 'A';
+END IF; 
+IF total >=85 AND total < 90 THEN 
+SET grade = 'B+';
+END IF; 
+IF total >=80 AND total < 85 THEN 
+SET grade = 'B'; 
+END IF; 
+IF total >=75 AND total < 80 THEN 
+SET grade = 'C+'; 
+END IF; 
+IF total >=70 AND total < 75 THEN 
+SET grade = 'C'; 
+END IF; 
+IF total >=65 AND total < 70 THEN 
+SET grade = 'D+'; 
+END IF; 
+IF total >=60 AND total < 65 THEN 
+SET grade = 'D'; 
+END IF; 
+IF total >=0 AND total < 60 THEN 
+SET grade = 'F'; 
+END IF; 
+UPDATE 
+university.course 
+SET 
+course_mid = in_mid, 
+course_end = in_end, 
+course_report = in_rep, 
+course_attendance = in_att, 
+course_total = total, 
+course_grade = grade 
+WHERE course_student_num = in_student_num 
+AND 
+course_class_num = in_class_num 
+AND 
+course_num >= 1; 
+END // 
+DELIMITER ;
+
+
+
+프로시져 호출 방법
+call 프로시저명(컬럼값);
+->call calculate_grade(35,30,10,10,2,201910101);
+
+
+
+
+
+
+
+예제)out을 이용해 값을 생성하여 리턴
+
+프로시저 생성
+drop procedure if exists getNo;
+delimiter //
+create procedure getNo(
+ out no varchar(30)		 -- no라는 변수에 varchar(30)타입의 값을 out한다
+)   				  -- in 또는 out에서 선언한 변수는 declare를 통해 다시 지역변수로 선언할 수 없다
+begin
+ set no = '123';  -- no에 '123'을 돌려주는 코드
+end //
+delimiter ;
+
+프로시저 호출			@는 환경변수로서 어디서든 사용할 수 있다
+call getNo(@no);			-> 환경변수 no에 getNo프로시저에서 새로 리턴한  no값을 저장한다
+select @no;				->select를 통해 @no에 저장된 값을 불러온다
+				
+				
+
+
+
+
+
+예제) graduation 테이블에서 학생 정보가 주어졌을 때 graduation_check에 값을 결정하는 프로시저 작성
+USE university;
+DROP PROCEDURE IF EXISTS update_graduation;
+DELIMITER //
+CREATE PROCEDURE update_graduation(
+in in_student_num INT,
+	In in_requirement_num Int)
+BEGIN
+ 	DECLARE s_english, r_english INT;
+	DECLARE s_project, r_project VARCHAR(3);
+	DECLARE s_paper, r_paper VARCHAR(3);
+	DECLARE s_test, r_test VARCHAR(3);
+	DECLARE s_certificate, r_certificate VARCHAR(3);
+SET s_english = (SELECT graduation_english FROM graduation WHERE graduation_student_num = in_student_num);
+SET s_project = (SELECT graduation_project FROM graduation WHERE graduation_student_num = in_student_num); 
+SET s_paper = (SELECT graduation_paper FROM graduation WHERE graduation_student_num = in_student_num); 
+SET s_test = (SELECT graduation_test FROM graduation WHERE graduation_student_num = in_student_num); 
+SET s_certificate = (SELECT graduation_certificate FROM graduation WHERE graduation_student_num = in_student_num); 
+SET r_english = (SELECT requirement_english FROM requirement WHERE requirement_num = in_requirement_num);
+ SET r_project = (SELECT requirement_project FROM requirement WHERE requirement_num = in_requirement_num); 
+SET r_paper = (SELECT requirement_paper FROM requirement WHERE requirement_num = in_requirement_num); 
+SET r_test = (SELECT requirement_test FROM requirement WHERE requirement_num = in_requirement_num); 
+SET r_certificate = (SELECT requirement_certificate FROM requirement WHERE requirement_num = in_requirement_num); 
+	IF r_english <= s_english
+  	AND ( r_paper = 'N' || (r_paper = 'Y' AND s_paper='Y') )
+    	AND ( r_test = 'N' || (r_test = 'Y' AND s_test='Y') )
+    	AND ( r_project = 'N' || (r_project = 'Y' AND s_project='Y') )
+    	AND ( r_certificate = 'N' || (r_certificate = 'Y' AND s_certificate='Y') ) THEN
+    	UPDATE  graduation
+    	SET  graduation_ok = 'Y'
+  	WHERE graduation_student_num = in_student_num;
+ ELSE
+UPDATE  graduation
+    		SET  graduation_ok = 'N'
+  		WHERE graduation_student_num = in_student_num;
+ END IF;
+END //
+DELIMITER ;
+Gym 프로시저 생성
+A회원 정보를 검색하는 프로시저로 변환
+drop procedure if exists search_member_program;
+delimiter //
+create procedure search_member_program( in in_member_id varchar(45) )
+begin
+SELECT member.member_name as '이름',
+  course.course_no as '수강번호',
+  detail.member_name as '담당 트레이너 이름',
+  course_period as '수강 기간',
+  program.program_title as '프로그램명',
+  program.program_contents as '프로그램 내용',
+  program.program_schedule as '프로그램 일정',
+  program.program_total_limit as '최대 인원',
+  program.program_total as '현재 인원’
+FROM member
+join course
+on member.member_course_no = course.course_no
+join program
+on course.course_program_no = program.program_no
+join (select * from trainer join member on trainer.trainer_member_id = member.member_id) as detail
+on program.program_trainer_no = detail.trainer_no
+where member.member_id = in_member_id;
+end //
+delimiter ;
+show procedure status;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+현재 날짜를 기준으로 yyyymmdd의 형태로 정수를 생성하는 프로시저 생성
+drop procedure if exists getNo;
+delimiter //
+create procedure getNo(  
+out no varchar(30)  
+)       
+begin
+ declare year varchar(4);
+	declare month varchar(2);
+	declare day varchar(2);
+set year = year(now());   
+	set month = month(now()); 
+	set day = day(now());
+	if month < 10 then
+  set month = concat('0', month);  
+ end if;
+	if day < 10 then
+  set day = concat('0', day);
+ end if;
+	set no = concat(year, month, day);	
+end //
+delimiter ;
+
+
+
+
+
+
+트리거와 프로시저의 차이
+-	트리거는 이벤트가 발생한 테이블의 다른 이벤트를 처리할 수 없다
+ex) A테이블의 insert 트리거를 작성하는데 A테이블을 update하는 코드를 작성하면 에러가 발생
+-	프로시저는 call을 통해 호출해야 하지만 트리거는 해당 이벤트가 발생하면 자동으로 호출된다
