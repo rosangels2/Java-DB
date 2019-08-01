@@ -1,6 +1,6 @@
 ﻿1. DB에서 authority 속성 추가(Not null, default - USER) 및 관리자 계정의 속성값을 ADMIN으로 변경
 
-2. authority가 ADMIN일 경우에만 관리자 페이지로 이동하는 css 코드 추가
+2. authority가 ADMIN일 경우에만 관리자 페이지로 이동하는 링크가 보이도록 c:if문을 통해 css 코드 추가
 예시)
     <c:if test="${user.authority eq 'ADMIN'}">
         <li class="nav-item">
@@ -163,7 +163,7 @@ public class AdminController {
 		</c:forEach>
 	</table>
 
-15. 해당 셀렉트 박스의 값이 바뀌었을 때 실행되는 java script를 생성
+15. 해당 셀렉트 박스의 값이 바뀌면 location.href를 통해 정보를 URI에 담아 전송하는 jquery 함수 생성
 예시)
 	$(document).ready(function(){
 		$('select[name=userModifySelect]').change(function(){

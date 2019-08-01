@@ -131,9 +131,9 @@ public class HomeController {
 	public String mailSending(HttpServletRequest request) {
 
 	    String setfrom = "stajun@naver.com";         
-	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
-	    String title   = request.getParameter("title");      // 제목
-	    String contents = request.getParameter("content");    // 내용
+	    String tomail  = request.getParameter("tomail");     //받는 사람 이메일
+	    String title   = request.getParameter("title");      //제목
+	    String contents = request.getParameter("content");   //내용
 	    
 	    memberService.sendMail(tomail, title, contents);
 
