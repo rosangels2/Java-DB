@@ -55,6 +55,10 @@
 					<label for="email">이메일</label>
 					<input type="text" class="form-control" id="email" placeholder="이메일" name="email">
 				</div>
+				<div class="form-group">
+					<label for="usr">이름</label>
+					<input type="text" class="form-control col-7" id="name" placeholder="이름" name="name">
+				</div>				
 				<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">취소</button></a>
 				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">입력완료</button>
 			</form>

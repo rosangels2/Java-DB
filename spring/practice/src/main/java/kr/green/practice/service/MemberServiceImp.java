@@ -22,4 +22,16 @@ public class MemberServiceImp implements MemberService{
 		
 	}
 
+	@Override
+	public MemberVO signin(MemberVO mVo) {
+		if(mVo == null){
+			return null;
+		}
+		MemberVO oVo = memberDao.signin(mVo);
+		if(oVo.getPw().equals(mVo.getPw())){
+			return oVo;
+		}
+		return null;
+	}
+
 }
