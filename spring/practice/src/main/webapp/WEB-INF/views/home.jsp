@@ -6,10 +6,6 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<a href="<%=request.getContextPath()%>/signup">회원가입</a>
 </body>
 </html>

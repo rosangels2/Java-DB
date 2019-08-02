@@ -231,3 +231,22 @@ Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: The current request is not a multipart request
 에러 원인 - form 태그에 enctype="multipart/form-data"를 입력하지 않아서 에러 발생
 해결 방법 - form 태그에 enctype="multipart/form-data" 추가
+
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException:
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLSyntaxErrorException: Unknown database 'dbì�´ë¦„'
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLSyntaxErrorException: Unknown database 'dbì�´ë¦„'
+에러 원인 - root-context.xml에서 DB 스키마명 잘못 입력
+예시)
+	              value="jdbc:mysql://localhost:3306/DB이름?useSSL=false&amp;serverTimezone=UTC">
+해결 방법 - 스키마명 수정
+예시)
+	              value="jdbc:mysql://localhost:3306/university?useSSL=false&amp;serverTimezone=UTC">

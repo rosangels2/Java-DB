@@ -1,8 +1,8 @@
-package kr.green.practice.dao;
+package kr.green.practice.service;
 
 import kr.green.practice.vo.MemberVO;
 
-public interface MemberDAO {
+public interface MemberService {
 
 	boolean signup(MemberVO mVo);
 

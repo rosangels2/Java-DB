@@ -22,38 +22,15 @@ Finish 클릭하여 Server 생성 완료
 서버가 실행되면 웹 브라우저에 URI (localhost:8080/프로젝트이름 입력)를 입력
 Hello world! 및 서버 시간 확인
 
-4. home.jsp 인코딩 변경(UTF-8로)
-수정 전 코드
+4.jsp파일 인코딩 변경(UTF-8로)
+예시) 수정 전 코드
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
-수정 후 코드
+예시) 수정 후 코드
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
 
 5. Spring Framework 버전 수정
 pom.xml 선택 후 아래 탭에 pom.xml 선택
@@ -73,7 +50,26 @@ Spring Framework 버전 수정
     <org.slf4j-version>1.6.6</org.slf4j-version>
 </properties>
 
-6. Mybatis 설정
+6. web.xml파일의 Source에 코드 추가
+예시)
+	<!-- UTF-8으로 변환 -->
+	<filter>
+	    <filter-name>encoding</filter-name>
+	    <filter-class>
+	        org.springframework.web.filter.CharacterEncodingFilter
+	    </filter-class>
+	    <init-param>
+	        <param-name>encoding</param-name>
+	        <param-value>UTF-8</param-value>
+	    </init-param>
+	</filter>
+	    
+	<filter-mapping>
+	    <filter-name>encoding</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+7. Mybatis 설정
 의존성 추가
 pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
 예시) </dependencies> 바로 위
@@ -103,7 +99,7 @@ pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
 		    <version>${org.springframework-version}</version>
 		</dependency>
 
-7. 네임스페이스 추가
+8. 네임스페이스 추가
 예시) /src/main/webapp/WEB_INF/spring/root-contexnt.xml 수정
 <!-- 수정전 -->
 <?xml version="1.0" encoding="UTF-8"?>
@@ -132,7 +128,7 @@ pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
 		
 </beans>
 
-8. mysql 정보를 root-context.xml에 추가
+9. mysql 정보를 root-context.xml에 추가
 예시) </beans> 바로 위
 <!-- 기본 형식 -->
 <bean id="dataSource"
@@ -149,32 +145,29 @@ pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
     <property name="url"
-              value="jdbc:mysql://localhost:3306/account?useSSL=false&amp;serverTimezone=UTC">
+              value="jdbc:mysql://localhost:3306/university?useSSL=false&amp;serverTimezone=UTC">
     </property>
     <property name="username" value="stajun"></property>
     <property name="password" value="stajun"></property>
 </bean>  
 
-9. DAO패키지와 인터페이스 생성
+10. DAO패키지와 인터페이스 생성
 예시) kr.green.practice.dao패키지 / MemberDAO 인터페이스
 package kr.green.practice.dao;
 public interface MemberDAO {
 
 }
 
-10. MemberMapper.xml 추가
+11. MemberMapper.xml 추가
 예시) /src/main/resources/mappers
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.practice.dao.MemberDAO">
-    <select id="getPw" resultType="String">
-		select pw from account where id = #{id}
-	</select>
 </mapper>
 
-11. root-context.xml에 Mapper 정보 설정
+12. root-context.xml에 Mapper 정보 설정
 예시) 
 <!-- 기본 예시 -->
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -182,9 +175,21 @@ public interface MemberDAO {
     <property name="mapperLocations" value="classpath:경로/*Mapper.xml"></property>
 </bean>
 <mybatis-spring:scan base-package="맵핑할패키지이름"/>
+
 <!-- 실제 적용 예시-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
 	<mybatis-spring:scan base-package="kr.green.spring.dao"/>
+
+13. STS Workspace 인코딩 설정
+메뉴 > window > Preference > General > Workspace > Text file encoding > Other > UTF-8 > Apply
+메뉴 > window > Preference > Web > JSP Files > Encoding > ISO 10646/Unicode(UTF-8) > Apply
+
+14. servlet-context.xml에서 package의 경로를 수정(해당 이름이 붙은 패키지만 연결)
+예시) 수정 전
+	<context:component-scan base-package="kr.green.practice.controller" />
+
+예시) 수정 후
+	<context:component-scan base-package="kr.green.practice" />

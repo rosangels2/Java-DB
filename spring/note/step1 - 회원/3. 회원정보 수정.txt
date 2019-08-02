@@ -1,4 +1,45 @@
-﻿1. 컨트롤러에서 해당 URL을 입력받았을 때 연결할 메서드를 구현 후 매핑하고 jsp파일을 생성
+﻿예제) 정보 수정 기능
+회원가입 페이지를 이용하여 회원 수정 페이지를 생성하고 회원 수정 기능을 추가
+
+순서
+jsp
+로그인 시 회원 정보 수정 메뉴가 있는 member.jsp 구현
+회원 정보 수정 선택 시 이동할 페이지인 회원 정보 수정 코드를 /member/modify.jsp파일에 구현
+
+컨트롤러
+@RequestMapping을 통해 해당 URL의 경로에서 보여줄 JSP파일을 return
+해당 JSP파일에서 입력한 값이 매개변수를 통해 객체에 잘 저장되는지 콘솔을 통해 확인
+입력된 값이 제대로 출력된다면 Service 클래스에 해당 매개변수들을 사용하는 인터페이스를 선언
+Mapper.xml에서 DAO의 구현이 끝나면 Service를 호출하여 기능을 실행한 뒤 결과에 따라 보여줄 JSP 페이지를 return
+
+서비스
+컨트롤러에서 지정한 매개변수들을 사용하는 인터페이스를 선언한 뒤 인터페이스를 구현할 implements 클래스를 생성
+implements 클래스에 @Service 키워드 입력을 통해 서비스 클래스 사용을 선언
+조건식을 이용해 null값이 입력됐을 때의 예외 처리와 원하는 정보를 얻기 위한 기능을 처리
+예시)
+	public boolean modify(MemberVO mVo, String oPw){
+		if(mVo == null) {
+			return false;
+		}
+		mVo.setName("");
+		MemberVO oVo = memberDao.getMember(mVo.getId());
+		if(oVo.getPw().equals(oPw)){
+			memberDao.modify(mVo);	//원하는 조건을 만족하면 DAO클래스의 인터페이스를 호출해 쿼리문을 실행
+			return true;
+		}
+		return false;
+	}
+원하는 조건에 만족하지 못하면 false를, 원하는 정보를 얻는 조건을 만족하면 true를 반환하며 DAO클래스의 인터페이스를 호출
+
+DAO
+service클래스에서 호출하여 실행될 매개변수를 가진 인터페이스를 선언
+Mapper.xml에서 해당 인터페이스의 매개변수 정보를 이용해 실행되는 쿼리문을 작성해 인터페이스를 구현
+쿼리문으로 인터페이스를 구현하면 컨트롤러에서 서비스를 호출하여 DAO를 차례대로 호출
+
+DB
+xml의 쿼리문을 통해 해당 정보에 대한 기능을 실행하는 역할
+
+1. 컨트롤러에서 해당 URL을 입력받았을 때 연결할 메서드를 구현 후 매핑하고 jsp파일을 생성
 예시)
 	@RequestMapping(value="/member/modify", method = RequestMethod.GET)
 	public String modifyGet(Model model) {

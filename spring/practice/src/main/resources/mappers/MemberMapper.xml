@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.practice.dao.MemberDAO">
-    <select id="getPw" resultType="String">
-		select pw from account where id = #{id}
-	</select>
+<insert id="signup">
+	insert into member(id, pw, gender, email, name)
+		values(#{id}, #{pw}, #{gender}, #{email}, #{name})
+</insert>
 </mapper>
