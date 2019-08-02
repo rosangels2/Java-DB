@@ -100,16 +100,16 @@
 		if(mVo == null){
 			return null;
 		}
-		return memberDao.signin(mVo);
+		return memberDao.getMember(mVo.getId());
 	}
 
 8. quick fixed를 통해 DAO 인터페이스를 생성
 예시)
-	MemberVO signin(MemberVO mVo);
+	MemberVO getMember(String id);
 
 9. DAO 인터페이스를 연결하는 쿼리문을 MemberMapper.xml에서 생성
 예시)
-<select id="signin" resultType="kr.green.practice.vo.MemberVO">		<!-- MemberVO 객체를 반환하기 위해 MemberVO 파일의 경로를 resultType에 입력 -->
+<select id="getMember" resultType="kr.green.practice.vo.MemberVO">		<!-- MemberVO 객체를 반환하기 위해 MemberVO 파일의 경로를 resultType에 입력 -->
 	select * from member where id = #{id}
 </select>
 
@@ -120,7 +120,7 @@
 		System.out.println("signin mVo : " + mVo);
 		MemberVO user = memberService.signin(mVo);
 		System.out.println("signin user : " + user);
-		return "redirect:/";
+		return "redirect:/signin";
 	}
 
 11. id에 맞는 회원 정보를 제대로 가져온다면 비밀번호가 일치했을 때만 회원 정보를 가져오도록 MemberServiceImp.java 클래스에서 조건문을 추가
@@ -130,14 +130,14 @@
 		if(mVo == null){
 			return null;
 		}
-		MemberVO oVo = memberDao.signin(mVo);
+		MemberVO oVo = memberDao.getMember(mVo.getId());
 		if(oVo.getPw().equals(mVo.getPw())){
 			return oVo;
 		}
 		return null;
 	}
 
-12. 로그인 성공 여부에 따라 보여줄 화면을 다르게 반환하도록 컨트롤러의 조건문을 추가
+12. 로그인 성공 여부에 따라 보여줄 화면을 다르게 반환하도록 컨트롤러에 조건문을 추가
 예시) HomeController
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signinPost(Model model, MemberVO mVo) {

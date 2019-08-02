@@ -55,4 +55,20 @@ public class HomeController {
 		}
 		return "redirect:/";
 	}
+	//회원 정보 수정
+	@RequestMapping(value = "/member/modify", method = RequestMethod.GET)
+	public String modifyGet(Model model) {
+		
+		return "member/modify";
+	}
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String modifyPost(Model model, MemberVO mVo, String oPw) {
+		System.out.println("modify mVo : " + mVo);
+		System.out.println("modify oPw : " + oPw);
+		if(memberService.modify(mVo, oPw)){
+			return "redirect:/";
+		}
+		return "redirect:/member/modify";
+	}
+	
 }

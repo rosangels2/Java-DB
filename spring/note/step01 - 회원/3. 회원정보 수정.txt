@@ -1,135 +1,169 @@
-﻿예제) 정보 수정 기능
-회원가입 페이지를 이용하여 회원 수정 페이지를 생성하고 회원 수정 기능을 추가
+﻿1. 회원정보 수정 페이지로 이동하는 a태그를 생성
+예시) home.jsp
+	<a href="<%=request.getContextPath()%>/member/modify">회원 정보 수정</a>
 
-순서
-jsp
-로그인 시 회원 정보 수정 메뉴가 있는 member.jsp 구현
-회원 정보 수정 선택 시 이동할 페이지인 회원 정보 수정 코드를 /member/modify.jsp파일에 구현
-
-컨트롤러
-@RequestMapping을 통해 해당 URL의 경로에서 보여줄 JSP파일을 return
-해당 JSP파일에서 입력한 값이 매개변수를 통해 객체에 잘 저장되는지 콘솔을 통해 확인
-입력된 값이 제대로 출력된다면 Service 클래스에 해당 매개변수들을 사용하는 인터페이스를 선언
-Mapper.xml에서 DAO의 구현이 끝나면 Service를 호출하여 기능을 실행한 뒤 결과에 따라 보여줄 JSP 페이지를 return
-
-서비스
-컨트롤러에서 지정한 매개변수들을 사용하는 인터페이스를 선언한 뒤 인터페이스를 구현할 implements 클래스를 생성
-implements 클래스에 @Service 키워드 입력을 통해 서비스 클래스 사용을 선언
-조건식을 이용해 null값이 입력됐을 때의 예외 처리와 원하는 정보를 얻기 위한 기능을 처리
+2. 해당 URI를 매핑하는 메서드를 컨트롤러에서 생성
 예시)
-	public boolean modify(MemberVO mVo, String oPw){
-		if(mVo == null) {
-			return false;
-		}
-		mVo.setName("");
-		MemberVO oVo = memberDao.getMember(mVo.getId());
-		if(oVo.getPw().equals(oPw)){
-			memberDao.modify(mVo);	//원하는 조건을 만족하면 DAO클래스의 인터페이스를 호출해 쿼리문을 실행
-			return true;
-		}
-		return false;
-	}
-원하는 조건에 만족하지 못하면 false를, 원하는 정보를 얻는 조건을 만족하면 true를 반환하며 DAO클래스의 인터페이스를 호출
-
-DAO
-service클래스에서 호출하여 실행될 매개변수를 가진 인터페이스를 선언
-Mapper.xml에서 해당 인터페이스의 매개변수 정보를 이용해 실행되는 쿼리문을 작성해 인터페이스를 구현
-쿼리문으로 인터페이스를 구현하면 컨트롤러에서 서비스를 호출하여 DAO를 차례대로 호출
-
-DB
-xml의 쿼리문을 통해 해당 정보에 대한 기능을 실행하는 역할
-
-1. 컨트롤러에서 해당 URL을 입력받았을 때 연결할 메서드를 구현 후 매핑하고 jsp파일을 생성
-예시)
-	@RequestMapping(value="/member/modify", method = RequestMethod.GET)
+	//회원 정보 수정
+	@RequestMapping(value = "/member/modify", method = RequestMethod.GET)
 	public String modifyGet(Model model) {
-		logger.info("회원정보 수정");
 		
 		return "member/modify";
 	}
-	@RequestMapping(value="/member/modify", method = RequestMethod.POST)
-	public String modifyPost(Model model, MemberVO mVo, String oPw, String pw1){
-		logger.info("회원정보 수정");
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String modifyPost(Model model) {
 		
-		if(memberService.modify(mVo, oPw, pw1)){
+		return "redirect:/member/modify";
+	}
+
+3. 해당 경로에 jsp파일을 생성 후 css 추가
+예시) views/member/modify.jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>회원가입</title>
+<style>
+input.form-control:focus{
+	color: green;
+	background-color: aqua;
+	font-size: 30px;
+}
+input.form-control:hover{
+	background-color: wheat;
+}
+.container{
+	border: 1px solid black;
+	width: 50%;
+}
+i.fab{
+	font-size: 100px;
+	color: red;
+}
+</style>
+</head>
+<body>
+	<div class="row m-5">
+		<div class="container offset-4 col-4">
+			<div class="offset-3"> <h1>회원 정보 수정</h1></div>
+			<form method="post" action="">
+				<div class="form-group">
+					<label for="usr">아이디</label>
+					<input type="text" class="form-control col-7" id="id" placeholder="아이디" name="id">
+				</div>
+				<div class="form-group">
+					<label for="pwd">현재 비밀번호</label>
+					<input type="password" class="form-control col-7" id="oPw" placeholder="비밀번호" name="oPw">
+				</div>
+				<div class="form-group">
+					<label for="pwd">새 비밀번호</label>
+					<input type="password" class="form-control col-7" id="pw" placeholder="비밀번호" name="pw">
+				</div>
+				<div class="form-group">
+					<label for="pwdRe">새 비밀번호 확인</label>
+					<input type="password" class="form-control col-7" id="pw1" placeholder="비밀번호 확인" name="pw1">
+				</div>
+				<div class="form-group">
+					<label for="sel1">성별</label>
+					<select class="form-control col-4" id="sel1" name="gender">
+						<option value="남">남자</option>
+						<option value="여">여자</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="email">이메일</label>
+					<input type="text" class="form-control" id="email" placeholder="이메일" name="email">
+				</div>
+				<div class="form-group">
+					<label for="email">이름</label>
+					<input type="text" class="form-control" id="name" placeholder="이름" name="name">
+				</div>
+				<button type="button" class="btn btn-dark float-right" id="cancel" name="cancel">취소</button>
+				<button type="submit" class="btn btn-primary float-right" id="ok" name="ok">입력완료</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+
+4. jsp에서 입력된 정보가 제대로 전송되는지 컨트롤러에서 출력하여 확인
+예시)
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String modifyPost(Model model, MemberVO mVo, String oPw) {
+		System.out.println("modify mVo : " + mVo);
+		System.out.println("modify oPw : " + oPw);
+		return "redirect:/member/modify";
+	}
+
+5. jsp에서 전송받은 정보를 매개변수로 사용하는 서비스 인터페이스를 호출
+예시)
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String modifyPost(Model model, MemberVO mVo, String oPw) {
+		System.out.println("modify mVo : " + mVo);
+		System.out.println("modify oPw : " + oPw);
+		if(memberService.modify(mVo, oPw)){
 			return "redirect:/";
 		}
 		return "redirect:/member/modify";
 	}
 
-2. quick fixed를 통해 서비스에 인터페이스를 생성
+6. quick fixed를 통해 서비스 인터페이스를 호출
 예시)
-	boolean modify(MemberVO mVo, String oPw, String pw1);
+	boolean modify(MemberVO mVo, String oPw);
 
-3. 서비스 구현 클래스에서 quick fixed를 통해 해당 서비스 인터페이스를 구현 후 DAO의 인터페이스 호출
+7. quick fixed를 통해 인터페이스를 구현하고 DAO 인터페이스를 호출
 예시)
 	@Override
-	public boolean modify(MemberVO mVo, String oPw, String pw1) {
-		memberDao.modify(mVo);	//해당 메서드명에서 quick fixed를 통해 다오에 인터페이스를 생성
-		return false;
+	public boolean modify(MemberVO mVo, String oPw) {
+		memberDao.modify(mVo);
+		return true;
 	}
 
-4. quick fixed를 통해 DAO에 인터페이스를 생성
+8. quick fixed를 통해 DAO 인터페이스를 생성
 예시)
-	void modify(MemberVO mVo); 
+	void modify(MemberVO mVo);
 
-5. Mapper에서 해당 인터페이스에 맞는 쿼리문을 작성 후 연결
+9. 해당 인터페이스를 연결하는 쿼리문을 MemberMapper.xml에 생성
 예시)
-  <update id="modify">
-  	update member
-  	set pw = #{pw}, gender = #{gender}, email = #{email}, name = #{name}
-  	where id = #{id}
-  </update>
+<update id="modify">
+	update member
+	set pw = #{pw}, gender = #{gender}, email = #{email}, name = #{name}
+	where id = #{id}
+</update>
 
-6. 서비스 구현 클래스에서 해당 DAO 인터페이스를 호출할 조건식을 구현(미입력 시 기존 정보 그대로 유지)
+10. DB에서 제대로 정보가 수정됐는지 확인
+
+11. 제대로 수정이 일어난다면 MemberServiceImp.java에서 예외처리와 조건식을 추가
 예시)
 	@Override
-	public boolean modify(MemberVO mVo, String oPw, String pw1) {
-		if(mVo == null){
+	public boolean modify(MemberVO mVo, String oPw) {
+		if(mVo == null || oPw == null){
 			return false;
 		}
 		MemberVO oVo = memberDao.getMember(mVo.getId());
-		if(oVo == null){
+		if(!oVo.getPw().equals(oPw)){
 			return false;
 		}
-		if(oVo.getPw().equals(oPw)){	//DB에서 가져온 객체의 비밀번호와 현재 입력한 비밀번호가 같다면
-			if(mVo.getPw() == null || mVo.getPw() == "" || pw1 == null || pw1 == ""){	//비밀번호를 변경하지 않는 경우
-				mVo.setPw(oPw);
-			}else if(mVo.getPw().length() < 8 || mVo.getPw().length() > 13){	//새 비밀번호의 길이가 맞지 않다면
-				return false;
-			}else if(!mVo.getPw().equals(pw1)){	//새 비밀번호와 새 비밀번호 확인이 같지 않다면
-				return false;
-			}
-			if(mVo.getEmail() == null || mVo.getEmail() == "") {	//email을 변경하지 않는 경우
-				mVo.setEmail(oVo.getEmail());
-			}
-			memberDao.modify(mVo);	//DAO에서 modify 인터페이스를 실행하고  
-			return true;	//true를 반환
-		}
-		return false;
+		memberDao.modify(mVo);
+		return true;
 	}
 
-7. modify.jsp에서 정규표현식을 통해 유효성 검사
+12. 회원 정보 수정 성공 여부에 따라 화면을 다르게 반환하도록 컨트롤러의 코드를 수정
 예시)
-		$('#ok').click(function(){	//입력완료 버튼이 클릭됐을 때
-			if($('#pw').val() == null || $('#pw').val() == "" || $('#pw1').val() == null || $('#pw1').val() == ""){
-				alert('비밀번호를 변경하지 않습니다.');
-				return true;
-			}
-			var regex = /^\w*(\d[A-z]|[A-z]\d)\w*$/;
-			if(!regex.test($('#pw').val())){
-				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
-				return false;
-			}else if(!regex.test($('#pw1').val())){
-				alert("비밀번호는 영문 또는 숫자를 1개 이상 입력해야 합니다.");
-				return false;
-			}
-			if(!checkLength('#pw',8,13)){
-				alert('비밀번호는 8~13자리를 입력해야 합니다.');
-				return false;
-			}else if(!equals('#pw','#pw1')){
-				alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다');
-				return false;
-			}
-			return true;
-		});
+	@RequestMapping(value = "/member/modify", method = RequestMethod.POST)
+	public String modifyPost(Model model, MemberVO mVo, String oPw) {
+		System.out.println("modify mVo : " + mVo);
+		System.out.println("modify oPw : " + oPw);
+		if(memberService.modify(mVo, oPw)){
+			return "redirect:/";
+		}
+		return "redirect:/member/modify";
+	}

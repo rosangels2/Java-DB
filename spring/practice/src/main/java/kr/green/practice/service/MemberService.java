@@ -8,4 +8,6 @@ public interface MemberService {
 
 	MemberVO signin(MemberVO mVo);
 
+	boolean modify(MemberVO mVo, String oPw);
+
 }
