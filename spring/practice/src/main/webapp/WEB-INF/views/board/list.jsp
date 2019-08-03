@@ -24,7 +24,7 @@
 		<c:forEach var="board" items="${list}">	<!-- 향상된 포문처럼 items에 있는 변수 list의 값을 0번지부터 하나씩 꺼내서 board에 추가한다 -->
 			<tr>
 				<th>${board.num}</th>	<!-- list의 값이 추가된 변수 board의 getter 호출 -->
-				<th>${board.title}</a></th>
+				<th> <a href="<%=request.getContextPath()%>/board/display?num=${board.num}">${board.title}</a> </th>
 				<th>${board.writer}</th>
 				<th>${board.registered}</th>
 				<th>${board.views}</th>			

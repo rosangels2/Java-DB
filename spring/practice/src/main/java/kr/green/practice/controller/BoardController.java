@@ -29,5 +29,12 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "board/list";
 	}
-	
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public String display(Model model, BoardVO bVo){
+		System.out.println("board/display bVo : " + bVo);
+		BoardVO board = boardService.getBoard(bVo.getNum());
+		System.out.println("board/display board : " + board);
+		model.addAttribute("board", board);
+		return "board/display";
+	}
 }
