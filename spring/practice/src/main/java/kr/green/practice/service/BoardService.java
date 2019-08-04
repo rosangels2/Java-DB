@@ -14,4 +14,6 @@ public interface BoardService {
 
 	boolean modify(BoardVO bVo);
 
+	boolean delete(Integer num);
+
 }

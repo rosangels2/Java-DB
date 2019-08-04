@@ -51,6 +51,7 @@
   <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
   <c:if test="${user.id eq board.writer}">
   	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"> <button type="button" class="btn btn-outline-dark">게시글 수정</button> </a>
+  	<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"> <button type="button" class="btn btn-outline-dark">게시글 삭제</button> </a>
   </c:if>
 </body>
 </html>

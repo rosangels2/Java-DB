@@ -67,4 +67,13 @@ public class BoardController {
 		model.addAttribute("num", bVo.getNum());	//model의 변수 num에 bVo의 게시글 번호를 담아서 URI로 전송
 		return "redirect:/board/modify";
 	}
+	@RequestMapping(value = "delete")
+	public String delete(Model model, Integer num){
+		System.out.println("board/delete num : " + num);
+		if(boardService.delete(num)){
+			return "redirect:/board/list";
+		}
+		model.addAttribute("num", num);	//model의 변수 num에 bVo의 게시글 번호를 담아서 URI로 전송
+		return "redirect:/board/display";
+	}
 }

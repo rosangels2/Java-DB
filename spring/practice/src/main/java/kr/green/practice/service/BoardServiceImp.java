@@ -47,4 +47,13 @@ public class BoardServiceImp implements BoardService{
 		return true;
 	}
 
+	@Override
+	public boolean delete(Integer num) {
+		if(num == null){
+			return false;
+		}
+		boardDao.delete(num);
+		return true;
+	}
+
 }

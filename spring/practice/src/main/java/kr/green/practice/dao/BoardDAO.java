@@ -16,4 +16,6 @@ public interface BoardDAO {
 
 	void modify(BoardVO bVo);
 
+	void delete(Integer num);
+
 }
