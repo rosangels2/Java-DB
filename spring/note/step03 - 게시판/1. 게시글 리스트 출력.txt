@@ -176,7 +176,7 @@ public class BoardVO {
 예시)
 <mapper namespace="kr.green.practice.dao.BoardDAO">
 <select id="getBoardList" resultType="kr.green.practice.vo.BoardVO">
-	select * from board
+	select * from board order by num desc
 </select>
 </mapper>
 

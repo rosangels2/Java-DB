@@ -10,10 +10,7 @@
 		return "board/register";
 	}
 
-
-
-
-
+3. board/register.jsp 파일을 생성하고 css를 구성하고 로그인 인터셉터로 세션에 저장된 user정보를 작성자 input창에서 호출( ${user.id} )
 예시) jsp파일 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -66,7 +63,16 @@ a{
 </body>
 </html>
 
-3. register.jsp에서 form태그를 통해 post형식으로 넘겨받은 정보를 처리할 POST매서드를 컨트롤러에 생성하고 정보가 제대로 출력되는지 확인
+4. register.jsp에서 form태그를 통해 post형식으로 넘겨받은 정보를 처리할 POST매서드를 컨트롤러에 생성하고 정보가 제대로 출력되는지 확인
+예시)
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public String BoardRegisterPost(Model model, BoardVO bVo){
+		System.out.println(bVo);	//입력받은 정보가 제대로 출력되는지 확인
+		
+		return "redirect:/board/register";
+	}
+
+5. 게시글 정보가 제대로 넘어온다면 해당 게시글 정보를 매개변수로 사용하는 서비스 인터페이스를 호출
 예시)
 	@RequestMapping(value="register", method = RequestMethod.POST)
 	public String BoardRegisterPost(Model model, BoardVO bVo){
@@ -76,31 +82,40 @@ a{
 		}
 		return "redirect:/board/register";
 
-4. 컨트롤러에서 quick fixed를 통해 서비스 인터페이스를 생성
+6. 컨트롤러에서 quick fixed를 통해 서비스 인터페이스를 생성
 예시)
 	boolean register(BoardVO bVo);
 
-5. 서비스 implements 클래스에서 해당 인터페이스를 quick fixed를 통해 생성한 후 예외처리
+7. 서비스 implements 클래스에서 해당 인터페이스를 quick fixed를 통해 생성한 후 다오 인터페이스를 호출
+예시)
+	@Override
+	public boolean register(BoardVO bVo) {
+		boardDao.register(bVo);
+		return false;
+	}
+
+8. quick fixed를 통해 DAO 인터페이스를 생성
+예시)
+	void register(BoardVO bVo);
+
+9. DAO 인터페이스를 연결해 게시판 테이블에 데이터를 등록하는 insert 쿼리문을 BoardMapper.xml에서 생성
+예시)
+	<insert id="register">
+		insert into board(title, contents, writer, file)
+		values(#{title}, #{contents}, #{writer}, #{file})	
+	</insert>
+
+10. 게시글이 제대로 등록되는지 게시글 등록을 진행하고 DB에서 board 테이블의 데이터를 확인
+예시)
+	SELECT * FROM university.board order by num desc;
+
+11. BoardServiceImp.java 클래스에서 예외처리를 추가
 예시)
 	@Override
 	public boolean register(BoardVO bVo) {
 		if(bVo == null){
 			return false;
 		}
-		if(bVo.getFile() == null || bVo.getFile() == ""){
-			bVo.setFile("");
-		}
 		boardDao.register(bVo);
-		return true;		
+		return true;
 	}
-
-6. quick fixed를 통해 DAO 인터페이스를 생성
-예시)
-	void register(BoardVO bVo);
-
-7. 해당 DAO 인터페이스와 mapper를 연결
-예시)
-	<insert id="register">
-		insert into board(title, contents, writer, file)
-			values(#{title}, #{contents}, #{writer}, #{file});
-	</insert>

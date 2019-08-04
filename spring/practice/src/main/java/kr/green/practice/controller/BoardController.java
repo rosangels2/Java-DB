@@ -42,4 +42,13 @@ public class BoardController {
 		
 		return "board/register";
 	}
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public String BoardRegisterPost(Model model, BoardVO bVo){
+		System.out.println(bVo);	//입력받은 정보가 제대로 출력되는지 확인
+		if(boardService.register(bVo)){	//처리 결과에 따라 보여줄 jsp를 구분
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/register";
+	}
+	
 }

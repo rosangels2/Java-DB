@@ -12,4 +12,6 @@ public interface BoardDAO {
 
 	void updateViews(Integer num);
 
+	void register(BoardVO bVo);
+
 }

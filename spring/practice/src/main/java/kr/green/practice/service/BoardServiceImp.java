@@ -16,7 +16,6 @@ public class BoardServiceImp implements BoardService{
 	
 	@Override
 	public ArrayList<BoardVO> getBoardList() {
-
 		return boardDao.getBoardList();
 	}
 
@@ -28,6 +27,15 @@ public class BoardServiceImp implements BoardService{
 		}
 		boardDao.updateViews(num);
 		return boardDao.getBoard(num);
+	}
+
+	@Override
+	public boolean register(BoardVO bVo) {
+		if(bVo == null){
+			return false;
+		}
+		boardDao.register(bVo);
+		return true;
 	}
 
 }
