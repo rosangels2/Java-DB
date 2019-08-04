@@ -1,13 +1,19 @@
 package kr.green.practice.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.green.practice.dao.MemberDAO;
 import kr.green.practice.service.MemberService;
 import kr.green.practice.vo.MemberVO;
 
@@ -16,6 +22,8 @@ public class HomeController {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	MemberDAO memberDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -70,6 +78,21 @@ public class HomeController {
 			return "redirect:/";
 		}
 		return "redirect:/member/modify";
+	}
+	@RequestMapping(value ="/dup")	//id 중복검사를 위한 메서드 매핑
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String id){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    boolean isMember =  true;	//변수 초기화
+	    MemberVO mVo = memberDao.getMember(id);
+	    System.out.println("ajax mVo : " + mVo);
+	    if(mVo == null){
+	    	isMember = false;	//일치하는 회원이 없다
+	    }else{
+	    	isMember = true;	//일치하는 회원이 있다
+	    }
+	    map.put("isMember", isMember);	//돌려줄 정보를 map의 변수로 입력하고 map을 반환
+	    return map;
 	}
 	
 }
