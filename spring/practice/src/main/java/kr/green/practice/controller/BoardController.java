@@ -50,5 +50,21 @@ public class BoardController {
 		}
 		return "redirect:/board/register";
 	}
-	
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String modifyGet(Model model, Integer num){
+		System.out.println("board/modify num : " + num);
+		BoardVO bVo = boardService.getBoard(num);
+		System.out.println("board/modify bVo : " + bVo);
+		model.addAttribute("board", bVo);
+		return "board/modify";
+	}
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modifyPost(Model model, BoardVO bVo){
+		System.out.println("board/modify bVo : " + bVo);
+		if(boardService.modify(bVo)){
+			return "redirect:/board/list";
+		}
+		model.addAttribute("num", bVo.getNum());	//model의 변수 num에 bVo의 게시글 번호를 담아서 URI로 전송
+		return "redirect:/board/modify";
+	}
 }

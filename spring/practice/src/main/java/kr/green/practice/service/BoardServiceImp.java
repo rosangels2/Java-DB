@@ -38,4 +38,13 @@ public class BoardServiceImp implements BoardService{
 		return true;
 	}
 
+	@Override
+	public boolean modify(BoardVO bVo) {
+		if(bVo == null) {
+			return false;
+		}
+		boardDao.modify(bVo);
+		return true;
+	}
+
 }

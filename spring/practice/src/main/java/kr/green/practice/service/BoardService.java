@@ -12,4 +12,6 @@ public interface BoardService {
 
 	boolean register(BoardVO bVo);
 
+	boolean modify(BoardVO bVo);
+
 }
