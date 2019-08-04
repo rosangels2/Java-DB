@@ -48,5 +48,6 @@
   </table>
   <div class="contents" style="padding-left: 12px; height: 300px; overflow: auto;">${board.contents}</div>
   <a href="<%=request.getContextPath()%>/board/list"> <button type="button" class="btn btn-outline-dark">게시글 목록</button> </a>
+  <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 </body>
 </html>

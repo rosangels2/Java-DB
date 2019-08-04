@@ -31,5 +31,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+  <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 </body>
 </html>

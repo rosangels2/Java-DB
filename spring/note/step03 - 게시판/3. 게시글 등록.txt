@@ -1,14 +1,18 @@
-﻿display.jsp에서 수정, 등록, 삭제 버튼 추가 및 링크 등록
+﻿1. board/display.jsp와 board/list.jsp에서 게시글 등록 버튼 추가
+예시)
+  <a href="<%=request.getContextPath()%>/board/register"> <button type="button" class="btn btn-outline-dark">게시글 등록</button> </a>
 
-등록 URI : /board/register
-
-1. /board/register.jsp 파일 생성 및 컨트롤러 매핑
-예시) 컨트롤러
+2. 컨트롤러에서 해당 URI 매핑
+예시) 
 	@RequestMapping(value="register", method = RequestMethod.GET)
 	public String BoardRegisterGet(Model model){		//세션에 저장된 user 정보를 이용하기 때문에 매개변수를 사용하지 않아도 된다
-		logger.info("게시글 등록 진행");
+
 		return "board/register";
 	}
+
+
+
+
 
 예시) jsp파일 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

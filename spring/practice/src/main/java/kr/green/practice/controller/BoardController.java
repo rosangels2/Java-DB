@@ -37,4 +37,9 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "board/display";
 	}
+	@RequestMapping(value = "register", method = RequestMethod.GET)
+	public String register(Model model){
+		
+		return "board/register";
+	}
 }

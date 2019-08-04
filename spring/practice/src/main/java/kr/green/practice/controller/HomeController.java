@@ -32,7 +32,7 @@ public class HomeController {
 		return "signup";
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signupPost(Model model, MemberVO mVo) {
+	public String signupPost(Model model, MemberVO mVo){
 		System.out.println("signup mVo : " + mVo);
 		if(memberService.signup(mVo)) {
 			return "redirect:/";
@@ -53,6 +53,7 @@ public class HomeController {
 		if(user == null){
 			return "redirect:/signin";
 		}
+		model.addAttribute("user", user);
 		return "redirect:/";
 	}
 	//회원 정보 수정

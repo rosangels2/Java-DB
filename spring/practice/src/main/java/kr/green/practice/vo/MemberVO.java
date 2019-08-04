@@ -7,8 +7,15 @@ public class MemberVO {
 	private String gender;
 	private String email;
 	private String name;
+	private String authority;
 	
 	
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 	public String getId() {
 		return id;
 	}
@@ -43,8 +50,8 @@ public class MemberVO {
 	
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", pw=" + pw + ", gender=" + gender + ", email=" + email + ", name=" + name + "]";
+		return "MemberVO [id=" + id + ", pw=" + pw + ", gender=" + gender + ", email=" + email + ", name=" + name
+				+ ", authority=" + authority + "]";
 	}
-	
 	
 }
