@@ -39,8 +39,7 @@ public class Criteria {
 
 		@Override
 		public String toString() {
-			return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", type=" + type + ", search=" + search
-					+ "]";
+			return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 		}
 
 		public int getPageStart() {
@@ -180,6 +179,8 @@ public class PageMaker {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="
 				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", criteria=" + criteria + "]";
 	}
+
+}
 
 8. 컨트롤러에서 페이지메이커의 객체 pm을 기본 생성자를 통해 생성
 예시)
@@ -359,24 +360,19 @@ public class Criteria {
 	public int getType() {
 		return type;
 	}
-
 	public void setType(int type) {
 		this.type = type;
 	}
-
 	public String getSearch() {
 		return search;
 	}
-
 	public void setSearch(String search) {
 		this.search = search;
 	}
-
 	public Criteria() {	//기본 생성자
 		this.page = 1;
 		this.perPageNum = 10;
 	}
-
 	public int getPage() {
 		return page;
 	}
@@ -398,10 +394,12 @@ public class Criteria {
 			this.perPageNum = perPageNum;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", type=" + type + ", search=" + search + "]";
 	}
+
 
 	public int getPageStart() {
 		return (this.page -1) * perPageNum;	//getBoardList에서 limit을 통해 보여줄 개시글 수를 제한할 때 사용될 getter

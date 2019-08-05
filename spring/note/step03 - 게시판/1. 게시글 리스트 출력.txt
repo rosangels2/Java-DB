@@ -102,10 +102,10 @@ public class BoardVO {
 		this.writer = writer;
 	}
 	public String getRegistered() {
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//원하는 형식으로 시간을 보여주게 만드는 클래스
-		return f.format(registered);	//변수 registered를 위의 형식으로 변환하여 반환
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");	//jsp에서 호출할 때 원하는 형식으로 보기 위해 코드를 수정
+		return f.format(registered);						//변수 registered를 위의 형식으로 변환하여 반환
 	}
-	public void setRegistered(String registered) {
+	public void setRegistered(String registered) {		//jsp에서 form태그를 통해 컨트롤러로 넘어갈 떄 setter를 호출하여 전송
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 		try {
 			this.registered = transFormat.parse(registered);
