@@ -70,12 +70,12 @@ https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%
     <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <beans:property name="definitions">
             <beans:list>
-                <beans:value>/WEB-INF/spring/tiles-def.xml</beans:value>
+                <beans:value>/WEB-INF/spring/tiles-def.xml</beans:value>	<!-- 해당 경로에 있는 tiles-def.xml 파일을 연결-->
             </beans:list>
         </beans:property>
 </beans:bean>
 
-3. WEB-INF > spring 폴더에 tiles-def.xml 파일 생성 후 다음 코드 붙여넣기
+3. WEB-INF/spring/tiles-def.xml 파일 생성 후 다음 코드 붙여넣기
 예시)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
@@ -101,12 +101,12 @@ https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%
     
     <!-- (1) -->    
     <definition name="/login/*" extends=".login">	<!-- 로그인폴더의 하위 경로인 *을 {1}자리에 넣어서 파일을 찾는다 -->
-      <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" />	<!-- 경로 /login/*의 *부분을 {1}에 적용 -->
     </definition>
  
     <!-- (2) -->
    <definition name="/test/*" extends=".root">      <!-- extends : 기본은 위의 name을 호출하고 다음 경로를 해당 코드에서 설정한다 -->
-      <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/test/{1}.jsp" />	<!-- 경로 /test/*의 *부분을 {1}에 적용 -->
     </definition>
 </tiles-definitions>
 

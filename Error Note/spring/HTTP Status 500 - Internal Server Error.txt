@@ -1,10 +1,8 @@
 ﻿에러 내용 - Invalid bound statement (not fount); 패키지명.메서드명
-
 원인
 1. **Mapper.xml 파일에서 namespace에 오타, 대소문자 불일치
 2. **Mapper.xml 파일에서 id 부분에 해당 메서드가 없는 경우
 3. **Mapper.xml 파일이 없는 경우
-
 해결 방법
 1, 2번 -  메서드명 또는 파일 경로에 오타 확인
 3번 - **Mapper.xml 생성 후 해당 메서드 추가
@@ -16,10 +14,8 @@
 Type Exception Report
 Message Servlet.init() for servlet [appServlet] threw exception
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
-
 에러 원인 - RequestMapping의 value와 method가 동일한 컨트롤러 메서드가 있는 경우(실행할 메서드를 선택 불가)
 	   -> 복사 붙여넣기 후 수정하지 않을 때 자주 발생
-
 예시) 같은 value값에서 GET방식은 1개만 존재해야 한다
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)	//get 방식으로 호출했을 떄 값과 일치하는 메서드를 호출
 	public String signupGet(Model model){
@@ -38,9 +34,7 @@ Description The server encountered an unexpected condition that prevented it fro
 
 에러 내용
 ### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'gender' at row 1
-
 에러 원인 - gender 자료형의 길이를 varchar 1로 해놨는데 value를 주지 않아 on/off로 입력돼 자료형 길이를 초과
-
 해결 방법 - 자료형 길이에 맞게 한 글자의 value값을 입력
 
 
@@ -50,11 +44,9 @@ Description The server encountered an unexpected condition that prevented it fro
 Type Exception Report
 Message Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.green.test.dao.MemberDAO.getEmail
 Description The server encountered an unexpected condition that prevented it from fulfilling the request.
-
 에러 원인 - Mapper 파일에서 namespace에 오타 발생으로 인해 DAO 파일 등을 연결 할 수 없을 떄
 예시)
 <mapper namespace="kr.green.test.dao.MemberDao">	//에러 원인
-
 해결 방법 - 오타 확인 등으로 정확한 파일명 연결
 예시)
 <mapper namespace="kr.green.test.dao.MemberDAO">
@@ -112,9 +104,7 @@ select * from board where num = #{num}
 
 
 애러 내용 - Public key Retrieaval is not allowed ... BoardMapper.xml
-
 에러 원인 - DB의 계정 정보가 잘못 입력됐을 때 뜨는 에러지만 정보가 제대로 입력돼있는 상태에서 특별한 일 없이 갑작스럽게 읽지 못하는 경우도 발생
-
 해결 방법 - root-context.xml에서 DB의 계정 정보의 오타를 수정하거나 오타가 없을 시 계정 정보를 바꾸고 서버를 재실행한 뒤 원래대로 복원하고 서버를 재실행
 	   또는 MySQL 실행 후 스프링 서버 재시작
 
@@ -129,11 +119,9 @@ Description The server encountered an unexpected condition that prevented it fro
 Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
 Field error in object 'boardVO' on field 'views': rejected value []; codes [typeMismatch.boardVO.views,typeMismatch.views,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [boardVO.views,views]; arguments []; default message [views]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'views'; nested exception is java.lang.NumberFormatException: For input string: ""]
-
 에러 원인 - input창은 입력값이 없으면 null이 아니라 빈 문자열은 전송하기 때문에 자료형이 String이 아닌 변수들이 빈 문자열 값을 전송받아 자료형 에러 발생
 예시)
 	<input type="text" class="form-control" name="views" readonly>
-
 해결 방법 - input창에서 name을 지워 해당 input창의 빈 문자열 값이 들어가는 걸 방지
 예시)
 	<input type="text" class="form-control" name="" readonly>
@@ -150,7 +138,6 @@ Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
 ### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by num desc
   	limit 0, 5' at line 5
-
 에러 원인 - 쿼리문에 불필요하게 and를 사용
 예시)
 <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
@@ -161,7 +148,6 @@ org.springframework.web.util.NestedServletException: Request processing failed; 
   	order by num desc
   	limit #{pageStart}, #{perPageNum}	<!-- Criteria 클래스의 getter를 통해 limit -->
 </select>
-
 해결 방법 - and를 제거
 예시)
 <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
@@ -184,11 +170,9 @@ Description The server encountered an unexpected condition that prevented it fro
 Exception
 org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
 Field error in object 'criteria' on field 'type': rejected value [1$search=가입]; codes [typeMismatch.criteria.type,typeMismatch.type,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [criteria.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'type'; nested exception is java.lang.NumberFormatException: For input string: "1$search=가입"]
-
 에러 원인 - a태그의 href에서 ?로 정보를 전송할 때 & 대신 $를 입력(search 앞에 $)
 예시)
 <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}$search=${pageMaker.criteria.search}">${index}</a>
-
 해결 방법 - $를 &로 수정하여 정보를 전송(search 앞에 $를 &로 수정)
 예시)
 <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pageMaker.criteria.type}&search=${pageMaker.criteria.search}">${index}</a>
@@ -250,3 +234,24 @@ org.springframework.web.util.NestedServletException: Request processing failed; 
 해결 방법 - 스키마명 수정
 예시)
 	              value="jdbc:mysql://localhost:3306/university?useSSL=false&amp;serverTimezone=UTC">
+
+
+
+
+
+에러 내용
+Type Exception Report
+Message Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 24
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 24
+에러 원인 - Mapper.xml에서 리턴 타입은 객체 1개인데 실제 반환되는 게 여러 개의 객체여서 반환 개수가 맞지 않아 에러 발생(List프레임워크가 아니기 떄문)
+예시)
+<select id="getMember" resultType="kr.green.test.vo.MemberVO">
+	select * from member
+</select>
+해결 방법 - 쿼리문을 수정해 반환 객체의 개수를 맞춘다
+예시)
+<select id="getMember" resultType="kr.green.test.vo.MemberVO">
+	select * from member where id = #{id}
+</select>
