@@ -35,7 +35,13 @@
         <td>${board.writer}</td>
         <td>${board.views}</td>
         <td>${board.registered}</td>
-        <td>${board.file}</td>
+        <td><!-- getter를 호출 시 첫 글자가 대문자로 변환돼 호출되기 때문에 첫 글자를 카멜 표기법으로 입력 -->
+			<c:if test="${board.fileName ne ''}">	<!-- 첨부파일이 있으면 파일명을 누를 시 다운로드 링크로 연결 -->
+				<a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.fileName}</a>
+			</c:if>
+			<c:if test="${board.fileName eq ''}">없음</c:if>	<!-- 첨부파일이 없을 경우 텍스트만 표시 -->
+		</td>
+	</div>
       </tr>
     </tbody>
   </table>

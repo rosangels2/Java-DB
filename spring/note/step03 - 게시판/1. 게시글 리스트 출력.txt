@@ -19,9 +19,8 @@ public class BoardController {
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public String list(Model model){
 		
-		return "board/modify";
+		return "board/list";
 	}
-	
 }
 
 3. 해당 컨트롤러에서 반환할 jsp파일을 경로에 맞게 생성 후 css 구성

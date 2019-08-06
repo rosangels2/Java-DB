@@ -21,7 +21,7 @@
     <beans:property name="maxUploadSize" value="10485760"></beans:property>
 </beans:bean>
 
-3. board/register.jsp 에서 form태그에 enctype 추가 및 file 인풋창의 타입을 file로 변경하고 네임을 변경
+3. board/register.jsp 에서 form태그에 enctype을 추가하고 file 인풋창의 타입을 file로 변경하고 네임을 변경
 <!-- form 태그 수정 -->
 <form method="post" enctype="multipart/form-data">
     <!-- ... 이전 코드 생략 -->
@@ -39,11 +39,10 @@
     <!--
 	<beans:constructor-arg value="서버에 저장할 경로"></beans:constructor-arg>
 	-->
-    <beans:constructor-arg value="C:\최진영\git\uploadfiles"></beans:constructor-arg>
+    <beans:constructor-arg value="C:\\최진영\\git\\uploadfiles"></beans:constructor-arg>	<!-- \\를 두개씩 입력 -->
 </beans:bean>
 
-5. 실제 폴더 경로로 위치 변경
-예시)
+실제 예시)
 <!-- servlet-context.xml에 추가 -->
 <beans:bean id="uploadPath" class="java.lang.String">
     <!--
@@ -52,91 +51,7 @@
     <beans:constructor-arg value="C:\\최진영\\git\\uploadfiles"></beans:constructor-arg>	<!-- \\를 두개씩 입력 -->
 </beans:bean>
 
-
-6. BoardController에 메소드를 생성 및 어노테이션 추가
-예시) 어노테이션 추가
-@Resource
-private String uploadPath;
-
-예시) 매개변수 추가 후 예외처리를 quick fiexd로 추가(try catch 가 아닌 throws로 추가)
-	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{	//RunTimeException이 아니면 예외처리 필수
-		String file = uploadFile(file2.getOriginalFilename(),file2.getBytes());	//원래 코드 : String file = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
-		bVo.setFile(file);
-		if(boardService.register(bVo)){		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
-			return "redirect:/board/list";
-		}
-		return "redirect:/board/register";
-	}
-
-7. 첨부파일명에 식별 코드를 추가하는 메서드 추가
-예시) BoardController
-	private String uploadFile(String name, byte[] data)	//첨부파일 업로드 메서드(매핑 없이 컨트롤러 내에서 자체적으로 실행)
-			throws Exception{
-			UUID uid = UUID.randomUUID();	//동일한 파일명이 있어도 중복되지 않게 구분해주는 식별자
-			String savaName = uid.toString() + "_" + name;
-			File target = new File(uploadPath, savaName);
-			FileCopyUtils.copy(data, target);
-			return savaName;
-		}
-
-8. 첨부파일이 없을 때의 예외처리
-예시) BoardController
-	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{
-		if(file2.getOriginalFilename().length() != 0){
-			String file  = uploadFile(file2.getOriginalFilename(),file2.getBytes());
-			bVo.setFile(file);
-			boardService.register(bVo);		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
-			return "redirect:/board/list";
-		}
-		return "redirect:/board/register";
-	}
-
-9. 고유식별자를 제외한 첨부 파일명만을 추출하기 위해 BoardVO에 getter인 getFileName을 추가
-예시)
-	public String getFileName(){
-		if(file == null){
-			return "";
-		}
-		int index = file.indexOf("_");	//UUID 뒤에 오는 첫번째 _의 위치를 찾아서 저장
-		if(index == -1){	//파일이 없을 때의 예외처리
-			return "";
-		}
-		return file.substring(index+1);	// _ 다음 위치의 문자열을 서브스트링으로 변환하여 반환
-	}
-
-10. 첨부파일을 표시할 jsp파일에서 getter를 호출하여 게시글에서 첨부파일명을 출력 - display.jsp, modify.jsp
-
-예시) display.jsp
-  <table class="table">
-    <thead>
-      <tr>
-        <th>게시글 제목</th>
-        <th>작성자</th>
-        <th>조회수</th>
-        <th>작성일</th>
-        <th>첨부파일</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>${board.title}</td>
-        <td>${board.writer}</td>
-        <td>${board.views}</td>
-        <td>${board.registered}</td>
-        <td>${board.fileName}</td>	//getter를 호출 시 첫 글자가 대문자로 변환돼 호출되기 때문에 첫 글자를 카멜 표기법으로 입력
-      </tr>
-    </tbody>
-  </table>
-
-예시) modify.jsp
-		    <div class="form-group">
-			  <label>파일첨부</label>
-			  <input type="text" class="form-control" name="file" value="${board.fileName}">
-		    </div>	  		
-
-11.서버 폴더에 파일들이 집중되는 문제를 해결을 위한 추가 작업 - 파일을 저장할 때 /년/월/일을 별도의 폴더로 구성해서 파일을 보관
+5.서버 폴더에 파일들이 집중되는 문제를 해결을 위한 추가 작업 - 파일을 저장할 때 /년/월/일을 별도의 폴더로 구성해서 파일을 보관
 예시) spring프로젝트 > kr.green.spring.utils패키지 > UploadFileUtils 클래스 생성
 메소드 생성
 public class UploadFileUtils {
@@ -179,27 +94,82 @@ public class UploadFileUtils {
 		String iconName = uploadPath + path + File.separator + fileName;	//
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');	//replace를 통해 구분자를 \에서 /로 변경
 	}
+
 }
 
-12. BoardController 수정
-예시) String file = uploadFile(file.getOriginalFilename(),file.getBytes()); 코드를 수정
+6. 고유식별자를 제외한 첨부 파일명만을 추출하기 위해 BoardVO에 getter인 getFileName을 추가
+예시)
+	public String getFileName(){
+		if(file == null){
+			return "";
+		}
+		int index = file.indexOf("_");	//UUID 뒤에 오는 첫번째 _의 위치를 찾아서 저장
+		if(index == -1){	//파일이 없을 때의 예외처리
+			return "";
+		}
+		return file.substring(index+1);	// _ 다음 위치의 문자열을 서브스트링으로 변환하여 반환
+	}
+
+7. BoardController에  어노테이션 추가
+예시)
+@Resource
+private String uploadPath;
+
+8.) 매개변수와 코드 추가 후 quick fiexd로 throws Exception 추가 후 bVo.setFile로 file을 추가
+예시) 추가 코드 : String file = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());	//String file = uploadFile(file2.getOriginalFilename(),file2.getBytes());
 	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{
-		if(file2.getOriginalFilename().length() != 0){
-			String file  = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
-			bVo.setFile(file);
-			boardService.register(bVo);		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
+	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{	//RunTimeException이 아니면 예외처리 필수
+		String file = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
+		bVo.setFile(file);
+		if(boardService.register(bVo)){		//첨부파일을 먼저 작업하지 않고 게시글을 등록할 경우 NullPointerException 발생 가능
 			return "redirect:/board/list";
 		}
 		return "redirect:/board/register";
 	}
 
-13. 업로드된 파일 다운로드 테스트
-예시) uploadfiles 폴더에 2019/07/29 폴더가 생성되고 그 안에 첨부파일이 저장
+9. 첨부파일명에 식별 코드를 추가하는 메서드 추가
+예시) BoardController
+	private String uploadFile(String name, byte[] data)	//첨부파일 업로드 메서드(매핑 없이 컨트롤러 내에서 자체적으로 실행)
+			throws Exception{
+			UUID uid = UUID.randomUUID();	//동일한 파일명이 있어도 중복되지 않게 구분해주는 식별자
+			String savaName = uid.toString() + "_" + name;
+			File target = new File(uploadPath, savaName);
+			FileCopyUtils.copy(data, target);
+			return savaName;
+	}
 
-14. 다운로드 기능 추가
+10. 첨부파일이 없을 때의 예외처리
+예시) BoardController
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public String BoardRegisterPost(Model model, BoardVO bVo, MultipartFile file2) throws IOException, Exception{
+		if(file2.getOriginalFilename().length() != 0){
+			String file = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());
+			bVo.setFile(file);
+			boardService.register(bVo);
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/register";
+	}
+
+11. 첨부파일을 표시할 jsp파일에서 getter를 호출하여 게시글에서 첨부파일명을 출력 - display.jsp, modify.jsp
+
+예시) display.jsp
+      <tr>
+        <td>${board.title}</td>
+        <td>${board.writer}</td>
+        <td>${board.views}</td>
+        <td>${board.registered}</td>
+        <td>${board.fileName}</td>	<!-- getter를 호출 시 첫 글자가 대문자로 변환돼 호출되기 때문에 첫 글자를 카멜 표기법으로 입력 -->
+      </tr>
+
+예시) modify.jsp
+		    <div class="form-group">
+			  <label>파일첨부</label>
+			  <input type="text" class="form-control" name="file" value="${board.fileName}">
+		    </div>	  		
+
+12. 다운로드 기능 추가
 예시) BoardController에 메서드를 복사 후 붙여넣고 import(1번째 java.io, 2번째 org.springframework)
-//다운로드
 @ResponseBody
 @RequestMapping("download")
 public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
@@ -223,10 +193,10 @@ public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
     return entity;
 }
 
-15. 다운로드 테스트
+13. 다운로드 테스트
 예시) http://localhost:8080/spring/board/download?fileName=/2019/07/29/9d73a94d-7773-4380-9dda-fb3647daf6e0_cat1.png URI 입력
 
-16. 첨부파일 클릭 시 다운로드가 진행되도록 코드를 수정
+14. 첨부파일 클릭 시 다운로드가 진행되도록 코드를 수정
 예시) display.jsp
   <table class="table">
     <thead>
@@ -244,50 +214,33 @@ public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
         <td>${board.writer}</td>
         <td>${board.views}</td>
         <td>${board.registered}</td>
-        <td><a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.fileName}</a></td>
+        <td>	<!-- getter를 호출 시 첫 글자가 대문자로 변환돼 호출되기 때문에 첫 글자를 카멜 표기법으로 입력 -->
+	<c:if test="${board.fileName ne ''}">		<!-- 첨부파일이 있으면 파일명을 누를 시 다운로드 링크로 연결 -->
+		<a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.fileName}</a>
+	</c:if>
+	<c:if test="${board.fileName eq ''}">없음</c:if>		<!-- 첨부파일이 없을 경우 텍스트만 표시 -->
+        </td>
       </tr>
     </tbody>
   </table>
 
-17. 게시글 수정 시에도 첨부파일 변경이 적용되도록 코드 추가
-예시) modify.jsp에서 현재 첨부파일과 새로 선택할 첨부파일을 보여줄 인풋창을 생성하여 구분
-	<form method="post" action="<%=request.getContextPath()%>/board/modify" enctype="multipart/form-data">	<!-- action이 따로 없다면 현재 jsp의 post방식 매핑으로 이동한다 -->
-		<input type="hidden" name="num" value="${board.num}">
-		<div class="container-fluid" style="margin-top:20px;">	              
-		    <div class="form-group">
-			  <label>제목</label>
-			  <input type="text" class="form-control" name="title" value="${board.title}">
-		    </div>
-		    <div class="form-group">
-			  <label>작성자</label>
-			  <input type="text" class="form-control" name="writer" value="${board.writer}" readonly>
-		    </div>
-		    <div class="form-group">
-			  <label>작성일</label>
-			  <input type="text" class="form-control" name="registered" value="${board.registered}" readonly>
-		    </div>
-		    <div class="form-group">
-			  <label>조회수</label>
-			  <input type="text" class="form-control" name="views" value="${board.views }" readonly>
-		    </div>
-		    <div class="form-group">
-			  <label>내용</label>
-			  <textarea class="form-control" rows="5" name="contents">${board.contents }</textarea>
-			</div>
+
+
+
+
++게시글 수정 기능
+1. modify.jsp에서 현재 첨부파일과 새로 선택할 첨부파일을 보여줄 인풋창을 생성하여 구분
+예시) 추가 코드 : <input type="file" class="form-control" name="file2">
 		    <div class="form-group">
 			  <label>파일첨부</label>
 			  <input type="text" class="form-control" name="file" value="${board.fileName}" readonly>
 			  <input type="file" class="form-control" name="file2">
-		    </div>	  		
-		</div>
-		<button style="float: right; margin-right: 20px;">수정 완료</button>
-	</form>
-
-18. BoardController에서 file2를 매개변수로 추가하고 코드를 추가
+		    </div>	  
+	
+2. BoardController에서 MultipartFile file2를 매개변수로 추가하고 코드를 추가
 예시)
 	@RequestMapping(value="modify", method = RequestMethod.POST)
 	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r, MultipartFile file2) throws IOException, Exception{
-		logger.info("게시글 수정 진행 중");
 		if(!boardService.isWriter(bVo.getNum(), r)){
 			return "redirect:/board/list";
 		}
@@ -303,7 +256,7 @@ public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 		return "redirect:/board/display";
 	}
 
-19. 게시글 삭제 기능을 추가 - X버튼 생성과 css, jquery 적용
+3. 게시글 삭제 기능을 추가 - X버튼 생성과 css, jquery 적용
 예시) modify.jsp
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -376,7 +329,7 @@ $(document).ready(function(){
 </body>
 </html>
 
-20. BoardController에서 첨부파일이 지워졌을 때의 코드 추가
+4. BoardController에서 첨부파일이 지워졌을 때의 코드 추가
 예시)
 	@RequestMapping(value="modify", method = RequestMethod.POST)
 	public String boardModifyPost(Model model, BoardVO bVo, HttpServletRequest r, MultipartFile file2) throws IOException, Exception{

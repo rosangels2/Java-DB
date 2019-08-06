@@ -2,11 +2,14 @@ package kr.green.practice.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.practice.dao.BoardDAO;
 import kr.green.practice.vo.BoardVO;
+import kr.green.practice.vo.MemberVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -45,6 +48,16 @@ public class BoardServiceImp implements BoardService{
 		}
 		boardDao.modify(bVo);
 		return true;
+	}
+	
+	@Override
+	public boolean isWriter(Integer num, HttpServletRequest r) {
+		BoardVO board = boardDao.getBoard(num);
+		MemberVO user = (MemberVO)(r.getSession().getAttribute("user"));
+		if(board != null && board.getWriter().equals(user.getId())) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

@@ -40,7 +40,8 @@ a{
 			</div>
 		    <div class="form-group">
 			  <label>파일첨부</label>
-			  <input type="text" class="form-control" name="file" value="${board.file}">
+			  <input type="text" class="form-control" name="file" value="${board.fileName}">
+			  <input type="file" class="form-control" name="file2">
 		    </div>	  		
 		</div>
 		<button style="float: right; margin-right: 20px;">수정 완료</button>
