@@ -26,7 +26,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 예시)
 	<!-- 로그인이 안됐을 때 접근을 막는 인터셉터 등록 -->
 	<beans:bean id="authInterceptor" 
-		class="kr.green.spring.interceptor.AuthInterceptor">		<!-- 패키지명.클래스명 -->
+		class="kr.green.프로젝트명.interceptor.AuthInterceptor">		<!-- 패키지명.클래스명 -->
 	</beans:bean>
 
 	<!-- 로그인이 안됐을 때 접근 제한 -->
@@ -63,7 +63,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 예시)
 	<!-- 로그인이 됐을 때 접근을 막는 인터셉터 등록 -->
 	<beans:bean id="unAuthInterceptor" 
-		class="kr.green.practice.interceptor.UnauthInterceptor">
+		class="kr.green.프로젝트명.interceptor.UnauthInterceptor">
 	</beans:bean>
 
 	<!-- 로그인이 됐을 때 접근 제한 -->
