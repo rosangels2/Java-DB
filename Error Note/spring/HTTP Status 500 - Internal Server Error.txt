@@ -255,3 +255,36 @@ org.springframework.web.util.NestedServletException: Request processing failed; 
 <select id="getMember" resultType="kr.green.test.vo.MemberVO">
 	select * from member where id = #{id}
 </select>
+
+
+
+
+에러 내용
+Type Exception Report
+Message Servlet.init() for servlet [appServlet] threw exception
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception
+javax.servlet.ServletException: Servlet.init() for servlet [appServlet] threw exception
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'homeController' method 
+public org.springframework.web.servlet.ModelAndView kr.green.test.controller.HomeController.mainGet(org.springframework.web.servlet.ModelAndView) throws java.lang.Exception
+to {[/],methods=[GET]}: There is already 'homeController' bean method
+public org.springframework.web.servlet.ModelAndView kr.green.test.controller.HomeController.signupGet(org.springframework.web.servlet.ModelAndView) throws java.lang.Exception mapped.
+에러 원인 - 컨트롤러에서 value값이 중복됐을 때 어느 메서드를 매핑할지 결정할 수 없기 때문에 에러 발생
+예시)
+	@RequestMapping(value= "/", method = RequestMethod.GET)
+	public ModelAndView mainGet(ModelAndView mv) throws Exception{
+	    mv.setViewName("/main/home");	//setViewName :  return "/main/home" 와 같이 /main/home.jsp를 호출
+	    return mv;
+	}
+	@RequestMapping(value= "/", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv) throws Exception{
+	    mv.setViewName("/member/signup");	//setViewName :  return "/main/home" 와 같이 /main/home.jsp를 호출
+	    return mv;
+	}
+해결 방법 - 컨트롤러의 메서드 매핑 value를 중복되지 않게 수정
+예시)
+	@RequestMapping(value= "/signup", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv) throws Exception{
+	    mv.setViewName("/member/signup");	//setViewName :  return "/main/home" 와 같이 /main/home.jsp를 호출
+	    return mv;
+	}

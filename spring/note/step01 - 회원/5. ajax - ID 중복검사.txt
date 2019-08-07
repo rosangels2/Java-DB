@@ -23,12 +23,12 @@
 
 $(document).ready(function(){
 	$('#dup').click(function(){
-		var id = $('input[name=id]').val();	//data를 통해 넘겨줄 매개변수에 저장할 값을 입력
-		 $.ajax({
-	        async:true,
-	        type:'POST',
-	        data:id,	//컨트롤러에게 넘겨주는 매개변수명
-	        url:"dup",	//전송하는 URI 주소
+	 var id = $('input[name=id]').val();	//data를 통해 넘겨줄 매개변수에 저장할 값을 입력
+	 $.ajax({
+	        async:true,	//비동기화(동시 작업 처리)	async:false : 동기화(순차적 작업 처리) 
+	        type:'POST',	//POST방식으로 전송
+	        data:id,	//컨트롤러에게 넘겨주는 매개변수명 -> {'id':id} 형식과 같고 {}를 사용할 때는 변수를 여러 개 사용할 때
+	        url:"<%=request.getContextPath()%>/dup",
 	        dataType:"json",
 	        contentType:"application/json; charset=UTF-8",
 	        success : function(data){	//요청이 성공해서 보내준 값을 저장할 변수명
@@ -38,7 +38,7 @@ $(document).ready(function(){
 	});
 });	//레디
 
-4. 컨트롤러에서 매핑 후 인풋창에서 입력된 id를 출력하여 확인
+4. 컨트롤러에서 매핑 후 인풋창에서 입력된 id를 출력하여 확인(보낼 정보가 참거짓이라면 map을 사용하지 않고 boolean을 사용해도 된다)
 예시)
 	@RequestMapping(value ="/dup")	//id 중복검사를 위한 메서드 매핑
 	@ResponseBody
