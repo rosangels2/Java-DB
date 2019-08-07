@@ -3,7 +3,7 @@ https://www.google.com/settings/security/lesssecureapps 로 접속해서 사용�
 
 1. 의존성 추가
 예시) pom.xml
-<!-- pom.xml -->
+<!-- 메일 보내기 -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context-support</artifactId>
@@ -17,7 +17,7 @@ https://www.google.com/settings/security/lesssecureapps 로 접속해서 사용�
 
 2. bean 등록
 예시) root-context.xml
-<!-- root-context.xml -->
+<!-- 메일 보내기 -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
@@ -33,7 +33,7 @@ https://www.google.com/settings/security/lesssecureapps 로 접속해서 사용�
     </property>
 </bean>
 
-3. controller에 메소드 추가
+3. controller에 어노테이션 및 메소드 추가
 예시)
 @Autowired
 private JavaMailSender mailSender;
@@ -135,7 +135,7 @@ public String mailSending(HttpServletRequest request) {
 
 6. URI에서 컨트롤러의 매서드를 매핑
 예시)
-	http://localhost:8080/spring/mail/mailForm
+	http://localhost:8080/프로젝트명/mail/mailForm
 
 
 참고

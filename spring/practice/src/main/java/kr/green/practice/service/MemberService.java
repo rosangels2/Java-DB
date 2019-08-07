@@ -10,4 +10,14 @@ public interface MemberService {
 
 	boolean modify(MemberVO mVo, String oPw);
 
+	String getVal(String str);
+
+	boolean checkMember(String id, String email);
+
+	void sendMail(String email, String title, String contents);
+
+	String createPw();
+
+	void modify(String id, String email, String newPw);
+
 }
