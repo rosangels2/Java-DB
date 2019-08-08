@@ -122,7 +122,7 @@ CREATE TABLE `comment` (
 	`comment_no`	int	NOT NULL,
 	`comment_board_no`	int	NOT NULL,
 	`comment_user`	varchar(12)	NOT NULL,
-	`comment_writer`	varchar(12)	NOT NULL,
+	`comment_writer`	varchar(12)	NULL,
 	`comment_contents`	longtext	NULL,
 	`comment_time`	date	NULL,
 	`comment_valid`	varchar(1)	NULL
