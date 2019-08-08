@@ -17,8 +17,7 @@
 		});
 	});
 
-3. 컨트롤러에서 //cri.setPerPageNum(5); 코드를 삭제
--> URI로 보낸 perPageNum이 덮어써지므로
+3. 컨트롤러에서 //cri.setPerPageNum(5); 코드를 삭제(URI로 보낸 perPageNum이 덮어써지므로)
 예시)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listGet(Model model, Criteria cri) {
@@ -78,3 +77,13 @@
 	        </li>
 	    </c:if>
 	</ul>
+
+6. 검색 후 개시글 개수 보기를 변경해도 검색값이 유지되도록 jqery를 통해 코드 추가
+예시)
+	$(document).ready(function(){
+		$('#perPageNum').change(function(){
+			var type = $('select[name=type]').val();	//검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 추가
+			var search = $('input[name=search]').val();
+				location.href = "<%=request.getContextPath()%>/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
+		});
+	});

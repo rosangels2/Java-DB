@@ -1,0 +1,28 @@
+﻿https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0
+https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC2-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+
+github 새 레포지터리 생성 후 깃크라켄 연결
+
+1. 깃허브 - 새 레포지터리 생성
+
+2. 깃크라켄 > clone repo > 깃허브 연동으로 해당 레포지터리 선택 후 browse에서 연동할 폴더 선택 후 clone the repo! 클릭
+	      clone repo > clone with URL에서 깃허브의 레포지터리 HTPS주소를 복사한 후 browse에서 연동할 폴더 선택
+
+3. 깃크라켄에서 초기 커밋 알림창이 뜨면 initialize를 통해 이름을 정하고 push를 통해 연결
+
+4. spring > file > new > spring legacy project >연결할 프로젝트 경로 선택 후 Templates에서 spring MVC Project 선택 후 next 
+-> 프로젝트명 입력 후 finish(일반적으로 국가.회사명.앱이름 순으로 패키지 이름 생성 ex)kr.green.myapp)
+
+5 컨트롤러 패키지명 변경 시 servlet-context.xml에서 base-package 경로를 변경해야 서버 탐색 가능
+예시) 변경 전
+	<context:component-scan base-package="kr.green.market.controller" />	<!-- 해당 이름이 들어가는 파일들을 탐색 -->
+예시) 변경 후
+	<context:component-scan base-package="kr.green.market" />	<!-- 해당 이름이 들어가는 파일들을 탐색 -->
+
+6. gitignore.io에서 java와 java-web 검색 후 코드 복사
+
+7. 깃크라켄에서 target파일들 중 하나를 오른쪽 마우스로 클릭한 뒤 ignore > 아무거나 클릭 후 ignore 선택
+
+8. ignore파일이 생기면 edit this file을 클릭 후 gitignore에서 복사한 코드를 붙여넣고 save and stage change를 선택 후 commit
+
+9. ignore파일이 적용되고 난 후의 파일들을 stage all change를 통해 commit한 뒤 push

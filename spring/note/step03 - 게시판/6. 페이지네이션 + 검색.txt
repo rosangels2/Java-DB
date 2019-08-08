@@ -357,6 +357,13 @@ public class Criteria {
 	private int type;		//검색 카테고리 값을 저장할 멤버변수
 	private String search;	//검색창에 입력된 값을 저장할 멤버변수
 	
+	public Criteria() {	//기본 생성자
+		this.page = 1;
+		this.perPageNum = 10;
+		this.type = 0;
+		this.search = "";
+	}
+
 	public int getType() {
 		return type;
 	}
@@ -368,10 +375,6 @@ public class Criteria {
 	}
 	public void setSearch(String search) {
 		this.search = search;
-	}
-	public Criteria() {	//기본 생성자
-		this.page = 1;
-		this.perPageNum = 10;
 	}
 	public int getPage() {
 		return page;
@@ -505,15 +508,6 @@ public class Criteria {
 	    </c:if>
 	</ul>
 
-10. 검색 후 개시글 개수 보기를 변경해도 검색값이 유지되도록 jqery를 통해 코드 추가
-예시)
-	$(document).ready(function(){
-		$('#perPageNum').change(function(){
-			var type = $('select[name=type]').val();	//검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 추가
-			var search = $('input[name=search]').val();
-				location.href = "<%=request.getContextPath()%>/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
-		});
-	});
 
 11. 게시글 보기에서 다시 목록으로 돌아갔을 때도 페이지네이션이 유지되도록 perPageNum을 전송하는 코드 추가
 예시)

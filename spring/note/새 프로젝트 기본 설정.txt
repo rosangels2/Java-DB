@@ -35,14 +35,14 @@ Hello world! 및 서버 시간 확인
 5. Spring Framework 버전 수정
 pom.xml 선택 후 아래 탭에 pom.xml 선택
 Spring Framework 버전 수정
-수정 전
+예시) 수정 전
 <properties>
 	<java-version>1.6</java-version>
 	<org.springframework-version>5.1.8.RELEASE</org.springframework-version>
 	<org.aspectj-version>1.6.10</org.aspectj-version>
     <org.slf4j-version>1.6.6</org.slf4j-version>
 </properties>
-수정 후
+예시) 수정 후
 <properties>
 	<java-version>1.6</java-version>
 	<org.springframework-version>4.3.16.RELEASE</org.springframework-version>
@@ -73,16 +73,8 @@ Spring Framework 버전 수정
 메뉴 > window > Preference > General > Workspace > Text file encoding > Other > UTF-8 > Apply
 메뉴 > window > Preference > Web > JSP Files > Encoding > ISO 10646/Unicode(UTF-8) > Apply
 
-
-
-
-
-+DB 연동
-1. Mybatis 설정
-의존성 추가
-pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
+8. DB 연동을 위해 pom.xml에 의존성 추가
 예시) </dependencies> 바로 위
-
 		<!-- mybatis 의존성 추가 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -108,8 +100,8 @@ pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
 		    <version>${org.springframework-version}</version>
 		</dependency>
 
-2. 네임스페이스 추가
-예시) /src/main/webapp/WEB_INF/spring/root-contexnt.xml 수정
+2. root-context.xml에 네임스페이스 추가(aop, beans, jdbc, context, mybatis-spring 체크)
+예시) /src/main/webapp/WEB_INF/spring/root-context.xml 파일에서 Namespaces 선택 후 체크
 <!-- 수정전 -->
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -139,19 +131,18 @@ pom.xml 클릭 > pom.xml 탭 선택 후 아래 의존성 추가
 </beans>
 
 3. mysql 정보를 root-context.xml에 추가
-예시) </beans> 바로 위
-<!-- 기본 형식 -->
+예시) 기본 형식
 <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
     <property name="url"
-              value="jdbc:mysql://localhost:3306/DB이름?useSSL=false&amp;serverTimezone=UTC">
+              value="jdbc:mysql://localhost:3306/스키마이름?useSSL=false&amp;serverTimezone=UTC">
     </property>
     <property name="username" value="mysql계정아이디"></property>
     <property name="password" value="mysql계정비번"></property>
 </bean> 
 
-<!-- 실제 적용 예시 -->
+예시) 실제 적용
 <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
@@ -179,22 +170,36 @@ public interface MemberDAO {
 </mapper>
 
 6. root-context.xml에 Mapper 정보 설정
-예시) 
-<!-- 기본 예시 -->
+예시) 기본 형식
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
-    <property name="mapperLocations" value="classpath:경로/*Mapper.xml"></property>
+    <property name="mapperLocations" value="classpath:매퍼폴더명/*Mapper.xml"></property>
 </bean>
-<mybatis-spring:scan base-package="맵핑할패키지이름"/>
 
-<!-- 실제 적용 예시-->
+<mybatis-spring:scan base-package="국가명.회사명.프로젝트명.DAO폴더명"/>
+
+예시) 실제 적용
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
+
 	<mybatis-spring:scan base-package="kr.green.spring.dao"/>
 
-7. servlet-context.xml에서 package의 경로를 수정(해당 이름이 붙은 패키지만 연결)
+8. 해당 경로에 mappers 패키지와 dao패키지를 생성
+예시) src/main/resources / mappers
+       src/main/java / kr.green.프로젝트명.dao 
+
+9. Mapper.xml파일에 기본 설정
+예시)
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.spring.dao.MemberDAO">	<!-- DAO 인터페이스가 있는 파일명 -->
+</mapper>
+
+10. servlet-context.xml에서 package의 경로를 수정(해당 이름이 붙은 패키지만 연결)
 예시) 수정 전
 	<context:component-scan base-package="kr.green.practice.controller" />
 

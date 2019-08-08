@@ -170,11 +170,11 @@ on course.course_student_num = student.student_num;
 	-> class의 외래키 subject_code를 통해 subject 테이블을 참조할 때 join에 select문을 작성한 뒤
 		as를 통해 이름을 다시 붙여주고 붙여준 이름을 통해 on을 작성한다
 방법2)
-select 	course.course_class_num,
-		 subject_title,
-		 course.course_student_num,
+select 		course.course_class_num,
+		subject_title,
+		course.course_student_num,
   		student.student_name,
-course.course_total
+		course.course_total
 from course
 join student
 on  course.course_student_num = student.student_num
