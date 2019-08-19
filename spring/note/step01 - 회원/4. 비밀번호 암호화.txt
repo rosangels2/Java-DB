@@ -19,7 +19,7 @@
     <version>4.1.0.RELEASE</version>
 </dependency>
 
-2. /WEB_INF/spring/spring-security.xml 파일 생성
+2. /WEB_INF/spring/spring-security.xml 파일 생성 후 코드 붙여넣기
 예시)
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"

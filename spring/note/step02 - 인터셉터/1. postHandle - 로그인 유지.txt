@@ -28,8 +28,7 @@ public void postHandle(
 }
 
 3. LoginInterceptor를 servlet-context.xml에 interceptor로 등록
-kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
-기본 예시)
+예시)	kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 	<!-- 로그인 정보를 저장할 인터셉터 등록 -->
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.spring.interceptor.LoginInterceptor">
@@ -100,3 +99,34 @@ kr.green.spring.interceptor.LoginInterceptor 클래스를 bean에 등록
 		<a href="<%=request.getContextPath()%>/member/modify">회원정보 수정</a>
 		<a href="<%=request.getContextPath()%>/board/list">게시판</a>
 	</c:if>
+
+
+
+
+
++ 로그아웃 기능
+1. jsp에서 로그아웃 버튼을 생성
+예시)
+	<a href="<%=request.getContextPath()%>/signout" class="float-right" style="color : silver;">로그아웃</a>
+
+2. 해당 경로를 매핑하는 컨트롤러 생성
+예시)
+    @RequestMapping(value= "/signout")
+    public String signout(){
+    	return "redirect:/";
+    }
+
+3. 매개변수로 서버 정보가 담긴 HttpServletRequest 클래스의 객체를 추가
+예시)
+    @RequestMapping(value= "/signout")
+    public String signout(HttpServletRequest r) {
+    	return "redirect:/";
+    }
+
+4. HttpServletRequest의 객체에 담긴 Session 정보에서 변수 user를 제거
+예시)
+    @RequestMapping(value= "/signout")
+    public String signout(HttpServletRequest r) {
+    	r.getSession().removeAttribute("user");
+    	return "redirect:/";
+    }
