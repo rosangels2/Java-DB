@@ -1,25 +1,21 @@
 ﻿플러그인을 이용한 Validation 검사
 1. 플러그인 다운로드
 
-1.1 jquery validation plugin 공식 홈페이지로 이동 후 중간에 Download 클릭 / URI - https://jqueryvalidation.org/
+2 jquery validation plugin 공식 홈페이지로 이동 후 중간에 Download 클릭 / URI - https://jqueryvalidation.org/
 
-1.2 홈페이지 > 플러그인 files 다운로드 > jquery-validation.zip 파일 다운로드
+3 홈페이지 > 플러그인 files 다운로드 > jquery-validation.zip 파일 다운로드
 
-1.3 압축 해제 후 jquery-validation-1.17.0폴더 안에 있는 dist 폴더에서 jsp 파일을 복사 후 이동
+4 압축 해제 후 jquery-validation-1.17.0폴더 안에 있는 dist 폴더에서 jsp 파일을 복사 후 이동
 예시) wepapp/resources/js 폴더에 additional-methods.js와 jquery.validate.js파일 복사
 
-
-2. html 파일 구성
+5. jsp에 스크립트 src를 링크
 예시)
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    
-</head>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.js"></script>
+
+6. html 파일 구성
+예시)
 <body>
     <form id="frm">
         <input type="text" name="id" id="id" placeholder="아이디"/><br/>
@@ -31,28 +27,25 @@
         <input type="text" name="homepage" id="homepage" placeholder="홈페이지"/><br/>
         <input type="submit" value="회원가입" />
     </form>
-    <script src="//code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="../js/jquery.validate.min.js"></script>
-    <script src="../js/additional-methods.min.js"></script>
-    <script src="../js/sample.js"></script>
 </body>
 </html>
 
 
-3. js파일 구성
+3. $(document).ready함수 안에 validate 함수를 등록
 예시)
-$(function(){	
-	$("form").validate({		//$(document).ready(functuoin(){	}); 안에 $("form").validate({});를 복사 후 붙여넣기
+$(document).ready(function(){	
+
+	$("form").validate({	
 	        rules: {
 	            id: {
 	                required : true,	//필수 항목인지 여부
 	                minlength : 8,
-	                maxlength : 20
+	                maxlength : 12
 	            },
 	            pw: {
 	                required : true,
 	                minlength : 8,
-	                maxlength : 20,
+	                maxlength : 12,
 	                regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/	//정규표현식
 	            },
 	            pw1: {
@@ -87,9 +80,12 @@ $(function(){
 	                email : "메일규칙에 어긋납니다"
 	            }
 	        }
-	    });
+	});
+	
+});	//레디
 
-$.validator.addMethod(	//$(document).ready(functuoin(){	}); 밖에 함수를 등록
+4. $(document).ready 함수 밖에 validator 함수를 등록
+$.validator.addMethod(
     "regex",
     function(value, element, regexp) {
         var re = new RegExp(regexp);

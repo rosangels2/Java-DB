@@ -17,11 +17,12 @@
 			<button type="button" class="btn btn-outline-success col-7" id="dup">아이디 중복확인</button>
 		</div>
 
-3. jsp에서 중복 확인 버튼을 누를 시 ajax가 실행되도록 script에 코드 추가하고 jquery를 연결
+3. jsp에서 중복 확인 버튼을 누를 시 ajax가 실행되도록 script에 코드를 추가하고 jquery를 연결
 예시) signup.jsp <head>
 <script src="//code.jquery.com/jquery-3.4.1.js"></script>
 
 $(document).ready(function(){
+
 	$('#dup').click(function(){
 	 var id = $('input[name=id]').val();	//data를 통해 넘겨줄 매개변수에 저장할 값을 입력
 	 $.ajax({
@@ -36,6 +37,7 @@ $(document).ready(function(){
 	       }
 	    });
 	});
+
 });	//레디
 
 4. 컨트롤러에서 매핑 후 인풋창에서 입력된 id를 출력하여 확인(보낼 정보가 참거짓이라면 map을 사용하지 않고 boolean을 사용해도 된다)
