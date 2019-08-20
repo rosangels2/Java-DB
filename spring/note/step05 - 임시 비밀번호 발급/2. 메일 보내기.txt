@@ -1,7 +1,7 @@
 ﻿Spring으로 Gmail 메일 보내기
 https://www.google.com/settings/security/lesssecureapps 로 접속해서 사용으로 설정
 
-1. 의존성 추가
+1. pom.xml에서 의존성 추가
 예시) pom.xml
 <!-- 메일 보내기 -->
 <dependency>
@@ -15,7 +15,7 @@ https://www.google.com/settings/security/lesssecureapps 로 접속해서 사용�
     <version>1.4.3</version>
 </dependency>
 
-2. bean 등록
+2. root-context.xml에서 bean 등록
 예시) root-context.xml
 <!-- 메일 보내기 -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

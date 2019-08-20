@@ -75,6 +75,7 @@
 				alert("id = "+$('input[name=id]').val()+", email = "+$('input[name=email]').val());
 				return false;
 			});
+
 		});	//레디
 
 5. 찾기 버튼 클릭 시 ajax를 이용하여 서버에 아이디와 이메일 정보를 전송하도록 /member/find.jsp에 코드 추가
