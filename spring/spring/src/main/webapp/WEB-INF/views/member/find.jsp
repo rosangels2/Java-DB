@@ -31,7 +31,8 @@
 		      	  }
 		   		});
 			});
-		})
+			
+		}); //레디
 	</script>
 	<title>로그인</title>
 	<style>
