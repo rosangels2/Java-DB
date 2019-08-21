@@ -21,7 +21,7 @@
     <beans:property name="maxUploadSize" value="10485760"></beans:property>
 </beans:bean>
 
-3. board/register.jsp 에서 form태그에 enctype을 추가하고 file 인풋창의 타입을 file로 변경하고 네임을 변경
+3. board/register.jsp 에서 form태그에 enctype="multipart/form-data"을 추가하고 file 인풋창의 타입을 file로 변경하고 네임을 변경
 <!-- form 태그 수정 -->
 <form method="post" enctype="multipart/form-data">
     <!-- ... 이전 코드 생략 -->

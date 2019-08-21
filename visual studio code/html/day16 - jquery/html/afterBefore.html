@@ -41,6 +41,8 @@
 				//after와 before는 해당 셀렉터를 기준으로 형제 태그를 추가
 				$(this).before('<button>버튼2</button>');	//이벤트가 발생한 객체의 앞에 형제 태그를 추가
 				$(this).after('<button>버튼2</button>');	//이벤트가 발생한 객체의 뒤에 형제 태그를 추가
+				$(this).last()	//이벤트가 발생한 객체의 형제들 중 마지막 태그를 지정
+				$(this).first()	//이벤트가 발생한 객체의 형제들 중 첫번째 태그를 지정
 			});
 			$('#more').click(function(){
 				var str = '<div class="img-box"></div><div class="img-box"></div><div class="img-box"></div>';

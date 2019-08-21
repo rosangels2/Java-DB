@@ -13,7 +13,7 @@
 		$('#perPageNum').change(function(){
 			var type = $('select[name=type]').val();	//검색한 상태에서 게시글 개수를 변경했을 떄 검색한 값을 유지하기 위해 추가
 			var search = $('input[name=search]').val();
-				location.href = "<%=request.getContextPath()%>/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
+			location.href = "<%=request.getContextPath()%>/board/list?perPageNum="+$(this).val()+'&type='+type+'&search='+search;
 		});
 	});
 </script>
