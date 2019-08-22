@@ -115,7 +115,7 @@ public class UploadFileUtils {
 @Resource
 private String uploadPath;
 
-8.) 매개변수와 코드 추가 후 quick fiexd로 throws Exception 추가 후 bVo.setFile로 file을 추가
+8.) 매개변수와 코드 추가 후 quick fiexd로 throws Exception 추가하고 bVo.setFile을 통해 setter로 값을 입력
 예시) 추가 코드 : String file = UploadFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(),file2.getBytes());	//String file = uploadFile(file2.getOriginalFilename(),file2.getBytes());
 	@RequestMapping(value="register", method = RequestMethod.POST)
 	public String BoardRegisterPost(MultipartFile file2, BoardVO bVo) throws IOException, Exception{	//RunTimeException이 아니면 예외처리 필수

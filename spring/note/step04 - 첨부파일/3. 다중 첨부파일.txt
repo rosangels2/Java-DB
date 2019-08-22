@@ -136,7 +136,7 @@ public class FileVO {
 14. BoardController의 display 메서드에서 파일 정보를 가져오는 서비스 인터페이스를 호출해 ArrayList 변수에 저장
 예시)
 	@RequestMapping(value="/display", method=RequestMethod.GET)
-	public String boardDisplayGet(Model model,Integer num) {
+	public String boardDisplayGet(Model model, Integer num) {
 		boardService.updateViews(num);
 		BoardVO bVo = boardService.getBoard(num);
 		ArrayList<FileVO> files = boardService.getFiles(num);
