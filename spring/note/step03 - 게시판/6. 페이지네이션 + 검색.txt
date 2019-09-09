@@ -305,7 +305,7 @@ public class PageMaker {
         </li>
        </c:if>
        <c:if test="${pageMaker.criteria.page != index}">
-        <li class="page-item">	//부트스트랩 active 클래스를 호출하여 css를 적용
+        <li class="page-item">
             <a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a>
         </li>
        </c:if>
