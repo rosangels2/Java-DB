@@ -34,6 +34,15 @@ https://jquery.com/
 bootstrap4
 https://getbootstrap.com/
 
+쇼핑몰 테마 베스트
+https://webdesign.tutsplus.com/ko/articles/20-best-shopify-themes-with-beautiful-ecommerce-designs--cms-26547
+
+폰트 사이트
+https://noonnu.cc/
+
+
+
+
 
 icon 링크(visual studio code의 html에 link)
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
